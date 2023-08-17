@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "CherryBomb";
+  src: local("CherryBomb"), url("../fonts/CherryBomb.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: local("Nunito"), url("../fonts/Nunito.ttf") format("truetype");
+}
+
+$headings-font: "CherryBomb";
+$text-font: "Nunito";
+
+$custom-primary: #3a96cf;
+$custom-secondary: #ed6b86;
+$custom-dark: #23262f;
+$custom-light: #f9f9ed;
+$custom-warning: #f79824;
+
+$custom-colors: (
+  "primary": $custom-primary,
+  "secondary": $custom-secondary,
+  "dark": $custom-dark,
+  "light": $custom-light,
+  "warning": $custom-warning,
+);
