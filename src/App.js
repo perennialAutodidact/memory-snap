@@ -1,15 +1,13 @@
 import "./styles/App.scss";
+import SetupForm from "components/SetupForm";
 
 function App() {
   return (
-    <div className="App bg-dark vh-100">
-      <header className="App-header">
-        <h1 className="bg-primary">Hello world</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum,
-          labore?
-        </p>
+    <div className="App bg-dark text-light vh-100">
+      <header>
+        <h1>Memory Snap</h1>
       </header>
+      <SetupForm />
     </div>
   );
 }
