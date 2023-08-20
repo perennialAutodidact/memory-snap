@@ -21,21 +21,25 @@ import MyComponent from 'components/MyComponent';
 ```
 
 ## Styling
-Styles are written in SCSS and are located in the `src/styles` directory. 
+Styles are written in SCSS and are located in the `src/styles` directory.
+[Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/) is used as a foundation and custom values are applied in
+`src/styles/_bootstrap-config.scss` and
+`src/styles/_memory-snap-variables.scss`. Bootstrap variable overrides need to
+be loaded **before** Bootstrap is imported into the project in
+`src/styles/index.scss`.
 
 ## Testing
 Tests are written in Jest with React Testing Library. There is a helper
-function
- named `setupTests` in `src/helpers/tests` which will render
-components
- wrapped in the necessary context providers. This function should be
-used instead
- of React Test Library's `render` function for rendering
-components
- within tests.
+function named `setupTests` in `src/helpers/tests` which will render
+ components
+wrapped in the necessary context providers. This function should be
+ used
+instead of React Test Library's `render` function for rendering  components
+within tests.
 
-Tests should be written for every single component and every single user action.
-Mock as little as possible.
+Ideally, tests should be written for every single component and every single
+user action **before** writing the code to fix the test. Mock as little as
+possible to maximize test confidence. 
 
 Run `yarn test` to start the test suite in watch mode.
 
