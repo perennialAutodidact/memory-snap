@@ -2,10 +2,10 @@
 Flip tiles to find matching images. The player who finds the most pairs wins!
 
 ## Project Setup
+- Install and/or switch to Node 18.17.1. 
 - Run `git clone https://github.com/perennialAutodidact/memory-snap.git`
-- Run
-`cd memory-snap`
-- Run `yarn install`
+- Run `cd memory-snap`
+- Run `yarn install`. If Yarn is not installed globally for Node 18.17.1, then install it using `npm install -g yarn`.
 - Run `yarn start` to start the local dev server
 
 The repo is setup to use absolute imports with the `src` as the base directory.
