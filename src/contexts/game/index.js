@@ -6,14 +6,14 @@ export const baseState = {
     totalSteps: 3,
   },
   game: {
-    stage: "setup",
-    currentPlayer: "player1",
+    stage: "playing", // setup, playing, complete
+    currentPlayer: 1,
     players: {
-      player1: {
+      1: {
         name: "Player 1",
         score: 0,
       },
-      player2: {
+      2: {
         name: "Player 2",
         score: 0,
       },

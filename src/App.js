@@ -1,17 +1,21 @@
-import GameProvider from "components/GameProvider";
 import "./styles/App.scss";
 import SetupForm from "components/SetupForm";
+import useGameContext from "hooks/useGameContext";
 
 function App() {
+  const {
+    state: { game },
+  } = useGameContext();
   return (
-    <GameProvider>
-      <div className="App bg-dark text-light vh-100 container-fluid">
-        <header>
-          <h1>Memory Snap</h1>
-        </header>
-        <div className="container">{/* <SetupForm /> */}</div>
+    <div className="App bg-dark text-light vh-100 container-fluid">
+      <header>
+        <h1>Memory Snap</h1>
+      </header>
+      <div className="container">
+        {game.stage === "setup" ? <SetupForm /> : null}
+        {game.stage === "playing" ? <Game /> : null}
       </div>
-    </GameProvider>
+    </div>
   );
 }
 
