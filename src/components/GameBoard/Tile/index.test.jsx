@@ -1,6 +1,6 @@
 import Tile from ".";
 import { screen } from "@testing-library/react";
-import { setupTests } from "utils/tests";
+import { setupTests } from "helpers/tests";
 
 describe("Tile component", () => {
   it("renders with image from props", () => {
