@@ -30,4 +30,11 @@ function
 wrapped in the necessary context providers. This function should be used instead
 of React Test Library's `render` function for rendering components within tests.
 
+The `setupTests` function accepts the following arguments:
+`Component`: **React.ReactNode** - The component to be rendered in the test
+`options`: **object** - values used to render the Component in a particular state
+    - `props`: **object** - props for the Component
+    - `state`: **object** - the current state of the application (currently this is the value that will be provided to `GameContext`)
+    - `route`: **string** - url of route to be rendered (e.g. "/users/10")
+
 Run `yarn test` to start the test suite in watch mode.
