@@ -1,17 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./styles/index.scss";
 import "bootstrap/dist/js/bootstrap.bundle";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import GameProvider from "components/Game/GameProvider";
+import Game from "components/Game";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Game />,
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <GameProvider>
-      <App />
-    </GameProvider>
+    <RouterProvider router={router}>
+      <GameProvider>
+        <App />
+      </GameProvider>
+    </RouterProvider>
   </React.StrictMode>
 );
 
