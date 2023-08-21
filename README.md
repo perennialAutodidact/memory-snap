@@ -37,6 +37,13 @@ wrapped in the necessary context providers. This function should be
 instead of React Test Library's `render` function for rendering  components
 within tests.
 
+The `setupTests` function accepts the following arguments:
+`Component`: **React.ReactNode** - The component to be rendered in the test
+`options`: **object** - values used to render the Component in a particular state
+    - `props`: **object** - props for the Component
+    - `state`: **object** - the current state of the application (currently this is the value that will be provided to `GameContext`)
+    - `route`: **string** - url of route to be rendered (e.g. "/users/10")
+
 Ideally, tests should be written for every single component and every single
 user action **before** writing the code to fix the test. Mock as little as
 possible to maximize test confidence. 
@@ -49,4 +56,3 @@ All incoming feature branches will be merged into the `dev` branch to be tested 
 Branches should be created for each issue. The branch name should be formatted like this: `{issue number}-{component}-{short-description}`. Please, use hyphens instead of spaces or other punctuation. Github has a feature for creating branches that will be linked to the issue for which they're created. Branches created in this way will follow the aforementioned branch name formatting. See the images below.
 ![image](design/readmeImages/contributing_create_branch.png)
 ![image](design/readmeImages/contributing_create_branch_2.png)
-

@@ -2,6 +2,7 @@ import React from "react";
 
 const ProgressBar = ({ currentStep, totalSteps }) => {
   const valueNow = Math.floor((currentStep / totalSteps) * 100);
+
   return (
     <div className="progress">
       <div
