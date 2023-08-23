@@ -50,6 +50,71 @@ possible to maximize test confidence.
 
 Run `yarn test` to start the test suite in watch mode.
 
+## ImmerJS
+
+Since React utilizes top-down, immutable state, it's best practice
+to always return a new state object from the reducer to avoid stale state
+within the app and to ensure that components update when state values change.
+Using traditional spread operator syntax is effective, but gets very messy when
+updating deeply nested state values, because each layer of the state object
+needs to be duplicated as the deeply nested value is accessed.
+
+[ImmerJS](https://immerjs.github.io/immer/) is a library used by Redux Toolkit
+to allow immutable state updates to be written in a mutable syntax. The
+`produce` function from Immer creates a `draft` of a given object, applies
+mutable change to it and then returns a new object with the desired changes.
+
+For example:
+```javascript
+// traditional reducer syntax, using spread syntax
+const reducer = (state, action) => {
+  switch(action.type){
+    case types.SET_DEEPLY_NESTED_VALUE: {
+      // return a copy of the state object with desired changes
+      return {
+        ...state,
+        nested: {
+          ...state.nested,
+          deeplyNested: {
+            ...state.nested.deeplyNested,
+            value: action.payload.value, 
+          },
+        },
+      }
+    };
+  };
+};
+```
+
+In order to update the value of `state.nested.deeplyNested.value`, all the
+previous layers of state need to be spread into the new object. This quickly
+becomes difficult to read and maintain. With Immer, the previous example would
+look like this:
+
+```javascript
+import produce from 'immer';
+
+// using ImmerJS
+const reducer = (state, action) => {
+  switch(action.type){
+    case types.SET_DEEPLY_NESTED_VALUE: {
+      // return a copy of the state object with desired changes
+      return produce(state, (draft) => {
+        draft.nested.deeplyNested.value = action.payload.value;
+      });
+    };
+  };
+};
+```
+
+The `draft` object is able to be manipulated with mutable syntax and Immer
+creates a new object behind the scenes with the desired changes. *No return
+value is required from the `produce` function*.
+
+See the [ImmerJs Docs](https://immerjs.github.io/immer/produce/) for more
+information about the `produce` function.
+
+
 ## Contributing
 All incoming feature branches will be merged into the `dev` branch to be tested in a staging environment before committing changes on the branch into `main`. 
 
