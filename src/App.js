@@ -1,6 +1,6 @@
 import "./styles/App.scss";
 import SetupForm from "components/SetupForm";
-import useGameContext from "hooks/useGameContext";
+import useGameContext from "hooks/useGameContext/useGameContext";
 
 function App() {
   const {

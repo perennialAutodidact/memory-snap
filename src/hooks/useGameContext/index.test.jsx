@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import useGameContext from "./useGameContext";
+import useGameContext from ".";
 import GameProvider from "components/Game/GameProvider";
 
 describe("useGameContext hook", () => {
