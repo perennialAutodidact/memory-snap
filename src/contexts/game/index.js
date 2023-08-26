@@ -4,6 +4,7 @@ export const baseState = {
   setup: {
     currentStep: 1,
     totalSteps: 3,
+    photos: [],
   },
   game: {
     stage: "playing", // setup, playing, complete

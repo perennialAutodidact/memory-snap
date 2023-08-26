@@ -1,16 +1,20 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import GameProvider from "components/Game/GameProvider";
 import { BrowserRouter } from "react-router-dom";
+import GameProvider from "components/Game/GameProvider";
+import PhotosProvider from "components/Game/PhotosProvider";
 
 const setupTests = (Component, { props, state, route = "/" } = {}) => {
+  // push the route into the "browser" history
   window.history.pushState({}, "Test", route);
 
   const user = userEvent.setup();
   render(
     <BrowserRouter>
       <GameProvider providedState={{ ...state }}>
-        <Component {...props} />
+        <PhotosProvider>
+          <Component {...props} />
+        </PhotosProvider>
       </GameProvider>
     </BrowserRouter>
   );

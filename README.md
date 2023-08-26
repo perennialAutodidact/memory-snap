@@ -6,7 +6,10 @@ Flip tiles to find matching images. The player who finds the most pairs wins!
 - Run `git clone https://github.com/perennialAutodidact/memory-snap.git`
 - Run `cd memory-snap`
 - Run `yarn install`. If Yarn is not installed globally for Node 18.17.1, then install it using `npm install -g yarn`.
+- Create a file in the root directory called `.env.local` and add the Pexel's API key to it: `REACT_APP_PEXELS_API_KEY=<API_KEY>`
 - Run `yarn start` to start the local dev server
+
+### Absolute imports
 
 The repo is setup to use absolute imports with the `src` as the base directory.
 Any relative import that traverses more than one parent directory should be
