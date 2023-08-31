@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createClient } from 'pexels';
 
 const useFetchedPhotos = ({ query = 'nature', perPage }) => {
