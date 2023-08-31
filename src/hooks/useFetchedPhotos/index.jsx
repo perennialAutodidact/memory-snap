@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { createClient } from "pexels";
-import pexels from "pexels";
+import React, { useEffect, useState } from 'react';
+import { createClient } from 'pexels';
 
-const useFetchedPhotos = () => {
+const useFetchedPhotos = ({ query = 'nature', perPage }) => {
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
@@ -11,16 +10,14 @@ const useFetchedPhotos = () => {
 
     if (!photos.length) {
       (async () => {
-        const query = "nature";
         try {
           const photos = await pexelsClient.photos.search({
             query,
-            per_page: 5,
-            size: "small",
-            orientation: "square",
+            per_page: perPage,
+            size: 'small',
+            orientation: 'square',
           });
 
-          console.log({ photos: photos.photos });
           setPhotos(photos.photos);
         } catch (error) {
           console.log(error);
