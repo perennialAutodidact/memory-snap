@@ -1,13 +1,8 @@
-import { render } from "@testing-library/react";
-import useGameContext from ".";
-import GameProvider from "components/Game/GameProvider";
+import { render, renderHook } from '@testing-library/react';
+import useGameContext from '.';
+import GameProvider from 'components/providers/game';
 
-describe("useGameContext hook", () => {
-  const Component = () => {
-    const context = useGameContext();
-    return <div data-testid="context-result">{JSON.stringify(context)}</div>;
-  };
-
+describe('useGameContext hook', () => {
   let errorObject;
   beforeEach(() => {
     // prevent error from useGameContext from printing in the test console
@@ -19,17 +14,13 @@ describe("useGameContext hook", () => {
     console.error = errorObject;
   });
 
-  it("throws an error if not wrapped in the GameProvider component", () => {
-    expect(() => render(<Component />)).toThrow();
+  it('throws an error if not wrapped in the GameProvider component', () => {
+    expect(() => renderHook(useGameContext)).toThrow();
   });
 
-  it("renders component wrapped in GameProvider without error", () => {
+  it('renders component wrapped in GameProvider without error', () => {
     expect(() =>
-      render(
-        <GameProvider>
-          <Component />
-        </GameProvider>
-      )
+      renderHook(useGameContext, { wrapper: GameProvider })
     ).not.toThrow();
   });
 });
