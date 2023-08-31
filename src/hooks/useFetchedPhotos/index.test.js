@@ -1,19 +1,30 @@
-import React, { useState } from "react";
-import { act, screen, waitFor } from "@testing-library/react";
-import { setupTests } from "helpers/tests";
-import useFetchedPhotos from ".";
+import { renderHook, screen, waitFor } from '@testing-library/react';
+import { mockPhotos } from 'components/__mocks__/mockPhotos';
+import { createClient } from 'pexels';
+import useFetchedPhotos from '.';
 
-const Component = () => {
-  const { photos } = useFetchedPhotos();
-  console.log({ photos });
-  return <div data-testid="photos">{JSON.stringify(photos)}</div>;
-};
+jest.mock('pexels');
 
-describe("useFetchedImamges hook", () => {
-  it("returns an array of fetched images", async () => {
-    await act(async () => setupTests(Component));
-    await waitFor(async () => {
-      screen.debug(await screen.findByTestId("photos"));
+describe('useFetchedImamges hook', () => {
+  it('returns an array of fetched images', async () => {
+    createClient.mockImplementation(() => ({
+      photos: {
+        search: jest.fn().mockReturnValue(
+          new Promise((resolve) => {
+            return resolve({
+              photos: {
+                photos: mockPhotos,
+              },
+            });
+          })
+        ),
+      },
+    }));
+
+    const params = { query: 'test', perPage: 5 };
+    const { result } = renderHook(() => useFetchedPhotos(params));
+    await waitFor(() => {
+      expect(result.current.photos.photos).toEqual(mockPhotos);
     });
   });
 });
