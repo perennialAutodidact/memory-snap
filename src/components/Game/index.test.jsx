@@ -1,9 +1,9 @@
-import { setupTests } from "helpers/tests";
-import Game from ".";
+import { setupTests } from 'helpers/tests';
+import Game from '.';
 
-describe("Game component", () => {
-  it("renders", () => {
+describe('Game component', () => {
+  it('renders', () => {
     const { screen } = setupTests(Game);
-    expect(screen.getByLabelText("memory snap game")).toBeInTheDocument();
+    expect(screen.getByLabelText('memory snap game')).toBeInTheDocument();
   });
 });
