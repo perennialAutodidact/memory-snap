@@ -1,5 +1,5 @@
-import React from "react";
-import SetupForm from "./Form";
+import React from 'react';
+import SetupForm from './Form';
 
 const Setup = () => {
   return (

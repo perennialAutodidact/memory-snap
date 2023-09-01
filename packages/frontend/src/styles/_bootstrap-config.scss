@@ -1,8 +1,8 @@
-@use "sass:map";
-@import "./memory-snap-variables";
+@use 'sass:map';
+@import './memory-snap-variables';
 
 // 1. Include Bootstrap functions first (so you can manipulate colors, SVGs, calc, etc)
-@import "../../node_modules/bootstrap/scss/functions";
+@import '../../node_modules/bootstrap/scss/functions';
 
 // 2. Include any default variable overrides here
 // $primary: $custom-primary;
@@ -19,31 +19,31 @@ $font-family-base: $text-font;
 $headings-font-family: $headings-font;
 
 // 3. Include remainder of required Bootstrap stylesheets
-@import "../../node_modules/bootstrap/scss/variables";
-@import "../../node_modules/bootstrap/scss/variables-dark";
-@import "../../node_modules/bootstrap/scss/mixins";
+@import '../../node_modules/bootstrap/scss/variables';
+@import '../../node_modules/bootstrap/scss/variables-dark';
+@import '../../node_modules/bootstrap/scss/mixins';
 
 // add in custom colors from memory-snap-variables.scss
 $theme-colors: map-merge($theme-colors, $custom-colors);
-$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, '$value');
 
 // 4. Include any optional Bootstrap components as you like
-@import "../../node_modules/bootstrap/scss/maps";
-@import "../../node_modules/bootstrap/scss/grid";
-@import "../../node_modules/bootstrap/scss/root";
-@import "../../node_modules/bootstrap/scss/reboot";
-@import "../../node_modules/bootstrap/scss/type";
-@import "../../node_modules/bootstrap/scss/images";
-@import "../../node_modules/bootstrap/scss/containers";
-@import "../../node_modules/bootstrap/scss/forms";
-@import "../../node_modules/bootstrap/scss/utilities";
+@import '../../node_modules/bootstrap/scss/maps';
+@import '../../node_modules/bootstrap/scss/grid';
+@import '../../node_modules/bootstrap/scss/root';
+@import '../../node_modules/bootstrap/scss/reboot';
+@import '../../node_modules/bootstrap/scss/type';
+@import '../../node_modules/bootstrap/scss/images';
+@import '../../node_modules/bootstrap/scss/containers';
+@import '../../node_modules/bootstrap/scss/forms';
+@import '../../node_modules/bootstrap/scss/utilities';
 
 // 5. Add additional custom code here
 
 $utilities: map-merge(
   $utilities,
   (
-    "viewport-width": (
+    'viewport-width': (
       property: width,
       class: vw,
       values: (
