@@ -1,5 +1,5 @@
 {
-  "name": "memory-snap",
+  "name": "memory-snap-workspace",
   "private": true,
   "workspaces": {
     "packages": [
@@ -7,16 +7,16 @@
     ]
   },
   "scripts": {
-    "start": "yarn nx run-many --target=start",
-    "test": "yarn nx run-many --target=test"
+    "start": "npx nx run-many --target=start",
+    "test": "npx nx run-many --target=test"
   },
   "dependencies": {},
   "devDependencies": {
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react": "^7.33.2",
-    "lerna": "^7.2.0",
     "prettier": "^3.0.3",
-    "prettier-eslint-cli": "^7.1.0"
+    "prettier-eslint-cli": "^7.1.0",
+    "nx": "15.3.0"
   },
   "version": "1.0.0",
   "description": "Memory Snap monorepo",
