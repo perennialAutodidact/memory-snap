@@ -1,19 +1,28 @@
 {
   "name": "memory-snap",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/**"
+    ]
+  },
   "scripts": {
-    "start": "lerna run --parallel start"
+    "start": "npx lerna run start",
+    "test": "npx lerna run test"
   },
   "dependencies": {},
   "devDependencies": {
-    "lerna": "^7.2.0"
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "lerna": "^7.2.0",
+    "prettier": "^3.0.3",
+    "prettier-eslint-cli": "^7.1.0",
+    "nx": "16.7.4",
+    "nx-cloud": "latest"
   },
   "version": "1.0.0",
   "description": "Memory Snap monorepo",
-  "main": "null",
+  "main": "index.js",
   "repository": "git@github.com:perennialAutodidact/memory-snap.git",
   "author": "Keegan Good <perennialautodidact@gmail.com>",
   "license": "MIT"
