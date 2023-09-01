@@ -7,8 +7,8 @@
     ]
   },
   "scripts": {
-    "start": "npx lerna run start",
-    "test": "npx lerna run test"
+    "start": "yarn nx run-many --target=start",
+    "test": "yarn nx run-many --target=test"
   },
   "dependencies": {},
   "devDependencies": {
@@ -16,9 +16,7 @@
     "eslint-plugin-react": "^7.33.2",
     "lerna": "^7.2.0",
     "prettier": "^3.0.3",
-    "prettier-eslint-cli": "^7.1.0",
-    "nx": "16.7.4",
-    "nx-cloud": "latest"
+    "prettier-eslint-cli": "^7.1.0"
   },
   "version": "1.0.0",
   "description": "Memory Snap monorepo",
