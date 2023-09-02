@@ -12,8 +12,9 @@ function App() {
         <h1>Memory Snap</h1>
       </header>
       <div className="container">
+        {/* TODO: Add routing with React Router */}
         {game.stage === "setup" ? <SetupForm /> : null}
-        {game.stage === "playing" ? <Game /> : null}
+        {/* {game.stage === "playing" ? <Game /> : null} */}
       </div>
     </div>
   );
