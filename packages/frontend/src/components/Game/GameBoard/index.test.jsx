@@ -1,5 +1,5 @@
-import GameBoard from ".";
+import GameBoard from '.';
 
-describe("GameBoard component", () => {
-  it("", () => {});
+describe('GameBoard component', () => {
+  it('', () => {});
 });
