@@ -1,9 +1,9 @@
-import { setupTests } from 'helpers/tests';
-import Layout from '.';
+import { setupTests } from "helpers/tests";
+import Layout from ".";
 
-describe('Layout component', () => {
-  it('renders <main> tag', () => {
+describe("Layout component", () => {
+  it("renders <main> tag", () => {
     const { screen } = setupTests(Layout);
-    expect(screen.getByRole('main')).toBeInTheDocument();
+    expect(screen.getByRole("main")).toBeInTheDocument();
   });
 });
