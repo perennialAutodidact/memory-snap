@@ -23,7 +23,6 @@ describe('app', () => {
     if (server) {
       await server.close();
     }
-    // jest.resetAllMocks();
   });
 
   it('returns photos array', async () => {
