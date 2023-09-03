@@ -1,0 +1,16 @@
+text=auto
+
+## declare which files should receive LF endings
+.js text eol=lf
+.jsx text eol=lf
+.js.test.jsx text eol=lf
+.js.test.js text eol=lf
+.json text eol=lf
+.md text eol=lf
+.scss text eol=lf
+
+# Declare files that are binary so that their eol should not be modified.
+# Git, with the first line of this file, will probably not modify binary
+# files, but add the following just to be safe and explicit.
+*.png binary
+*.jpg binary

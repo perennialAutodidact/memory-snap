@@ -12,15 +12,10 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-react": "^7.33.2",
-    "prettier": "^3.0.3",
-    "prettier-eslint-cli": "^7.1.0",
     "nx": "15.3.0"
   },
   "version": "1.0.0",
   "description": "Memory Snap monorepo",
-  "main": "index.js",
   "repository": "git@github.com:perennialAutodidact/memory-snap.git",
   "author": "Keegan Good <perennialautodidact@gmail.com>",
   "license": "MIT"
