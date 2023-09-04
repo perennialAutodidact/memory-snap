@@ -1,4 +1,4 @@
-export const mockPhotos = [
+const mockPhotos = [
   {
     id: 1687678,
     width: 2832,
@@ -145,3 +145,5 @@ export const mockPhotos = [
     alt: "Man Standing on Grass Field",
   },
 ];
+
+module.exports = mockPhotos;

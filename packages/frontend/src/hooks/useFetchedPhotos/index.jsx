@@ -6,7 +6,7 @@ const useFetchedPhotos = ({ query = 'nature', perPage }) => {
   useEffect(() => {
     (async () => {
       try {
-        const url = `${process.env.REACT_APP_BACKEND_API_URL}/photos/?`;
+        const url = `${process.env.REACT_APP_API_URL}/photos/?`;
         const params = new URLSearchParams({ perPage, query });
         const response = await fetch(url + params, {
           method: 'GET',

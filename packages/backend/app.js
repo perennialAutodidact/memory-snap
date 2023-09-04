@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const { mockPhotos } = require("./__mocks__/mockPhotos");
+const mockPhotos = require("./__mocks__/mockPhotos");
 
 const allowedOrigins = ["http://localhost:3000", "https://localhost:3000"];
 const corsOptions = {
