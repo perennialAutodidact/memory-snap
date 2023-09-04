@@ -1,5 +1,5 @@
 import React from 'react';
-// import Tile from '../Tile';
+import Tile from '../Tile';
 
 const tiles = {
   rows: {
@@ -89,16 +89,33 @@ const tiles = {
 const TileGrid = () => {
   const rows = tiles.rows;
   let rowNumber = Object.keys(rows).length;
+  let columnNumber = Object.keys(tiles.rows[0].columns).length;
 
-  console.log(rowNumber);
+  let gameRows = [];
+  let columns = [];
 
-  const grid = document.getElementById('grid');
+  //loop the length of columnNumber
+  for (let i = 0; i < columnNumber; i++) {
+    let column = <Tile id={i} />;
+    columns.push(column);
+    console.log(columns);
+  }
 
-  console.log('grid length', grid);
+  //loop the length of rowNumber
+  for (let i = 0; i < rowNumber; i++) {
+    let row = (
+      <div className="game_row" id={i}>
+        row {i}
+        {columns}
+      </div>
+    );
+    console.log('looped');
+    gameRows.push(row);
+  }
 
   return (
-    <div id="grid" className="Tile_Grid bg-primary">
-      fuhfh
+    <div id="grid" className="Tile_Grid">
+      {gameRows}
     </div>
   );
 };
