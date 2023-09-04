@@ -1,7 +1,7 @@
 import types from '../actions/types';
 import { photosReducer } from '.';
 import { baseState } from 'contexts';
-import { mockPhotos } from 'components/__mocks__/mockPhotos';
+import { mockPhotos } from '__mocks__/api/mockPhotos';
 
 describe('photosReducer', () => {
   describe(`when called with the ${types.SET_PHOTOS} type`, () => {
