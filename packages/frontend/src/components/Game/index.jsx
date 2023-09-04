@@ -1,6 +1,6 @@
 import React from 'react';
 import usePhotosContext from 'hooks/usePhotosContext';
-import Tile from './GameBoard/Tile';
+import TileGrid from './GameBoard/TileGrid';
 
 const Game = () => {
   const {
@@ -11,7 +11,7 @@ const Game = () => {
     <section aria-label="memory snap game">
       Game
       <pre>{JSON.stringify(photos, null, 2)}</pre>
-      <Tile />
+      <TileGrid />
     </section>
   );
 };
