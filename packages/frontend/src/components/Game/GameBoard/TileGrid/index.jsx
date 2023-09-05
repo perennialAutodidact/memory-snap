@@ -1,5 +1,6 @@
 import React from 'react';
 import Tile from '../Tile';
+import './style.scss';
 
 const tiles = {
   rows: {
@@ -105,7 +106,6 @@ const TileGrid = () => {
   for (let i = 0; i < rowNumber; i++) {
     let row = (
       <div className="game_row" id={i}>
-        row {i}
         {columns}
       </div>
     );
@@ -114,7 +114,7 @@ const TileGrid = () => {
   }
 
   return (
-    <div id="grid" className="Tile_Grid">
+    <div id="grid" className="tile_grid">
       {gameRows}
     </div>
   );

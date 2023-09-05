@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import './style.scss';
 
-const Tile = () => {
+const Tile = ({ id }) => {
   const [faceUp, setFaceUp] = useState(false);
 
   const onClickTile = () => {
     setFaceUp(!faceUp);
+    console.log('id from tile', id);
   };
-  console.log(faceUp);
+
   return (
     <>
       {!faceUp ? (
@@ -20,6 +23,10 @@ const Tile = () => {
       )}
     </>
   );
+};
+
+Tile.propTypes = {
+  id: PropTypes.number,
 };
 
 export default Tile;
