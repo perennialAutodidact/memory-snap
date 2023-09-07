@@ -1,0 +1,8 @@
+.playerHUD {
+  border: 2px solid red;
+  &_score {
+    border: 3px solid red;
+    height: 50px;
+    width: 50px;
+  }
+}
