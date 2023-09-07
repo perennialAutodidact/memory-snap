@@ -1,7 +1,12 @@
-const express = require("express");
-const cors = require("cors");
+import express from 'express';
+import { createClient } from 'pexels';
+import dotenv from 'dotenv';
+
 const app = express();
+app.use(express.json());
 const mockPhotos = require("./__mocks__/mockPhotos");
+
+dotenv.config({ path: '../../.env.local' });
 
 const allowedOrigins = ["http://localhost:3000", "https://localhost:3000"];
 const corsOptions = {
@@ -15,22 +20,31 @@ app.use(cors(corsOptions));
 
 const port = process.env.API_PORT || 8080;
 
-require("dotenv").config();
+app.get('/', async (req, res) => {
+  try {
+    const pexelsClient = createClient(process.env.PEXELS_API_KEY);
+    const response = await pexelsClient.photos.search('cat');
 
-app.get("/photos", (req, res) => {
-  // TODO: add search params from req.query into image request on
-  //       branch 22-endpoint-for-returning-pexels-image-array
-
-  const { query, perPage } = req.query;
-  const apiKey = process.env.PEXELS_API_KEY;
-
-  res.status(200).json({ photos: mockPhotos, query, perPage, apiKey });
-});
-
-app.listen(port, (error) => {
-  if (error) {
-    throw new Error(error);
-  } else {
-    console.log(`App is listening on port ${port}`);
+    if (!response.photos) {
+      res.status(400).json({
+        message: 'There was a problem fetching photos from the Pexels API',
+      });
+    } else {
+      res.status(200).json(response);
+    }
+  } catch ({ message }) {
+    res.status(500).json({ message });
   }
 });
+
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, (error) => {
+    if (error) {
+      console.error(error);
+    } else {
+      console.log(`App is listening on port ${port}`);
+    }
+  });
+}
+
+export default app;
