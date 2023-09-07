@@ -1,32 +1,24 @@
-import { useEffect, useState } from 'react';
-import { createClient } from 'pexels';
+// import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-const useFetchedPhotos = ({ query = 'nature', perPage }) => {
-  const [photos, setPhotos] = useState(undefined);
+// const useFetchedPhotos = ({ query = 'nature', perPage }) => {
+const useFetchedPhotos = () => {
+  // const [photos, setPhotos] = useState(undefined);
 
   useEffect(() => {
-    const pexelsClient = createClient(process.env.REACT_APP_PEXELS_API_KEY);
-    if (!pexelsClient) return;
+    (async () => {
+      try {
+        const response = await fetch('http://localhost:3001/', {
+          method: 'GET',
+        });
+        console.log({ response });
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
 
-    if (!photos) {
-      (async () => {
-        try {
-          const photos = await pexelsClient.photos.search({
-            query,
-            per_page: perPage,
-            size: 'small',
-            orientation: 'square',
-          });
-
-          setPhotos(photos.photos);
-        } catch (error) {
-          console.log(error);
-        }
-      })();
-    }
-  }, [photos]);
-
-  return { photos };
+  return {};
 };
 
 export default useFetchedPhotos;

@@ -18,7 +18,7 @@
   "plugins": ["prettier", "react"],
   "extends": ["prettier", "eslint:recommended", "plugin:react/recommended"],
   "rules": {
-    "prettier/prettier": ["error", { "endOfLine": "lf" }]
+    "prettier/prettier": ["error", { "endOfLine": "off" }]
   },
   "settings": {
     "react": {
