@@ -1,10 +1,10 @@
 import express from 'express';
 import { createClient } from 'pexels';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 const app = express();
 app.use(express.json());
-const mockPhotos = require("./__mocks__/mockPhotos");
 
 dotenv.config({ path: '../../.env.local' });
 
@@ -20,10 +20,11 @@ app.use(cors(corsOptions));
 
 const port = process.env.API_PORT || 8080;
 
-app.get('/', async (req, res) => {
+app.get('/photos', async (req, res) => {
   try {
+    const { query, perPage: per_page } = req.query;
     const pexelsClient = createClient(process.env.PEXELS_API_KEY);
-    const response = await pexelsClient.photos.search('cat');
+    const response = await pexelsClient.photos.search({ query, per_page });
 
     if (!response.photos) {
       res.status(400).json({
@@ -32,8 +33,9 @@ app.get('/', async (req, res) => {
     } else {
       res.status(200).json(response);
     }
-  } catch ({ message }) {
-    res.status(500).json({ message });
+  } catch (error) {
+    console.log(error.stack)
+    res.status(500).json({ message: error.message, foo: 'bar' });
   }
 });
 

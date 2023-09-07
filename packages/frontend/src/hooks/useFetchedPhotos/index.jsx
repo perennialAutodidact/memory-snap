@@ -4,32 +4,34 @@ const useFetchedPhotos = ({ query = 'nature', perPage }) => {
   const [photosError, setPhotosError] = useState(undefined);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const url = `${process.env.REACT_APP_API_URL}/photos/?`;
-        const params = new URLSearchParams({ perPage, query });
-        const response = await fetch(url + params, {
-          method: 'GET',
-          mode: 'cors',
-        });
+    if (!photos && !photosError) {
+      (async () => {
+        try {
+          const url = `${process.env.REACT_APP_API_URL}/photos/?`;
+          const params = new URLSearchParams({ perPage, query });
+          const response = await fetch(url + params, {
+            method: 'GET',
+            mode: 'cors',
+          });
 
-        const data = await response.json();
+          const data = await response.json();
 
-        if (!data.error) {
-          if (!photos) {
-            setPhotos(data.photos);
+          if (!data.error) {
+            if (!photos) {
+              setPhotos(data.photos);
+            }
+          } else {
+            if (!photosError) {
+              throw new Error(data.error.message);
+            }
           }
-        } else {
+        } catch (error) {
           if (!photosError) {
-            throw new Error(data.error.message);
+            setPhotosError(error.message);
           }
         }
-      } catch (error) {
-        if (!photosError) {
-          setPhotosError(error.message);
-        }
-      }
-    })();
+      })();
+    }
   }, [photos, photosError]);
 
   return { photos, error: photosError };
