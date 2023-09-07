@@ -6,7 +6,7 @@ const Tile = () => {
   const onClickTile = () => {
     setFaceUp(!faceUp);
   };
-  console.log(faceUp);
+
   return (
     <>
       {!faceUp ? (

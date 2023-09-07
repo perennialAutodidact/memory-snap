@@ -56,7 +56,6 @@ export const mockPhotos = [
     },
     liked: false,
     alt: 'Photo of Bridge Under White Clouds',
-  },
   {
     id: 1683492,
     width: 3648,

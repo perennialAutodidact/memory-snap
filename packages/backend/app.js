@@ -3,11 +3,22 @@ import { createClient } from 'pexels';
 import dotenv from 'dotenv';
 
 const app = express();
-const port = 3001;
+app.use(express.json());
+const mockPhotos = require("./__mocks__/mockPhotos");
 
 dotenv.config({ path: '../../.env.local' });
 
-app.use(express.json());
+const allowedOrigins = ["http://localhost:3000", "https://localhost:3000"];
+const corsOptions = {
+  origin: (origin, callback) => {
+    allowedOrigins.indexOf(origin) !== -1
+      ? callback(null, true)
+      : callback(new Error(`${origin} is not a trusted origin`));
+  },
+};
+app.use(cors(corsOptions));
+
+const port = process.env.API_PORT || 8080;
 
 app.get('/', async (req, res) => {
   try {

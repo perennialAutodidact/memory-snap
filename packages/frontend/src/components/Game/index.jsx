@@ -7,10 +7,11 @@ const Game = () => {
     state: { photos },
   } = usePhotosContext();
 
+  console.log({ photos });
+
   return (
     <section aria-label="memory snap game">
       Game
-      <pre>{JSON.stringify(photos, null, 2)}</pre>
       <Tile />
     </section>
   );

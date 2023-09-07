@@ -1,4 +1,4 @@
-import { mockPhotos } from 'components/__mocks__/mockPhotos';
+import { mockPhotos } from '__mocks__/api/mockPhotos';
 import { setPhotos } from '.';
 import types from './types';
 
