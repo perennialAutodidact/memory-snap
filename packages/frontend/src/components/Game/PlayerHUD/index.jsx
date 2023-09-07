@@ -10,34 +10,32 @@ const PlayerHUD = ({ player }) => {
 
   const classes = {
     HUD: [
-      'd-flex',
-      'justify-content-between',
-      'align-items-center',
-      'p-3',
+      'player-hud',
+      'px-3 py-2',
+      'd-flex gap-4 align-items-center',
       bgClasses[player.number],
     ].join(' '),
-    score: [
-      'playerHUD_score',
-      'bg-light',
-      'border',
-      'rounded-circle',
-      'd-flex',
-      'justify-content-center',
-      'align-items-center',
-      'text-dark',
+    playerName: 'player-name fw-bold h1 m-0',
+    playerScore: [
+      'player-score',
+      'bg-light border rounded-circle text-dark',
+      'd-flex justify-content-center align-items-center',
     ].join(' '),
   };
 
   return (
     <div className={classes.HUD}>
-      <div data-testid={`player-${player.number}-name`} className="fw-bold">
-        {player.name}
-      </div>
       <div
         data-testid={`player-${player.number}-score`}
-        className={classes.score}
+        className={classes.playerScore}
       >
         {player.score}
+      </div>
+      <div
+        data-testid={`player-${player.number}-name`}
+        className={`${classes.playerName}`}
+      >
+        {player.name}
       </div>
     </div>
   );
