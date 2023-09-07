@@ -1,5 +1,6 @@
 import React from 'react';
 import Tile from '../Tile';
+import PropTypes from 'prop-types';
 import './style.scss';
 
 const tiles = {
@@ -95,9 +96,13 @@ const TileGrid = () => {
   let gameRows = [];
   let columns = [];
 
+  const flipCard = () => {
+    console.log('card clicked');
+  };
+
   //loop the length of columnNumber
   for (let i = 0; i < columnNumber; i++) {
-    let column = <Tile id={i} />;
+    let column = <Tile id={i} onClick={flipCard} />;
     columns.push(column);
     console.log(columns);
   }
@@ -118,6 +123,10 @@ const TileGrid = () => {
       {gameRows}
     </div>
   );
+};
+
+TileGrid.propTypes = {
+  toggleUp: PropTypes.func,
 };
 
 export default TileGrid;

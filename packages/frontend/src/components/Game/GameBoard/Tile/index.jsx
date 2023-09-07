@@ -2,31 +2,26 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 
-const Tile = ({ id }) => {
+const Tile = ({ id, src, altText, size }) => {
   const [faceUp, setFaceUp] = useState(false);
+  console.log('id from tile', id, src, altText, size);
 
-  const onClickTile = () => {
+  const onFlip = () => {
     setFaceUp(!faceUp);
-    console.log('id from tile', id);
   };
 
   return (
-    <>
-      {!faceUp ? (
-        <div className="tile bg-primary" onClick={onClickTile}>
-          <h1>back</h1>
-        </div>
-      ) : (
-        <div className="tile" onClick={onClickTile}>
-          <h1>front</h1>
-        </div>
-      )}
-    </>
+    <div className={!faceUp ? 'tile bg-primary' : 'tile'} onClick={onFlip}>
+      {!faceUp ? <h1>back</h1> : <h1>front</h1>}
+    </div>
   );
 };
 
 Tile.propTypes = {
   id: PropTypes.number,
+  src: PropTypes.string,
+  altText: PropTypes.string,
+  size: PropTypes.number,
 };
 
 export default Tile;
