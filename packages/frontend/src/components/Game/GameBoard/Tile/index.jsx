@@ -15,7 +15,7 @@ const Tile = ({ id, src, altText, size }) => {
       {!faceUp ? (
         <h1>back</h1>
       ) : (
-        <img src={src} className="img-fluid" alt="Responsive image" />
+        <img src={src} className="oversize" alt="Responsive image" />
       )}
     </div>
   );

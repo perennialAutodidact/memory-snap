@@ -9,14 +9,32 @@ const TileGrid = () => {
   const tiles = mockPhotos.concat(photosCopy);
   console.log('potoscopy', tiles);
 
-  console.log(tiles, 'after');
+  console.log(tiles[0].src.small, 'after');
+
+  const shuffleTiles = () => {
+    let currentIndex = tiles.length,
+      randomIndex;
+
+    while (currentIndex > 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [tiles[currentIndex], tiles[randomIndex]] = [
+        tiles[randomIndex],
+        tiles[currentIndex],
+      ];
+    }
+    return tiles;
+  };
+
+  shuffleTiles(tiles);
   return (
-    <div id="grid" className="tile_grid">
+    <div id="grid" className="tile_grid d-flex align-items-center flex-wrap">
       {tiles.map((tile) => (
         <Tile
           id={tile.id}
           key={Math.random()}
-          src={tile.url}
+          src={tile.src.small}
           altText={tile.alt}
           size={tile.height}
         />
