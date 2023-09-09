@@ -12,7 +12,11 @@ const Tile = ({ id, src, altText, size }) => {
 
   return (
     <div className={!faceUp ? 'tile bg-primary' : 'tile'} onClick={onFlip}>
-      {!faceUp ? <h1>back</h1> : <h1>front</h1>}
+      {!faceUp ? (
+        <h1>back</h1>
+      ) : (
+        <img src={src} className="img-fluid" alt="Responsive image" />
+      )}
     </div>
   );
 };
