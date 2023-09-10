@@ -34,20 +34,6 @@
     jsonpointer "^5.0.0"
     leven "^3.1.0"
 
-"@augment-vir/common@^13.3.0":
-  version "13.5.0"
-  resolved "https://registry.yarnpkg.com/@augment-vir/common/-/common-13.5.0.tgz#d2a42e606609708f5f96ddacf7ff36b91ccabdfa"
-  integrity sha512-kOnAOShZTaOJ8glYyi2K3hfiYV5zQyjpfc4jmHm5lySAFNMpOjKA7pZxpl8n3RCIHAt+nFP64vuxtSI6jSWOZw==
-  dependencies:
-    type-fest "^3.8.0"
-
-"@augment-vir/common@^15.3.0":
-  version "15.6.1"
-  resolved "https://registry.yarnpkg.com/@augment-vir/common/-/common-15.6.1.tgz#7dbdb0c1f9e67e925d89d8230127c423d1a59846"
-  integrity sha512-c9UaBzB95tHzganl0B3DsONyP6Fk7JXf95rYUf+Wuu6f6unOPZDz1GXMTaRuFiRl2vb5xjBAGz9AYIc1Uin2Fw==
-  dependencies:
-    type-fest "^4.0.0"
-
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.0", "@babel/code-frame@^7.22.10", "@babel/code-frame@^7.22.5", "@babel/code-frame@^7.8.3":
   version "7.22.13"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.22.13.tgz#e3c1c099402598483b7a8c46a721d1038803755e"
@@ -9544,14 +9530,6 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier-plugin-multiline-arrays@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/prettier-plugin-multiline-arrays/-/prettier-plugin-multiline-arrays-2.0.0.tgz#c2f16e49c8316229fe8f0eff2e55bda12015abe2"
-  integrity sha512-EFdtxNqEKSehtSZN2rHUtsA7dqV6fu1iJ4WU8fgR23Scfcf6mcVb3leOWmAkhhHEpwsNKPdSNN9pBX8Xx8AsCg==
-  dependencies:
-    "@augment-vir/common" "^15.3.0"
-    proxy-vir "^0.0.1"
-
 prettier@^2.5.1:
   version "2.8.8"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
@@ -9665,13 +9643,6 @@ proxy-from-env@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz#e102f16ca355424865755d2c9e8ea4f24d58c3e2"
   integrity sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==
-
-proxy-vir@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/proxy-vir/-/proxy-vir-0.0.1.tgz#81ebaee86b40d3931a1917f6f03ff0754ef0ddb0"
-  integrity sha512-K3sv2I9kigOqt17hMhvWjSiwx90hpxxD3rN+meVQhrGKoxhVbt82ulkm3i1KlenVIMS1KFskt/vltMlGHVQrMw==
-  dependencies:
-    "@augment-vir/common" "^13.3.0"
 
 psl@^1.1.33:
   version "1.9.0"
@@ -11352,22 +11323,10 @@ type-fest@^1.2.1:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-1.4.0.tgz#e9fb813fe3bf1744ec359d55d1affefa76f14be1"
   integrity sha512-yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==
 
-<<<<<<< Updated upstream
 type-fest@^2.19.0:
   version "2.19.0"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.19.0.tgz#88068015bb33036a598b952e55e9311a60fd3a9b"
   integrity sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==
-=======
-type-fest@^3.8.0:
-  version "3.13.1"
-  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-3.13.1.tgz#bb744c1f0678bea7543a2d1ec24e83e68e8c8706"
-  integrity sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==
-
-type-fest@^4.0.0:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-4.3.1.tgz#5cb58cdab5120f7ab0b40cfdc35073fb9adb651d"
-  integrity sha512-pphNW/msgOUSkJbH58x8sqpq8uQj6b0ZKGxEsLKMUnGorRcDjrUaLS+39+/ub41JNTwrrMyJcUB8+YZs3mbwqw==
->>>>>>> Stashed changes
 
 type-is@~1.6.18:
   version "1.6.18"
