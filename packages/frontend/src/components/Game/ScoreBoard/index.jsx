@@ -5,7 +5,7 @@ const ScordBoard = () => {
   const {
     state: { players },
   } = useGameContext();
-  return <div>{}</div>;
+  return <div></div>;
 };
 
 export default ScordBoard;

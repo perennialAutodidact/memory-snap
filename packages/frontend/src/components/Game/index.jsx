@@ -1,25 +1,23 @@
 import React from 'react';
 import usePhotosContext from 'hooks/usePhotosContext';
 import Tile from './GameBoard/Tile';
-import PlayerHUD from './PlayerHUD';
+// import PlayerHUD from './PlayerHUD';
 import useGameContext from 'hooks/useGameContext';
 
 const Game = () => {
   const {
+    // eslint-disable-next-line
     state: { photos },
   } = usePhotosContext();
 
-<<<<<<< Updated upstream
-  console.log({ photos });
-=======
   const {
+    // eslint-disable-next-line
     state: { players, currentPlayer },
   } = useGameContext();
->>>>>>> Stashed changes
 
   return (
     <section aria-label="memory snap game">
-      <PlayerHUD player={players[currentPlayer]} />
+      {/* <PlayerHUD player={players[currentPlayer]} /> */}
       Game
       <Tile />
     </section>
