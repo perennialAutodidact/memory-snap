@@ -3,12 +3,12 @@ import { baseState } from 'contexts';
 
 describe('formReducer', () => {
   it('returns the default state if action type is unknown', () => {
-    const { photos: state } = baseState;
+    const { form: state } = baseState;
     const action = {
       type: 'test',
     };
 
-    expect(formReducer(state, action)).toBe(baseState.photos);
+    expect(formReducer(state, action)).toBe(state);
   });
 
   describe('errors', () => {
