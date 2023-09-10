@@ -1,4 +1,4 @@
-import { render, renderHook } from '@testing-library/react';
+import { renderHook } from '@testing-library/react';
 import useGameContext from '.';
 import GameProvider from 'components/providers/game';
 
