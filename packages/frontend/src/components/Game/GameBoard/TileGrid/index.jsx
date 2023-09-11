@@ -28,12 +28,13 @@ const TileGrid = () => {
   };
 
   shuffleTiles(tiles);
+
   return (
     <div id="grid" className="tile_grid d-flex align-items-center flex-wrap">
-      {tiles.map((tile) => (
+      {tiles.map((tile, index) => (
         <Tile
           id={tile.id}
-          key={Math.random()}
+          key={index}
           src={tile.src.small}
           altText={tile.alt}
           size={tile.height}

@@ -6,6 +6,11 @@ export const gameReducer = (state, action) => {
   }
 
   switch (action.type) {
+    case 'LOAD_TILES':
+      return {
+        ...state,
+        tiles: action.payload.tiles,
+      };
     default: {
       return state;
     }

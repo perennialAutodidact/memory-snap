@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import usePhotosContext from 'hooks/usePhotosContext';
 import TileGrid from './GameBoard/TileGrid';
 
