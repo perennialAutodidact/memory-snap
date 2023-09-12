@@ -6,15 +6,17 @@ import Tile from '../Tile';
 const TileGrid = ({ tiles }) => {
   return (
     <div id="grid" className="tile_grid d-flex align-items-center flex-wrap">
-      {tiles.map((tile, index) => (
-        <Tile
-          id={tile.id}
-          key={index}
-          src={tile.src.small}
-          altText={tile.alt}
-          size={tile.height}
-        />
-      ))}
+      {!tiles
+        ? null
+        : tiles.map((tile, index) => (
+            <Tile
+              id={tile.id}
+              key={index}
+              src={tile.src.small}
+              altText={tile.alt}
+              size={tile.height}
+            />
+          ))}
     </div>
   );
 };
