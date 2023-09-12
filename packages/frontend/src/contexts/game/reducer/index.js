@@ -1,3 +1,4 @@
+import types from '../actions/types';
 export const gameReducer = (state, action) => {
   if (!state) {
     throw new Error('please include a state object');
@@ -6,7 +7,7 @@ export const gameReducer = (state, action) => {
   }
 
   switch (action.type) {
-    case 'LOAD_TILES':
+    case types.ADD_TILES:
       return {
         ...state,
         tiles: action.payload.tiles,

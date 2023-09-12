@@ -3,17 +3,36 @@ import PropTypes from 'prop-types';
 import { GameContext } from 'contexts/game';
 import { baseState } from 'contexts';
 import { gameReducer } from 'contexts/game/reducer';
-import { addTiles } from '../../contexts/game/actions';
+import { addTiles } from 'contexts/game/actions';
 import { mockPhotos } from 'components/__mocks__/mockPhotos';
+
+const shuffleTiles = (tiles) => {
+  let currentIndex = tiles.length,
+    randomIndex;
+
+  while (currentIndex > 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    [tiles[currentIndex], tiles[randomIndex]] = [
+      tiles[randomIndex],
+      tiles[currentIndex],
+    ];
+  }
+  return tiles;
+};
 
 const GameProvider = ({ children, providedState = null } = {}) => {
   const initialState = providedState || baseState.game;
   const [state, dispatch] = useReducer(gameReducer, initialState);
 
   useEffect(() => {
-    const tilePhotos = mockPhotos
-    dispatch(addTiles({tilePhotos}))
-  },[])
+    // change this to ladash duplicate *see note
+    const unshuffledTiles = [...mockPhotos].concat(mockPhotos);
+
+    const tilePhotos = shuffleTiles(unshuffledTiles);
+    dispatch(addTiles(tilePhotos));
+  }, []);
 
   return (
     <GameContext.Provider value={{ state, dispatch }}>

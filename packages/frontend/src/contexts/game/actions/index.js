@@ -1,11 +1,6 @@
-import types from './types'
+import types from './types';
 
-
-export const addTiles = (tilesObj) => ({
-    type: types.ADD_TILES,
-    payload: {tilesObj}
-    
-}
-)
-
-
+export const addTiles = (tiles) => ({
+  type: types.ADD_TILES,
+  payload: { tiles },
+});

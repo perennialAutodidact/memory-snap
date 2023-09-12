@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
-import usePhotosContext from 'hooks/usePhotosContext';
+import React from 'react';
 import TileGrid from './GameBoard/TileGrid';
+import useGameContext from 'hooks/useGameContext';
 
 const Game = () => {
   const {
-    state: { photos },
-  } = usePhotosContext();
+    state: { tiles },
+  } = useGameContext();
 
   return (
     <section aria-label="memory snap game">
       Game
-      <pre>{JSON.stringify(photos, null, 2)}</pre>
-      <TileGrid />
+      <TileGrid tiles={tiles} />
     </section>
   );
 };
