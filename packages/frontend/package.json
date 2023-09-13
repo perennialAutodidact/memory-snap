@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.11",
+    "@babel/preset-react": "^7.22.15",
     "eslint-plugin-prettier": "^5.0.0",
     "msw": "^1.3.0"
   }

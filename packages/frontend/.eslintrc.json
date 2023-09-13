@@ -12,6 +12,9 @@
     "ecmaFeatures": {
       "jsx": true,
       "modules": true
+    },
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
     }
   },
   "plugins": ["prettier", "react"],
