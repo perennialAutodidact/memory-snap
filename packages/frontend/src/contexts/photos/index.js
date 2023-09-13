@@ -1,4 +1,8 @@
 import { createContext } from 'react';
-import { baseState } from 'contexts';
 
-export const PhotosContext = createContext(baseState.photos);
+export const initialPhotosState = {
+  photos: null,
+  loading: false,
+};
+
+export const PhotosContext = createContext(initialPhotosState);

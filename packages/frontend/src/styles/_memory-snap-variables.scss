@@ -20,6 +20,8 @@ $custom-secondary: #ed6b86;
 $custom-dark: #23262f;
 $custom-light: #f9f9ed;
 $custom-warning: #f79824;
+$custom-success: #25a03c;
+$custom-danger: #a30000;
 
 $custom-colors: (
   'primary': $custom-primary,
@@ -27,4 +29,6 @@ $custom-colors: (
   'dark': $custom-dark,
   'light': $custom-light,
   'warning': $custom-warning,
+  'success': $custom-success,
+  'danger': $custom-danger,
 );
