@@ -13,10 +13,12 @@ export const baseState = {
     players: {
       1: {
         name: 'Player 1',
+        number: 1,
         score: 0,
       },
       2: {
         name: 'Player 2',
+        number: 2,
         score: 0,
       },
     },
