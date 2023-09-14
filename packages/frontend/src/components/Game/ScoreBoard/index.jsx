@@ -1,11 +1,20 @@
 import React from 'react';
-import useGameContext from 'hooks/useGameContext';
+import PropTypes from 'prop-types';
+import { Player } from 'proptypes';
+import PlayerHUD from '../PlayerHUD';
 
-const ScordBoard = () => {
-  const {
-    state: { players },
-  } = useGameContext();
-  return <div></div>;
+const ScoreBoard = ({ players }) => {
+  return (
+    <div>
+      {players.map((player) => (
+        <PlayerHUD key={player.number} player={player} />
+      ))}
+    </div>
+  );
 };
 
-export default ScordBoard;
+ScoreBoard.propTypes = {
+  players: PropTypes.arrayOf(Player),
+};
+
+export default ScoreBoard;
