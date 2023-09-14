@@ -1,6 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/react,sass,node,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=react,sass,node,visualstudiocode
 
+.editorconfig
+
 ### Node ###
 # Logs
 logs
