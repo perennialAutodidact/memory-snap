@@ -2,7 +2,6 @@ import React from 'react';
 import TileGrid from './GameBoard/TileGrid';
 import useGameContext from 'hooks/useGameContext';
 import PlayerHUD from './PlayerHUD';
-import useGameContext from 'hooks/useGameContext';
 
 const Game = () => {
   const {
