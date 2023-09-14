@@ -8,7 +8,7 @@ app.use(express.json());
 
 dotenv.config({ path: '../../.env.local' });
 
-const allowedOrigins = ["http://localhost:3000", "https://localhost:3000"];
+const allowedOrigins = ['http://localhost:3000', 'https://localhost:3000'];
 const corsOptions = {
   origin: (origin, callback) => {
     allowedOrigins.indexOf(origin) !== -1
@@ -34,8 +34,7 @@ app.get('/photos', async (req, res) => {
       res.status(200).json(response);
     }
   } catch (error) {
-    console.log(error.stack)
-    res.status(500).json({ message: error.message, foo: 'bar' });
+    res.status(500).json({ message: error.message });
   }
 });
 

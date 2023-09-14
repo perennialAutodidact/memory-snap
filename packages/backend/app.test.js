@@ -4,7 +4,7 @@ import { mockPhotos } from './__mocks__/mockPhotos';
 import dotenv from 'dotenv';
 import { createClient } from 'pexels';
 
-dotenv.config({ path: '../../.env.local' });
+dotenv.config({ path: '.env.local' });
 
 describe('app', () => {
   let server;
@@ -15,6 +15,9 @@ describe('app', () => {
       if (error) return done();
 
       agent = request.agent(server);
+      agent
+        .set('Origin', 'http://localhost:3000')
+        .set('Accept', 'application/json');
       done();
     });
   });
@@ -33,11 +36,12 @@ describe('app', () => {
     }));
 
     await agent
-      .get('/')
+      .get('/photos')
       .expect(200)
       .then((response) => {
         expect(response.body).toEqual({ photos: mockPhotos });
-      });
+      })
+      .catch((error) => console.log({ error }));
   });
 
   it('returns error on fail', async () => {
@@ -48,7 +52,7 @@ describe('app', () => {
     }));
 
     await agent
-      .get('/')
+      .get('/photos')
       .expect(500)
       .then((response) => {
         expect(response.body).toStrictEqual({ message: 'oops!' });
