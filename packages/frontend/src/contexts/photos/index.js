@@ -2,7 +2,7 @@ import { createContext } from 'react';
 
 export const initialPhotosState = {
   photos: null,
-  loading: false,
+  status: 'idle',
 };
 
 export const PhotosContext = createContext(initialPhotosState);

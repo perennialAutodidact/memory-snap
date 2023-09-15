@@ -8,7 +8,7 @@ const Game = () => {
   const {
     // TODO: re-enable eslint when photos variable is used
     // eslint-disable-next-line
-    state: { photos },
+    state: { status, photos },
   } = usePhotosContext();
 
   const {

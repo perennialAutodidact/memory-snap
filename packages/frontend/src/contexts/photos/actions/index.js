@@ -7,3 +7,10 @@ export const setPhotos = (photos) => {
     payload: { photos },
   };
 };
+
+export const setStatus = (status) => {
+  const allowedStatuses = ['error', 'idle', 'pending', 'success'];
+  if (!allowedStatuses.includes(status)) {
+    throw new Error(`status must be one of: ${allowedStatuses.join(' ')}`);
+  }
+};
