@@ -1,6 +1,17 @@
 @import '../../../styles/memory-snap-variables';
 
 .player-hud {
+  &:nth-of-type(2) {
+    justify-content: flex-end;
+
+    .player-name {
+      order: 1;
+    }
+    .player-score {
+      order: 2;
+    }
+  }
+
   .player-name {
     text-shadow: 2px 2px 2px $custom-dark;
   }
