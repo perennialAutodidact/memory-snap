@@ -11,8 +11,10 @@
 
     outline: 6px solid $custom-dark;
 
-    // TODO: add box-shadow when player is active
-    // box-shadow: 0 0 6px 4px inset $custom-warning;
+    &.active {
+      box-shadow: 0 0 6px 2px inset $custom-warning;
+      outline-color: $custom-warning;
+    }
 
     font-size: 1.5rem;
   }

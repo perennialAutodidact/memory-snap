@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 import { Player } from 'proptypes';
 import PlayerHUD from '../PlayerHUD';
 
-const ScoreBoard = ({ players }) => {
+const ScoreBoard = ({ players, currentPlayer }) => {
+  if (!players) return null;
   return (
-    <div>
+    <div className="d-flex">
       {players.map((player) => (
-        <PlayerHUD key={player.number} player={player} />
+        <PlayerHUD
+          key={player.number}
+          player={player}
+          isPlayerTurn={player.number === currentPlayer.number}
+        />
       ))}
     </div>
   );
@@ -15,6 +20,7 @@ const ScoreBoard = ({ players }) => {
 
 ScoreBoard.propTypes = {
   players: PropTypes.arrayOf(Player),
+  currentPlayer: Player,
 };
 
 export default ScoreBoard;

@@ -12,13 +12,12 @@ const Game = () => {
   } = usePhotosContext();
 
   const {
-    state: { players },
+    state: { players, currentPlayer },
   } = useGameContext();
 
   return (
     <section aria-label="memory snap game">
-      <ScoreBoard players={players} />
-      Game
+      <ScoreBoard players={players} currentPlayer={currentPlayer} />
       <Tile />
     </section>
   );
