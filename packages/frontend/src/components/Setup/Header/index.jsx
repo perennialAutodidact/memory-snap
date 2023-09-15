@@ -5,10 +5,22 @@ import useFormContext from 'hooks/useFormContext';
 
 const Header = (props) => {
   const { headerText } = props;
-  const { currentStep, totalSteps } = useFormContext();
+  const {
+    state: { currentStep, totalSteps },
+  } = useFormContext();
+
   return (
-    <header data-testid="setupFormHeader">
-      <h1>{headerText}</h1>
+    <header
+      data-testid="setupFormHeader"
+      aria-labelledby="form-header-text"
+      className="text-center"
+    >
+      <h1 id="form-header-text" className="mt-2 mb-0">
+        {headerText}
+      </h1>
+      <p className="mb-2">
+        Step {currentStep} of {totalSteps}
+      </p>
       <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
     </header>
   );
