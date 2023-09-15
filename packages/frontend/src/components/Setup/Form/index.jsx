@@ -1,10 +1,10 @@
 import React from 'react';
-import ProgressBar from '../ProgressBar';
+import Header from '../Header';
 
 const SetupForm = () => {
   return (
     <form className="bg-light">
-      <ProgressBar currentStep={1} totalSteps={3} />
+      <Header headerText={'Game setup'} />
     </form>
   );
 };
