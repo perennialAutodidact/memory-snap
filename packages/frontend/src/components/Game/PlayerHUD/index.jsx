@@ -19,9 +19,10 @@ const PlayerHUD = ({ player, isActive }) => {
     playerName: 'player-name fw-bold h1 m-0',
     playerScore: [
       'player-score',
-      'bg-light rounded-circle text-dark',
+      'bg-light p-4 rounded-circle text-dark',
       'd-flex justify-content-center align-items-center',
-      isActive ? 'active' : null,
+      'border border-5',
+      isActive ? 'active border-warning' : 'border-dark',
     ].join(' '),
   };
 

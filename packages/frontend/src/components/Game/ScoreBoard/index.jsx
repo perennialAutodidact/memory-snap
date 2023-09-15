@@ -11,7 +11,7 @@ const ScoreBoard = ({ players, currentPlayer }) => {
         <PlayerHUD
           key={player.number}
           player={player}
-          isPlayerTurn={player.number === currentPlayer.number}
+          isActive={player.number === currentPlayer.number}
         />
       ))}
     </div>

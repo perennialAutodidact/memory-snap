@@ -9,11 +9,11 @@
     height: 40px;
     width: 40px;
 
-    outline: 6px solid $custom-dark;
+    box-shadow: 0 0 8px 1px $custom-dark;
 
     &.active {
-      box-shadow: 0 0 6px 2px inset $custom-warning;
-      outline-color: $custom-warning;
+      box-shadow: 0 0 8px 1px
+        adjust-color($custom-warning, $hue: -10%, $lightness: -10%);
     }
 
     font-size: 1.5rem;
