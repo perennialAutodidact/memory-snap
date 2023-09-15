@@ -1,5 +1,6 @@
 import { setupTests } from 'helpers/tests';
 import Header from '.';
+import { baseState } from 'contexts';
 
 describe('Setup Form Header component', () => {
   it('renders header text from props', () => {
@@ -18,5 +19,16 @@ describe('Setup Form Header component', () => {
       screen: { getByRole },
     } = setupTests(Header);
     expect(getByRole('progressbar')).toBeInTheDocument();
+  });
+
+  it('renders current step number and total steps count', () => {
+    const {
+      screen: { getByText },
+    } = setupTests(Header);
+    const { currentStep, totalSteps } = baseState.form;
+
+    expect(
+      getByText(`Step ${currentStep} of ${totalSteps}`)
+    ).toBeInTheDocument();
   });
 });

@@ -6,7 +6,7 @@ describe('Setup component', () => {
     const { screen } = setupTests(Setup);
 
     expect(
-      screen.getByRole('heading', { level: 2, name: /game setup/i })
+      screen.getByRole('banner', { name: /game setup/i })
     ).toBeInTheDocument();
   });
 });
