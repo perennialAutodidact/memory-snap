@@ -13,7 +13,7 @@ const TileGrid = ({ tiles }) => {
               id={tile.id}
               key={index}
               src={tile.src.small}
-              altText={tile.alt}
+              alt={tile.alt}
               size={tile.height}
             />
           ))}

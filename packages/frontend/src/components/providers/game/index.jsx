@@ -4,7 +4,7 @@ import { GameContext } from 'contexts/game';
 import { baseState } from 'contexts';
 import { gameReducer } from 'contexts/game/reducer';
 import { addTiles } from 'contexts/game/actions';
-import { mockPhotos } from 'components/__mocks__/mockPhotos';
+import { mockPhotos } from '__mocks__/api/mockPhotos';
 
 const shuffleTiles = (tiles) => {
   let currentIndex = tiles.length,
