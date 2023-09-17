@@ -6,7 +6,7 @@ describe('App', () => {
     it('renders the Setup page at /setup', () => {
       const { screen } = setupTests(App, { route: '/setup' });
       expect(
-        screen.getByRole('heading', { level: 2, name: /game setup/i })
+        screen.getByRole('banner', { name: /game setup/i })
       ).toBeInTheDocument();
     });
 
