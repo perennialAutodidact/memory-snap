@@ -1,11 +1,26 @@
 import React from 'react';
-import useGameContext from 'hooks/useGameContext';
+import PropTypes from 'prop-types';
+import { Player } from 'proptypes';
+import PlayerHUD from '../PlayerHUD';
 
-const ScordBoard = () => {
-  const {
-    state: { players },
-  } = useGameContext();
-  return <div>{}</div>;
+const ScoreBoard = ({ players, currentPlayer }) => {
+  if (!players) return null;
+  return (
+    <div className="d-flex">
+      {players.map((player) => (
+        <PlayerHUD
+          key={player.number}
+          player={player}
+          isActive={player.number === currentPlayer.number}
+        />
+      ))}
+    </div>
+  );
 };
 
-export default ScordBoard;
+ScoreBoard.propTypes = {
+  players: PropTypes.arrayOf(Player),
+  currentPlayer: Player,
+};
+
+export default ScoreBoard;

@@ -1,7 +1,7 @@
 import React from 'react';
 import usePhotosContext from 'hooks/usePhotosContext';
 import Tile from './GameBoard/Tile';
-import PlayerHUD from './PlayerHUD';
+import ScoreBoard from './ScoreBoard';
 import useGameContext from 'hooks/useGameContext';
 
 const Game = () => {
@@ -17,8 +17,7 @@ const Game = () => {
 
   return (
     <section aria-label="memory snap game">
-      <PlayerHUD player={players[currentPlayer]} />
-      Game
+      <ScoreBoard players={players} currentPlayer={currentPlayer} />
       <Tile />
     </section>
   );
