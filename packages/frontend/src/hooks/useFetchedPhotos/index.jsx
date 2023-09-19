@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 const useFetchedPhotos = ({ query = 'nature', perPage }) => {
   const [photos, setPhotos] = useState(undefined);
   const [photosError, setPhotosError] = useState(undefined);
-  const [status, setStatus] = useState('idle');
+  const [status, setStatus] = useState('IDLE');
 
   useEffect(() => {
     if (!photos && !photosError) {
       (async () => {
         try {
-          setStatus('pending');
+          setStatus('PENDING');
           const url = `${process.env.REACT_APP_API_URL}/photos/?`;
           const params = new URLSearchParams({ perPage, query });
           const response = await fetch(url + params, {
@@ -20,18 +20,20 @@ const useFetchedPhotos = ({ query = 'nature', perPage }) => {
 
           if (!data.error) {
             if (!photos) {
-              setStatus('success');
+              setTimeout(() => {
+                setStatus('SUCCESS');
+              }, 3000);
               setPhotos(data.photos);
             }
           } else {
             if (!photosError) {
-              setStatus('error');
+              setStatus('ERROR');
               throw new Error(data.error.message);
             }
           }
         } catch (error) {
           if (!photosError) {
-            setStatus('error');
+            setStatus('ERROR');
             setPhotosError(error.message);
           }
         }
