@@ -11,5 +11,9 @@ describe('PhotosContext actions', () => {
         payload: { photos },
       });
     });
+
+    it('throws an error if photos is not an array', () => {
+      expect(() => setPhotos(null)).toThrow();
+    });
   });
 });
