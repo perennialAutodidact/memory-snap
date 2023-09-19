@@ -29,13 +29,13 @@ const PlayerHUD = ({ player, isActive }) => {
   return (
     <div data-testid={`PlayerHUD-${player.number}`} className={classes.HUD}>
       <div
-        data-testid={`player-${player.number}-score`}
+        data-testid={`player-score-${player.number}`}
         className={classes.playerScore}
       >
         {player.score}
       </div>
       <div
-        data-testid={`player-${player.number}-name`}
+        data-testid={`player-name-${player.number}`}
         className={`${classes.playerName}`}
       >
         {player.name}
