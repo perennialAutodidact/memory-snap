@@ -10,11 +10,13 @@ const TileGrid = ({ tiles }) => {
         ? null
         : tiles.map((tile, index) => (
             <Tile
-              id={tile.id}
+              isMatched={tile.isMatched}
+              faceUp={tile.faceUp}
+              id={tile.photo.id}
               key={index}
-              src={tile.src.small}
-              alt={tile.alt}
-              size={tile.height}
+              src={tile.photo.src.small}
+              alt={tile.photo.alt}
+              size={tile.photo.height}
             />
           ))}
     </div>

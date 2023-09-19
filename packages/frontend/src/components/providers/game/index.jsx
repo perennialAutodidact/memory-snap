@@ -6,34 +6,47 @@ import { gameReducer } from 'contexts/game/reducer';
 import { addTiles } from 'contexts/game/actions';
 import { mockPhotos } from '__mocks__/api/mockPhotos';
 
-const shuffleTiles = (tiles) => {
-  let currentIndex = tiles.length,
+const shufflePhotos = (photos) => {
+  let currentIndex = photos.length,
     randomIndex;
 
   while (currentIndex > 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
 
-    [tiles[currentIndex], tiles[randomIndex]] = [
-      tiles[randomIndex],
-      tiles[currentIndex],
+    [photos[currentIndex], photos[randomIndex]] = [
+      photos[randomIndex],
+      photos[currentIndex],
     ];
   }
-  return tiles;
+  return photos;
 };
 
 const GameProvider = ({ children, providedState = null } = {}) => {
   const initialState = providedState || baseState.game;
   const [state, dispatch] = useReducer(gameReducer, initialState);
 
+  //should we eventually change this use effect to a useMemo?
   useEffect(() => {
     // change this to ladash duplicate *see note
-    const unshuffledTiles = [...mockPhotos].concat(mockPhotos);
+    const unshuffledPhotos = [...mockPhotos].concat(mockPhotos);
 
-    const tilePhotos = shuffleTiles(unshuffledTiles);
-    dispatch(addTiles(tilePhotos));
+    const tilePhotos = shufflePhotos(unshuffledPhotos);
+
+    const tiles = [];
+
+    tilePhotos.forEach((photo) => {
+      tiles.push({
+        isMatched: false,
+        faceUp: false,
+        photo: photo,
+      });
+      return tiles;
+    });
+
+    dispatch(addTiles(tiles));
   }, []);
-
+  console.log(state, 'state tiles');
   return (
     <GameContext.Provider value={{ state, dispatch }}>
       {children}
