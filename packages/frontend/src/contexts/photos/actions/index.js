@@ -2,6 +2,7 @@ import types from './types';
 
 export const setPhotos = (photos) => {
   if (!Array.isArray(photos)) throw new TypeError('photos must be an array');
+
   return {
     type: types.SET_PHOTOS,
     payload: { photos },
@@ -9,8 +10,19 @@ export const setPhotos = (photos) => {
 };
 
 export const setStatus = (status) => {
-  const allowedStatuses = ['error', 'idle', 'pending', 'success'];
+  const allowedStatuses = ['ERROR', 'IDLE', 'PENDING', 'SUCCESS'];
   if (!allowedStatuses.includes(status)) {
-    throw new Error(`status must be one of: ${allowedStatuses.join(' ')}`);
+    const message = [
+      'status must be one of',
+      allowedStatuses,
+      'but received',
+      status,
+    ].join(' ');
+    throw new Error(message);
   }
+
+  return {
+    type: types.SET_STATUS,
+    payload: { status },
+  };
 };
