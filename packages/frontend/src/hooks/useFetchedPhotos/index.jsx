@@ -20,15 +20,13 @@ const useFetchedPhotos = ({ query = 'nature', perPage }) => {
 
           if (!data.error) {
             if (!photos) {
-              setTimeout(() => {
-                setStatus('SUCCESS');
-              }, 3000);
+              setStatus('SUCCESS');
               setPhotos(data.photos);
             }
           } else {
             if (!photosError) {
               setStatus('ERROR');
-              throw new Error(data.error.message);
+              setPhotosError(data.error.message);
             }
           }
         } catch (error) {

@@ -1,5 +1,15 @@
 import types from './types';
 
+export const setError = (error) => {
+  const message = 'An error message is required.';
+  if (!error) throw new Error(message);
+
+  return {
+    type: types.SET_ERROR,
+    payload: { error },
+  };
+};
+
 export const setPhotos = (photos) => {
   if (!Array.isArray(photos)) throw new TypeError('photos must be an array');
 
@@ -11,6 +21,7 @@ export const setPhotos = (photos) => {
 
 export const setStatus = (status) => {
   const allowedStatuses = ['ERROR', 'IDLE', 'PENDING', 'SUCCESS'];
+
   if (!allowedStatuses.includes(status)) {
     const message = [
       'status must be one of',

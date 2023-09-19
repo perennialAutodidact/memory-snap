@@ -4,22 +4,23 @@ import { PhotosContext } from 'contexts/photos';
 import { baseState } from 'contexts';
 import { photosReducer } from 'contexts/photos/reducer';
 import useFetchedPhotos from 'hooks/useFetchedPhotos';
-import { setPhotos, setStatus } from 'contexts/photos/actions';
+import { setError, setPhotos, setStatus } from 'contexts/photos/actions';
 
 const PhotosProvider = ({ children, providedState = null } = {}) => {
   const initialState = providedState || baseState.photos;
   const [state, dispatch] = useReducer(photosReducer, initialState);
 
   // TODO: add 'loading' value to indicate if the photos have loaded from the api
-  const { photos, status } = useFetchedPhotos({ query: 'cats', perPage: 3 });
+  const { error, photos, status } = useFetchedPhotos({
+    query: 'cats',
+    perPage: 3,
+  });
 
   useEffect(() => {
-    console.log('photos provider:', { status });
     dispatch(setStatus(status));
-    if (photos) {
-      dispatch(setPhotos(photos));
-    }
-  }, [photos, status]);
+    if (photos) dispatch(setPhotos(photos));
+    if (error) dispatch(setError(error));
+  }, [error, photos, status]);
 
   return (
     <PhotosContext.Provider value={{ state, dispatch }}>

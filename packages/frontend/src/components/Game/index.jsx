@@ -7,21 +7,22 @@ import Spinner from './Spinner';
 
 const Game = () => {
   const {
-    // TODO: re-enable eslint when photos variable is used
-    // eslint-disable-next-line
-    state: { status, photos },
-  } = usePhotosContext();
-
-  const {
     state: { players, currentPlayer },
   } = useGameContext();
 
-  console.log({ status });
+  const {
+    // TODO: re-enable eslint when photos variable is used
+    // eslint-disable-next-line
+    state: { error, status, photos },
+  } = usePhotosContext();
+  const isLoading = ['IDLE', 'PENDING'].includes(status);
 
   return (
     <section className="d-flex flex-column" aria-label="memory snap game">
-      {status === 'PENDING' ? (
-        <Spinner />
+      {isLoading ? (
+        <div className="pt-5 d-flex justify-content-center">
+          <Spinner />
+        </div>
       ) : (
         <>
           <ScoreBoard players={players} currentPlayer={currentPlayer} />
