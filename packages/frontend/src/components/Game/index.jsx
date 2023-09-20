@@ -8,11 +8,12 @@ const Game = () => {
   const {
     // TODO: re-enable eslint when photos variable is used
     // eslint-disable-next-line
-    state: {photos}
+    state: { photos }
   } = usePhotosContext();
   const {
     state: { players, currentPlayer, tiles },
   } = useGameContext();
+
   return (
     <section aria-label="memory snap game">
       <PlayerHUD player={players[currentPlayer]} />

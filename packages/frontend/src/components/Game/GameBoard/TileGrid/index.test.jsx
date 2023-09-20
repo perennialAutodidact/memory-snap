@@ -1,13 +1,15 @@
 import { setupTests } from 'helpers/tests';
-import { mockPhotos } from '__mocks__/api/mockPhotos';
+import { createTiles } from 'helpers/createTiles';
 import TileGrid from '.';
+import { mockPhotos } from '__mocks__/api/mockPhotos';
 
 describe('TileGrid component', () => {
   it('renders all tiles', () => {
-    const { screen } = setupTests(TileGrid, { props: { tiles: mockPhotos } });
+    const tiles = createTiles(mockPhotos)
+    const { screen } = setupTests(TileGrid, { props: { tiles } });
 
-    const allTiles = screen.getAllByTestId('tileTest');
+    const allTiles = screen.getAllByTestId(/tile/);
 
-    expect(allTiles.length).toBe(5);
+    expect(allTiles.length).toBe(10);
   });
 });

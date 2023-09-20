@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 
-const Tile = ({ id, src, alt, size }) => {
+const Tile = ({ id, src }) => {
   const [faceUp, setFaceUp] = useState(false);
-  console.log('id from tile', id, src, alt, size);
 
   const onFlip = () => {
     setFaceUp(!faceUp);
@@ -14,7 +13,7 @@ const Tile = ({ id, src, alt, size }) => {
     <div
       className={!faceUp ? 'tile bg-primary' : 'tile'}
       onClick={onFlip}
-      data-testid={'tileTest'}
+      data-testid={`tile-${id}`}
     >
       {!faceUp ? (
         <h1>back</h1>

@@ -22,7 +22,6 @@ const TileGrid = ({ tiles }) => {
     </div>
   );
 };
-
 TileGrid.propTypes = {
   toggleUp: PropTypes.func,
   tiles: PropTypes.arrayOf(PropTypes.object),
