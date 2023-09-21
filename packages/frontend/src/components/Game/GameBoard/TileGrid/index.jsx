@@ -5,7 +5,10 @@ import Tile from '../Tile';
 
 const TileGrid = ({ tiles }) => {
   return (
-    <div id="grid" className="tile_grid d-flex align-items-center flex-wrap">
+    <div
+      id="grid"
+      className="tile_grid d-flex align-items-center flex-wrap justify-content-center gap-3"
+    >
       {!tiles
         ? null
         : tiles.map((tile, index) => (

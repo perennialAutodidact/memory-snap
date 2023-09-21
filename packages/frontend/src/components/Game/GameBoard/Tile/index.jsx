@@ -11,13 +11,11 @@ const Tile = ({ id, src }) => {
 
   return (
     <div
-      className={!faceUp ? 'tile bg-primary' : 'tile'}
+      className={!faceUp ? 'tile bg-dark border border-primary' : 'tile'}
       onClick={onFlip}
       data-testid={`tile-${id}`}
     >
-      {!faceUp ? (
-        <h1>back</h1>
-      ) : (
+      {!faceUp ? null : (
         <img src={src} className="oversize" alt="Responsive image" />
       )}
     </div>

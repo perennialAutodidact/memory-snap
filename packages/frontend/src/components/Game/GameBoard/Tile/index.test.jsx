@@ -4,6 +4,6 @@ import Tile from '.';
 describe('Tile component', () => {
   it('renders', () => {
     const { screen } = setupTests(Tile);
-    expect(screen.getByText('back')).toBeInTheDocument();
+    expect(screen.getByTestId(/tile/)).toBeInTheDocument();
   });
 });
