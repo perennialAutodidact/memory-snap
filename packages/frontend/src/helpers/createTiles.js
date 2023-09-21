@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 const shufflePhotos = (photos) => {
   let currentIndex = photos.length,
     randomIndex;
@@ -15,16 +17,11 @@ const shufflePhotos = (photos) => {
 };
 
 const createTiles = (photos) => {
-  console.log(photos, 'phOTOS');
-
-  // change this to ladash duplicate *see note
-  const unshuffledPhotos = [...photos].concat(photos);
-  const tilePhotos = shufflePhotos(unshuffledPhotos);
-  console.log(tilePhotos, 'TILE PHOTOS');
+  const tilePhotos = shufflePhotos([...photos].concat(_.clone(photos)));
 
   const tiles = [];
-  //change this to use map
-  tilePhotos.forEach((photo) => {
+
+  tilePhotos.map((photo) => {
     tiles.push({
       isMatched: false,
       faceUp: false,
