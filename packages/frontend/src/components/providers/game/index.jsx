@@ -5,7 +5,7 @@ import { addTiles } from 'contexts/game/actions';
 import { baseState } from 'contexts';
 import { gameReducer } from 'contexts/game/reducer';
 import { mockPhotos } from '__mocks__/api/mockPhotos';
-import { createTiles } from 'helpers/createTiles';
+import { createTiles } from 'helpers';
 
 const GameProvider = ({ children, providedState = null } = {}) => {
   const initialState = providedState || baseState.game;
