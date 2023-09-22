@@ -14,7 +14,7 @@
   "devDependencies": {
     "nx": "15.3.0"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Memory Snap monorepo",
   "repository": "git@github.com:perennialAutodidact/memory-snap.git",
   "author": "Keegan Good <perennialautodidact@gmail.com>",
