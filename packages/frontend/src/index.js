@@ -5,6 +5,7 @@ import './styles/index.scss';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import FormProvider from 'components/providers/form';
 import GameProvider from 'components/providers/game';
 import PhotosProvider from 'components/providers/photos';
 
@@ -12,11 +13,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <GameProvider>
-        <PhotosProvider>
-          <App />
-        </PhotosProvider>
-      </GameProvider>
+      <FormProvider>
+        <GameProvider>
+          <PhotosProvider>
+            <App />
+          </PhotosProvider>
+        </GameProvider>
+      </FormProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

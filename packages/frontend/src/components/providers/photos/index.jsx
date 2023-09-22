@@ -11,7 +11,7 @@ const PhotosProvider = ({ children, providedState = null } = {}) => {
   const [state, dispatch] = useReducer(photosReducer, initialState);
 
   // TODO: add 'loading' value to indicate if the photos have loaded from the api
-  const { photos } = useFetchedPhotos({ query: 'cats', perPage: 5 });
+  const { photos } = useFetchedPhotos({ query: 'cats', perPage: 3 });
 
   useEffect(() => {
     if (!photos) return;

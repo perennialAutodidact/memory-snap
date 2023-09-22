@@ -2,6 +2,15 @@ import { baseState } from 'contexts';
 import { gameReducer } from '.';
 
 describe('gameReducer', () => {
+  it('returns the default state if action type is unknown', () => {
+    const { game: state } = baseState;
+    const action = {
+      type: 'test',
+    };
+
+    expect(gameReducer(state, action)).toBe(state);
+  });
+
   describe('errors', () => {
     it('throws an error if state is undefined', () => {
       const state = undefined;
@@ -25,7 +34,7 @@ describe('gameReducer', () => {
         payload: 'test',
       };
 
-      expect(() => photosReducer(state, action)).toThrow();
+      expect(() => gameReducer(state, action)).toThrow();
     });
   });
 });
