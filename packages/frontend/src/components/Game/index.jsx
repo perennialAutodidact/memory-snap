@@ -13,7 +13,7 @@ const Game = () => {
   const {
     state: { players, currentPlayer, tiles },
   } = useGameContext();
-
+  console.log(tiles, 'tiles from GAME COMPONENT');
   return (
     <section aria-label="memory snap game">
       <PlayerHUD player={players[currentPlayer]} />

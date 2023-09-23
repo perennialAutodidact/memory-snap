@@ -2,8 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 import Tile from '../Tile';
+import { flipTile } from 'contexts/game/actions';
+import useGameContext from 'hooks/useGameContext';
 
 const TileGrid = ({ tiles }) => {
+  const { state, dispatch } = useGameContext();
+
+  const onFlipTile = (index) => {
+    console.log(state, 'STATE');
+    console.log(index, 'INDEX OF THE TILE TO FLIP');
+
+    // const tileToToggle = state.tiles[index];
+
+    // if (tileToToggle.faceUp === false) {
+    //   tileToToggle.faceUp = true;
+    // } else {
+    //   tileToToggle.faceUp = false;
+    // }
+
+    dispatch(flipTile(index));
+  };
+
   return (
     <div
       id="grid"
@@ -15,11 +34,10 @@ const TileGrid = ({ tiles }) => {
             <Tile
               isMatched={tile.isMatched}
               faceUp={tile.faceUp}
-              id={tile.photo.id}
+              onFlip={onFlipTile}
               key={index}
-              src={tile.photo.src.small}
-              alt={tile.photo.alt}
-              size={tile.photo.height}
+              index={index}
+              photo={tile.photo}
             />
           ))}
     </div>

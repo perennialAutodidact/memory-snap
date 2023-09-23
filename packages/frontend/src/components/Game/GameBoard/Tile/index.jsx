@@ -2,31 +2,37 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 
-const Tile = ({ id, src }) => {
+const Tile = ({ photo, onFlip, index }) => {
   const [faceUp, setFaceUp] = useState(false);
 
-  const onFlip = () => {
+  const onClickTile = () => {
     setFaceUp(!faceUp);
+
+    onFlip({ photo, onFlip, index });
   };
 
   return (
     <div
       className={!faceUp ? 'tile bg-dark border border-primary' : 'tile'}
-      onClick={onFlip}
-      data-testid={`tile-${id}`}
+      onClick={onClickTile}
+      data-testid={`tile-${photo.id}`}
     >
       {!faceUp ? null : (
-        <img src={src} className="oversize" alt="Responsive image" />
+        <img
+          src={photo.src.small}
+          className="oversize"
+          alt="Responsive image"
+        />
       )}
     </div>
   );
 };
 
 Tile.propTypes = {
-  id: PropTypes.number,
-  src: PropTypes.string,
-  alt: PropTypes.string,
-  size: PropTypes.number,
+  photo: PropTypes.object,
+  isMatched: PropTypes.bool,
+  index: PropTypes.number,
+  onFlip: PropTypes.func,
 };
 
 export default Tile;
