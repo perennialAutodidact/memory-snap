@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 
-const Tile = ({ photo, onFlip, index }) => {
-  const [faceUp, setFaceUp] = useState(false);
+const Tile = ({ photo, onFlip, index, faceUp }) => {
+  // const [faceUp, setFaceUp] = useState(false);
 
   const onClickTile = () => {
-    setFaceUp(!faceUp);
+    // setFaceUp(!faceUp);
 
     onFlip({ photo, onFlip, index });
   };
@@ -33,6 +33,7 @@ Tile.propTypes = {
   isMatched: PropTypes.bool,
   index: PropTypes.number,
   onFlip: PropTypes.func,
+  faceUp: PropTypes.bool,
 };
 
 export default Tile;
