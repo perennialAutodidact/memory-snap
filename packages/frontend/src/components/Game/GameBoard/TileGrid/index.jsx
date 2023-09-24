@@ -37,6 +37,7 @@ const TileGrid = ({ tiles }) => {
               onFlip={onFlipTile}
               key={index}
               index={index}
+              id={tile.id}
               photo={tile.photo}
             />
           ))}

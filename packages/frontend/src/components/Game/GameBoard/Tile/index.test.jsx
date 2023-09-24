@@ -6,4 +6,10 @@ describe('Tile component', () => {
     const { screen } = setupTests(Tile);
     expect(screen.getByTestId(/tile/)).toBeInTheDocument();
   });
+
+  it('renders', () => {
+    const { screen } = setupTests(Tile);
+    const tileDiv = screen.toHaveClass('faceDown')
+    expect(screen.getByText('faceDown')).toBeInTheDocument();
+  });
 });
