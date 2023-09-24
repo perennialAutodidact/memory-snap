@@ -19,12 +19,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "yarn build && (cd ../backend && yarn start)",
-    "start-client": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "dev": "react-scripts start",
+    "eject": "react-scripts eject",
     "lint": "npx eslint --fix",
-    "eject": "react-scripts eject"
+    "start": "react-scripts build",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [
