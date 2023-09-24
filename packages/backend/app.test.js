@@ -1,6 +1,6 @@
 import * as request from 'supertest';
 import app from './app';
-import { mockPhotos } from './__mocks__/mockPhotos';
+import { mockPhotos } from '../__mocks__/mockPhotos';
 import dotenv from 'dotenv';
 import { createClient } from 'pexels';
 
