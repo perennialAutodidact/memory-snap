@@ -15,13 +15,7 @@ const Tile = ({ photo, onFlip, index, faceUp, id }) => {
       onClick={onClickTile}
       data-testid={`tile-${id}`}
     >
-      {!faceUp ? null : (
-        <img
-          src={photo.src.small}
-          className="oversize"
-          alt={photo.alt}
-        />
-      )}
+      {!faceUp ? null : <img src={photo.src.small} alt={photo.alt} />}
     </div>
   );
 };

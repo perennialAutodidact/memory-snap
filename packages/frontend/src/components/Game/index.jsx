@@ -1,10 +1,8 @@
 import React from 'react';
 import usePhotosContext from 'hooks/usePhotosContext';
-import Tile from './GameBoard/Tile';
 import ScoreBoard from './ScoreBoard';
 import TileGrid from './GameBoard/TileGrid';
 import useGameContext from 'hooks/useGameContext';
-import PlayerHUD from './PlayerHUD';
 
 const Game = () => {
   const {
