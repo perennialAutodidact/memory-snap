@@ -8,22 +8,11 @@ This project uses Nx to manage a monorepo containing a backend server created wi
 - Run `git clone https://github.com/perennialAutodidact/memory-snap.git`
 - Run `cd memory-snap`
 - Run `yarn install` in the root directory, Nx will take care of installing dependencies for each package in the `packages` directory. If Yarn is not installed globally for Node 18.17.1, then install it using `npm install -g yarn`.
-- Create a file in the root directory called `.env.local` and add the Pexel's API key to it: `REACT_APP_PEXELS_API_KEY=<API_KEY>`
+- Create a [Pexels](https://pexels.com) account and find the API key for the account
+- Create the file `packages/backend/.env.local` and add the Pexel's API key to it: `PEXELS_API_KEY=<API_KEY>` where `<API_KEY>` is the API key string
+- Create the file `packages/frontend/.env.local` and add: `REACT_APP_API_URL=http://localhost:8080`
+- Create the file `.env.local` in the root directory and add: `API_PORT=http://localhost:8080` and `CLIENT_PORT=http://localhost:3000`
 - Run `yarn start` to start the local dev server
-
-### Absolute imports
-
-The repo is setup to use absolute imports with the `src` as the base directory.
-Any relative import that traverses more than one parent directory should be
-changed to use absolute import syntax.
-
-```javascript
-// bad
-import MyComponent from '../../../../components/MyComponent';
-
-//good
-import MyComponent from 'components/MyComponent';
-```
 
 ## Styling
 Styles are written in SCSS and are located in the `src/styles` directory.
