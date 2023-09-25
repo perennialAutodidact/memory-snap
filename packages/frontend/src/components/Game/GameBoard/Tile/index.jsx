@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 const Tile = ({ photo, onFlip, index, faceUp, id }) => {
-  // const [faceUp, setFaceUp] = useState(false);
-
   const onClickTile = () => {
-    // setFaceUp(!faceUp);
-
     onFlip({ photo, onFlip, index, id });
   };
 
@@ -23,7 +19,7 @@ const Tile = ({ photo, onFlip, index, faceUp, id }) => {
         <img
           src={photo.src.small}
           className="oversize"
-          alt="Responsive image"
+          alt={photo.alt}
         />
       )}
     </div>

@@ -1,11 +1,10 @@
 .tile {
     width: 150px;
     height: 150px;
-    overflow: hidden;
 }
 
 
-.oversize {
-    width: 110%;
+.tile img {
+    width: 100%;
     height: auto;
 }
