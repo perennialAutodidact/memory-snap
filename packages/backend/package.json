@@ -4,9 +4,10 @@
   "description": "Memory Snap server with Express.js",
   "main": "app.js",
   "type": "module",
+  "homepage": ".",
   "scripts": {
-    "dev": "node app.js",
-    "start": "node app.js",
+    "serve": "cross-env NODE_ENV=production node app.js",
+    "start": "cross-env NODE_ENV=development node app.js",
     "test": "cross-env NODE_ENV=test yarn jest"
   },
   "author": "Keegan Good",

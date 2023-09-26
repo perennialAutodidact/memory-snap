@@ -9,15 +9,15 @@ const __dirname = getDirName(import.meta.url);
 
 const app = express();
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '..', 'frontend', 'build')));
-app.use(express.static(path.join(__dirname, '..', 'frontend', 'public')));
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+// app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 dotenv.config({ path: '../../.env.local' });
 
 const allowedOrigins = ['http://localhost:3000', 'https://localhost:3000'];
 const corsOptions = {
   origin: (origin, callback) => {
-    allowedOrigins.indexOf(origin) !== -1 || origin === undefined
+    origin === undefined || allowedOrigins.indexOf(origin) !== -1
       ? callback(null, true)
       : callback(new Error(`${origin} is not a trusted origin`));
   },
@@ -26,9 +26,11 @@ app.use(cors(corsOptions));
 
 const port = process.env.API_PORT || 8080;
 
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'frontend', 'build', 'index.html'));
-});
+if (process.env.NODE_ENV === 'production') {
+  app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+  });
+}
 
 app.get('/photos', async (req, res) => {
   try {
