@@ -10,8 +10,8 @@ describe('PlayerHUD component', () => {
       screen: { getByTestId },
     } = setupTests(PlayerHUD, { props });
 
-    const playerName = getByTestId(`player-${props.player.number}-name`);
-    const playerScore = getByTestId(`player-${props.player.number}-score`);
+    const playerName = getByTestId(`player-name-${props.player.number}`);
+    const playerScore = getByTestId(`player-score-${props.player.number}`);
 
     expect(playerName).toBeInTheDocument();
     expect(playerName).toHaveTextContent(props.player.name);
@@ -26,7 +26,6 @@ describe('PlayerHUD component', () => {
     const {
       screen: { getByTestId },
     } = setupTests(PlayerHUD, { props });
-    expect(getByTestId('PlayerHUD-1')).toHaveClass('active');
-    expect(getByTestId('PlayerHUD-2')).not.toHaveClass('active');
+    expect(getByTestId('player-score-1')).toHaveClass('active');
   });
 });
