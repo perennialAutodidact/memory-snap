@@ -8,7 +8,7 @@ const useFetchedPhotos = ({ query = 'nature', perPage }) => {
       (async () => {
         try {
           const params = new URLSearchParams({ perPage, query });
-          const url = `/photos/?${params}`;
+          const url = `/api/photos/?${params}`;
           const response = await fetch(url, {
             method: 'GET',
             mode: 'cors',
