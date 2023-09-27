@@ -27,5 +27,3 @@ const createTilesFromPhotos = (photos, options) => {
 };
 
 export { createTilesFromPhotos };
-
-//add a doc string to this helper function

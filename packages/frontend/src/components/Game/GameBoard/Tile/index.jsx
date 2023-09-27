@@ -7,11 +7,11 @@ const Tile = ({ photo, onFlip, index, faceUp, id }) => {
     onFlip({ photo, onFlip, index, id });
   };
 
+  const downClasses = 'tile faceDown bg-dark border border-primary';
+  const upClasses = 'tile faceUp';
   return (
     <div
-      className={
-        !faceUp ? 'tile faceDown bg-dark border border-primary' : 'tile faceUp'
-      }
+      className={!faceUp ? downClasses : upClasses}
       onClick={onClickTile}
       data-testid={`tile-${id}`}
     >
