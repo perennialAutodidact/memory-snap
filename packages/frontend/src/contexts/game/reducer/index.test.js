@@ -1,5 +1,6 @@
 import { baseState } from 'contexts';
 import { gameReducer } from '.';
+import { mockPhotos } from '__mocks__/api/mockPhotos';
 
 describe('gameReducer', () => {
   it('returns the default state if action type is unknown', () => {
@@ -36,5 +37,43 @@ describe('gameReducer', () => {
 
       expect(() => gameReducer(state, action)).toThrow();
     });
+  });
+
+  it('creates a tiles array in game context if action type is ADD_TILES', () => {
+    const { game: state } = baseState;
+    const photos = mockPhotos;
+
+    const action = {
+      type: 'ADD_TILES',
+      payload: { photos },
+    };
+
+    const result = gameReducer(state, action)
+
+    expect(result.tiles.length).toEqual(10);
+  });
+
+  it('toggles the faceUp value of target tile if action type is FLIP_TILE', () => {
+    const { game: state } = baseState;
+    const photos = mockPhotos;
+
+    const action1 = {
+      type: 'ADD_TILES',
+      payload: { photos },
+    };
+
+    //state after ADD_TILES HAS BEN CALLED
+    const newState = gameReducer(state, action1)
+
+    const tile = newState.tiles[4]
+
+    const action2 = {
+      type: 'FLIP_TILE',
+      payload: { tile },
+    };
+    
+    const flippedState = gameReducer(newState, action2)
+
+    expect(flippedState.tiles[4].faceUp).toBe(true);
   });
 });

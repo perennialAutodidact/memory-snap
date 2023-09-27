@@ -1,7 +1,7 @@
 import { setupTests } from 'helpers/tests';
 import Tile from '.';
 import { mockPhotos } from '__mocks__/api/mockPhotos';
-import { createTiles } from 'helpers';
+import { createTilesFromPhotos } from 'helpers';
 
 describe('Tile component', () => {
   it('renders', () => {
@@ -10,7 +10,7 @@ describe('Tile component', () => {
   });
 
   it('has alt text if faceUp is true', () => {
-    const tile = createTiles(mockPhotos)[0]
+    const tile = createTilesFromPhotos(mockPhotos, true)[0]
     const props = {...tile, faceUp: true};
     
     const { screen } = setupTests(Tile, {props: {...props, faceUp: true}});
@@ -19,14 +19,14 @@ describe('Tile component', () => {
   });
 
   it('does not have alt text if faceUp is false', () => {
-    const tile = createTiles(mockPhotos)[0]
+    const tile = createTilesFromPhotos(mockPhotos, true)[0]
     const props = {...tile, faceUp: true};
     
     const { screen } = setupTests(Tile, {props: {...props, faceUp: false}});
 
     const element = screen.queryByAltText(props.photo.alt)
 
-    expect(element).toBeNull()
+    expect(element).not.toBeInTheDocument()
     
   });
 });

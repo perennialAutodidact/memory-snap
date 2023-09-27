@@ -1,5 +1,5 @@
 import types from '../actions/types';
-import { createTiles } from 'helpers';
+import { createTilesFromPhotos } from 'helpers';
 
 export const gameReducer = (state, action) => {
   if (!state) {
@@ -12,15 +12,14 @@ export const gameReducer = (state, action) => {
     case types.ADD_TILES:
       return {
         ...state,
-        tiles: createTiles(action.payload.photos),
+        tiles: createTilesFromPhotos(action.payload.photos, { shuffle: true }),
       };
+
     case types.FLIP_TILE:
-      console.log('PAYLOAD', action.payload.tile.index);
-      console.log('ID OF ONE OF EM', state.tiles[0].id);
       return {
         ...state,
-        tiles: state.tiles.map((tile, index) =>
-          index === action.payload.tile.index
+        tiles: state.tiles.map((tile) =>
+          tile.id === action.payload.tile.id
             ? { ...tile, faceUp: !tile.faceUp }
             : tile
         ),

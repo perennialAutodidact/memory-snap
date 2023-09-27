@@ -1,3 +1,3 @@
-import { createTiles } from './createTiles';
+import { createTilesFromPhotos } from './createTilesFromPhotos';
 
-export { createTiles };
+export { createTilesFromPhotos };

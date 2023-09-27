@@ -1,25 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './style.scss';
 import Tile from '../Tile';
 import { flipTile } from 'contexts/game/actions';
 import useGameContext from 'hooks/useGameContext';
 
 const TileGrid = ({ tiles }) => {
-  const { state, dispatch } = useGameContext();
+  const { dispatch } = useGameContext();
 
   const onFlipTile = (index) => {
-    console.log(state, 'STATE');
-    console.log(index, 'INDEX OF THE TILE TO FLIP');
-
-    // const tileToToggle = state.tiles[index];
-
-    // if (tileToToggle.faceUp === false) {
-    //   tileToToggle.faceUp = true;
-    // } else {
-    //   tileToToggle.faceUp = false;
-    // }
-
     dispatch(flipTile(index));
   };
 
