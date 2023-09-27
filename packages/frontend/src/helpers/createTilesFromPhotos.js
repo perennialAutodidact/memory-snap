@@ -1,5 +1,12 @@
 const _ = require('lodash');
 
+/**
+ *
+ * @param {Array} photos
+ * @param {Object} options
+ * @returns an array of tile objects
+ */
+
 const createTilesFromPhotos = (photos, options) => {
   let tilePhotos;
 
