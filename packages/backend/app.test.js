@@ -1,6 +1,6 @@
 import * as request from 'supertest';
 import app from './app';
-import { mockPhotos } from '../__mocks__/mockPhotos';
+import { mockPhotos } from './__mocks__/mockPhotos';
 import dotenv from 'dotenv';
 import { createClient } from 'pexels';
 
@@ -36,7 +36,7 @@ describe('app', () => {
     }));
 
     await agent
-      .get('/photos')
+      .get('/api/photos')
       .expect(200)
       .then((response) => {
         expect(response.body).toEqual({ photos: mockPhotos });
@@ -52,7 +52,7 @@ describe('app', () => {
     }));
 
     await agent
-      .get('/photos')
+      .get('/api/photos')
       .expect(500)
       .then((response) => {
         expect(response.body).toStrictEqual({ message: 'oops!' });

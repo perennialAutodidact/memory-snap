@@ -1,18 +1,22 @@
 import express from 'express';
 import path from 'path';
-import { createClient } from 'pexels';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import bodyParser from 'body-parser';
+
+import { createClient } from 'pexels';
 import { getDirName } from './helpers.js';
 
+dotenv.config({ path: '../../.env.local' });
 const __dirname = getDirName(import.meta.url);
+const port = process.env.API_PORT;
 
 const app = express();
-app.use(express.json());
-app.use(express.static(path.join(__dirname, '../frontend/build')));
-// app.use(express.static(path.join(__dirname, '../frontend/public')));
 
-dotenv.config({ path: '../../.env.local' });
+// middleware
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 const allowedOrigins = ['http://localhost:3000', 'https://localhost:3000'];
 const corsOptions = {
@@ -24,15 +28,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-const port = process.env.API_PORT || 8080;
-
-if (process.env.NODE_ENV === 'production') {
-  app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
-  });
-}
-
-app.get('/photos', async (req, res) => {
+app.get('/api/photos', async (req, res) => {
   try {
     const { query, perPage: per_page } = req.query;
     const pexelsClient = createClient(process.env.PEXELS_API_KEY);
@@ -48,6 +44,10 @@ app.get('/photos', async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+});
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
 });
 
 if (process.env.NODE_ENV !== 'test') {
