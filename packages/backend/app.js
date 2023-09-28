@@ -1,26 +1,36 @@
 import express from 'express';
-import { createClient } from 'pexels';
+import path from 'path';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import bodyParser from 'body-parser';
+
+import { createClient } from 'pexels';
+import { getDirName } from './helpers.js';
+
+// config
+dotenv.config({ path: '../../.env.local' });
+const __dirname = getDirName(import.meta.url);
+const port = process.env.API_PORT;
 
 const app = express();
-app.use(express.json());
 
-dotenv.config({ path: '../../.env.local' });
+// middleware
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 const allowedOrigins = ['http://localhost:3000', 'https://localhost:3000'];
 const corsOptions = {
   origin: (origin, callback) => {
-    allowedOrigins.indexOf(origin) !== -1
+    origin === undefined || allowedOrigins.indexOf(origin) !== -1
       ? callback(null, true)
       : callback(new Error(`${origin} is not a trusted origin`));
   },
 };
 app.use(cors(corsOptions));
 
-const port = process.env.API_PORT || 8080;
-
-app.get('/photos', async (req, res) => {
+// routes
+app.get('/api/photos', async (req, res) => {
   try {
     const { query, perPage: per_page } = req.query;
     const pexelsClient = createClient(process.env.PEXELS_API_KEY);
@@ -38,6 +48,11 @@ app.get('/photos', async (req, res) => {
   }
 });
 
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+});
+
+// launch
 if (process.env.NODE_ENV !== 'test') {
   app.listen(port, (error) => {
     if (error) {

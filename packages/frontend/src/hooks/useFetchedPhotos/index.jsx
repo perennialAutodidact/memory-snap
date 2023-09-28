@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 const useFetchedPhotos = ({ query = 'nature', perPage }) => {
-  const [photos, setPhotos] = useState(undefined);
-  const [photosError, setPhotosError] = useState(undefined);
+  const [photos, setPhotos] = useState(null);
+  const [photosError, setPhotosError] = useState(null);
   const [status, setStatus] = useState('IDLE');
 
   useEffect(() => {
@@ -9,11 +9,10 @@ const useFetchedPhotos = ({ query = 'nature', perPage }) => {
       (async () => {
         try {
           setStatus('PENDING');
-          const url = `${process.env.REACT_APP_API_URL}/photos/?`;
           const params = new URLSearchParams({ perPage, query });
-          const response = await fetch(url + params, {
+          const url = `${process.env.REACT_APP_API_URL}/photos/?${params}`;
+          const response = await fetch(url, {
             method: 'GET',
-            mode: 'cors',
           });
 
           const data = await response.json();

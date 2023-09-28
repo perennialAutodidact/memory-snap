@@ -7,6 +7,7 @@
     ]
   },
   "scripts": {
+    "serve": "npx nx run-many --target=serve",
     "start": "npx nx run-many --target=start",
     "test": "npx nx run-many --target=test"
   },
