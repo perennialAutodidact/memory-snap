@@ -23,9 +23,12 @@ describe('createTilesFromPhotos', () => {
         return tile.photo
     })
 
-    //how to test the equality of two arrays of nested objects? 
+    //how to test this in a better way? 
     expect(tilePhotos[0]).toEqual(mockPhotos[0])
-
-    console.log(tilePhotos.toString(), "PHOTOS?")
+    expect(tilePhotos[2]).toEqual(mockPhotos[1])
+    expect(tilePhotos[4]).toEqual(mockPhotos[2])
+    expect(tilePhotos[6]).toEqual(mockPhotos[3])
+    expect(tilePhotos[8]).toEqual(mockPhotos[4])
+    
   });
 });
