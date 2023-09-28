@@ -7,6 +7,7 @@ import bodyParser from 'body-parser';
 import { createClient } from 'pexels';
 import { getDirName } from './helpers.js';
 
+// config
 dotenv.config({ path: '../../.env.local' });
 const __dirname = getDirName(import.meta.url);
 const port = process.env.API_PORT;
@@ -28,6 +29,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+// routes
 app.get('/api/photos', async (req, res) => {
   try {
     const { query, perPage: per_page } = req.query;
@@ -50,6 +52,7 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
 });
 
+// launch
 if (process.env.NODE_ENV !== 'test') {
   app.listen(port, (error) => {
     if (error) {
