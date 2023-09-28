@@ -7,7 +7,7 @@ import Spinner from './Spinner';
 
 const Game = () => {
   const {
-    state: { players, currentPlayer },
+    state: { currentPlayer, players },
   } = useGameContext();
 
   const {
