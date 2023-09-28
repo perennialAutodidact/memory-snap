@@ -30,7 +30,7 @@ describe('PlayerHUD component', () => {
       const {
         screen: { getByTestId },
       } = setupTests(PlayerHUD, { props });
-      expect(getByTestId('player-1-score')).toHaveClass('active');
+      expect(getByTestId('player-score-1')).toHaveClass('active');
     });
 
     it('does not render "active" class when inactive', () => {
@@ -38,7 +38,7 @@ describe('PlayerHUD component', () => {
       const {
         screen: { getByTestId },
       } = setupTests(PlayerHUD, { props });
-      expect(getByTestId('player-1-score')).not.toHaveClass('active');
+      expect(getByTestId('player-score-1')).not.toHaveClass('active');
     });
   });
 });
