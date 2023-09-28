@@ -14,8 +14,8 @@ describe('PlayerHUD component', () => {
       screen: { getByTestId },
     } = setupTests(PlayerHUD, { props });
 
-    const playerName = getByTestId(`player-${props.player.number}-name`);
-    const playerScore = getByTestId(`player-${props.player.number}-score`);
+    const playerName = getByTestId(`player-name-${props.player.number}`);
+    const playerScore = getByTestId(`player-score-${props.player.number}`);
 
     expect(playerName).toBeInTheDocument();
     expect(playerName).toHaveTextContent(props.player.name);
