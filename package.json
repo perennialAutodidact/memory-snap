@@ -7,6 +7,8 @@
     ]
   },
   "scripts": {
+    "ci": "npx nx run-many --target=ci",
+    "serve": "npx nx run-many --target=serve",
     "start": "npx nx run-many --target=start",
     "test": "npx nx run-many --target=test"
   },
@@ -14,7 +16,7 @@
   "devDependencies": {
     "nx": "15.3.0"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Memory Snap monorepo",
   "repository": "git@github.com:perennialAutodidact/memory-snap.git",
   "author": "Keegan Good <perennialautodidact@gmail.com>",

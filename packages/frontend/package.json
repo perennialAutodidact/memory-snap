@@ -2,6 +2,8 @@
   "name": "memory-snap-frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
+  "homepage": ".",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -19,11 +21,13 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "ci": "cross-env CI=true yarn test",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "eject": "react-scripts eject",
     "lint": "npx eslint --fix",
-    "eject": "react-scripts eject"
+    "serve": "cross-env NODE_ENV=production react-scripts build",
+    "start": "cross-env NODE_ENV=development react-scripts start",
+    "test": "cross-env NODE_ENV=test react-scripts test"
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +50,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.11",
     "@babel/preset-react": "^7.22.15",
+    "dotenv": "^16.3.1",
     "eslint-plugin-prettier": "^5.0.0",
     "msw": "^1.3.0"
   }
