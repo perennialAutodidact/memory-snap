@@ -4,14 +4,17 @@ import './style.scss';
 
 const Tile = ({ photo, onFlip, index, faceUp, id }) => {
   const onClickTile = () => {
-    onFlip({ photo, onFlip, index, id });
+    onFlip({ photo, onFlip, index, id, faceUp });
   };
 
-  const downClasses = 'tile faceDown bg-dark border border-primary';
-  const upClasses = 'tile faceUp';
+  const tileClasses = [
+    'tile border border-primary',
+    faceUp ? 'faceUp' : 'faceDown',
+  ].join(' ');
+
   return (
     <div
-      className={!faceUp ? downClasses : upClasses}
+      className={tileClasses}
       onClick={onClickTile}
       data-testid={`tile-${id}`}
     >

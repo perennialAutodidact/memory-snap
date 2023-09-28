@@ -1,6 +1,8 @@
 import { baseState } from 'contexts';
 import { gameReducer } from '.';
 import { mockPhotos } from '__mocks__/api/mockPhotos';
+import { produce } from 'immer';
+import { createTilesFromPhotos } from 'helpers';
 
 describe('gameReducer', () => {
   it('returns the default state if action type is unknown', () => {
@@ -57,23 +59,21 @@ describe('gameReducer', () => {
     const { game: state } = baseState;
     const photos = mockPhotos;
 
-    const action1 = {
-      type: 'ADD_TILES',
-      payload: { photos },
-    };
+    const initialTilesState = produce(state, (draft) => {
+      draft.tiles = createTilesFromPhotos(mockPhotos)
+    })
 
-    //state after ADD_TILES HAS BEN CALLED
-    const newState = gameReducer(state, action1)
-
-    const tile = newState.tiles[4]
-
-    const action2 = {
+    const tile = initialTilesState.tiles[4]
+    
+    const action = {
       type: 'FLIP_TILE',
       payload: { tile },
     };
-    
-    const flippedState = gameReducer(newState, action2)
 
-    expect(flippedState.tiles[4].faceUp).toBe(true);
+    const expected = produce(initialTilesState, (draft) => {
+      draft.tiles[4].faceUp = true;
+    })
+
+    expect(gameReducer(initialTilesState, action)).toStrictEqual(expected);
   });
 });

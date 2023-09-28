@@ -2,19 +2,13 @@ const _ = require('lodash');
 
 /**
  *
- * @param {Array} photos
- * @param {Object} options
+ * @param {Array} photos an array for photo objects from the Pexels API
+ * @param {Object} options { shuffle: boolean }
  * @returns an array of tile objects
  */
 
-const createTilesFromPhotos = (photos, options) => {
-  let tilePhotos;
-
-  if (options.shuffle === true) {
-    tilePhotos = _.shuffle(photos.flatMap((photo) => [photo, photo]));
-  } else {
-    tilePhotos = photos.flatMap((photo) => [photo, photo]);
-  }
+const createTilesFromPhotos = (photos, options = { shuffle: true }) => {
+  const tilePhotos = photos.flatMap((photo) => [photo, photo]);
 
   const tiles = tilePhotos.map((photo, index) => ({
     id: index,
@@ -23,7 +17,7 @@ const createTilesFromPhotos = (photos, options) => {
     photo: photo,
   }));
 
-  return tiles;
+  return options.shuffle ? _.shuffle(tiles) : tiles;
 };
 
 export { createTilesFromPhotos };

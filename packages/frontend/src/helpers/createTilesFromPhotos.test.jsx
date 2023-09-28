@@ -2,7 +2,7 @@ import { createTilesFromPhotos } from 'helpers';
 import { mockPhotos } from '__mocks__/api/mockPhotos';
 
 describe('createTilesFromPhotos', () => {
-  it('returns an array of shuffled tiles if shuffle is true', () => {
+  it('returns an array double the length of the array its given', () => {
     const photos =  mockPhotos;
 
     const shuffledTiles = createTilesFromPhotos(photos, { shuffle: true });
@@ -11,7 +11,9 @@ describe('createTilesFromPhotos', () => {
         return tile.photo
     })
 
-    //assert that photos and TilePhotos are not equal
+    //asserting that it doubles the length of the mockPhotos
+    expect(photos.length * 2).toEqual(tilePhotos.length)
+
   });
 
   it('returns an array of unshuffled tiles if shuffle is false', () => {
@@ -29,6 +31,5 @@ describe('createTilesFromPhotos', () => {
     expect(tilePhotos[4]).toEqual(mockPhotos[2])
     expect(tilePhotos[6]).toEqual(mockPhotos[3])
     expect(tilePhotos[8]).toEqual(mockPhotos[4])
-    
   });
 });

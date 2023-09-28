@@ -7,14 +7,14 @@ import useGameContext from 'hooks/useGameContext';
 const TileGrid = ({ tiles }) => {
   const { dispatch } = useGameContext();
 
-  const onFlipTile = (index) => {
-    dispatch(flipTile(index));
+  const onFlipTile = (tile) => {
+    dispatch(flipTile(tile));
   };
 
   return (
     <div
-      id="grid"
-      className="tile_grid d-flex align-items-center flex-wrap justify-content-center gap-3"
+      id="tile-grid"
+      className="d-flex align-items-center flex-wrap justify-content-center gap-3"
     >
       {!tiles
         ? null
