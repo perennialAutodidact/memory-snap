@@ -8,7 +8,7 @@
   },
   "scripts": {
     "ci": "npx nx run-many --target=ci",
-    "serve": "npx nx run-many --target=serve",
+    "serve": "GENERATE_SOURCEMAP=false npx nx run-many --target=serve",
     "start": "npx nx run-many --target=start",
     "test": "npx nx run-many --target=test"
   },
