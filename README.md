@@ -2,23 +2,17 @@
 Flip tiles to find matching images. The player who finds the most pairs wins!
 
 ## Project Setup
+This project uses Nx to manage a monorepo containing a backend server created with Express and a frontend application created with `create-react-app` (CRA).
+
 - Install and/or switch to Node 18.17.1. 
 - Run `git clone https://github.com/perennialAutodidact/memory-snap.git`
 - Run `cd memory-snap`
-- Run `yarn install`. If Yarn is not installed globally for Node 18.17.1, then install it using `npm install -g yarn`.
+- Run `yarn install` in the root directory, Nx will take care of installing dependencies for each package in the `packages` directory. If Yarn is not installed globally for Node 18.17.1, then install it using `npm install -g yarn`.
+- Create a [Pexels](https://pexels.com) account and find the API key for the account
+- Create the file `packages/backend/.env.local` and add the Pexel's API key to it: `PEXELS_API_KEY=<API_KEY>` where `<API_KEY>` is the API key string
+- Create the file `packages/frontend/.env.local` and add: `REACT_APP_API_URL=http://localhost:8080`
+- Create the file `.env.local` in the root directory and add: `API_PORT=http://localhost:8080` and `CLIENT_PORT=http://localhost:3000`
 - Run `yarn start` to start the local dev server
-
-The repo is setup to use absolute imports with the `src` as the base directory.
-Any relative import that traverses more than one parent directory should be
-changed to use absolute import syntax.
-
-```javascript
-// bad
-import MyComponent from '../../../../components/MyComponent';
-
-//good
-import MyComponent from 'components/MyComponent';
-```
 
 ## Styling
 Styles are written in SCSS and are located in the `src/styles` directory.
@@ -116,8 +110,22 @@ information about the `produce` function.
 
 
 ## Contributing
-All incoming feature branches will be merged into the `dev` branch to be tested in a staging environment before committing changes on the branch into `main`. 
+All incoming feature branches will be merged into the `dev` branch to be tested
+in a staging environment before committing changes on the branch into `main`. 
 
-Branches should be created for each issue. The branch name should be formatted like this: `{issue number}-{component}-{short-description}`. Please, use hyphens instead of spaces or other punctuation. Github has a feature for creating branches that will be linked to the issue for which they're created. Branches created in this way will follow the aforementioned branch name formatting. See the images below.
-![image](design/readmeImages/contributing_create_branch.png)
+Branches should be created for each issue. The branch name should be formatted
+like this: `{issue number}-{component}-{short-description}`. Please, use hyphens
+instead of spaces or other punctuation. Github has a feature for creating
+branches that will be linked to the issue for which they're created. Branches
+created in this way will follow the aforementioned branch name formatting. See
+the images below.
+ ![image](design/readmeImages/contributing_create_branch.png)
 ![image](design/readmeImages/contributing_create_branch_2.png)
+<<<<<<< HEAD
+
+All new branches should be created using the `dev` branch as a base. Click
+ the "Change branch source" link and select `dev` from the dropdown.
+![image](design/readmeImages/contributing_create_branch_3.png)
+![image](design/readmeImages/contributing_create_branch_4.png)
+=======
+>>>>>>> main
