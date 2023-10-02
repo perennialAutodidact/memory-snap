@@ -23,8 +23,15 @@ export const gameReducer = (state, action) => {
             ? { ...tile, faceUp: !tile.faceUp }
             : tile
         ),
+        flipped: state.flipped.concat(action.payload.tile.photo.id),
       };
 
+    case types.RESET_TILES:
+      console.log(action.payload.id[0], action.payload.id[1], 'PAYLOAD');
+
+      return {
+        ...state,
+      };
     default: {
       return state;
     }

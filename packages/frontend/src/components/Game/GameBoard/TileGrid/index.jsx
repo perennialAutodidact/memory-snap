@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Tile from '../Tile';
-import { addTiles, flipTile } from 'contexts/game/actions';
+import { addTiles, flipTile, resetTiles } from 'contexts/game/actions';
 import useGameContext from 'hooks/useGameContext';
 import './style.scss';
 
@@ -12,16 +12,22 @@ const TileGrid = ({ photos }) => {
 
   useEffect(() => {
     if (photos) {
-      console.log('There are photos');
       dispatch(addTiles(photos));
     }
   }, [photos]);
 
-  console.log(state, 'state from TILEGRID');
+  console.log(state.flipped, 'state from TILEGRID');
   const tiles = state.tiles;
   const onFlipTile = (tile) => {
     dispatch(flipTile(tile));
   };
+
+  useEffect(() => {
+    if (state.flipped.length > 1) {
+      console.log('FLIP THEM BACK');
+      dispatch(resetTiles(state.flipped));
+    }
+  }, [state.flipped]);
 
   return (
     <div id="tile-grid" className="container">
