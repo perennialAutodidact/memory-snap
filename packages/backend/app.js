@@ -10,7 +10,7 @@ import { getDirName } from './helpers.js';
 // config
 dotenv.config({ path: '../../.env.local' });
 const __dirname = getDirName(import.meta.url);
-const port = process.env.API_PORT;
+const port = process.env.PORT || 8080;
 
 const app = express();
 
