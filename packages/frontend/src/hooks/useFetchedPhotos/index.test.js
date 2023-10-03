@@ -1,4 +1,4 @@
-import { renderHook, screen, waitFor } from '@testing-library/react';
+import { renderHook, waitFor } from '@testing-library/react';
 import { mockPhotos } from '__mocks__/api/mockPhotos';
 import { mswServer } from '__mocks__/api';
 import { fetchPhotos_success, fetchPhotos_fail } from '__mocks__/api/handlers';

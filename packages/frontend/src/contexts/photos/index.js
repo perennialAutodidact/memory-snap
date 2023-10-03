@@ -1,8 +1,9 @@
 import { createContext } from 'react';
 
 export const initialPhotosState = {
+  error: null,
   photos: null,
-  loading: false,
+  status: 'IDLE', // IDLE, PENDING, SUCCESS, ERROR
   quantity: 4,
 };
 

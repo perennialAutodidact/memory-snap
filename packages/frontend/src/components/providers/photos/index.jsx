@@ -4,7 +4,7 @@ import { PhotosContext } from 'contexts/photos';
 import { baseState } from 'contexts';
 import { photosReducer } from 'contexts/photos/reducer';
 import useFetchedPhotos from 'hooks/useFetchedPhotos';
-import { setPhotos } from 'contexts/photos/actions';
+import { setError, setPhotos, setStatus } from 'contexts/photos/actions';
 
 const PhotosProvider = ({ children, providedState = null } = {}) => {
   const initialState = providedState || baseState.photos;
@@ -19,10 +19,10 @@ const PhotosProvider = ({ children, providedState = null } = {}) => {
   console.log(state, 'Photos from Photos provider');
 
   useEffect(() => {
-    if (!photos) return;
-
-    dispatch(setPhotos(photos));
-  }, [photos]);
+    dispatch(setStatus(status));
+    if (photos) dispatch(setPhotos(photos));
+    if (error) dispatch(setError(error));
+  }, [error, photos, status]);
 
   return (
     <PhotosContext.Provider value={{ state, dispatch }}>

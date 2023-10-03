@@ -8,7 +8,9 @@ import { mswServer } from '__mocks__/api';
 beforeEach(() => {
   mswServer.listen();
 });
+
 afterEach(() => mswServer.resetHandlers());
+
 afterAll(() => {
   mswServer.close();
 });
