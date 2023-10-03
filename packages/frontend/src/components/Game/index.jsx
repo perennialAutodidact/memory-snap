@@ -7,10 +7,6 @@ import Spinner from './Spinner';
 
 const Game = () => {
   const {
-    state: { currentPlayer, players },
-  } = useGameContext();
-
-  const {
     // TODO: re-enable eslint when photos variable is used
     // eslint-disable-next-line
     state: { error, status, photos },
@@ -18,7 +14,7 @@ const Game = () => {
   const {
     state: { players, currentPlayer },
   } = useGameContext();
-  
+
   const isLoading = ['IDLE', 'PENDING'].includes(status);
 
   return (
