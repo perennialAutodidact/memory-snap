@@ -12,6 +12,10 @@ dotenv.config({ path: '../../.env.local' });
 const __dirname = getDirName(import.meta.url);
 const port = process.env.PORT || 8080;
 
+if (!process.env.PORT) {
+  console.warn(`PORT is ${process.env.PORT}, using default of 8080`);
+}
+
 const app = express();
 
 // middleware
@@ -48,9 +52,11 @@ app.get('/api/photos', async (req, res) => {
   }
 });
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
-});
+if (process.env.NODE_ENV === 'production') {
+  app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+  });
+}
 
 // launch
 if (process.env.NODE_ENV !== 'test') {
