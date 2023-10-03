@@ -1,9 +1,10 @@
 .tile {
-  width: 150px;
-  height: 150px;
+  position:relative;
+  overflow:hidden;
+  padding-bottom: 100%;
   img {
     width: 100%;
     height: auto;
+    position: absolute;
   }
 }
-
