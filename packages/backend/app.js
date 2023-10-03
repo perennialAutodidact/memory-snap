@@ -6,6 +6,8 @@ import bodyParser from 'body-parser';
 
 import { createClient } from 'pexels';
 import { getDirName } from './helpers.js';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
 
 // config
 dotenv.config({ path: '../../.env.local' });
@@ -17,6 +19,8 @@ if (!process.env.PORT) {
 }
 
 const app = express();
+const httpServer = createServer(app);
+const io = new Server(httpServer, {});
 
 // middleware
 app.use(express.json());
@@ -52,6 +56,7 @@ app.get('/api/photos', async (req, res) => {
   }
 });
 
+// serve production build
 if (process.env.NODE_ENV === 'production') {
   app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
