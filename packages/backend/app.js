@@ -4,10 +4,9 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
+import { setupSockets, onSocketConnect } from './controllers/sockets/index.js';
 import { createClient } from 'pexels';
 import { getDirName } from './helpers.js';
-import { createServer } from 'http';
-import { Server } from 'socket.io';
 
 // config
 dotenv.config({ path: '../../.env.local' });
@@ -19,8 +18,7 @@ if (!process.env.PORT) {
 }
 
 const app = express();
-const httpServer = createServer(app);
-const io = new Server(httpServer, {});
+const io = setupSockets(app);
 
 // middleware
 app.use(express.json());
@@ -55,6 +53,8 @@ app.get('/api/photos', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+io.on('connection', onSocketConnect);
 
 // serve production build
 if (process.env.NODE_ENV === 'production') {
