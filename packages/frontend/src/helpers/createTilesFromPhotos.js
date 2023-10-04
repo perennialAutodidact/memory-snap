@@ -1,4 +1,4 @@
-const _ = require('lodash');
+import * as _ from 'lodash';
 
 /**
  *
@@ -6,7 +6,6 @@ const _ = require('lodash');
  * @param {Object} options { shuffle: boolean }
  * @returns an array of tile objects
  */
-
 const createTilesFromPhotos = (photos, options = { shuffle: true }) => {
   const tilePhotos = photos.flatMap((photo) => [photo, photo]);
 

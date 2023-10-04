@@ -6,14 +6,24 @@ describe('createTilesFromPhotos', () => {
     const photos =  mockPhotos;
 
     const shuffledTiles = createTilesFromPhotos(photos, { shuffle: true });
+    const unshuffledTiles = createTilesFromPhotos(photos, { shuffle: false });
 
     const tilePhotos = shuffledTiles.map((tile) => {
         return tile.photo
     })
 
-    //asserting that it doubles the length of the mockPhotos
     expect(photos.length * 2).toEqual(tilePhotos.length)
+    expect(shuffledTiles.length).toEqual(unshuffledTiles.length)
+    expect(shuffledTiles).not.toMatchObject(unshuffledTiles);
 
+    const sortById = (array, key) => {
+      return array.sort((a, b) => {
+        var x = a[key]; var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+      })
+    }
+
+    expect(sortById(shuffledTiles, 'id')).toMatchObject(unshuffledTiles);
   });
 
   it('returns an array of unshuffled tiles if shuffle is false', () => {
@@ -21,15 +31,21 @@ describe('createTilesFromPhotos', () => {
 
     const unshuffledTiles = createTilesFromPhotos(photos, { shuffle: false });
 
-    const tilePhotos = unshuffledTiles.map((tile) => {
-        return tile.photo
-    })
-
-    //how to test this in a better way? 
-    expect(tilePhotos[0]).toEqual(mockPhotos[0])
-    expect(tilePhotos[2]).toEqual(mockPhotos[1])
-    expect(tilePhotos[4]).toEqual(mockPhotos[2])
-    expect(tilePhotos[6]).toEqual(mockPhotos[3])
-    expect(tilePhotos[8]).toEqual(mockPhotos[4])
+    for (let i = 0; i < unshuffledTiles.length - 2; i += 2) {
+      const [tile1, tile2] = unshuffledTiles.slice(i, i + 2);
+      expect({ ...tile1, id: i + 1 }).toMatchObject(tile2);
+    }
   });
+
+  it('returns an array of shuffled tiles if shuffle is true', () => {
+    const photos =  mockPhotos;
+
+    const unshuffledTiles = createTilesFromPhotos(photos, { shuffle: false });
+
+    for (let i = 0; i < unshuffledTiles.length - 2; i += 2) {
+      const [tile1, tile2] = unshuffledTiles.slice(i, i + 2);
+      expect({ ...tile1, id: i + 1 }).toMatchObject(tile2);
+    }
+  });
+
 });

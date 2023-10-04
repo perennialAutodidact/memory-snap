@@ -7,8 +7,6 @@ import './style.scss';
 
 const TileGrid = ({ photos }) => {
   const { dispatch, state } = useGameContext();
-  console.log(photos, 'GD PHOTOS');
-  console.log(state, 'GD STATE');
 
   useEffect(() => {
     if (photos) {
@@ -17,7 +15,6 @@ const TileGrid = ({ photos }) => {
     }
   }, [photos]);
 
-  console.log(state, 'state from TILEGRID');
   const tiles = state.tiles;
   const onFlipTile = (tile) => {
     dispatch(flipTile(tile));
