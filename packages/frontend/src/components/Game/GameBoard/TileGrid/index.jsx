@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Tile from '../Tile';
 import { addTiles, flipTile } from 'contexts/game/actions';
 import useGameContext from 'hooks/useGameContext';
-import './style.scss';
 
 const TileGrid = ({ photos }) => {
   const { dispatch, state } = useGameContext();
