@@ -1,20 +1,20 @@
 import React from 'react';
 import usePhotosContext from 'hooks/usePhotosContext';
-import Tile from './GameBoard/Tile';
 import ScoreBoard from './ScoreBoard';
+import TileGrid from './GameBoard/TileGrid';
 import useGameContext from 'hooks/useGameContext';
 import Spinner from './Spinner';
 
 const Game = () => {
   const {
-    state: { currentPlayer, players },
-  } = useGameContext();
-
-  const {
     // TODO: re-enable eslint when photos variable is used
     // eslint-disable-next-line
     state: { error, status, photos },
   } = usePhotosContext();
+  const {
+    state: { players, currentPlayer },
+  } = useGameContext();
+
   const isLoading = ['IDLE', 'PENDING'].includes(status);
 
   return (
@@ -26,7 +26,7 @@ const Game = () => {
       ) : (
         <>
           <ScoreBoard players={players} currentPlayer={currentPlayer} />
-          <Tile />
+          <TileGrid photos={photos} />
         </>
       )}
     </section>

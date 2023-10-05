@@ -13,7 +13,7 @@ const PhotosProvider = ({ children, providedState = null } = {}) => {
   // TODO: add 'loading' value to indicate if the photos have loaded from the api
   const { error, photos, status } = useFetchedPhotos({
     query: 'cats',
-    perPage: 3,
+    perPage: state.quantity,
   });
 
   useEffect(() => {

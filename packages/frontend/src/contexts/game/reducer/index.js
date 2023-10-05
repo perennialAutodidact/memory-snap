@@ -1,3 +1,6 @@
+import types from '../actions/types';
+import { createTilesFromPhotos } from 'helpers';
+
 export const gameReducer = (state, action) => {
   if (!state) {
     throw new Error('please include a state object');
@@ -6,6 +9,22 @@ export const gameReducer = (state, action) => {
   }
 
   switch (action.type) {
+    case types.ADD_TILES:
+      return {
+        ...state,
+        tiles: createTilesFromPhotos(action.payload.photos, { shuffle: true }),
+      };
+
+    case types.FLIP_TILE:
+      return {
+        ...state,
+        tiles: state.tiles.map((tile) =>
+          tile.id === action.payload.tile.id
+            ? { ...tile, faceUp: !tile.faceUp }
+            : tile
+        ),
+      };
+
     default: {
       return state;
     }
