@@ -26,7 +26,7 @@ const TileGrid = ({ photos }) => {
       } else {
         setTimeout(() => {
           dispatch(resetTiles(state.flipped));
-        }, 3000);
+        }, 2000);
       }
     }
   }, [state.flipped]);
