@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Tile from '../Tile';
-import { addTiles, flipTile } from 'contexts/game/actions';
+import { addTiles, flipTile, resetTiles } from 'contexts/game/actions';
 import useGameContext from 'hooks/useGameContext';
 import './style.scss';
 
@@ -10,7 +10,6 @@ const TileGrid = ({ photos }) => {
 
   useEffect(() => {
     if (photos) {
-      console.log('There are photos');
       dispatch(addTiles(photos));
     }
   }, [photos]);
@@ -19,6 +18,16 @@ const TileGrid = ({ photos }) => {
   const onFlipTile = (tile) => {
     dispatch(flipTile(tile));
   };
+
+  useEffect(() => {
+    if (state.flipped.length > 1) {
+      if (state.flipped[0].photo.id === state.flipped[1].photo.id) {
+        //dispatch handle match
+      } else {
+        dispatch(resetTiles(state.flipped));
+      }
+    }
+  }, [state.flipped]);
 
   return (
     <div id="tile-grid" className="container">
