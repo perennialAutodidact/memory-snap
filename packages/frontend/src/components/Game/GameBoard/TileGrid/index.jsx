@@ -24,7 +24,9 @@ const TileGrid = ({ photos }) => {
       if (state.flipped[0].photo.id === state.flipped[1].photo.id) {
         //dispatch handle match
       } else {
-        dispatch(resetTiles(state.flipped));
+        setTimeout(() => {
+          dispatch(resetTiles(state.flipped));
+        }, 3000);
       }
     }
   }, [state.flipped]);
