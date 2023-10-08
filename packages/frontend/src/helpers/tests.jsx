@@ -20,11 +20,11 @@ const setupTests = (
   render(
     <BrowserRouter>
       <FormProvider providedState={{ ...state.form }}>
-        <GameProvider providedState={{ ...state.game }}>
-          <PhotosProvider providedState={{ ...state.photos }}>
+        <PhotosProvider providedState={{ ...state.photos }}>
+          <GameProvider providedState={{ ...state.game }}>
             <Component {...props} />
-          </PhotosProvider>
-        </GameProvider>
+          </GameProvider>
+        </PhotosProvider>
       </FormProvider>
     </BrowserRouter>
   );
