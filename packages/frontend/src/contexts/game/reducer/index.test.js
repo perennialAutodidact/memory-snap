@@ -72,8 +72,30 @@ describe('gameReducer', () => {
 
     const expected = produce(initialTilesState, (draft) => {
       draft.tiles[4].faceUp = true;
+      draft.flipped = [tile]
     })
-
     expect(gameReducer(initialTilesState, action)).toStrictEqual(expected);
   });
+
+  it('toggles the faceUp value of flipped tiles if action type is RESET_TILES', () => {
+    const { game: state } = baseState;
+    const photos = mockPhotos;
+
+    const initialTilesState = produce(state, (draft) => {
+      draft.tiles = createTilesFromPhotos(mockPhotos)
+    })
+
+    const flippedState = produce(initialTilesState, (draft) => {
+      draft.tiles[0].faceUp = true;
+      draft.tiles[4].faceUp = true;
+    })
+
+    const tiles = [flippedState.tiles[0], flippedState.tiles[4]]
+
+    const action = {
+      type: 'RESET_TILES',
+      payload: { tiles },
+    };
+    expect(gameReducer(flippedState, action)).toStrictEqual(initialTilesState)
+  })
 });
