@@ -38,7 +38,11 @@ app.get('/api/photos', async (req, res) => {
   try {
     const { query, perPage: per_page } = req.query;
     const pexelsClient = createClient(process.env.PEXELS_API_KEY);
-    const response = await pexelsClient.photos.search({ query, per_page });
+    const response = await pexelsClient.photos.search({
+      query,
+      per_page,
+      orientation: 'square',
+    });
 
     if (!response.photos) {
       res.status(400).json({
