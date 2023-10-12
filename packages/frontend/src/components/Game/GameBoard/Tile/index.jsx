@@ -1,25 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import './style.scss';
 
-const Tile = () => {
-  const [faceUp, setFaceUp] = useState(false);
-
+const Tile = ({ photo, onFlip, index, faceUp, id }) => {
   const onClickTile = () => {
-    setFaceUp(!faceUp);
+    onFlip({ photo, onFlip, index, id, faceUp });
   };
 
+  const tileClasses = [
+    'tile border border-primary',
+    faceUp ? 'faceUp' : 'faceDown',
+  ].join(' ');
+
   return (
-    <>
-      {!faceUp ? (
-        <div className="tile bg-primary" onClick={onClickTile}>
-          <h1>back</h1>
-        </div>
-      ) : (
-        <div className="tile" onClick={onClickTile}>
-          <h1>front</h1>
-        </div>
-      )}
-    </>
+    <div
+      className={tileClasses}
+      onClick={onClickTile}
+      data-testid={`tile-${id}`}
+    >
+      {!faceUp ? null : <img src={photo.src.small} alt={photo.alt} />}
+    </div>
   );
+};
+
+Tile.propTypes = {
+  photo: PropTypes.object,
+  isMatched: PropTypes.bool,
+  index: PropTypes.number,
+  onFlip: PropTypes.func,
+  faceUp: PropTypes.bool,
+  id: PropTypes.number,
 };
 
 export default Tile;
