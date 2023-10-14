@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 
-const Tile = ({ photo, onFlip, index, faceUp, id, isMatched }) => {
+const Tile = ({ photo, onFlip, faceUp, id }) => {
   const onClickTile = () => {
-    onFlip({ photo, onFlip, index, id, faceUp, isMatched });
+    onFlip(id);
   };
 
   const tileClasses = [

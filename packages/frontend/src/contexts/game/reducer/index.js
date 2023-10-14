@@ -16,22 +16,24 @@ export const gameReducer = (state, action) => {
       };
 
     case types.FLIP_TILE:
+      console.log(action.payload, 'FLIP_TILE PL');
+      console.log(state.flipped, 'FLIPPED');
       return {
         ...state,
         tiles: state.tiles.map((tile) =>
-          tile.id === action.payload.tile.id
+          action.payload.includes(tile.id)
             ? { ...tile, faceUp: !tile.faceUp }
             : tile
         ),
-        flipped: state.flipped.concat(action.payload.tile),
+        flipped: state.flipped.concat(action.payload),
       };
 
     case types.RESET_TILES:
+      console.log(action.payload, 'RESET PAYLOAD');
       return {
         ...state,
         tiles: state.tiles.map((tile) =>
-          tile.id === action.payload.tiles[0].id ||
-          tile.id === action.payload.tiles[1].id
+          action.payload.includes(tile.id)
             ? { ...tile, faceUp: !tile.faceUp }
             : tile
         ),
