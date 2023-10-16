@@ -2,6 +2,7 @@ import { setupTests } from 'helpers/tests';
 import Tile from '.';
 import { mockPhotos } from '__mocks__/api/mockPhotos';
 import { createTilesFromPhotos } from 'helpers';
+import userEvent from '@testing-library/user-event'
 
 describe('Tile component', () => {
   it('renders', () => {
