@@ -1,20 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Tile from '../Tile';
-import { addTiles, flipTile } from 'contexts/game/actions';
+import { flipTile } from 'contexts/game/actions';
 import useGameContext from 'hooks/useGameContext';
 
-const TileGrid = ({ photos }) => {
-  const { dispatch, state } = useGameContext();
+const TileGrid = ({ tiles }) => {
+  const { dispatch } = useGameContext();
 
-  useEffect(() => {
-    if (photos) {
-      console.log('There are photos');
-      dispatch(addTiles(photos));
-    }
-  }, [photos]);
-
-  const tiles = state.tiles;
   const onFlipTile = (tile) => {
     dispatch(flipTile(tile));
   };
@@ -47,8 +39,7 @@ const TileGrid = ({ photos }) => {
 };
 TileGrid.propTypes = {
   toggleUp: PropTypes.func,
-  // tiles: PropTypes.arrayOf(PropTypes.object),
-  photos: PropTypes.arrayOf(PropTypes.object),
+  tiles: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default TileGrid;

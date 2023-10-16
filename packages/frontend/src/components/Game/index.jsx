@@ -12,7 +12,7 @@ const Game = () => {
     state: { error, status, photos },
   } = usePhotosContext();
   const {
-    state: { players, currentPlayer },
+    state: { players, currentPlayer, tiles },
   } = useGameContext();
 
   const isLoading = ['IDLE', 'PENDING'].includes(status);
@@ -26,7 +26,7 @@ const Game = () => {
       ) : (
         <>
           <ScoreBoard players={players} currentPlayer={currentPlayer} />
-          <TileGrid photos={photos} />
+          <TileGrid tiles={tiles} />
         </>
       )}
     </section>
