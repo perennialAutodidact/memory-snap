@@ -14,13 +14,18 @@ const TileGrid = ({ photos }) => {
   }, [photos]);
 
   const tiles = state.tiles;
-  const onFlipTile = (tile) => {
-    dispatch(flipTile(tile));
+  const onFlipTile = (id) => {
+    dispatch(flipTile(id));
   };
 
   useEffect(() => {
-    console.log(state.flipped, 'USE');
     if (state.flipped.length > 1) {
+      if (
+        state.tiles[state.flipped[0]].photo.id ===
+        state.tiles[state.flipped[1]].photo.id
+      ) {
+        console.log('dispatch HANDLE_MATCH');
+      }
       setTimeout(() => {
         dispatch(resetTiles(state.flipped));
       }, 2000);

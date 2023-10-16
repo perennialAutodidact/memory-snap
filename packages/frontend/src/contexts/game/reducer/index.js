@@ -16,8 +16,6 @@ export const gameReducer = (state, action) => {
       };
 
     case types.FLIP_TILE:
-      console.log(action.payload, 'FLIP_TILE PL');
-      console.log(state.flipped, 'FLIPPED');
       return {
         ...state,
         tiles: state.tiles.map((tile) =>
@@ -29,7 +27,6 @@ export const gameReducer = (state, action) => {
       };
 
     case types.RESET_TILES:
-      console.log(action.payload, 'RESET PAYLOAD');
       return {
         ...state,
         tiles: state.tiles.map((tile) =>
@@ -39,6 +36,14 @@ export const gameReducer = (state, action) => {
         ),
         flipped: [],
       };
+
+    // TODO:
+    // case types.HANDLE_MATCH:
+    //   return {
+    //     ...state,
+    //   };
+
+    //TODO: reset game action to reset all tiles
 
     default: {
       return state;
