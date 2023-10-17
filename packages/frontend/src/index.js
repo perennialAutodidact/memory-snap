@@ -14,11 +14,11 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <FormProvider>
-        <GameProvider>
-          <PhotosProvider>
+        <PhotosProvider>
+          <GameProvider>
             <App />
-          </PhotosProvider>
-        </GameProvider>
+          </GameProvider>
+        </PhotosProvider>
       </FormProvider>
     </BrowserRouter>
   </React.StrictMode>

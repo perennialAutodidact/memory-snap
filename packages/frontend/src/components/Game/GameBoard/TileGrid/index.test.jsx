@@ -6,11 +6,9 @@ import userEvent from "@testing-library/user-event";
 
 describe('TileGrid component', () => {
   it('renders all tiles', () => {
-    //TODO: adjust this test after the providers change ticket
+    const tiles = createTilesFromPhotos(mockPhotos, true)
     
-    // const tiles = createTilesFromPhotos(mockPhotos, true)
-    const photos = mockPhotos
-    const { screen } = setupTests(TileGrid, { props: { photos } });
+    const { screen } = setupTests(TileGrid, { props: { tiles } });
 
     const allTiles = screen.getAllByTestId(/tile/);
 
