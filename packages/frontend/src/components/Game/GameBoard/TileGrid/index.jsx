@@ -7,15 +7,14 @@ import useGameContext from 'hooks/useGameContext';
 const TileGrid = ({ tiles }) => {
   const { state, dispatch } = useGameContext();
 
-  const onFlipTile = (id) => {
-    dispatch(flipTile(id));
+  const onFlipTile = (tile) => {
+    dispatch(flipTile(tile));
   };
 
   useEffect(() => {
     if (state.flipped.length > 1) {
       if (
-        state.tiles[state.flipped[0]].photo.id ===
-        state.tiles[state.flipped[1]].photo.id
+        state.flipped[0].photo.id === state.tiles[state.flipped[1].id].photo.id
       ) {
         console.log('dispatch HANDLE_MATCH');
       }

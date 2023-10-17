@@ -5,9 +5,9 @@ export const addTiles = (photos) => ({
   payload: { photos },
 });
 
-export const flipTile = (id) => ({
+export const flipTile = (tile) => ({
   type: types.FLIP_TILE,
-  payload: [id],
+  payload: tile,
 });
 
 export const resetTiles = (ids) => ({

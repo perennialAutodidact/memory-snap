@@ -19,7 +19,7 @@ export const gameReducer = (state, action) => {
       return {
         ...state,
         tiles: state.tiles.map((tile) =>
-          action.payload.includes(tile.id)
+          action.payload.id === tile.id
             ? { ...tile, faceUp: !tile.faceUp }
             : tile
         ),
@@ -30,7 +30,7 @@ export const gameReducer = (state, action) => {
       return {
         ...state,
         tiles: state.tiles.map((tile) =>
-          action.payload.includes(tile.id)
+          action.payload[0].id === tile.id || action.payload[1].id === tile.id
             ? { ...tile, faceUp: !tile.faceUp }
             : tile
         ),
