@@ -5,7 +5,6 @@ import { flipTile, resetTiles } from 'contexts/game/actions';
 import useGameContext from 'hooks/useGameContext';
 
 const TileGrid = ({ tiles }) => {
-  console.log(tiles, 'From TG');
   const { state, dispatch } = useGameContext();
 
   const onFlipTile = (tile) => {
