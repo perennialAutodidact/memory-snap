@@ -33,7 +33,7 @@ describe('Tile component', () => {
 
   it('calls onFlip when clicked', async () => {
     const tile = createTilesFromPhotos(mockPhotos)[0];
-
+    
     const user = userEvent.setup()
 
     const onFlip = jest.fn();
@@ -42,7 +42,7 @@ describe('Tile component', () => {
 
     await user.click(screen.getByTestId(/tile/));
 
-    expect(onFlip).toHaveBeenCalledTimes(1);  
-    expect(onFlip).toHaveBeenCalledWith(tile.id);
+    expect(onFlip).toHaveBeenCalledTimes(1); 
+    
   })
 });

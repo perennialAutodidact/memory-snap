@@ -67,7 +67,7 @@ describe('gameReducer', () => {
     
     const action = {
       type: 'FLIP_TILE',
-      payload: { tile },
+      payload: tile,
     };
 
     const expected = produce(initialTilesState, (draft) => {
@@ -84,17 +84,17 @@ describe('gameReducer', () => {
     const initialTilesState = produce(state, (draft) => {
       draft.tiles = createTilesFromPhotos(mockPhotos)
     })
-
     const flippedState = produce(initialTilesState, (draft) => {
       draft.tiles[0].faceUp = true;
       draft.tiles[4].faceUp = true;
     })
+    console.log(flippedState, 'ITS')
 
     const tiles = [flippedState.tiles[0], flippedState.tiles[4]]
 
     const action = {
       type: 'RESET_TILES',
-      payload: { tiles },
+      payload:  tiles,
     };
     expect(gameReducer(flippedState, action)).toStrictEqual(initialTilesState)
   })

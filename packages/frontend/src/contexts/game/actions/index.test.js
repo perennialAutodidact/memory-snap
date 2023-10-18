@@ -17,7 +17,7 @@ describe('GameContext actions', () => {
 
     expect(flipTile(tile)).toStrictEqual({
       type: types.FLIP_TILE,
-      payload: { tile },
+      payload: tile,
     });
   });
 });
