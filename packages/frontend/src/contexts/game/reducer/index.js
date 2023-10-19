@@ -27,6 +27,7 @@ export const gameReducer = (state, action) => {
       };
 
     case types.RESET_TILES:
+      console.log(action.payload, 'RESET PL');
       return {
         ...state,
         tiles: state.tiles.map((tile) =>

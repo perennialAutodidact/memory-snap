@@ -13,11 +13,11 @@ describe('GameContext actions', () => {
   });
 
   it(`returns an action object with type ${types.FLIP_TILE} and a payload containing a tile object`, () => {
-    const tile = mockPhotos[0];
+    const tile = {tile: mockPhotos[0]}
 
     expect(flipTile(tile)).toStrictEqual({
       type: types.FLIP_TILE,
-      payload: tile,
+      payload: {tile},
     });
   });
 });
