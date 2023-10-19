@@ -18,7 +18,6 @@ describe('TileGrid component', () => {
 
   it('toggles the faceUp value of a tile when clicked', async () => {
     const tiles = createTilesFromPhotos(mockPhotos, true)
-    console.log(tiles, 'Tilesssss')
     
     const user = userEvent.setup()
     const { screen } = setupTests(TileGrid, { props: { tiles }} );
@@ -26,7 +25,7 @@ describe('TileGrid component', () => {
     expect(screen.getByTestId('tile-1')).toHaveClass('faceDown');
 
     const aTile = screen.getByTestId('tile-1')
-    console.log(aTile, 'A TILE')
+    
     await user.click(screen.getByTestId('tile-1'));
 
     expect(screen.getByTestId('tile-1')).toHaveClass('faceUp');

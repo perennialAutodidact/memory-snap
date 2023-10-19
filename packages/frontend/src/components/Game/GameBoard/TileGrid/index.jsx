@@ -13,7 +13,7 @@ const TileGrid = ({ tiles }) => {
 
   useEffect(() => {
     if (state.flipped.length > 1) {
-      if (state.flipped[0].photo.id === state.flipped[1].photo.id) {
+      if (state.flipped[0].tile.photo.id === state.flipped[1].tile.photo.id) {
         console.log('dispatch HANDLE_MATCH');
       } else {
         setTimeout(() => {
