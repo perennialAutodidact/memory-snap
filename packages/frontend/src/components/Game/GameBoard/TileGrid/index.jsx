@@ -23,8 +23,7 @@ const TileGrid = ({ tiles }) => {
       }
     }
   }, [state.flipped]);
-  console.log(state.tiles, 'Tiles from TG');
-  console.log(state.currentPlayer, 'CP');
+
   return (
     <div id="tile-grid" className="container mt-5">
       <div className="row">
