@@ -4,9 +4,9 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
-import { setupSockets, onSocketConnect } from './controllers/sockets/index.js';
-import { createClient } from 'pexels';
+import { setupSockets, onSocketConnect } from './controllers/socketio/index.js';
 import { getDirName } from './helpers.js';
+import { getPhotos } from './controllers/express/photosController.js';
 
 // config
 dotenv.config({ path: '../../.env.local' });
@@ -36,23 +36,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // routes
-app.get('/api/photos', async (req, res) => {
-  try {
-    const { query, perPage: per_page } = req.query;
-    const pexelsClient = createClient(process.env.PEXELS_API_KEY);
-    const response = await pexelsClient.photos.search({ query, per_page });
-
-    if (!response.photos) {
-      res.status(400).json({
-        message: 'There was a problem fetching photos from the Pexels API',
-      });
-    } else {
-      res.status(200).json(response);
-    }
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+app.use('/api/photos', getPhotos);
 
 io.on('connection', onSocketConnect);
 
