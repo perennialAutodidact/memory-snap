@@ -1,6 +1,4 @@
 import React from 'react';
-// import PropTypes from "prop-types";
-// import Tile from "./Tile";
 import useGameContext from 'hooks/useGameContext';
 import ScoreBoard from '../ScoreBoard';
 import TileGrid from './TileGrid';
