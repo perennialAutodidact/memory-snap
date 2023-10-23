@@ -1,6 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import useGameContext from '.';
 import GameProvider from 'components/providers/game';
+import { PhotosProvider } from 'components/providers';
 
 describe('useGameContext hook', () => {
   let errorObject;
@@ -18,9 +19,22 @@ describe('useGameContext hook', () => {
     expect(() => renderHook(useGameContext)).toThrow();
   });
 
-  it('renders component wrapped in GameProvider without error', () => {
+  it('renders component when wrapped in necessary providers', () => {
+    // eslint-disable-next-line
+    const Providers = ({ children }) => (
+      <PhotosProvider>
+        <GameProvider>{children}</GameProvider>
+      </PhotosProvider>
+    );
     expect(() =>
-      renderHook(useGameContext, { wrapper: GameProvider })
+      renderHook(useGameContext, { wrapper: Providers })
     ).not.toThrow();
   });
+
+  it('throws an error if not wrapped in the PhotosProvider component', () => {
+    expect(() =>
+      renderHook(useGameContext, { wrapper: GameProvider })
+    ).toThrow();
+  });
+
 });
