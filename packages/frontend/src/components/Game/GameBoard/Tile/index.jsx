@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 
-const Tile = (tile) => {
+const Tile = ({ tile, onFlip }) => {
   const onClickTile = () => {
-    tile.onFlip(tile);
+    onFlip(tile);
   };
 
   const tileClasses = [
@@ -27,6 +27,7 @@ const Tile = (tile) => {
 
 Tile.propTypes = {
   tile: PropTypes.object,
+  onFlip: PropTypes.func,
 };
 
 export default Tile;

@@ -15,7 +15,7 @@ export const resetTiles = (tiles) => ({
   payload: { tiles },
 });
 
-export const handleMatch = (ids) => ({
+export const handleMatch = (tiles) => ({
   type: types.HANDLE_MATCH,
-  payload: { ids },
+  payload: { tiles },
 });

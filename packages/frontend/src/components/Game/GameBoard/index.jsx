@@ -9,7 +9,7 @@ const GameBoard = () => {
   const {
     state: { players, currentPlayer, tiles },
   } = useGameContext();
-  console.log(tiles, 'TIles from GB');
+
   return (
     <>
       <ScoreBoard players={players} currentPlayer={currentPlayer} />

@@ -63,17 +63,18 @@ describe('gameReducer', () => {
       draft.tiles = createTilesFromPhotos(mockPhotos)
     })
 
-    const tile = {tile: initialTilesState.tiles[4]}
+    const tile = initialTilesState.tiles[4]
     
     const action = {
       type: 'FLIP_TILE',
-      payload: tile,
+      payload: {tile},
     };
 
     const expected = produce(initialTilesState, (draft) => {
       draft.tiles[4].faceUp = true;
-      draft.flipped = [tile]
+      draft.flipped = [ tile ]
     })
+    const result = gameReducer(initialTilesState, action)
     expect(gameReducer(initialTilesState, action)).toStrictEqual(expected);
   });
 
@@ -89,13 +90,15 @@ describe('gameReducer', () => {
       draft.tiles[4].faceUp = true;
     })
 
-    const tiles = {tiles: [{tile: flippedState.tiles[0]}, {tile: flippedState.tiles[4]}]}
+    const payload = {tiles: [ flippedState.tiles[0], flippedState.tiles[4]]}
     
     const action = {
       type: 'RESET_TILES',
-      payload:  tiles ,
+      payload: payload,
     };
-    expect(gameReducer(flippedState, action)).toStrictEqual(initialTilesState)
 
+    const result = gameReducer(flippedState, action)
+
+    expect(gameReducer(flippedState, action)).toStrictEqual(initialTilesState)
   })
 });

@@ -12,8 +12,5 @@ describe('TileGrid component', () => {
     const allTiles = screen.getAllByTestId(/tile/);
 
     expect(allTiles.length).toBe(10);
-    screen.debug(allTiles)
   });
-
- 
 });

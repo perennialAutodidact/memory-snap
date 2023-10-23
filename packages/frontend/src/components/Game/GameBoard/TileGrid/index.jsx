@@ -13,7 +13,7 @@ const TileGrid = ({ tiles }) => {
 
   useEffect(() => {
     if (state.flipped.length > 1) {
-      if (state.flipped[0].tile.photo.id === state.flipped[1].tile.photo.id) {
+      if (state.flipped[0].photo.id === state.flipped[1].photo.id) {
         console.log('dispatch HANDLE_MATCH');
       } else {
         setTimeout(() => {
@@ -32,15 +32,7 @@ const TileGrid = ({ tiles }) => {
               ? null
               : tiles.map((tile, index) => (
                   <div className="tile" key={index}>
-                    <Tile
-                      isMatched={tile.isMatched}
-                      faceUp={tile.faceUp}
-                      onFlip={onFlipTile}
-                      key={index}
-                      index={index}
-                      id={tile.id}
-                      photo={tile.photo}
-                    />
+                    <Tile tile={tile} onFlip={onFlipTile} key={index} />
                   </div>
                 ))}
           </div>
