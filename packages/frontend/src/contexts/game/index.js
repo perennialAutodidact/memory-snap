@@ -19,6 +19,7 @@ export const initialGameState = {
       score: 0,
     },
   ],
+  flipped: [],
 };
 
 export const GameContext = createContext(initialGameState);

@@ -5,8 +5,8 @@ import { mockPhotos } from '__mocks__/api/mockPhotos';
 
 describe('TileGrid component', () => {
   it('renders all tiles', () => {
-    const tiles = createTilesFromPhotos(mockPhotos, true)
-    
+    const tiles = createTilesFromPhotos(mockPhotos);
+
     const { screen } = setupTests(TileGrid, { props: { tiles } });
 
     const allTiles = screen.getAllByTestId(/tile/);

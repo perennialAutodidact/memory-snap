@@ -50,7 +50,7 @@ describe('gameReducer', () => {
       payload: { photos },
     };
 
-    const result = gameReducer(state, action)
+    const result = gameReducer(state, action);
 
     expect(result.tiles.length).toEqual(10);
   });
@@ -60,20 +60,50 @@ describe('gameReducer', () => {
     const photos = mockPhotos;
 
     const initialTilesState = produce(state, (draft) => {
-      draft.tiles = createTilesFromPhotos(mockPhotos)
-    })
+      draft.tiles = createTilesFromPhotos(mockPhotos);
+    });
 
-    const tile = initialTilesState.tiles[4]
-    
+    // const tile = initialTilesState.tiles[4];
+    const payload = { tile: initialTilesState.tiles[4] };
+
     const action = {
       type: 'FLIP_TILE',
-      payload: { tile },
+      payload: payload,
     };
 
     const expected = produce(initialTilesState, (draft) => {
       draft.tiles[4].faceUp = true;
-    })
+      draft.flipped = [payload.tile];
+    });
 
+    console.log(expected, 'EX');
+    //delete this variable
+    const result = gameReducer(initialTilesState, action);
+    console.log(result, 'RES');
     expect(gameReducer(initialTilesState, action)).toStrictEqual(expected);
+  });
+
+  it('toggles the faceUp value of flipped tiles if action type is RESET_TILES', () => {
+    const { game: state } = baseState;
+    const photos = mockPhotos;
+
+    const initialTilesState = produce(state, (draft) => {
+      draft.tiles = createTilesFromPhotos(mockPhotos);
+    });
+    const flippedState = produce(initialTilesState, (draft) => {
+      draft.tiles[0].faceUp = true;
+      draft.tiles[4].faceUp = true;
+    });
+
+    const payload = { tiles: [flippedState.tiles[0], flippedState.tiles[4]] };
+
+    const action = {
+      type: 'RESET_TILES',
+      payload: payload,
+    };
+
+    const result = gameReducer(flippedState, action);
+
+    expect(gameReducer(flippedState, action)).toStrictEqual(initialTilesState);
   });
 });
