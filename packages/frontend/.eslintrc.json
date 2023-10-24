@@ -17,10 +17,28 @@
       "presets": ["@babel/preset-react"]
     }
   },
-  "plugins": ["prettier", "react"],
-  "extends": ["prettier", "eslint:recommended", "plugin:react/recommended"],
+  "plugins": ["prettier", "react", "unused-imports"],
+  "extends": [
+    "react-app",
+    "prettier",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
   "rules": {
-    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "react/jsx-uses-react": "warn",
+    "react/jsx-uses-vars": "warn",
+    "no-unused-vars": "warn",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ]
   },
   "settings": {
     "react": {
