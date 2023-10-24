@@ -8,8 +8,8 @@ const Tile = ({ tile, onFlip }) => {
   };
 
   const tileClasses = [
-    tile.faceUp ? 'faceUp' : 'faceDown',
-    tile.isMatched ? 'matched' : 'tile border border-primary',
+    tile.faceUp ? 'faceUp' : 'faceDown tile border border-primary',
+    tile.isMatched ? 'matched' : null,
   ].join(' ');
 
   return (
