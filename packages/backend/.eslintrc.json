@@ -18,7 +18,8 @@
   "plugins": ["prettier", "react"],
   "extends": ["prettier", "eslint:recommended", "plugin:react/recommended"],
   "rules": {
-    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "no-console": ["warn", { "allow": ["warn", "error"] }]
   },
   "settings": {
     "react": {
