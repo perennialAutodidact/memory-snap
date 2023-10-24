@@ -68,7 +68,7 @@ if (process.env.NODE_ENV !== 'test') {
     if (error) {
       console.error(error);
     } else {
-      console.log(`App is listening on port ${port}`);
+      console.warn(`App is listening on port ${port}`);
     }
   });
 }
