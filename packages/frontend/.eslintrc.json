@@ -28,7 +28,7 @@
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react/jsx-uses-react": "warn",
     "react/jsx-uses-vars": "warn",
-    "no-unused-vars": "warn",
+    "no-unused-vars": "off",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
       "warn",
