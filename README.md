@@ -119,13 +119,12 @@ instead of spaces or other punctuation. Github has a feature for creating
 branches that will be linked to the issue for which they're created. Branches
 created in this way will follow the aforementioned branch name formatting. See
 the images below.
- ![image](design/readmeImages/contributing_create_branch.png)
+
+![image](design/readmeImages/contributing_create_branch.png)
 ![image](design/readmeImages/contributing_create_branch_2.png)
-<<<<<<< HEAD
 
 All new branches should be created using the `dev` branch as a base. Click
  the "Change branch source" link and select `dev` from the dropdown.
+
 ![image](design/readmeImages/contributing_create_branch_3.png)
 ![image](design/readmeImages/contributing_create_branch_4.png)
-=======
->>>>>>> main
