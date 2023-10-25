@@ -6,6 +6,7 @@
       "packages/**"
     ]
   },
+  "type": "module",
   "scripts": {
     "ci": "npx nx run-many --target=ci",
     "lint": "npx nx run-many --target=lint",
@@ -17,6 +18,7 @@
   "dependencies": {},
   "devDependencies": {
     "husky": "^8.0.0",
+    "lint-staged": "^15.0.2",
     "nx": "15.3.0"
   },
   "version": "1.0.1",
