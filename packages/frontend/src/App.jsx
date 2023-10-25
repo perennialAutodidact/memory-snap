@@ -5,6 +5,8 @@ import Layout from 'components/Layout';
 import Setup from 'components/Setup';
 import Game from "components/Game";
 
+const test = "blah";
+
 const App = () => {
   return (
     <div className="App bg-dark text-light vh-100 container-fluid p-0">

@@ -18,9 +18,16 @@
     }
   },
   "plugins": ["prettier", "react"],
-  "extends": ["prettier", "eslint:recommended", "plugin:react/recommended"],
+  "extends": [
+    "react-app",
+    "prettier",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }]
+    // "jsx-quotes": ["error", "double"],
+    // "quotes": ["error", "single"]
   },
   "settings": {
     "react": {
