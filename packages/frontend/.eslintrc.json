@@ -25,9 +25,11 @@
     "plugin:react/recommended"
   ],
   "rules": {
-    "prettier/prettier": ["error", { "endOfLine": "auto" }]
-    // "jsx-quotes": ["error", "double"],
-    // "quotes": ["error", "single"]
+    "prettier/prettier": [
+      "error",
+      { "endOfLine": "auto", "singleQuote": true }
+    ],
+    "quotes": ["error", "single", { "avoidEscape": true }]
   },
   "settings": {
     "react": {

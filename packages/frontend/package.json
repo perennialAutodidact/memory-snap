@@ -24,7 +24,7 @@
     "ci": "cross-env CI=true yarn test",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "lint": "npx eslint",
+    "lint": "npx eslint --fix",
     "serve": "cross-env NODE_ENV=production react-scripts build",
     "start": "cross-env NODE_ENV=development react-scripts start",
     "test": "cross-env NODE_ENV=test react-scripts test"
