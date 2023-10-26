@@ -1,5 +1,5 @@
 const lintStagedConfig = {
-  '*.{js, jsx}': 'npx eslint --fix',
+  '*.{js,jsx}': 'yarn lint --fix',
 };
 
 module.exports = lintStagedConfig;

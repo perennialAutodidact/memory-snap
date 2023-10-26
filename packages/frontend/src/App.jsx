@@ -3,7 +3,7 @@ import './styles/App.scss';
 import { Routes, Route } from 'react-router-dom';
 import Layout from 'components/Layout';
 import Setup from 'components/Setup';
-import Game from "components/Game";
+import Game from 'components/Game';
 
 const App = () => {
   return (
