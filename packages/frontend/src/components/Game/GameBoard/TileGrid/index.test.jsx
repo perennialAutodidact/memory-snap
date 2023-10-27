@@ -17,7 +17,7 @@ describe('TileGrid component', () => {
 
   it('flips a tile after two seconds when onFlipTile is called', async () => {
 
-    //setup the TileGrid component with tiles prop
+    
     const tiles = createTilesFromPhotos(mockPhotos);
 
     const { screen } = setupTests(TileGrid, { props: { tiles } });
@@ -31,7 +31,7 @@ describe('TileGrid component', () => {
     await user.click(screen.getByTestId('tile-1'));
 
 
-    // expect(onFlipTile).toHaveBeenCalledTimes(1);
+    expect(onFlipTile).toHaveBeenCalledTimes(1);
 
   });
 });

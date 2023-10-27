@@ -26,7 +26,7 @@ const TileGrid = ({ tiles }) => {
   }, [state.flipped]);
 
   return (
-    <div id="tile-grid" className="container mt-5">
+    <div id="tile-grid" role="tile-grid" className="container mt-5">
       <div className="row">
         <div className="col-12 col-lg-10 col-md-12 offset-md-0 offset-lg-1">
           <div className="d-flex justify-content-center flex-wrap gap-3">
