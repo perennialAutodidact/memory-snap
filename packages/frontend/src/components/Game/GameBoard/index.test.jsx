@@ -6,11 +6,11 @@ import { baseState } from 'contexts';
 import { produce } from 'immer';
 
 beforeEach(() => {
-  jest.useFakeTimers()
+  jest.useFakeTimers('legacy')
 })
 
 afterEach(() => {
-  jest.runOnlyPendingTimers()
+  // jest.runOnlyPendingTimers()
   jest.useRealTimers()
 })
 
@@ -31,12 +31,12 @@ describe('GameBoard component', () => {
 
     const element = screen.getByTestId('tile-1');
 
+    expect(screen.getByTestId('tile-1')).toHaveClass('faceDown');
     await user.click(element);
-    // expect(setTimeout).toHaveBeenCalledTimes(1);
-    // expect(screen.getByTestId('tile-1')).toHaveClass('faceDown');
+    
     
     jest.advanceTimersByTime(3000);
-    expect(setTimeout).toHaveBeenCalledTimes(1);
-    // expect(screen.getByTestId('tile-1')).not.toHaveClass('faceDown');
+    // expect(setTimeout).toHaveBeenCalledTimes(1);
+    expect(screen.getByTestId('tile-1')).not.toHaveClass('faceDown');
   });
 });
