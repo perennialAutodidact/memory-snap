@@ -3,6 +3,7 @@ import { createTilesFromPhotos } from 'helpers/createTilesFromPhotos';
 import TileGrid from '.';
 import { mockPhotos } from '__mocks__/api/mockPhotos';
 import userEvent from '@testing-library/user-event';
+import { getByTestId } from '@testing-library/react';
 
 describe('TileGrid component', () => {
   it('renders all tiles', () => {
@@ -17,21 +18,25 @@ describe('TileGrid component', () => {
 
   it('flips a tile after two seconds when onFlipTile is called', async () => {
 
-    
-    const tiles = createTilesFromPhotos(mockPhotos);
-
+    const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
     const { screen } = setupTests(TileGrid, { props: { tiles } });
     
-    
-    
-    const tile = screen.getByTestId('tile-1');
+    screen.debug()
+    const tile = screen.getByTestId(/tile-1/);
     screen.debug(tile);
     
     const user = userEvent.setup();
-    await user.click(screen.getByTestId('tile-1'));
 
+    expect(tile).toHaveClass('faceDown');
 
-    expect(onFlipTile).toHaveBeenCalledTimes(1);
+    await user.click(tile);
+    
+    //THIS SHOULD FAIL 
+    expect(screen.getByTestId(/tile-1/)).toHaveClass('faceDown');
+    
+    //NONE HAVE CHANGED
+    const allTiles = screen.getAllByTestId(/tile/);
+    screen.debug(allTiles)
 
   });
 });

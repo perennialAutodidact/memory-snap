@@ -17,7 +17,7 @@ const GameProvider = ({ children, providedState = null } = {}) => {
   const { tiles } = state;
 
   useEffect(() => {
-    if (photos && !tiles) {
+    if (photos && tiles.length === 0) {
       dispatch(addTiles(photos));
     }
   }, [photos, tiles]);
