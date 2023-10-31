@@ -13,15 +13,19 @@ const TileGrid = ({ tiles }) => {
 
   useEffect(() => {
     if (state.flipped.length > 1) {
-      if (state.flipped[0].photo.id === state.flipped[1].photo.id) {
-        setTimeout(() => {
+      const timeout = setTimeout(() => {
+        if (state.flipped[0].photo.id === state.flipped[1].photo.id) {
           dispatch(handleMatch(state.flipped));
-        }, 2000);
-      } else {
-        setTimeout(() => {
+        } else {
           dispatch(resetTiles(state.flipped));
-        }, 2000);
-      }
+        }
+      }, 2000);
+
+      return () => {
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+      };
     }
   }, [state.flipped]);
 
