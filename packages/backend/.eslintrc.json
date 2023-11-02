@@ -20,7 +20,7 @@
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "no-unused-vars": "off",
-    "unused-imports/no-unused-imports": "warn",
+    "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
       "warn",
       {
