@@ -4,7 +4,10 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
-import { setupSockets, onSocketConnect } from './controllers/socketio/index.js';
+import {
+  handleSocketDisconnect,
+  setupSocket,
+} from './controllers/socketio/index.js';
 import { getDirName } from './helpers.js';
 import { getPhotos } from './controllers/express/photosController.js';
 
@@ -18,7 +21,7 @@ if (!process.env.PORT) {
 }
 
 const app = express();
-const io = setupSockets(app);
+const io = setupSocket(app);
 
 // middleware
 app.use(express.json());
@@ -38,7 +41,9 @@ app.use(cors(corsOptions));
 // routes
 app.use('/api/photos', getPhotos);
 
-io.on('connection', onSocketConnect);
+io.on('connection', (socket) => {
+  socket.on('disconnect', () => handleSocketDisconnect);
+});
 
 // serve production build
 if (process.env.NODE_ENV === 'production') {
