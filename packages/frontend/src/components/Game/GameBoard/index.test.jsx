@@ -15,7 +15,14 @@ afterEach(() => {
   jest.useRealTimers();
 });
 
-jest.spyOn(global, 'setTimeout');
+const ui = {
+  tile: {
+    container: (testId) => byTestId(testId),
+    photo: (altText) => byAltText(altText),
+  },
+};
+
+const { tile } = ui
 
 describe('GameBoard component', () => {
   it('flips the tile thats been clicked', async () => {
@@ -28,28 +35,12 @@ describe('GameBoard component', () => {
 
     const { screen, user } = setupTests(GameBoard, { state });
 
-    const element = screen.getByTestId('tile-1');
+    expect(tile.container('tile-1').get()).toHaveClass('faceDown');
+    await user.click(tile.container('tile-1').get());
 
-    expect(screen.getByTestId('tile-1')).toHaveClass('faceDown');
-    await user.click(element);
-
-    jest.advanceTimersByTime(3000);
-
-    const displayedImage = document.querySelector('img');
-
-    expect(screen.getByTestId('tile-1')).not.toHaveClass('faceDown');
-    expect(screen.getByAltText(/Jellyfish/)).toBeInTheDocument();
-    expect(displayedImage).toBeInTheDocument();
+    expect(tile.container('tile-1').get()).not.toHaveClass('faceDown');
+    expect(tile.photo(tiles[1].photo.alt).get()).toBeInTheDocument();
   });
-
-  const ui = {
-    tile: {
-      container: (testId) => byTestId(testId),
-      photo: (altText) => byAltText(altText),
-    },
-  };
-
-  const { tile } = ui
 
   it('unmatched tiles are flipped back after two seconds', async () => {
     const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
