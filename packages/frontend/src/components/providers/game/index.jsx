@@ -14,11 +14,13 @@ const GameProvider = ({ children, providedState = null } = {}) => {
     state: { photos },
   } = usePhotosContext();
 
+  const { tiles } = state;
+
   useEffect(() => {
-    if (photos) {
+    if (photos && tiles.length === 0) {
       dispatch(addTiles(photos));
     }
-  }, [photos]);
+  }, [photos, tiles]);
 
   return (
     <GameContext.Provider value={{ state, dispatch }}>
