@@ -43,11 +43,17 @@ describe('GameBoard component', () => {
   });
 
   const ui = {
-    tile1: byTestId('tile-1'),
-    tile2: byTestId('tile-5'),
-    tileAlt1: byAltText(/Jellyfish/),
-    tileAlt2: byAltText(/Splashing/),
+    tile1: {
+      container: byTestId('tile-1'),
+      photo: byAltText(/Jellyfish/),
+    },
+    tile2: {
+      container: byTestId('tile-5'),
+      photo: byAltText(/Splashing/),
+    },
   };
+
+  const {tile1, tile2} = ui
 
   it('unmatched tiles are flipped back after two seconds', async () => {
     const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
@@ -59,20 +65,20 @@ describe('GameBoard component', () => {
 
     const { user } = setupTests(GameBoard, { state });
 
-    expect(ui.tile1.get()).toHaveClass('faceDown');
+    expect(tile1.container.get()).toHaveClass('faceDown');
 
-    await user.click(ui.tile1.get());
-    await user.click(ui.tile2.get());
+    await user.click(tile1.container.get());
+    await user.click(tile2.container.get());
 
-    expect(ui.tileAlt1.get()).toBeInTheDocument();
-    expect(ui.tileAlt2.get()).toBeInTheDocument();
+    expect(tile1.photo.get()).toBeInTheDocument();
+    expect(tile2.photo.get()).toBeInTheDocument();
 
     act(() => jest.advanceTimersByTime(3000));
 
-    expect(ui.tile1.get()).toHaveClass('faceDown');
-    expect(ui.tile2.get()).toHaveClass('faceDown');
+    expect(tile1.container.get()).toHaveClass('faceDown');
+    expect(tile2.container.get()).toHaveClass('faceDown');
 
-    expect(ui.tileAlt1.query()).toBeNull();
-    expect(ui.tileAlt2.query()).toBeNull();
+    expect(tile1.photo.query()).toBeNull();
+    expect(tile2.photo.query()).toBeNull();
   });
 });
