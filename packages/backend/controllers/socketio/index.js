@@ -1,20 +1,23 @@
 import { Server } from 'socket.io';
-import * as http from 'http';
+import { createServer } from 'node:http';
 
 const setupSocket = (app) => {
-  const server = http.createServer(app);
+  const server = createServer(app);
   return new Server(server);
 };
 
 //
-const handleSocketDisconnect = () => {
+const disconnect = () => {
   console.log('SOCKET DISCONNECTED');
 };
 
-const handlers = {
-  connect: (app) => {
-    const server = http.createServer(app);
-  },
+const handleSocketEvents = (socket, handlers) =>
+  Object.keys(handlers).forEach((eventName) =>
+    socket.on(eventName, handlers[eventName])
+  );
+
+const socketEventHandlers = {
+  disconnect,
 };
 
-export { handleSocketDisconnect, setupSocket };
+export { handleSocketEvents, setupSocket, socketEventHandlers };

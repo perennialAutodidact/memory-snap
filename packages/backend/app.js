@@ -7,9 +7,11 @@ import bodyParser from 'body-parser';
 import {
   handleSocketDisconnect,
   setupSocket,
+  socketHandlers,
 } from './controllers/socketio/index.js';
 import { getDirName } from './helpers.js';
 import { getPhotos } from './controllers/express/photosController.js';
+import { attachHandlersToSocket } from './controllers/socketio/index.test.js';
 
 // config
 dotenv.config({ path: '../../.env.local' });
@@ -41,8 +43,9 @@ app.use(cors(corsOptions));
 // routes
 app.use('/api/photos', getPhotos);
 
+// socket.io
 io.on('connection', (socket) => {
-  socket.on('disconnect', () => handleSocketDisconnect);
+  setupSocketHandlers(socket, socketHandlers);
 });
 
 // serve production build

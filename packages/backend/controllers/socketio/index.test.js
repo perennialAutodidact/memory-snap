@@ -1,6 +1,6 @@
-const attachHandlersToSocket = (socket, handlers) =>
-  Object.keys(handlers).map((eventName) =>
-    socket.on(eventName, handlers[eventName])
-  );
+import { setupSocket, handleSocketEvents, socketEventHandlers } from '.';
+import { io as ioc } from 'socket.io-client';
 
-export { attachHandlersToSocket };
+const setupMocket = () => {
+  let io, serverSocket, clientSocket;
+};
