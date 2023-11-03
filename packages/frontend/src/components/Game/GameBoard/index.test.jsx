@@ -65,7 +65,7 @@ describe('GameBoard component', () => {
     expect(tile.container('tile-1').get()).toHaveClass('faceDown');
     expect(tile.container('tile-5').get()).toHaveClass('faceDown');
 
-    expect(tile.photo(tiles[1].photo.alt).query()).toBeNull();
-    expect(tile.photo(tiles[5].photo.alt).query()).toBeNull();
+    expect(tile.photo(tiles[1].photo.alt).query()).not.toBeInTheDocument();
+    expect(tile.photo(tiles[5].photo.alt).query()).not.toBeInTheDocument();
   });
 });
