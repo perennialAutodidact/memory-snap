@@ -76,10 +76,8 @@ describe('gameReducer', () => {
       draft.flipped = [payload.tile];
     });
 
-    console.log(expected, 'EX');
     //delete this variable
     const result = gameReducer(initialTilesState, action);
-    console.log(result, 'RES');
     expect(gameReducer(initialTilesState, action)).toStrictEqual(expected);
   });
 
