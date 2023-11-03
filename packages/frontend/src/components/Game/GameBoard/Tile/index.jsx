@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
+import useGameContext from 'hooks/useGameContext';
 
 const Tile = ({ tile, onFlip }) => {
   const onClickTile = () => {
     onFlip(tile);
   };
+
+  const { state } = useGameContext();
 
   const tileClasses = [
     tile.faceUp ? 'faceUp' : 'faceDown tile border border-primary',
@@ -15,7 +18,7 @@ const Tile = ({ tile, onFlip }) => {
   return (
     <div
       className={tileClasses}
-      onClick={onClickTile}
+      onClick={tile.faceUp || state.flipped.length > 1 ? null : onClickTile}
       data-testid={`tile-${tile.id}`}
     >
       {!tile.faceUp ? null : (
