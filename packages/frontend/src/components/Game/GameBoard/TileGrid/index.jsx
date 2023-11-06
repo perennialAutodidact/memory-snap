@@ -14,7 +14,7 @@ const TileGrid = ({ tiles }) => {
   useEffect(() => {
     if (state.flipped.length > 1) {
       if (state.flipped[0].photo.id === state.flipped[1].photo.id) {
-        console.log('dispatch HANDLE_MATCH');
+        // handle match
       } else {
         setTimeout(() => {
           dispatch(resetTiles(state.flipped));
