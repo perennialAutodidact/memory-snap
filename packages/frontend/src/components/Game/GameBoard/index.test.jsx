@@ -33,7 +33,7 @@ describe('GameBoard component', () => {
     });
     const state = { ...baseState, game: initialGameState };
 
-    const { screen, user } = setupTests(GameBoard, { state });
+    const { user } = setupTests(GameBoard, { state });
 
     expect(tile.container('tile-1').get()).toHaveClass('faceDown');
     await user.click(tile.container('tile-1').get());
