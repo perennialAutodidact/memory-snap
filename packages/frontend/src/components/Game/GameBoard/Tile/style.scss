@@ -3,6 +3,7 @@
 .tile {
   height: 100px;
   width: 100px;
+
   @include breakpoint(md) {
     height: 200px;
     width: 200px;
@@ -14,5 +15,5 @@
 }
 
 .matched {
-    display: none;
+  display: none;
 }

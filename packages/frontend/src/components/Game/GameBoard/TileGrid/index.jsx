@@ -27,7 +27,7 @@ const TileGrid = ({ tiles }) => {
         }
       };
     }
-  }, [state.flipped]);
+  }, [state.flipped, dispatch]);
 
   return (
     <div id="tile-grid" className="container mt-5">

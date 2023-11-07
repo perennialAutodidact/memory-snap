@@ -1,0 +1,6 @@
+build/**
+.husky
+.eslintignore
+.github/**
+*.md
+.prettierignore
