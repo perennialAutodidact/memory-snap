@@ -16,7 +16,7 @@ const setupTests = (
   // push the route into the "browser" history
   window.history.pushState({}, 'Test', route);
 
-  const user = userEvent.setup();
+  const user = userEvent.setup({ delay: null });
   render(
     <BrowserRouter>
       <FormProvider providedState={{ ...state.form }}>

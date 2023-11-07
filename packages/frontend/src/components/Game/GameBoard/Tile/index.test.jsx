@@ -46,4 +46,13 @@ describe('Tile component', () => {
 
     expect(onFlip).toHaveBeenCalledTimes(1);
   });
+
+  it('has the class matched when isMatched is true', () => {
+    const tile = createTilesFromPhotos(mockPhotos)[0];
+    const props = { tile: { ...tile, isMatched: true } };
+
+    const { screen } = setupTests(Tile, { props });
+
+    expect(screen.getByTestId(`tile-${tile.id}`)).toHaveClass('matched');
+  });
 });

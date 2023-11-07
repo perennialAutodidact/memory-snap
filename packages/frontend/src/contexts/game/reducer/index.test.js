@@ -57,7 +57,6 @@ describe('gameReducer', () => {
 
   it('toggles the faceUp value of target tile if action type is FLIP_TILE', () => {
     const { game: state } = baseState;
-    const photos = mockPhotos;
 
     const initialTilesState = produce(state, (draft) => {
       draft.tiles = createTilesFromPhotos(mockPhotos);
@@ -76,16 +75,11 @@ describe('gameReducer', () => {
       draft.flipped = [payload.tile];
     });
 
-    console.log(expected, 'EX');
-    //delete this variable
-    const result = gameReducer(initialTilesState, action);
-    console.log(result, 'RES');
     expect(gameReducer(initialTilesState, action)).toStrictEqual(expected);
   });
 
   it('toggles the faceUp value of flipped tiles if action type is RESET_TILES', () => {
     const { game: state } = baseState;
-    const photos = mockPhotos;
 
     const initialTilesState = produce(state, (draft) => {
       draft.tiles = createTilesFromPhotos(mockPhotos);
@@ -101,8 +95,6 @@ describe('gameReducer', () => {
       type: 'RESET_TILES',
       payload: payload,
     };
-
-    const result = gameReducer(flippedState, action);
 
     expect(gameReducer(flippedState, action)).toStrictEqual(initialTilesState);
   });
