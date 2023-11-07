@@ -74,9 +74,9 @@ describe('Tile component', () => {
   it('is not clickable when two other tiles are face up', async () => {
     const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
 
-    const tile = tiles[0]
+    const tile = tiles[0];
 
-    const flipped = [tiles[3], tiles[9]]
+    const flipped = [tiles[3], tiles[9]];
 
     const twoFlippedGameState = produce(baseState.game, (draft) => {
       draft.tiles = tiles;
@@ -87,11 +87,15 @@ describe('Tile component', () => {
 
     const onFlip = jest.fn();
 
-    const { screen, user } = setupTests(Tile, {props: {tile, onFlip} }, { state });
+    const { screen, user } = setupTests(
+      Tile,
+      { props: { tile, onFlip } },
+      { state }
+    );
 
     await user.click(screen.getByTestId(/tile/));
-    
+
     expect(screen.getByTestId('tile-0')).not.toHaveClass('faceUp');
-    expect(screen.queryByAltText(tiles[0].photo.alt)).not.toBeInTheDocument()
+    expect(screen.queryByAltText(tiles[0].photo.alt)).not.toBeInTheDocument();
   });
 });

@@ -22,7 +22,7 @@ const ui = {
   },
 };
 
-const { tile } = ui
+const { tile } = ui;
 
 describe('GameBoard component', () => {
   it('flips the tile thats been clicked', async () => {
