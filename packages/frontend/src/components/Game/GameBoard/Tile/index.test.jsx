@@ -7,7 +7,7 @@ import userEvent from '@testing-library/user-event';
 describe('Tile component', () => {
   it('renders', () => {
     const tile = createTilesFromPhotos(mockPhotos)[0];
-    const props = { tile }
+    const props = { tile };
 
     const { screen } = setupTests(Tile, { props });
     expect(screen.getByTestId(/tile/)).toBeInTheDocument();
@@ -15,8 +15,8 @@ describe('Tile component', () => {
 
   it('has alt text if faceUp is true', () => {
     const tile = createTilesFromPhotos(mockPhotos)[0];
-    const props = { tile: {...tile, faceUp: true}};
-    
+    const props = { tile: { ...tile, faceUp: true } };
+
     const { screen } = setupTests(Tile, { props });
 
     expect(screen.getByAltText(tile.photo.alt)).toBeInTheDocument();
@@ -24,7 +24,7 @@ describe('Tile component', () => {
 
   it('does not have alt text if faceUp is false', () => {
     const tile = createTilesFromPhotos(mockPhotos, { shuffle: true })[0];
-    const props = { tile: { ...tile, faceUp: false} };
+    const props = { tile: { ...tile, faceUp: false } };
 
     const { screen } = setupTests(Tile, { props });
 
@@ -49,10 +49,10 @@ describe('Tile component', () => {
 
   it('has the class matched when isMatched is true', () => {
     const tile = createTilesFromPhotos(mockPhotos)[0];
-    const props = { tile: {...tile, isMatched: true}};
+    const props = { tile: { ...tile, isMatched: true } };
 
     const { screen } = setupTests(Tile, { props });
 
     expect(screen.getByTestId(`tile-${tile.id}`)).toHaveClass('matched');
-  })
+  });
 });
