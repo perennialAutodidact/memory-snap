@@ -1,9 +1,7 @@
 import React from 'react';
 import usePhotosContext from 'hooks/usePhotosContext';
-import ScoreBoard from './ScoreBoard';
-import TileGrid from './GameBoard/TileGrid';
-import useGameContext from 'hooks/useGameContext';
 import Spinner from './Spinner';
+import GameBoard from './GameBoard';
 
 const Game = () => {
   const {
@@ -11,9 +9,6 @@ const Game = () => {
     // eslint-disable-next-line
     state: { error, status, photos },
   } = usePhotosContext();
-  const {
-    state: { players, currentPlayer, tiles },
-  } = useGameContext();
 
   const isLoading = ['IDLE', 'PENDING'].includes(status);
 
@@ -24,10 +19,7 @@ const Game = () => {
           <Spinner />
         </div>
       ) : (
-        <>
-          <ScoreBoard players={players} currentPlayer={currentPlayer} />
-          <TileGrid tiles={tiles} />
-        </>
+        <GameBoard />
       )}
     </section>
   );
