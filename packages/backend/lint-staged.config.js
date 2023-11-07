@@ -1,5 +1,5 @@
 const lintStagedConfig = {
-  '*.{js, jsx}': 'npx eslint --fix',
+  '*.{js, jsx}': 'npx eslint',
 };
 
 export default lintStagedConfig;
