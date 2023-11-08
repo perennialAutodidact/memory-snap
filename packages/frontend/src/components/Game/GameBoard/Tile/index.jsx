@@ -4,7 +4,6 @@ import './style.scss';
 
 const Tile = ({ tile, onFlip }) => {
   const onClickTile = () => {
-    // if(state.f)
     onFlip(tile);
   };
 

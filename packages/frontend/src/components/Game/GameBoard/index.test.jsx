@@ -72,17 +72,13 @@ describe('GameBoard component', () => {
   it('will not flip a tile to face down with second click', async () => {
     const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
 
-    const tile = tiles[0];
-
-    const twoFlippedGameState = produce(baseState.game, (draft) => {
+    const flippedTileState = produce(baseState.game, (draft) => {
       draft.tiles = tiles;
     });
 
-    const state = { ...baseState, game: twoFlippedGameState };
+    const state = { ...baseState, game: flippedTileState };
 
     const { user, screen } = setupTests(GameBoard, { state });
-
-    const allTiles = screen.getAllByTestId(/tile/);
 
     expect(screen.getByTestId('tile-0')).toHaveClass('faceDown');
 
@@ -92,6 +88,29 @@ describe('GameBoard component', () => {
 
     await user.click(screen.getByTestId('tile-0'));
 
-    screen.debug(allTiles);
+    act(() => jest.advanceTimersByTime(1000));
+
+    expect(screen.getByTestId('tile-0')).toHaveClass('faceUp');
+  });
+
+  it('will not flip a tile if two others are flipped', async () => {
+    const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
+
+    const flipped = [tiles[3], tiles[9]];
+
+    const twoFlippedGameState = produce(baseState.game, (draft) => {
+      draft.tiles = tiles;
+      draft.flipped = flipped;
+    });
+
+    const state = { ...baseState, game: twoFlippedGameState };
+
+    const { user, screen } = setupTests(GameBoard, { state });
+
+    await user.click(screen.getByTestId('tile-0'));
+
+    act(() => jest.advanceTimersByTime(1000));
+
+    expect(screen.getByTestId('tile-0')).not.toHaveClass('faceUp');
   });
 });
