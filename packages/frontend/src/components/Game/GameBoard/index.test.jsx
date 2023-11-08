@@ -68,4 +68,30 @@ describe('GameBoard component', () => {
     expect(tile.photo(tiles[1].photo.alt).query()).not.toBeInTheDocument();
     expect(tile.photo(tiles[5].photo.alt).query()).not.toBeInTheDocument();
   });
+
+  it('will not flip a tile to face down with second click', async () => {
+    const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
+
+    const tile = tiles[0];
+
+    const twoFlippedGameState = produce(baseState.game, (draft) => {
+      draft.tiles = tiles;
+    });
+
+    const state = { ...baseState, game: twoFlippedGameState };
+
+    const { user, screen } = setupTests(GameBoard, { state });
+
+    const allTiles = screen.getAllByTestId(/tile/);
+
+    expect(screen.getByTestId('tile-0')).toHaveClass('faceDown');
+
+    await user.click(screen.getByTestId('tile-0'));
+
+    act(() => jest.advanceTimersByTime(3000));
+
+    await user.click(screen.getByTestId('tile-0'));
+
+    screen.debug(allTiles);
+  });
 });

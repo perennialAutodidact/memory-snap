@@ -8,7 +8,11 @@ const TileGrid = ({ tiles }) => {
   const { state, dispatch } = useGameContext();
 
   const onFlipTile = (tile) => {
-    dispatch(flipTile(tile));
+    if (tile.faceUp === true || state.flipped.length === 2) {
+      return;
+    } else {
+      dispatch(flipTile(tile));
+    }
   };
 
   useEffect(() => {
