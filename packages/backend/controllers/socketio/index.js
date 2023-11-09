@@ -11,17 +11,12 @@ const handlePing = (socket) => {
 };
 
 const handleDisconnect = () => {
-  console.log('SOCKET DISCONNECTED');
-};
-
-const handleTestSocketEvent = (socket) => {
-  socket.emit('testSocketEvent', { foo: 'bar' });
+  console.warn('SOCKET DISCONNECTED');
 };
 
 const setupDefaultEvents = (socket) => {
   socket.on('ping', () => handlePing(socket));
   socket.on('disconnect', () => handleDisconnect(socket));
-  socket.on('testSocketEvent', () => handleTestSocketEvent(socket));
 };
 
 export const setupSocketEventHandlers = (socket) => {
