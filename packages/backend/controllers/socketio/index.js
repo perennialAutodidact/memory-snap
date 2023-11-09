@@ -1,23 +1,29 @@
 import { Server } from 'socket.io';
 import { createServer } from 'node:http';
 
-const setupSocket = (app) => {
+export const setupSocket = (app) => {
   const server = createServer(app);
   return new Server(server);
 };
 
-//
-const disconnect = () => {
+const handlePing = (socket) => {
+  socket.emit('ping', { message: 'pong' });
+};
+
+const handleDisconnect = () => {
   console.log('SOCKET DISCONNECTED');
 };
 
-const handleSocketEvents = (socket, handlers) =>
-  Object.keys(handlers).forEach((eventName) =>
-    socket.on(eventName, handlers[eventName])
-  );
-
-const socketEventHandlers = {
-  disconnect,
+const handleTestSocketEvent = (socket) => {
+  socket.emit('testSocketEvent', { foo: 'bar' });
 };
 
-export { handleSocketEvents, setupSocket, socketEventHandlers };
+const setupDefaultEvents = (socket) => {
+  socket.on('ping', () => handlePing(socket));
+  socket.on('disconnect', () => handleDisconnect(socket));
+  socket.on('testSocketEvent', () => handleTestSocketEvent(socket));
+};
+
+export const setupSocketEventHandlers = (socket) => {
+  setupDefaultEvents(socket);
+};

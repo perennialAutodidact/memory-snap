@@ -1,27 +1,38 @@
-import { createServer } from 'node:http';
 import { io as ioc } from 'socket.io-client';
+import { createServer } from 'http';
 import { Server } from 'socket.io';
+import {
+  setupSocketEventHandlers,
+  socketEventHandlers,
+} from 'controllers/socketio';
 
-export const setupMockSocket = () => {
-  let io, serverSocket, clientSocket;
-
-  beforeAll((done) => {
-    const httpServer = createServer();
-    io = new Server(httpServer);
-    httpServer.listen(() => {
-      const port = httpServer.address().port;
-      clientSocket = ioc(`ws://localhost:${port}`);
-      clientSocket.on('connection', (socket) => {
-        serverSocket = socket;
-      });
-      clientSocket.on('connect', done);
-    });
+/**
+ *
+ * @param {Socket} emitter Socket.io instance
+ * @param {string} event name of the event for which the socket should wait
+ * @returns Promise which resolves when the event is emitted by the socket
+ */
+export const waitFor = (emitter, event) =>
+  new Promise((resolve) => {
+    emitter.once(event, resolve);
   });
 
-  afterAll(() => {
-    io.close();
-    clientSocket.disconnect();
+export const setupTestSocket = async () => {
+  const httpServer = createServer();
+  const io = new Server(httpServer);
+  httpServer.listen(process.env.SOCKET_PORT);
+
+  const clientSocket = ioc(`ws://localhost:${process.env.SOCKET_PORT}`, {
+    transports: ['websocket'],
   });
 
-  return { io, serverSocket, clientSocket };
+  let serverSocket;
+  io.on('connection', (socket) => {
+    setupSocketEventHandlers(socket, socketEventHandlers);
+    serverSocket = socket;
+  });
+
+  await waitFor(clientSocket, 'connect');
+
+  return { httpServer, io, clientSocket, serverSocket };
 };

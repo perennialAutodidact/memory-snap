@@ -5,13 +5,12 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 
 import {
-  handleSocketDisconnect,
   setupSocket,
   socketHandlers,
-} from './controllers/socketio/index.js';
-import { getDirName } from './helpers.js';
-import { getPhotos } from './controllers/express/photosController.js';
-import { attachHandlersToSocket } from './controllers/socketio/index.test.js';
+  setupSocketEventHandlers,
+} from 'controllers/socketio';
+import { getDirName } from 'helpers';
+import { getPhotos } from 'controllers/express/photosController';
 
 // config
 dotenv.config({ path: '../../.env.local' });
@@ -45,7 +44,7 @@ app.use('/api/photos', getPhotos);
 
 // socket.io
 io.on('connection', (socket) => {
-  setupSocketHandlers(socket, socketHandlers);
+  setupSocketEventHandlers(socket, socketHandlers);
 });
 
 // serve production build
