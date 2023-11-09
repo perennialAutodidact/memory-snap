@@ -24,7 +24,7 @@ describe('useGameContext hook', () => {
   });
 
   it('renders component when wrapped in necessary providers', () => {
-    // eslint-disable-next-line
+    // eslint-disable-next-line react/prop-types
     const Providers = ({ children }) => (
       <PhotosProvider>
         <GameProvider>{children}</GameProvider>
