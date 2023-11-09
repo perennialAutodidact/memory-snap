@@ -4,7 +4,6 @@ import { setupTestSocket, waitFor } from '__test__/helpers';
 dotenv.config({ path: '.env.local' });
 
 describe('socket.io', () => {
-  // eslint-disable-next-line
   let clientSocket, httpServer, io, serverSocket;
   beforeEach(async () => {
     const testSocket = await setupTestSocket();
