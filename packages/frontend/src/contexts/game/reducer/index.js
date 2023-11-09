@@ -19,11 +19,38 @@ export const gameReducer = (state, action) => {
       return {
         ...state,
         tiles: state.tiles.map((tile) =>
-          tile.id === action.payload.tile.id
+          action.payload.tile.id === tile.id
             ? { ...tile, faceUp: !tile.faceUp }
             : tile
         ),
+        flipped: state.flipped.concat(action.payload.tile),
       };
+
+    case types.RESET_TILES:
+      return {
+        ...state,
+        tiles: state.tiles.map((tile) =>
+          action.payload.tiles[0].id === tile.id ||
+          action.payload.tiles[1].id === tile.id
+            ? { ...tile, faceUp: !tile.faceUp }
+            : tile
+        ),
+        flipped: [],
+      };
+
+    case types.HANDLE_MATCH:
+      return {
+        ...state,
+        tiles: state.tiles.map((tile) =>
+          action.payload.tiles[0].id === tile.id ||
+          action.payload.tiles[1].id === tile.id
+            ? { ...tile, isMatched: !tile.isMatched }
+            : tile
+        ),
+        flipped: [],
+      };
+
+    //TODO: reset game action to reset all tiles
 
     default: {
       return state;

@@ -19,6 +19,8 @@ export const initialGameState = {
       score: 0,
     },
   ],
+  tiles: [],
+  flipped: [],
 };
 
 export const GameContext = createContext(initialGameState);
