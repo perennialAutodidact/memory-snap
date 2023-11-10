@@ -27,7 +27,7 @@
   ],
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    "no-console": ["error", { "allow": ["warn"] }]
+    "no-console": ["error", { "allow": ["warn"] }],
     "react/jsx-uses-react": "warn",
     "react/jsx-uses-vars": "warn",
     "no-unused-vars": "off",
