@@ -84,11 +84,9 @@ describe('GameBoard component', () => {
 
     await user.click(screen.getByTestId('tile-0'));
 
-    act(() => jest.advanceTimersByTime(3000));
+    expect(screen.getByTestId('tile-0')).toHaveClass('faceUp');
 
     await user.click(screen.getByTestId('tile-0'));
-
-    act(() => jest.advanceTimersByTime(1000));
 
     expect(screen.getByTestId('tile-0')).toHaveClass('faceUp');
   });
@@ -107,9 +105,9 @@ describe('GameBoard component', () => {
 
     const { user, screen } = setupTests(GameBoard, { state });
 
-    await user.click(screen.getByTestId('tile-0'));
+    expect(screen.getByTestId('tile-0')).not.toHaveClass('faceUp');
 
-    act(() => jest.advanceTimersByTime(1000));
+    await user.click(screen.getByTestId('tile-0'));
 
     expect(screen.getByTestId('tile-0')).not.toHaveClass('faceUp');
   });

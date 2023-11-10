@@ -62,7 +62,6 @@ describe('gameReducer', () => {
       draft.tiles = createTilesFromPhotos(mockPhotos);
     });
 
-    // const tile = initialTilesState.tiles[4];
     const payload = { tile: initialTilesState.tiles[4] };
 
     const action = {
