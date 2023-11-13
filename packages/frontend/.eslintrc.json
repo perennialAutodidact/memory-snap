@@ -2,7 +2,8 @@
   "env": {
     "es6": true,
     "jest": true,
-    "node": true
+    "node": true,
+    "browser": true
   },
   "parser": "@babel/eslint-parser",
   "parserOptions": {
@@ -26,6 +27,7 @@
   ],
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "no-console": ["error", { "allow": ["warn"] }],
     "react/jsx-uses-react": "warn",
     "react/jsx-uses-vars": "warn",
     "no-unused-vars": "off",
