@@ -1,14 +1,19 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Tile from '../Tile';
-import { flipTile, handleMatch, resetTiles } from 'contexts/game/actions';
+import {
+  flipTile,
+  handleMatch,
+  resetTiles,
+  toggleLock,
+} from 'contexts/game/actions';
 import useGameContext from 'hooks/useGameContext';
 
 const TileGrid = ({ tiles }) => {
   const { state, dispatch } = useGameContext();
 
   const onFlipTile = (tile) => {
-    if (tile.faceUp === true || state.flipped.length === 2) {
+    if (tile.isFlipable === false || state.flipped.length === 2) {
       return;
     } else {
       dispatch(flipTile(tile));
@@ -17,19 +22,15 @@ const TileGrid = ({ tiles }) => {
 
   useEffect(() => {
     if (state.flipped.length > 1) {
-      const timeout = setTimeout(() => {
+      dispatch(toggleLock(true));
+      setTimeout(() => {
         if (state.flipped[0].photo.id === state.flipped[1].photo.id) {
           dispatch(handleMatch(state.flipped));
         } else {
           dispatch(resetTiles(state.flipped));
         }
+        dispatch(toggleLock(false));
       }, 2000);
-
-      return () => {
-        if (timeout) {
-          clearTimeout(timeout);
-        }
-      };
     }
   }, [state.flipped, dispatch]);
 

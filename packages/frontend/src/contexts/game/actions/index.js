@@ -19,3 +19,8 @@ export const handleMatch = (tiles) => ({
   type: types.HANDLE_MATCH,
   payload: { tiles },
 });
+
+export const toggleLock = (locked) => ({
+  type: types.TOGGLE_LOCK,
+  payload: { locked },
+});

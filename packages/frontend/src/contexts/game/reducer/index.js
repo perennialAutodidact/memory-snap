@@ -20,7 +20,7 @@ export const gameReducer = (state, action) => {
         ...state,
         tiles: state.tiles.map((tile) =>
           action.payload.tile.id === tile.id
-            ? { ...tile, faceUp: !tile.faceUp }
+            ? { ...tile, faceUp: !tile.faceUp, isFlippable: false }
             : tile
         ),
         flipped: state.flipped.concat(action.payload.tile),
@@ -32,7 +32,7 @@ export const gameReducer = (state, action) => {
         tiles: state.tiles.map((tile) =>
           action.payload.tiles[0].id === tile.id ||
           action.payload.tiles[1].id === tile.id
-            ? { ...tile, faceUp: !tile.faceUp }
+            ? { ...tile, faceUp: !tile.faceUp, isFlippable: true }
             : tile
         ),
         flipped: [],
@@ -51,6 +51,16 @@ export const gameReducer = (state, action) => {
       };
 
     //TODO: reset game action to reset all tiles
+
+    case types.TOGGLE_LOCK:
+      return {
+        ...state,
+        tiles: state.tiles.map((tile) =>
+          action.payload.locked === true
+            ? { ...tile, isFlippable: false }
+            : { ...tile, isFlippable: true }
+        ),
+      };
 
     default: {
       return state;

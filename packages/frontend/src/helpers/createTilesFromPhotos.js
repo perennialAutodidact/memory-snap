@@ -13,6 +13,7 @@ const createTilesFromPhotos = (photos, options = { shuffle: true }) => {
     id: index,
     isMatched: false,
     faceUp: false,
+    isFlippable: true,
     photo: photo,
   }));
 
