@@ -13,13 +13,13 @@ const TileGrid = ({ tiles }) => {
   const { state, dispatch } = useGameContext();
 
   const onFlipTile = (tile) => {
-    if (tile.isFlipable === false || state.flipped.length === 2) {
+    if (tile.isFlippable === false || state.flipped.length === 2) {
       return;
     } else {
       dispatch(flipTile(tile));
     }
   };
-
+  console.log(state.tiles, 'FROM TG');
   useEffect(() => {
     if (state.flipped.length > 1) {
       dispatch(toggleLock(true));

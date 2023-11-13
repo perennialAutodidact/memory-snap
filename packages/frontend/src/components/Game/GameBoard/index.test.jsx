@@ -72,11 +72,11 @@ describe('GameBoard component', () => {
   it('will not flip a tile to face down with second click', async () => {
     const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
 
-    const flippedTileState = produce(baseState.game, (draft) => {
+    const tilesState = produce(baseState.game, (draft) => {
       draft.tiles = tiles;
     });
 
-    const state = { ...baseState, game: flippedTileState };
+    const state = { ...baseState, game: tilesState };
 
     const { user, screen } = setupTests(GameBoard, { state });
 
