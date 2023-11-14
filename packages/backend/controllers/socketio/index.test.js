@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { setupTestSocket, waitFor } from '__test__/helpers';
+import { setupTestSocket, waitFor } from '__test__/helpers.js';
 
 dotenv.config({ path: '.env.local' });
 

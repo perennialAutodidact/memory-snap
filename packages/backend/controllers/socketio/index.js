@@ -1,5 +1,8 @@
+import dotenv from 'dotenv';
 import { Server } from 'socket.io';
 import { createServer } from 'node:http';
+
+dotenv.config();
 
 export const setupSocket = (app) => {
   const server = createServer(app);
@@ -11,7 +14,9 @@ const handlePing = (socket) => {
 };
 
 const handleDisconnect = () => {
-  console.warn('SOCKET DISCONNECTED');
+  if (process.env.NODE_ENV !== 'test') {
+    console.warn('SOCKET DISCONNECTED');
+  }
 };
 
 const setupDefaultEvents = (socket) => {
