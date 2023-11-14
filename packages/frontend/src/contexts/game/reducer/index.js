@@ -15,16 +15,26 @@ export const gameReducer = (state, action) => {
         tiles: createTilesFromPhotos(action.payload.photos, { shuffle: true }),
       };
 
-    case types.FLIP_TILE:
+    case types.FLIP_TILE: {
+      if (action.payload.tile.isFlippable === true) {
+        return {
+          ...state,
+          tiles: state.tiles.map((tile) =>
+            action.payload.tile.id === tile.id
+              ? { ...tile, faceUp: !tile.faceUp, isFlippable: false }
+              : tile
+          ),
+          flipped: state.flipped.concat(action.payload.tile),
+        };
+      }
+
+      if (state.flipped.length === 1) {
+        console.log('DISABLE ALL TILES');
+      }
       return {
         ...state,
-        tiles: state.tiles.map((tile) =>
-          action.payload.tile.id === tile.id
-            ? { ...tile, faceUp: !tile.faceUp, isFlippable: false }
-            : tile
-        ),
-        flipped: state.flipped.concat(action.payload.tile),
       };
+    }
 
     case types.RESET_TILES:
       return {
@@ -52,15 +62,15 @@ export const gameReducer = (state, action) => {
 
     //TODO: reset game action to reset all tiles
 
-    case types.TOGGLE_LOCK:
-      return {
-        ...state,
-        tiles: state.tiles.map((tile) =>
-          action.payload.locked === true
-            ? { ...tile, isFlippable: false }
-            : { ...tile, isFlippable: true }
-        ),
-      };
+    // case types.TOGGLE_LOCK:
+    //   return {
+    //     ...state,
+    //     tiles: state.tiles.map((tile) =>
+    //       action.payload.locked === true
+    //         ? { ...tile, isFlippable: false }
+    //         : { ...tile, isFlippable: true }
+    //     ),
+    //   };
 
     default: {
       return state;
