@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "ESNext",
     "target": "es6",
-    "baseUrl": "."
+    "baseUrl": "./",
+    // "types": ["node"]
+    "paths": {
+      "controllers": ["./controllers"],
+    }
   },
   "exclude": ["node_modules"]
 }
