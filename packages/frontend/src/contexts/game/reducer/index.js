@@ -16,7 +16,10 @@ export const gameReducer = (state, action) => {
       };
 
     case types.FLIP_TILE: {
-      if (action.payload.tile.isFlippable === true) {
+      if (
+        action.payload.tile.isFlippable === true &&
+        state.flipped.length === 0
+      ) {
         return {
           ...state,
           tiles: state.tiles.map((tile) =>
@@ -27,10 +30,21 @@ export const gameReducer = (state, action) => {
           flipped: state.flipped.concat(action.payload.tile),
         };
       }
-
-      if (state.flipped.length === 1) {
-        console.log('DISABLE ALL TILES');
+      if (
+        state.flipped.length > 0 &&
+        action.payload.tile.isFlippable === true
+      ) {
+        return {
+          ...state,
+          tiles: state.tiles.map((tile) =>
+            action.payload.tile.id === tile.id
+              ? { ...tile, faceUp: !tile.faceUp, isFlippable: false }
+              : { ...tile, isFlippable: false }
+          ),
+          flipped: state.flipped.concat(action.payload.tile),
+        };
       }
+
       return {
         ...state,
       };
@@ -43,7 +57,7 @@ export const gameReducer = (state, action) => {
           action.payload.tiles[0].id === tile.id ||
           action.payload.tiles[1].id === tile.id
             ? { ...tile, faceUp: !tile.faceUp, isFlippable: true }
-            : tile
+            : { ...tile, isFlippable: true }
         ),
         flipped: [],
       };
@@ -55,7 +69,7 @@ export const gameReducer = (state, action) => {
           action.payload.tiles[0].id === tile.id ||
           action.payload.tiles[1].id === tile.id
             ? { ...tile, isMatched: !tile.isMatched }
-            : tile
+            : { ...tile, isFlippable: true }
         ),
         flipped: [],
       };

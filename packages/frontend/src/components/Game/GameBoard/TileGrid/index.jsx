@@ -11,18 +11,17 @@ const TileGrid = ({ tiles }) => {
     dispatch(flipTile(tile));
   };
 
-  const handleFlippedPair = (flipped) => {
-    console.log(flipped[0].photo, 'flipped from handlePair');
-    setTimeout(() => {
-      if (flipped[0].photo.id === flipped[1].photo.id) {
-        dispatch(handleMatch(flipped));
-      } else {
-        dispatch(resetTiles(flipped));
-      }
-    }, 2000);
-  };
-
   useEffect(() => {
+    const handleFlippedPair = (flipped) => {
+      setTimeout(() => {
+        if (flipped[0].photo.id === flipped[1].photo.id) {
+          dispatch(handleMatch(flipped));
+        } else {
+          dispatch(resetTiles(flipped));
+        }
+      }, 2000);
+    };
+
     if (state.flipped.length > 1) {
       handleFlippedPair(state.flipped);
     }
