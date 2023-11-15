@@ -71,6 +71,7 @@ describe('gameReducer', () => {
 
     const expected = produce(initialTilesState, (draft) => {
       draft.tiles[4].faceUp = true;
+      draft.tiles[4].isFlippable = false;
       draft.flipped = [payload.tile];
     });
 

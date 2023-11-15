@@ -94,14 +94,11 @@ describe('GameBoard component', () => {
   it('will not flip a tile if two others are flipped', async () => {
     const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
 
-    const flipped = [tiles[3], tiles[9]];
-
-    const twoFlippedGameState = produce(baseState.game, (draft) => {
+    const initialGameState = produce(baseState.game, (draft) => {
       draft.tiles = tiles;
-      draft.flipped = flipped;
     });
 
-    const state = { ...baseState, game: twoFlippedGameState };
+    const state = { ...baseState, game: initialGameState };
 
     const { user, screen } = setupTests(GameBoard, { state });
 
@@ -109,6 +106,15 @@ describe('GameBoard component', () => {
 
     await user.click(screen.getByTestId('tile-0'));
 
-    expect(screen.getByTestId('tile-0')).not.toHaveClass('faceUp');
+    expect(screen.getByTestId('tile-0')).toHaveClass('faceUp');
+
+    expect(screen.getByTestId('tile-5')).not.toHaveClass('faceUp');
+
+    await user.click(screen.getByTestId('tile-5'));
+
+    expect(screen.getByTestId('tile-5')).toHaveClass('faceUp');
+
+    await user.click(screen.getByTestId('tile-7'));
+    expect(screen.getByTestId('tile-7')).not.toHaveClass('faceUp');
   });
 });
