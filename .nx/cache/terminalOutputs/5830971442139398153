@@ -1,0 +1,337 @@
+[2K[1G[1myarn run v1.22.19[22m[m
+[2K[1G[2m$ npx nx run-many --target=build[22m
+
+ [36m>[39m [0m[7m[1m[36m NX [39m[22m[27m[0m  [36mRunning target [1mbuild[22m for 3 projects:[39m
+
+    [2m-[22m memory-snap-frontend
+    [2m-[22m memory-snap-backend
+    [2m-[22m .
+
+ 
+
+[2m> [22m[2mnx run[22m memory-snap-backend:build  [2m[local cache][22m
+
+[2K[1G[2m$ echo 'backend build'[22m
+'backend build'
+
+[2m> [22m[2mnx run[22m memory-snap-frontend:build
+
+[2K[1G[2m$ react-scripts build[22m
+Creating an optimized production build...
+[0;33mOne of your dependencies, babel-preset-react-app, is importing the
+"@babel/plugin-proposal-private-property-in-object" package without
+declaring it in its dependencies. This is currently working because
+"@babel/plugin-proposal-private-property-in-object" is already in your
+node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
+
+babel-preset-react-app is part of the create-react-app project, [1mwhich
+is not maintianed anymore[0;33m. It is thus unlikely that this bug will
+ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+your devDependencies to work around this error. This will make this message
+go away.[0m
+  
+[33mCompiled with warnings.[39m
+[33m[39m
+[eslint] 
+src\contexts\game\actions\types.js
+  [1mLine 6:1:[22m  Assign object to a variable before exporting as module default  [33m[4mimport/no-anonymous-default-export[24m[39m
+
+src\contexts\photos\actions\types.js
+  [1mLine 5:1:[22m  Assign object to a variable before exporting as module default  [33m[4mimport/no-anonymous-default-export[24m[39m
+
+src\hooks\useFetchedPhotos\index.jsx
+  [1mLine 39:6:[22m  React Hook useEffect has missing dependencies: 'perPage' and 'query'. Either include them or remove the dependency array  [33m[4mreact-hooks/exhaustive-deps[24m[39m
+
+Search for the [4m[33mkeywords[39m[24m to learn more about each warning.
+To ignore, add [36m// eslint-disable-next-line[39m to the line before.
+
+File sizes after gzip:
+
+  109.95 kB  [2mbuild\static\js\[22m[36mmain.b6be4a62.js[39m
+  32.6 kB    [2mbuild\static\css\[22m[36mmain.ab8baf6b.css[39m
+  1.79 kB    [2mbuild\static\js\[22m[36m367.cf0e8eb2.chunk.js[39m
+
+The project was built assuming it is hosted at [32m./[39m.
+You can control this with the [32mhomepage[39m field in your [36mpackage.json[39m.
+
+The [36mbuild[39m folder is ready to be deployed.
+
+Find out more about deployment here:
+
+  [33mhttps://cra.link/deployment[39m
+
+
+[2m> [22m[2mnx run[22m .:build
+
+[2K[1G[2m$ npx nx run-many --target=build[22m
+
+ [36m>[39m [0m[7m[1m[36m NX [39m[22m[27m[0m  [36mRunning target [1mbuild[22m for 3 projects:[39m
+
+    [2m-[22m memory-snap-frontend
+    [2m-[22m memory-snap-backend
+    [2m-[22m .
+
+ 
+
+[2m> [22m[2mnx run[22m memory-snap-backend:build  [2m[existing outputs match the cache, left as is][22m
+
+[2K[1G[2m$ echo 'backend build'[22m
+'backend build'
+
+[2m> [22m[2mnx run[22m memory-snap-frontend:build
+
+[2K[1G[2m$ react-scripts build[22m
+Creating an optimized production build...
+[0;33mOne of your dependencies, babel-preset-react-app, is importing the
+"@babel/plugin-proposal-private-property-in-object" package without
+declaring it in its dependencies. This is currently working because
+"@babel/plugin-proposal-private-property-in-object" is already in your
+node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
+
+babel-preset-react-app is part of the create-react-app project, [1mwhich
+is not maintianed anymore[0;33m. It is thus unlikely that this bug will
+ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+your devDependencies to work around this error. This will make this message
+go away.[0m
+  
+[33mCompiled with warnings.[39m
+[33m[39m
+[eslint] 
+src\contexts\game\actions\types.js
+  [1mLine 6:1:[22m  Assign object to a variable before exporting as module default  [33m[4mimport/no-anonymous-default-export[24m[39m
+
+src\contexts\photos\actions\types.js
+  [1mLine 5:1:[22m  Assign object to a variable before exporting as module default  [33m[4mimport/no-anonymous-default-export[24m[39m
+
+src\hooks\useFetchedPhotos\index.jsx
+  [1mLine 39:6:[22m  React Hook useEffect has missing dependencies: 'perPage' and 'query'. Either include them or remove the dependency array  [33m[4mreact-hooks/exhaustive-deps[24m[39m
+
+Search for the [4m[33mkeywords[39m[24m to learn more about each warning.
+To ignore, add [36m// eslint-disable-next-line[39m to the line before.
+
+File sizes after gzip:
+
+
+The project was built assuming it is hosted at [32m./[39m.
+You can control this with the [32mhomepage[39m field in your [36mpackage.json[39m.
+
+The [36mbuild[39m folder is ready to be deployed.
+
+Find out more about deployment here:
+
+  [33mhttps://cra.link/deployment[39m
+
+
+[2m> [22m[2mnx run[22m .:build
+
+[2K[1G[2m$ npx nx run-many --target=build[22m
+
+ [36m>[39m [0m[7m[1m[36m NX [39m[22m[27m[0m  [36mRunning target [1mbuild[22m for 3 projects:[39m
+
+    [2m-[22m memory-snap-frontend
+    [2m-[22m memory-snap-backend
+    [2m-[22m .
+
+ 
+
+[2m> [22m[2mnx run[22m memory-snap-backend:build  [2m[existing outputs match the cache, left as is][22m
+
+[2K[1G[2m$ echo 'backend build'[22m
+'backend build'
+
+[2m> [22m[2mnx run[22m .:build
+
+[2K[1G[2m$ npx nx run-many --target=build[22m
+
+ [36m>[39m [0m[7m[1m[36m NX [39m[22m[27m[0m  [36mRunning target [1mbuild[22m for 3 projects:[39m
+
+    [2m-[22m memory-snap-frontend
+    [2m-[22m memory-snap-backend
+    [2m-[22m .
+
+ 
+
+[2m> [22m[2mnx run[22m memory-snap-backend:build  [2m[existing outputs match the cache, left as is][22m
+
+[2K[1G[2m$ echo 'backend build'[22m
+'backend build'
+
+[2m> [22m[2mnx run[22m .:build
+
+[2K[1G[2m$ npx nx run-many --target=build[22m
+
+ [36m>[39m [0m[7m[1m[36m NX [39m[22m[27m[0m  [36mRunning target [1mbuild[22m for 3 projects:[39m
+
+    [2m-[22m memory-snap-frontend
+    [2m-[22m memory-snap-backend
+    [2m-[22m .
+
+ 
+
+[2m> [22m[2mnx run[22m memory-snap-backend:build  [2m[existing outputs match the cache, left as is][22m
+
+[2K[1G[2m$ echo 'backend build'[22m
+'backend build'
+
+[2m> [22m[2mnx run[22m memory-snap-frontend:build
+
+[2K[1G[2m$ react-scripts build[22m
+'react-scripts' is not recognized as an internal or external command,
+operable program or batch file.
+[2K[1G[31merror[39m Command failed with exit code 1.
+[2K[1G[94minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
+
+[2m> [22m[2mnx run[22m .:build
+
+[2K[1G[2m$ npx nx run-many --target=build[22m
+'npx' is not recognized as an internal or external command,
+operable program or batch file.
+[2K[1G[31merror[39m Command failed with exit code 1.
+[2K[1G[94minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
+
+ 
+
+ [31m>[39m [0m[7m[1m[31m NX [39m[22m[27m[0m  [31mRunning target [1mbuild[22m for 3 projects failed[39m
+
+   [2mFailed tasks:[22m
+   
+   [2m-[22m memory-snap-frontend:build
+   [2m-[22m .:build
+
+[2K[1G[31merror[39m Command failed with exit code 1.
+[2K[1G[94minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
+
+[2m> [22m[2mnx run[22m memory-snap-frontend:build
+
+[2K[1G[2m$ react-scripts build[22m
+Creating an optimized production build...
+[0;33mOne of your dependencies, babel-preset-react-app, is importing the
+"@babel/plugin-proposal-private-property-in-object" package without
+declaring it in its dependencies. This is currently working because
+"@babel/plugin-proposal-private-property-in-object" is already in your
+node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
+
+babel-preset-react-app is part of the create-react-app project, [1mwhich
+is not maintianed anymore[0;33m. It is thus unlikely that this bug will
+ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+your devDependencies to work around this error. This will make this message
+go away.[0m
+  
+[33mCompiled with warnings.[39m
+[33m[39m
+[eslint] 
+src\contexts\game\actions\types.js
+  [1mLine 6:1:[22m  Assign object to a variable before exporting as module default  [33m[4mimport/no-anonymous-default-export[24m[39m
+
+src\contexts\photos\actions\types.js
+  [1mLine 5:1:[22m  Assign object to a variable before exporting as module default  [33m[4mimport/no-anonymous-default-export[24m[39m
+
+src\hooks\useFetchedPhotos\index.jsx
+  [1mLine 39:6:[22m  React Hook useEffect has missing dependencies: 'perPage' and 'query'. Either include them or remove the dependency array  [33m[4mreact-hooks/exhaustive-deps[24m[39m
+
+Search for the [4m[33mkeywords[39m[24m to learn more about each warning.
+To ignore, add [36m// eslint-disable-next-line[39m to the line before.
+
+File sizes after gzip:
+
+
+The project was built assuming it is hosted at [32m./[39m.
+You can control this with the [32mhomepage[39m field in your [36mpackage.json[39m.
+
+The [36mbuild[39m folder is ready to be deployed.
+
+Find out more about deployment here:
+
+  [33mhttps://cra.link/deployment[39m
+
+
+ 
+
+ [31m>[39m [0m[7m[1m[31m NX [39m[22m[27m[0m  [31mRunning target [1mbuild[22m for 3 projects failed[39m
+
+   [2mFailed tasks:[22m
+   
+   [2m-[22m .:build
+
+[2K[1G[31merror[39m Command failed with exit code 1.
+[2K[1G[94minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
+
+[2m> [22m[2mnx run[22m memory-snap-frontend:build
+
+[2K[1G[2m$ react-scripts build[22m
+Creating an optimized production build...
+[0;33mOne of your dependencies, babel-preset-react-app, is importing the
+"@babel/plugin-proposal-private-property-in-object" package without
+declaring it in its dependencies. This is currently working because
+"@babel/plugin-proposal-private-property-in-object" is already in your
+node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
+
+babel-preset-react-app is part of the create-react-app project, [1mwhich
+is not maintianed anymore[0;33m. It is thus unlikely that this bug will
+ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+your devDependencies to work around this error. This will make this message
+go away.[0m
+  
+[33mCompiled with warnings.[39m
+[33m[39m
+[eslint] 
+src\contexts\game\actions\types.js
+  [1mLine 6:1:[22m  Assign object to a variable before exporting as module default  [33m[4mimport/no-anonymous-default-export[24m[39m
+
+src\contexts\photos\actions\types.js
+  [1mLine 5:1:[22m  Assign object to a variable before exporting as module default  [33m[4mimport/no-anonymous-default-export[24m[39m
+
+src\hooks\useFetchedPhotos\index.jsx
+  [1mLine 39:6:[22m  React Hook useEffect has missing dependencies: 'perPage' and 'query'. Either include them or remove the dependency array  [33m[4mreact-hooks/exhaustive-deps[24m[39m
+
+Search for the [4m[33mkeywords[39m[24m to learn more about each warning.
+To ignore, add [36m// eslint-disable-next-line[39m to the line before.
+
+File sizes after gzip:
+
+  109.95 kB  [2mbuild\static\js\[22m[36mmain.b6be4a62.js[39m
+  32.6 kB    [2mbuild\static\css\[22m[36mmain.ab8baf6b.css[39m
+  1.79 kB    [2mbuild\static\js\[22m[36m367.cf0e8eb2.chunk.js[39m
+
+The project was built assuming it is hosted at [32m./[39m.
+You can control this with the [32mhomepage[39m field in your [36mpackage.json[39m.
+
+The [36mbuild[39m folder is ready to be deployed.
+
+Find out more about deployment here:
+
+  [33mhttps://cra.link/deployment[39m
+
+
+ 
+
+ [31m>[39m [0m[7m[1m[31m NX [39m[22m[27m[0m  [31mRunning target [1mbuild[22m for 3 projects failed[39m
+
+   [2mFailed tasks:[22m
+   
+   [2m-[22m .:build
+
+[2K[1G[31merror[39m Command failed with exit code 1.
+[2K[1G[94minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
+
+ 
+
+ [31m>[39m [0m[7m[1m[31m NX [39m[22m[27m[0m  [31mRunning target [1mbuild[22m for 3 projects failed[39m
+
+   [2mFailed tasks:[22m
+   
+   [2m-[22m .:build
+
+[2K[1G[31merror[39m Command failed with exit code 1.
+[2K[1G[94minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.
+
+ 
+
+ [31m>[39m [0m[7m[1m[31m NX [39m[22m[27m[0m  [31mRunning target [1mbuild[22m for 3 projects failed[39m
+
+   [2mFailed tasks:[22m
+   
+   [2m-[22m .:build
+
+[2K[1G[31merror[39m Command failed with exit code 1.
+[2K[1G[94minfo[39m Visit [1mhttps://yarnpkg.com/en/docs/cli/run[22m for documentation about this command.

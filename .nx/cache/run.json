@@ -1,0 +1,21 @@
+{
+  "run": {
+    "command": "nx docker-build",
+    "startTime": "2023-11-26T17:40:11.934Z",
+    "endTime": "2023-11-26T17:44:44.443Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": ".:build",
+      "target": "build",
+      "projectName": ".",
+      "hash": "5830971442139398153",
+      "startTime": "2023-11-26T17:40:11.954Z",
+      "endTime": "2023-11-26T17:44:44.439Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 1
+    }
+  ]
+}

@@ -6,14 +6,13 @@ import bodyParser from 'body-parser';
 
 import {
   setupSocket,
-  socketHandlers,
   setupSocketEventHandlers,
-} from 'controllers/socketio';
-import { getDirName } from 'helpers';
-import { getPhotos } from 'controllers/express/photosController';
+} from './controllers/socketio/index.js';
+import { getDirName } from './helpers.js';
+import { getPhotos } from './controllers/express/photosController.js';
 
 // config
-dotenv.config({ path: '../../.env.local' });
+dotenv.config({ path: '.env.local' });
 const __dirname = getDirName(import.meta.url);
 const port = process.env.PORT || 8080;
 
@@ -44,7 +43,7 @@ app.use('/api/photos', getPhotos);
 
 // socket.io
 io.on('connection', (socket) => {
-  setupSocketEventHandlers(socket, socketHandlers);
+  setupSocketEventHandlers(socket);
 });
 
 // serve production build

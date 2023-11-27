@@ -14,7 +14,14 @@
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        {
+          "projects": "dependencies",
+          "target": "install",
+          "params": "forward"
+        },
+        "^build"
+      ]
     }
   }
 }
