@@ -1,5 +1,5 @@
 import types from '../actions/types';
-import { createTilesFromPhotos } from 'helpers';
+import { createTilesFromPhotos, lockTiles } from 'helpers';
 
 export const gameReducer = (state, action) => {
   if (!state) {
@@ -16,38 +16,25 @@ export const gameReducer = (state, action) => {
       };
 
     case types.FLIP_TILE: {
-      if (
-        action.payload.tile.isFlippable === true &&
-        state.flipped.length === 0
-      ) {
-        return {
-          ...state,
-          tiles: state.tiles.map((tile) =>
-            action.payload.tile.id === tile.id
-              ? { ...tile, faceUp: !tile.faceUp, isFlippable: false }
-              : tile
-          ),
-          flipped: state.flipped.concat(action.payload.tile),
-        };
-      }
-      if (
-        state.flipped.length > 0 &&
-        action.payload.tile.isFlippable === true
-      ) {
-        return {
-          ...state,
-          tiles: state.tiles.map((tile) =>
-            action.payload.tile.id === tile.id
-              ? { ...tile, faceUp: !tile.faceUp, isFlippable: false }
-              : { ...tile, isFlippable: false }
-          ),
-          flipped: state.flipped.concat(action.payload.tile),
-        };
+      if (!action.payload.tile.isFlippable) {
+        return state;
       }
 
-      return {
+      let tempState = {
         ...state,
+        tiles: state.tiles.map((tile) =>
+          action.payload.tile.id === tile.id
+            ? { ...tile, faceUp: true, isFlippable: false }
+            : tile
+        ),
+        flipped: state.flipped.concat(action.payload.tile),
       };
+
+      if (tempState.flipped.length === 2) {
+        tempState = { ...tempState, tiles: lockTiles(tempState.tiles) };
+      }
+
+      return tempState;
     }
 
     case types.RESET_TILES:
@@ -73,18 +60,6 @@ export const gameReducer = (state, action) => {
         ),
         flipped: [],
       };
-
-    //TODO: reset game action to reset all tiles
-
-    // case types.TOGGLE_LOCK:
-    //   return {
-    //     ...state,
-    //     tiles: state.tiles.map((tile) =>
-    //       action.payload.locked === true
-    //         ? { ...tile, isFlippable: false }
-    //         : { ...tile, isFlippable: true }
-    //     ),
-    //   };
 
     default: {
       return state;
