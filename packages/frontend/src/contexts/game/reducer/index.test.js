@@ -87,7 +87,6 @@ describe('gameReducer', () => {
     });
 
     const payload = { tile: initialTilesState.tiles[6] };
-    console.log(payload);
 
     const action = {
       type: 'FLIP_TILE',
