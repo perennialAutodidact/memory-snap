@@ -78,17 +78,17 @@ describe('GameBoard component', () => {
 
     const state = { ...baseState, game: tilesState };
 
-    const { user, screen } = setupTests(GameBoard, { state });
+    const { user } = setupTests(GameBoard, { state });
 
-    expect(screen.getByTestId('tile-0')).toHaveClass('faceDown');
+    expect(tile.container('tile-0').get()).toHaveClass('faceDown');
 
-    await user.click(screen.getByTestId('tile-0'));
+    await user.click(tile.container('tile-0').get());
 
-    expect(screen.getByTestId('tile-0')).toHaveClass('faceUp');
+    expect(tile.container('tile-0').get()).toHaveClass('faceUp');
 
-    await user.click(screen.getByTestId('tile-0'));
+    await user.click(tile.container('tile-0').get());
 
-    expect(screen.getByTestId('tile-0')).toHaveClass('faceUp');
+    expect(tile.container('tile-0').get()).toHaveClass('faceUp');
   });
 
   it('will not flip a tile if two others are flipped', async () => {
@@ -100,21 +100,21 @@ describe('GameBoard component', () => {
 
     const state = { ...baseState, game: initialGameState };
 
-    const { user, screen } = setupTests(GameBoard, { state });
+    const { user } = setupTests(GameBoard, { state });
 
-    expect(screen.getByTestId('tile-0')).not.toHaveClass('faceUp');
+    expect(tile.container('tile-0').get()).not.toHaveClass('faceUp');
 
-    await user.click(screen.getByTestId('tile-0'));
+    await user.click(tile.container('tile-0').get());
 
-    expect(screen.getByTestId('tile-0')).toHaveClass('faceUp');
+    expect(tile.container('tile-0').get()).toHaveClass('faceUp');
 
-    expect(screen.getByTestId('tile-5')).not.toHaveClass('faceUp');
+    expect(tile.container('tile-5').get()).not.toHaveClass('faceUp');
 
-    await user.click(screen.getByTestId('tile-5'));
+    await user.click(tile.container('tile-5').get());
 
-    expect(screen.getByTestId('tile-5')).toHaveClass('faceUp');
+    expect(tile.container('tile-5').get()).toHaveClass('faceUp');
 
-    await user.click(screen.getByTestId('tile-7'));
-    expect(screen.getByTestId('tile-7')).not.toHaveClass('faceUp');
+    await user.click(tile.container('tile-7').get());
+    expect(tile.container('tile-7').get()).not.toHaveClass('faceUp');
   });
 });
