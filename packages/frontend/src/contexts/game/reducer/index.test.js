@@ -78,6 +78,27 @@ describe('gameReducer', () => {
     expect(gameReducer(initialTilesState, action)).toStrictEqual(expected);
   });
 
+  it('returns state unchanged if target tile is unflippable and action type is FLIP_TILE', () => {
+    const { game: state } = baseState;
+
+    const initialTilesState = produce(state, (draft) => {
+      draft.tiles = createTilesFromPhotos(mockPhotos);
+      draft.tiles[6].isFlippable = false;
+    });
+
+    const payload = { tile: initialTilesState.tiles[6] };
+    console.log(payload);
+
+    const action = {
+      type: 'FLIP_TILE',
+      payload: payload,
+    };
+
+    expect(gameReducer(initialTilesState, action)).toStrictEqual(
+      initialTilesState
+    );
+  });
+
   it('toggles the faceUp value of flipped tiles if action type is RESET_TILES', () => {
     const { game: state } = baseState;
 
