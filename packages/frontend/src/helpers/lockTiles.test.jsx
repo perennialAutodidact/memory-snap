@@ -14,8 +14,8 @@ describe('lockTiles', () => {
   it('changes the is flippable value for each tile to false', () => {
     const tiles = createTilesFromPhotos(mockPhotos);
 
-    const allTilesAreFlippable = tiles.some(
-      (tile) => tile.isFlippable === true
+    const allTilesAreFlippable = !tiles.some(
+      (tile) => tile.isFlippable === false
     );
     expect(allTilesAreFlippable).toBe(true);
 
