@@ -14,16 +14,18 @@ describe('lockTiles', () => {
   it('changes the is flippable value for each tile to false', () => {
     const tiles = createTilesFromPhotos(mockPhotos);
 
-    const flippableTiles = tiles.filter((tile) => tile.isFlippable === true);
-    expect(flippableTiles.length).toEqual(tiles.length);
+    const allTilesAreFlippable = tiles.some(
+      (tile) => tile.isFlippable === true
+    );
+    expect(allTilesAreFlippable).toBe(true);
 
     const lockedTiles = lockTiles(tiles);
 
-    const flippableLockedTiles = lockedTiles.filter(
+    const aTileIsFlippable = lockedTiles.some(
       (tile) => tile.isFlippable === true
     );
 
-    expect(flippableLockedTiles.length).toBe(0);
+    expect(aTileIsFlippable).toBe(false);
   });
 });
 
@@ -41,18 +43,18 @@ describe('unlockTiles', () => {
 
     const lockedTiles = lockTiles(tiles);
 
-    const flippableLockedTiles = lockedTiles.filter(
+    const aTileIsUnlocked = lockedTiles.some(
       (tile) => tile.isFlippable === true
     );
 
-    expect(flippableLockedTiles.length).toBe(0);
+    expect(aTileIsUnlocked).toBe(false);
 
     const unlockedTiles = unlockTiles(lockedTiles);
 
-    const flippableUnLockedTiles = unlockedTiles.filter(
+    const allTilesAreFlippable = unlockedTiles.some(
       (tile) => tile.isFlippable === true
     );
 
-    expect(flippableUnLockedTiles.length).toEqual(tiles.length);
+    expect(allTilesAreFlippable).toBe(true);
   });
 });
