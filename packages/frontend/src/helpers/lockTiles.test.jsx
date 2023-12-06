@@ -51,8 +51,8 @@ describe('unlockTiles', () => {
 
     const unlockedTiles = unlockTiles(lockedTiles);
 
-    const allTilesAreFlippable = unlockedTiles.some(
-      (tile) => tile.isFlippable === true
+    const allTilesAreFlippable = !unlockedTiles.some(
+      (tile) => tile.isFlippable === false
     );
 
     expect(allTilesAreFlippable).toBe(true);
