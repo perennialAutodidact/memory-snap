@@ -1,5 +1,5 @@
 import types from '../actions/types';
-import { createTilesFromPhotos } from 'helpers';
+import { createTilesFromPhotos, lockTiles } from 'helpers';
 
 export const gameReducer = (state, action) => {
   if (!state) {
@@ -15,16 +15,27 @@ export const gameReducer = (state, action) => {
         tiles: createTilesFromPhotos(action.payload.photos, { shuffle: true }),
       };
 
-    case types.FLIP_TILE:
-      return {
+    case types.FLIP_TILE: {
+      if (!action.payload.tile.isFlippable) {
+        return state;
+      }
+
+      let tempState = {
         ...state,
         tiles: state.tiles.map((tile) =>
           action.payload.tile.id === tile.id
-            ? { ...tile, faceUp: !tile.faceUp }
+            ? { ...tile, faceUp: true, isFlippable: false }
             : tile
         ),
         flipped: state.flipped.concat(action.payload.tile),
       };
+
+      if (tempState.flipped.length === 2) {
+        tempState = { ...tempState, tiles: lockTiles(tempState.tiles) };
+      }
+
+      return tempState;
+    }
 
     case types.RESET_TILES:
       return {
@@ -32,8 +43,8 @@ export const gameReducer = (state, action) => {
         tiles: state.tiles.map((tile) =>
           action.payload.tiles[0].id === tile.id ||
           action.payload.tiles[1].id === tile.id
-            ? { ...tile, faceUp: !tile.faceUp }
-            : tile
+            ? { ...tile, faceUp: !tile.faceUp, isFlippable: true }
+            : { ...tile, isFlippable: true }
         ),
         flipped: [],
       };
@@ -45,7 +56,7 @@ export const gameReducer = (state, action) => {
           action.payload.tiles[0].id === tile.id ||
           action.payload.tiles[1].id === tile.id
             ? { ...tile, isMatched: !tile.isMatched }
-            : tile
+            : { ...tile, isFlippable: true }
         ),
         flipped: [],
       };

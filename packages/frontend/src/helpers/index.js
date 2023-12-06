@@ -1,3 +1,4 @@
 import { createTilesFromPhotos } from './createTilesFromPhotos';
+import { lockTiles, unlockTiles } from './lockTiles';
 
-export { createTilesFromPhotos };
+export { createTilesFromPhotos, lockTiles, unlockTiles };
