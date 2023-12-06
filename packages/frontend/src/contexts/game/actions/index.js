@@ -19,3 +19,7 @@ export const handleMatch = (tiles) => ({
   type: types.HANDLE_MATCH,
   payload: { tiles },
 });
+
+export const advanceTurn = () => ({
+  type: types.ADVANCE_TURN,
+});
