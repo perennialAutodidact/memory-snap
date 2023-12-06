@@ -68,4 +68,53 @@ describe('GameBoard component', () => {
     expect(tile.photo(tiles[1].photo.alt).query()).not.toBeInTheDocument();
     expect(tile.photo(tiles[5].photo.alt).query()).not.toBeInTheDocument();
   });
+
+  it('will not flip a tile to face down with second click', async () => {
+    const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
+
+    const tilesState = produce(baseState.game, (draft) => {
+      draft.tiles = tiles;
+    });
+
+    const state = { ...baseState, game: tilesState };
+
+    const { user } = setupTests(GameBoard, { state });
+
+    expect(tile.container('tile-0').get()).toHaveClass('faceDown');
+
+    await user.click(tile.container('tile-0').get());
+
+    expect(tile.container('tile-0').get()).toHaveClass('faceUp');
+
+    await user.click(tile.container('tile-0').get());
+
+    expect(tile.container('tile-0').get()).toHaveClass('faceUp');
+  });
+
+  it('will not flip a tile if two others are flipped', async () => {
+    const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
+
+    const initialGameState = produce(baseState.game, (draft) => {
+      draft.tiles = tiles;
+    });
+
+    const state = { ...baseState, game: initialGameState };
+
+    const { user } = setupTests(GameBoard, { state });
+
+    expect(tile.container('tile-0').get()).not.toHaveClass('faceUp');
+
+    await user.click(tile.container('tile-0').get());
+
+    expect(tile.container('tile-0').get()).toHaveClass('faceUp');
+
+    expect(tile.container('tile-5').get()).not.toHaveClass('faceUp');
+
+    await user.click(tile.container('tile-5').get());
+
+    expect(tile.container('tile-5').get()).toHaveClass('faceUp');
+
+    await user.click(tile.container('tile-7').get());
+    expect(tile.container('tile-7').get()).not.toHaveClass('faceUp');
+  });
 });
