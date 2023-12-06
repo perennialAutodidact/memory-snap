@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Tile from '../Tile';
-import { flipTile, handleMatch, resetTiles } from 'contexts/game/actions';
+import {
+  flipTile,
+  handleMatch,
+  resetTiles,
+  advanceTurn,
+} from 'contexts/game/actions';
 import useGameContext from 'hooks/useGameContext';
 
 const TileGrid = ({ tiles }) => {
@@ -27,6 +32,7 @@ const TileGrid = ({ tiles }) => {
         }
       };
     }
+    dispatch(advanceTurn());
   }, [state.flipped, dispatch]);
 
   return (

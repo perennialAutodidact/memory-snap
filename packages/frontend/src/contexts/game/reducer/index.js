@@ -50,7 +50,12 @@ export const gameReducer = (state, action) => {
         flipped: [],
       };
 
-    //TODO: reset game action to reset all tiles
+    case types.ADVANCE_TURN:
+      return {
+        ...state,
+        currentPlayer: state.players[state.turnCount % state.players.length],
+        turnCount: state.turnCount + 1,
+      };
 
     default: {
       return state;
