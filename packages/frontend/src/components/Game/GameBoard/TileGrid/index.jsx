@@ -29,8 +29,8 @@ const TileGrid = ({ tiles }) => {
 
     if (state.flipped.length > 1) {
       handleFlippedPair(state.flipped);
+      dispatch(advanceTurn());
     }
-    dispatch(advanceTurn());
   }, [state.flipped, dispatch]);
 
   return (
