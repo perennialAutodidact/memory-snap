@@ -4,10 +4,12 @@ const RESET_TILES = 'RESET_TILES';
 const HANDLE_MATCH = 'HANDLE_MATCH';
 const ADVANCE_TURN = 'ADVANCE_TURN';
 
-export default {
+const types = {
   ADD_TILES,
   FLIP_TILE,
   RESET_TILES,
   HANDLE_MATCH,
   ADVANCE_TURN,
 };
+
+export default types;
