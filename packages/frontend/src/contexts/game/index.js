@@ -12,11 +12,13 @@ export const initialGameState = {
       name: 'Player 1',
       number: 1,
       score: 0,
+      color: '#3a96cf',
     },
     {
       name: 'Player 2',
       number: 2,
       score: 0,
+      color: '#ed6b86',
     },
   ],
   tiles: [],
