@@ -1,27 +1,41 @@
 {
-  "workspaceLayout": {
-    "appsDir": "./packages/*",
-    "libsDir": "./packages/*"
-  },
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx/tasks-runners/default",
-      "options": {
-        "cacheableOperations": ["build"],
-        "parallel": 2
-      }
-    }
-  },
   "targetDefaults": {
     "build": {
       "dependsOn": [
-        {
-          "projects": "dependencies",
-          "target": "install",
-          "params": "forward"
-        },
         "^build"
+      ],
+      "cache": true
+    },
+    "ci": {
+      "dependsOn": [
+        "^ci"
+      ],
+      "cache": true
+    },
+    "lint": {
+      "dependsOn": [
+        "^lint"
+      ],
+      "cache": true
+    },
+    "serve": {
+      "dependsOn": [
+        "^serve"
       ]
+    },
+    "start": {
+      "dependsOn": [
+        "^start"
+      ]
+    },
+    "test": {
+      "dependsOn": [
+        "^test"
+      ],
+      "cache": true
     }
+  },
+  "affected": {
+    "defaultBase": "main"
   }
 }

@@ -10,6 +10,10 @@
         "projectType": "library",
         "targets": {
           "ci": {
+            "dependsOn": [
+              "^ci"
+            ],
+            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "ci"
@@ -18,13 +22,9 @@
           },
           "build": {
             "dependsOn": [
-              {
-                "projects": "dependencies",
-                "target": "install",
-                "params": "forward"
-              },
               "^build"
             ],
+            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "build"
@@ -39,6 +39,10 @@
             "configurations": {}
           },
           "lint": {
+            "dependsOn": [
+              "^lint"
+            ],
+            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "lint"
@@ -46,6 +50,9 @@
             "configurations": {}
           },
           "serve": {
+            "dependsOn": [
+              "^serve"
+            ],
             "executor": "nx:run-script",
             "options": {
               "script": "serve"
@@ -53,6 +60,9 @@
             "configurations": {}
           },
           "start": {
+            "dependsOn": [
+              "^start"
+            ],
             "executor": "nx:run-script",
             "options": {
               "script": "start"
@@ -60,6 +70,10 @@
             "configurations": {}
           },
           "test": {
+            "dependsOn": [
+              "^test"
+            ],
+            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "test"
@@ -90,13 +104,9 @@
         "targets": {
           "build": {
             "dependsOn": [
-              {
-                "projects": "dependencies",
-                "target": "install",
-                "params": "forward"
-              },
               "^build"
             ],
+            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "build"
@@ -104,6 +114,10 @@
             "configurations": {}
           },
           "ci": {
+            "dependsOn": [
+              "^ci"
+            ],
+            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "ci"
@@ -111,6 +125,10 @@
             "configurations": {}
           },
           "lint": {
+            "dependsOn": [
+              "^lint"
+            ],
+            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "lint"
@@ -118,6 +136,9 @@
             "configurations": {}
           },
           "serve": {
+            "dependsOn": [
+              "^serve"
+            ],
             "executor": "nx:run-script",
             "options": {
               "script": "serve"
@@ -125,6 +146,9 @@
             "configurations": {}
           },
           "start": {
+            "dependsOn": [
+              "^start"
+            ],
             "executor": "nx:run-script",
             "options": {
               "script": "start"
@@ -132,6 +156,10 @@
             "configurations": {}
           },
           "test": {
+            "dependsOn": [
+              "^test"
+            ],
+            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "test"
@@ -160,13 +188,9 @@
         "targets": {
           "build": {
             "dependsOn": [
-              {
-                "projects": "dependencies",
-                "target": "install",
-                "params": "forward"
-              },
               "^build"
             ],
+            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "build"
@@ -174,6 +198,10 @@
             "configurations": {}
           },
           "ci": {
+            "dependsOn": [
+              "^ci"
+            ],
+            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "ci"
@@ -181,6 +209,10 @@
             "configurations": {}
           },
           "lint": {
+            "dependsOn": [
+              "^lint"
+            ],
+            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "lint"
@@ -188,6 +220,9 @@
             "configurations": {}
           },
           "serve": {
+            "dependsOn": [
+              "^serve"
+            ],
             "executor": "nx:run-script",
             "options": {
               "script": "serve"
@@ -195,6 +230,9 @@
             "configurations": {}
           },
           "start": {
+            "dependsOn": [
+              "^start"
+            ],
             "executor": "nx:run-script",
             "options": {
               "script": "start"
@@ -202,6 +240,10 @@
             "configurations": {}
           },
           "test": {
+            "dependsOn": [
+              "^test"
+            ],
+            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "test"
@@ -7953,18 +7995,18 @@
         "hash": "sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ=="
       }
     },
-    "npm:fs-extra": {
+    "npm:fs-extra@11.1.1": {
       "type": "npm",
-      "name": "npm:fs-extra",
+      "name": "npm:fs-extra@11.1.1",
       "data": {
         "version": "11.1.1",
         "packageName": "fs-extra",
         "hash": "sha512-MGIE4HOvQCeUCzmlHs0vXpih4ysz4wg9qiSAu6cd42lVwPbTM1TjV7RusoyQqMmk/95gdQZX72u+YW+c3eEpFQ=="
       }
     },
-    "npm:fs-extra@9.1.0": {
+    "npm:fs-extra": {
       "type": "npm",
-      "name": "npm:fs-extra@9.1.0",
+      "name": "npm:fs-extra",
       "data": {
         "version": "9.1.0",
         "packageName": "fs-extra",
@@ -27781,7 +27823,7 @@
       },
       {
         "source": "npm:fork-ts-checker-webpack-plugin",
-        "target": "npm:fs-extra@9.1.0",
+        "target": "npm:fs-extra",
         "type": "static"
       },
       {
@@ -27888,41 +27930,41 @@
         "type": "static"
       }
     ],
-    "npm:fs-extra": [
+    "npm:fs-extra@11.1.1": [
       {
-        "source": "npm:fs-extra",
+        "source": "npm:fs-extra@11.1.1",
         "target": "npm:graceful-fs",
         "type": "static"
       },
       {
-        "source": "npm:fs-extra",
+        "source": "npm:fs-extra@11.1.1",
         "target": "npm:jsonfile",
         "type": "static"
       },
       {
-        "source": "npm:fs-extra",
+        "source": "npm:fs-extra@11.1.1",
         "target": "npm:universalify",
         "type": "static"
       }
     ],
-    "npm:fs-extra@9.1.0": [
+    "npm:fs-extra": [
       {
-        "source": "npm:fs-extra@9.1.0",
+        "source": "npm:fs-extra",
         "target": "npm:at-least-node",
         "type": "static"
       },
       {
-        "source": "npm:fs-extra@9.1.0",
+        "source": "npm:fs-extra",
         "target": "npm:graceful-fs",
         "type": "static"
       },
       {
-        "source": "npm:fs-extra@9.1.0",
+        "source": "npm:fs-extra",
         "target": "npm:jsonfile",
         "type": "static"
       },
       {
-        "source": "npm:fs-extra@9.1.0",
+        "source": "npm:fs-extra",
         "target": "npm:universalify",
         "type": "static"
       }
@@ -33122,7 +33164,7 @@
       },
       {
         "source": "npm:nx",
-        "target": "npm:fs-extra",
+        "target": "npm:fs-extra@11.1.1",
         "type": "static"
       },
       {
@@ -38755,7 +38797,7 @@
       },
       {
         "source": "npm:workbox-build",
-        "target": "npm:fs-extra@9.1.0",
+        "target": "npm:fs-extra",
         "type": "static"
       },
       {
