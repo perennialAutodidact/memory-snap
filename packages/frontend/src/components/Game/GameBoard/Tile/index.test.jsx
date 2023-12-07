@@ -7,7 +7,14 @@ import userEvent from '@testing-library/user-event';
 describe('Tile component', () => {
   it('renders', () => {
     const tile = createTilesFromPhotos(mockPhotos)[0];
-    const props = { tile };
+
+    const player = {
+      name: 'Player 1',
+      number: 1,
+      score: 0,
+    };
+
+    const props = { tile, player };
 
     const { screen } = setupTests(Tile, { props });
     expect(screen.getByTestId(/tile/)).toBeInTheDocument();
@@ -15,7 +22,14 @@ describe('Tile component', () => {
 
   it('has alt text if faceUp is true', () => {
     const tile = createTilesFromPhotos(mockPhotos)[0];
-    const props = { tile: { ...tile, faceUp: true } };
+
+    const player = {
+      name: 'Player 1',
+      number: 1,
+      score: 0,
+    };
+
+    const props = { tile: { ...tile, faceUp: true }, player };
 
     const { screen } = setupTests(Tile, { props });
 
@@ -24,7 +38,14 @@ describe('Tile component', () => {
 
   it('does not have alt text if faceUp is false', () => {
     const tile = createTilesFromPhotos(mockPhotos, { shuffle: true })[0];
-    const props = { tile: { ...tile, faceUp: false } };
+
+    const player = {
+      name: 'Player 1',
+      number: 1,
+      score: 0,
+    };
+
+    const props = { tile: { ...tile, faceUp: false }, player };
 
     const { screen } = setupTests(Tile, { props });
 
@@ -36,11 +57,17 @@ describe('Tile component', () => {
   it('calls onFlip when clicked', async () => {
     const tile = createTilesFromPhotos(mockPhotos)[0];
 
+    const player = {
+      name: 'Player 1',
+      number: 1,
+      score: 0,
+    };
+
     const user = userEvent.setup();
 
     const onFlip = jest.fn();
 
-    const { screen } = setupTests(Tile, { props: { tile, onFlip } });
+    const { screen } = setupTests(Tile, { props: { tile, onFlip, player } });
 
     await user.click(screen.getByTestId(/tile/));
 
@@ -49,7 +76,14 @@ describe('Tile component', () => {
 
   it('has the class matched when isMatched is true', () => {
     const tile = createTilesFromPhotos(mockPhotos)[0];
-    const props = { tile: { ...tile, isMatched: true } };
+
+    const player = {
+      name: 'Player 1',
+      number: 1,
+      score: 0,
+    };
+
+    const props = { tile: { ...tile, isMatched: true }, player };
 
     const { screen } = setupTests(Tile, { props });
 
