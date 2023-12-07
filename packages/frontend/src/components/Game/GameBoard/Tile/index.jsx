@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 
-const Tile = ({ tile, onFlip }) => {
+const Tile = ({ tile, onFlip, player }) => {
   const onClickTile = () => {
     onFlip(tile);
   };
 
   const tileClasses = [
-    tile.faceUp ? 'faceUp' : 'faceDown tile border border-primary',
+    tile.faceUp ? 'faceUp' : 'faceDown tile border',
+    player.number === 1 ? 'border-primary' : 'border-secondary',
     tile.isMatched ? 'matched' : null,
   ].join(' ');
 
@@ -28,6 +29,7 @@ const Tile = ({ tile, onFlip }) => {
 Tile.propTypes = {
   tile: PropTypes.object,
   onFlip: PropTypes.func,
+  player: PropTypes.object,
 };
 
 export default Tile;

@@ -29,7 +29,9 @@ const TileGrid = ({ tiles }) => {
 
     if (state.flipped.length > 1) {
       handleFlippedPair(state.flipped);
-      dispatch(advanceTurn());
+      setTimeout(() => {
+        dispatch(advanceTurn());
+      }, 2000);
     }
   }, [state.flipped, dispatch]);
 
@@ -42,7 +44,12 @@ const TileGrid = ({ tiles }) => {
               ? null
               : tiles.map((tile, index) => (
                   <div className="tile" key={index}>
-                    <Tile tile={tile} onFlip={onFlipTile} key={index} />
+                    <Tile
+                      tile={tile}
+                      onFlip={onFlipTile}
+                      player={state.currentPlayer}
+                      key={index}
+                    />
                   </div>
                 ))}
           </div>
