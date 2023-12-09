@@ -10,6 +10,11 @@ export const flipTile = (tile) => ({
   payload: { tile },
 });
 
+export const handleFlippedPair = (tiles) => ({
+  type: types.HANDLE_FLIPPED_PAIR,
+  payload: { tiles },
+});
+
 export const resetTiles = (tiles) => ({
   type: types.RESET_TILES,
   payload: { tiles },

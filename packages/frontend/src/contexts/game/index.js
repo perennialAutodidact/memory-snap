@@ -12,13 +12,14 @@ export const initialGameState = {
       name: 'Player 1',
       number: 1,
       score: 0,
-      color: '#3a96cf',
+      color: 'primary',
+      //make color an object with class name and hex
     },
     {
       name: 'Player 2',
       number: 2,
       score: 0,
-      color: '#ed6b86',
+      color: 'secondary',
     },
   ],
   tiles: [],
