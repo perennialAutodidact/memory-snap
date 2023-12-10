@@ -1,7 +1,9 @@
 /**
- * takes an array of tiles and returns an array with all is flippable value
- * set to false
- * @param {Array} tiles an array of tile objects from game context
+ * takes an array of tiles and an array of flipped tiles and returns
+ * an array with the flipped tiles isMatched value set to true and
+ * the remaining tiles isFlippable value set to true
+ * @param {Array} tiles an array of tile objects
+ * @param {Array} flipped an array of two tile objects
  */
 const handleMatch = (tiles, flipped) => {
   return tiles.map((tile) =>
