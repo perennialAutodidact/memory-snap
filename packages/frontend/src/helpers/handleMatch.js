@@ -3,11 +3,12 @@
  * set to false
  * @param {Array} tiles an array of tile objects from game context
  */
-const handelMatch = (tiles) =>
-  tiles.map((tile) =>
-    tiles[0].id === tile.id || tiles[1].id === tile.id
-      ? { ...tile, isMatched: !tile.isMatched }
+const handleMatch = (tiles, flipped) => {
+  return tiles.map((tile) =>
+    flipped[0].id === tile.id || flipped[1].id === tile.id
+      ? { ...tile, isMatched: true }
       : { ...tile, isFlippable: true }
   );
+};
 
-export { handelMatch };
+export { handleMatch };

@@ -4,10 +4,6 @@
  * @param {Array} tiles an array of tile objects from game context
  */
 const resetTiles = (tiles) =>
-  tiles.map((tile) =>
-    tiles[0].id === tile.id || tiles[1].id === tile.id
-      ? { ...tile, isMatched: !tile.isMatched }
-      : { ...tile, isFlippable: true }
-  );
+  tiles.map((tile) => ({ ...tile, isFlippable: true, faceUp: false }));
 
 export { resetTiles };

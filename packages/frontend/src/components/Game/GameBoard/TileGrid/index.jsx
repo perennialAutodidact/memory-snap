@@ -12,17 +12,10 @@ const TileGrid = ({ tiles }) => {
   };
 
   useEffect(() => {
-    // const handleFlippedPair = (flipped) => {
-    //   setTimeout(() => {
-    //     if (flipped[0].photo.id === flipped[1].photo.id) {
-    //       dispatch(handleMatch(flipped));
-    //     } else {
-    //       dispatch(resetTiles(flipped));
-    //     }
-    //   }, 2000);
-    // };
     if (state.flipped.length > 1) {
-      dispatch(handleFlippedPair(state.flipped));
+      setTimeout(() => {
+        dispatch(handleFlippedPair(state.flipped));
+      }, 2000);
     }
   }, [state.flipped, dispatch]);
 

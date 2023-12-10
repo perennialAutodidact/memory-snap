@@ -1,4 +1,4 @@
-import { handelMatch } from 'helpers/handleMatch';
+import { handleMatch } from 'helpers/handleMatch';
 import { resetTiles } from 'helpers/resetTiles';
 import types from '../actions/types';
 import { createTilesFromPhotos, lockTiles } from 'helpers';
@@ -43,42 +43,13 @@ export const gameReducer = (state, action) => {
       return {
         ...state,
         tiles:
-          action.payload.tiles[0].id === action.payload.tiles[1].id
-            ? handelMatch(action.payload.tiles)
-            : resetTiles(action.payload.tiles),
+          action.payload.tiles[0].photo.id === action.payload.tiles[1].photo.id
+            ? handleMatch(state.tiles, action.payload.tiles)
+            : resetTiles(state.tiles),
         flipped: [],
+        currentPlayer: state.players[state.turnCount % state.players.length],
+        turnCount: state.turnCount + 1,
       };
-
-    // case types.RESET_TILES:
-    //   return {
-    //     ...state,
-    //     tiles: state.tiles.map((tile) =>
-    //       action.payload.tiles[0].id === tile.id ||
-    //       action.payload.tiles[1].id === tile.id
-    //         ? { ...tile, faceUp: !tile.faceUp, isFlippable: true }
-    //         : { ...tile, isFlippable: true }
-    //     ),
-    //     flipped: [],
-    //   };
-
-    // case types.HANDLE_MATCH:
-    //   return {
-    //     ...state,
-    //     tiles: state.tiles.map((tile) =>
-    //       action.payload.tiles[0].id === tile.id ||
-    //       action.payload.tiles[1].id === tile.id
-    //         ? { ...tile, isMatched: !tile.isMatched }
-    //         : { ...tile, isFlippable: true }
-    //     ),
-    //     flipped: [],
-    //   };
-
-    // case types.ADVANCE_TURN:
-    //   return {
-    //     ...state,
-    //     currentPlayer: state.players[state.turnCount % state.players.length],
-    //     turnCount: state.turnCount + 1,
-    //   };
 
     default: {
       return state;
