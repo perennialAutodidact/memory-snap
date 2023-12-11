@@ -9,7 +9,7 @@ const Tile = ({ tile, onFlip, player }) => {
 
   const tileClasses = [
     tile.faceUp ? 'faceUp' : 'faceDown tile border',
-    player.number === 1 ? 'border-primary' : 'border-secondary',
+    player.number === 1 ? 'border-primary' : `border-${player.color.className}`,
     tile.isMatched ? 'matched' : null,
   ].join(' ');
 
