@@ -1,15 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import useGameContext from 'hooks/useGameContext';
 import './style.scss';
 
-const Tile = ({ tile, onFlip, player }) => {
+const Tile = ({ tile, onFlip }) => {
+  const { state } = useGameContext();
+
   const onClickTile = () => {
     onFlip(tile);
   };
 
   const tileClasses = [
     tile.faceUp ? 'faceUp' : 'faceDown tile border',
-    player.number === 1 ? 'border-primary' : `border-${player.color.className}`,
+    state.currentPlayer.number === 1
+      ? 'border-primary'
+      : `border-${state.currentPlayer.color.className}`,
     tile.isMatched ? 'matched' : null,
   ].join(' ');
 

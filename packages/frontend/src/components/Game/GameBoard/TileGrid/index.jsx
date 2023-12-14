@@ -28,12 +28,7 @@ const TileGrid = ({ tiles }) => {
               ? null
               : tiles.map((tile, index) => (
                   <div className="tile" key={index}>
-                    <Tile
-                      tile={tile}
-                      onFlip={onFlipTile}
-                      player={state.currentPlayer}
-                      key={index}
-                    />
+                    <Tile tile={tile} onFlip={onFlipTile} key={index} />
                   </div>
                 ))}
           </div>

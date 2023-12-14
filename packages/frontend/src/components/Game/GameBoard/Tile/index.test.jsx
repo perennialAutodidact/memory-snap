@@ -2,6 +2,7 @@ import { setupTests } from 'helpers/tests';
 import Tile from '.';
 import { mockPhotos } from '__mocks__/api/mockPhotos';
 import { createTilesFromPhotos } from 'helpers';
+import { baseState } from 'contexts';
 import userEvent from '@testing-library/user-event';
 
 describe('Tile component', () => {
@@ -56,13 +57,7 @@ describe('Tile component', () => {
 
   it('calls onFlip when clicked', async () => {
     const tile = createTilesFromPhotos(mockPhotos)[0];
-
-    const player = {
-      name: 'Player 1',
-      number: 1,
-      score: 0,
-    };
-
+    const player = baseState.game.currentPlayer;
     const user = userEvent.setup();
 
     const onFlip = jest.fn();
@@ -76,12 +71,7 @@ describe('Tile component', () => {
 
   it('has the class matched when isMatched is true', () => {
     const tile = createTilesFromPhotos(mockPhotos)[0];
-
-    const player = {
-      name: 'Player 1',
-      number: 1,
-      score: 0,
-    };
+    const player = baseState.game.currentPlayer;
 
     const props = { tile: { ...tile, isMatched: true }, player };
 

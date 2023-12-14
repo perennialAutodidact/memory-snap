@@ -1,5 +1,6 @@
 import { handleMatch } from 'helpers/handleMatch';
 import { resetTiles } from 'helpers/resetTiles';
+import { isMatchingPair } from 'helpers/isMatchingPair';
 import types from '../actions/types';
 import { createTilesFromPhotos, lockTiles } from 'helpers';
 
@@ -42,10 +43,9 @@ export const gameReducer = (state, action) => {
     case types.HANDLE_FLIPPED_PAIR:
       return {
         ...state,
-        tiles:
-          action.payload.tiles[0].photo.id === action.payload.tiles[1].photo.id
-            ? handleMatch(state.tiles, action.payload.tiles)
-            : resetTiles(state.tiles),
+        tiles: isMatchingPair(state.flipped)
+          ? handleMatch(state.tiles, action.payload.tiles)
+          : resetTiles(state.tiles),
         flipped: [],
         currentPlayer: state.players[state.turnCount % state.players.length],
         turnCount: state.turnCount + 1,
