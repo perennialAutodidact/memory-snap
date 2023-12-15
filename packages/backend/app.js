@@ -4,11 +4,15 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
-import { createClient } from 'pexels';
+import {
+  setupSocket,
+  setupSocketEventHandlers,
+} from './controllers/socketio/index.js';
 import { getDirName } from './helpers.js';
+import { getPhotos } from './controllers/express/photosController.js';
 
 // config
-dotenv.config({ path: '../../.env.local' });
+dotenv.config({ path: './.env.local' });
 const __dirname = getDirName(import.meta.url);
 const port = process.env.PORT || 8080;
 
@@ -17,6 +21,7 @@ if (!process.env.PORT) {
 }
 
 const app = express();
+const io = setupSocket(app);
 
 // middleware
 app.use(express.json());
@@ -34,28 +39,14 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // routes
-app.get('/api/photos', async (req, res) => {
-  try {
-    const { query, perPage: per_page } = req.query;
-    const pexelsClient = createClient(process.env.PEXELS_API_KEY);
-    const response = await pexelsClient.photos.search({
-      query,
-      per_page,
-      orientation: 'square',
-    });
+app.use('/api/photos', getPhotos);
 
-    if (!response.photos) {
-      res.status(400).json({
-        message: 'There was a problem fetching photos from the Pexels API',
-      });
-    } else {
-      res.status(200).json(response);
-    }
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+// socket.io
+io.on('connection', (socket) => {
+  setupSocketEventHandlers(socket);
 });
 
+// serve production build
 if (process.env.NODE_ENV === 'production') {
   app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
@@ -68,7 +59,7 @@ if (process.env.NODE_ENV !== 'test') {
     if (error) {
       console.error(error);
     } else {
-      console.log(`App is listening on port ${port}`);
+      console.warn(`App is listening on port ${port}`);
     }
   });
 }
