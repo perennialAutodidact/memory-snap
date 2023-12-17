@@ -19,12 +19,7 @@
     }
   },
   "plugins": ["prettier", "react", "unused-imports"],
-  "extends": [
-    "react-app",
-    "prettier",
-    "eslint:recommended",
-    "plugin:react/recommended"
-  ],
+  "extends": ["../../.eslintrc.json", "react-app", "plugin:react/recommended"],
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "no-console": ["error", { "allow": ["warn"] }],

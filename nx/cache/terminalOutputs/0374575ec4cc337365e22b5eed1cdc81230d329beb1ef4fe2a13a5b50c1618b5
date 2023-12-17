@@ -1,0 +1,32 @@
+[2K[1G[2m$ cross-env CI=true yarn test[22m
+[2K[1G[2m$ cross-env NODE_ENV=test react-scripts test[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/contexts/game/reducer/[22m[1mindex.test.js[22m ([0m[1m[41m25.539 s[49m[22m[0m)
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/contexts/photos/reducer/[22m[1mindex.test.js[22m ([0m[1m[41m25.08 s[49m[22m[0m)
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/components/Game/PlayerHUD/[22m[1mindex.test.jsx[22m ([0m[1m[41m6.081 s[49m[22m[0m)
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/components/Game/GameBoard/Tile/[22m[1mindex.test.jsx[22m ([0m[1m[41m6.628 s[49m[22m[0m)
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/components/Game/GameBoard/[22m[1mindex.test.jsx[22m ([0m[1m[41m33.874 s[49m[22m[0m)
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/components/Setup/Header/[22m[1mindex.test.jsx[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/[22m[1mApp.test.jsx[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/components/Setup/[22m[1mindex.test.jsx[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/components/Game/GameBoard/TileGrid/[22m[1mindex.test.jsx[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/components/Game/ScoreBoard/[22m[1mindex.test.jsx[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/hooks/useGameContext/[22m[1mindex.test.jsx[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/components/Setup/Form/[22m[1mindex.test.jsx[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/components/Setup/ProgressBar/[22m[1mindex.test.jsx[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/components/Game/[22m[1mindex.test.jsx[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/hooks/useFetchedPhotos/[22m[1mindex.test.js[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/components/Game/Spinner/[22m[1mindex.test.jsx[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/components/Layout/[22m[1mindex.test.jsx[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/hooks/usePhotosContext/[22m[1mindex.test.jsx[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/hooks/useFormContext/[22m[1mindex.test.jsx[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/contexts/form/reducer/[22m[1mindex.test.js[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/contexts/game/actions/[22m[1mindex.test.js[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/helpers/[22m[1mcreateTilesFromPhotos.test.jsx[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/contexts/photos/actions/[22m[1mindex.test.js[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msrc/contexts/form/actions/[22m[1mindex.test.js[22m
+
+[1mTest Suites: [22m[1m[32m24 passed[39m[22m, 24 total
+[1mTests:       [22m[1m[32m62 passed[39m[22m, 62 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        [1m[33m80.305 s[39m[22m
+[2mRan all test suites[22m[2m.[22m

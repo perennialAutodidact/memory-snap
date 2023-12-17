@@ -4,14 +4,129 @@
   "deps": {
     "husky": "^8.0.0",
     "lint-staged": "^15.0.2",
-    "nx": "17.1.3",
+    "nx": "15.3.0",
     "stylelint": "^15.11.0",
     "stylelint-config-standard-scss": "^11.0.0"
   },
   "pathMappings": {},
   "nxJsonPlugins": [],
   "fileMap": {
+    "nonProjectFiles": [],
     "projectFileMap": {
+      "memory-snap-backend": [
+        {
+          "file": "packages/backend/.eslintrc.json",
+          "hash": "2028407955163254520"
+        },
+        {
+          "file": "packages/backend/.prettierrc.json",
+          "hash": "11372260421066639429"
+        },
+        {
+          "file": "packages/backend/__mocks__/handlers.js",
+          "hash": "4493803051190404889"
+        },
+        {
+          "file": "packages/backend/__mocks__/mockPhotos.js",
+          "hash": "2335303006840081302"
+        },
+        {
+          "file": "packages/backend/__mocks__/pexels.js",
+          "hash": "1453122837010601721"
+        },
+        {
+          "file": "packages/backend/__mocks__/server.js",
+          "hash": "5014735773024882507"
+        },
+        {
+          "file": "packages/backend/__test__/helpers.js",
+          "hash": "13459565499008899027"
+        },
+        {
+          "file": "packages/backend/__test__/jest.setup.js",
+          "hash": "15608634369924793725"
+        },
+        {
+          "file": "packages/backend/app.js",
+          "hash": "16320964957542562996"
+        },
+        {
+          "file": "packages/backend/app.test.js",
+          "hash": "7463621705319003432"
+        },
+        {
+          "file": "packages/backend/babel.config.json",
+          "hash": "4735090510065064708"
+        },
+        {
+          "file": "packages/backend/controllers/express/index.js",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "packages/backend/controllers/express/photosController.js",
+          "hash": "17089616083948351183"
+        },
+        {
+          "file": "packages/backend/controllers/socketio/gameController/index.js",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "packages/backend/controllers/socketio/index.js",
+          "hash": "12083349545462953502"
+        },
+        {
+          "file": "packages/backend/controllers/socketio/index.test.js",
+          "hash": "11101202163441864564"
+        },
+        {
+          "file": "packages/backend/helpers.js",
+          "hash": "1134048288957716529"
+        },
+        {
+          "file": "packages/backend/jest.config.js",
+          "hash": "94781980096464906"
+        },
+        {
+          "file": "packages/backend/jsconfig.json",
+          "hash": "14769497625960178020"
+        },
+        {
+          "file": "packages/backend/lint-staged.config.js",
+          "hash": "12362071331157853451"
+        },
+        {
+          "file": "packages/backend/package.json",
+          "hash": "14880627385636502601",
+          "deps": [
+            "npm:body-parser",
+            "npm:cors",
+            "npm:dotenv",
+            "npm:express",
+            "npm:pexels",
+            "npm:socket.io",
+            "npm:uuid",
+            "npm:@babel/core",
+            "npm:@babel/preset-env",
+            "npm:babel-jest",
+            "npm:babel-plugin-transform-import-meta",
+            "npm:cross-env",
+            "npm:eslint-config-prettier",
+            "npm:eslint-plugin-react",
+            "npm:eslint-plugin-unused-imports",
+            "npm:jest",
+            "npm:msw",
+            "npm:nodemon",
+            "npm:prettier",
+            "npm:prettier-eslint-cli",
+            "npm:socket.io-client",
+            "npm:supertest"
+          ]
+        },
+        {
+          "file": "packages/backend/yarn.lock",
+          "hash": "3919342892297003260"
+        }
+      ],
       "memory-snap-frontend": [
         {
           "file": "packages/frontend/.eslintignore",
@@ -512,11 +627,11 @@
         },
         {
           "file": "nx.json",
-          "hash": "8972632131411411915"
+          "hash": "1090958026597086125"
         },
         {
           "file": "package.json",
-          "hash": "11496667128820600842",
+          "hash": "15841642006635617325",
           "deps": [
             "npm:husky",
             "npm:lint-staged",
@@ -533,122 +648,7 @@
           "file": "yarn.lock",
           "hash": "9096865016011234062"
         }
-      ],
-      "memory-snap-backend": [
-        {
-          "file": "packages/backend/.eslintrc.json",
-          "hash": "2028407955163254520"
-        },
-        {
-          "file": "packages/backend/.prettierrc.json",
-          "hash": "11372260421066639429"
-        },
-        {
-          "file": "packages/backend/__mocks__/handlers.js",
-          "hash": "4493803051190404889"
-        },
-        {
-          "file": "packages/backend/__mocks__/mockPhotos.js",
-          "hash": "2335303006840081302"
-        },
-        {
-          "file": "packages/backend/__mocks__/pexels.js",
-          "hash": "1453122837010601721"
-        },
-        {
-          "file": "packages/backend/__mocks__/server.js",
-          "hash": "5014735773024882507"
-        },
-        {
-          "file": "packages/backend/__test__/helpers.js",
-          "hash": "13459565499008899027"
-        },
-        {
-          "file": "packages/backend/__test__/jest.setup.js",
-          "hash": "15608634369924793725"
-        },
-        {
-          "file": "packages/backend/app.js",
-          "hash": "16320964957542562996"
-        },
-        {
-          "file": "packages/backend/app.test.js",
-          "hash": "7463621705319003432"
-        },
-        {
-          "file": "packages/backend/babel.config.json",
-          "hash": "4735090510065064708"
-        },
-        {
-          "file": "packages/backend/controllers/express/index.js",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "packages/backend/controllers/express/photosController.js",
-          "hash": "17089616083948351183"
-        },
-        {
-          "file": "packages/backend/controllers/socketio/gameController/index.js",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "packages/backend/controllers/socketio/index.js",
-          "hash": "12083349545462953502"
-        },
-        {
-          "file": "packages/backend/controllers/socketio/index.test.js",
-          "hash": "11101202163441864564"
-        },
-        {
-          "file": "packages/backend/helpers.js",
-          "hash": "1134048288957716529"
-        },
-        {
-          "file": "packages/backend/jest.config.js",
-          "hash": "94781980096464906"
-        },
-        {
-          "file": "packages/backend/jsconfig.json",
-          "hash": "14769497625960178020"
-        },
-        {
-          "file": "packages/backend/lint-staged.config.js",
-          "hash": "12362071331157853451"
-        },
-        {
-          "file": "packages/backend/package.json",
-          "hash": "14880627385636502601",
-          "deps": [
-            "npm:body-parser",
-            "npm:cors",
-            "npm:dotenv",
-            "npm:express",
-            "npm:pexels",
-            "npm:socket.io",
-            "npm:uuid",
-            "npm:@babel/core",
-            "npm:@babel/preset-env",
-            "npm:babel-jest",
-            "npm:babel-plugin-transform-import-meta",
-            "npm:cross-env",
-            "npm:eslint-config-prettier",
-            "npm:eslint-plugin-react",
-            "npm:eslint-plugin-unused-imports",
-            "npm:jest",
-            "npm:msw",
-            "npm:nodemon",
-            "npm:prettier",
-            "npm:prettier-eslint-cli",
-            "npm:socket.io-client",
-            "npm:supertest"
-          ]
-        },
-        {
-          "file": "packages/backend/yarn.lock",
-          "hash": "3919342892297003260"
-        }
       ]
-    },
-    "nonProjectFiles": []
+    }
   }
 }

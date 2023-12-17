@@ -19,5 +19,5 @@ COPY packages/backend/* packages/backend/
 COPY packages/frontend/* packages/frontend/
 
 # START APPS
-RUN npx nx run-many --target serve
+RUN npx nx run-many --target=serve --exclude='.'
 

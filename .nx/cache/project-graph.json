@@ -10,10 +10,6 @@
         "projectType": "library",
         "targets": {
           "ci": {
-            "dependsOn": [
-              "^ci"
-            ],
-            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "ci"
@@ -39,9 +35,6 @@
             "configurations": {}
           },
           "lint": {
-            "dependsOn": [
-              "^lint"
-            ],
             "cache": true,
             "executor": "nx:run-script",
             "options": {
@@ -63,6 +56,7 @@
             "dependsOn": [
               "^start"
             ],
+            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "start"
@@ -70,9 +64,6 @@
             "configurations": {}
           },
           "test": {
-            "dependsOn": [
-              "^test"
-            ],
             "cache": true,
             "executor": "nx:run-script",
             "options": {
@@ -114,10 +105,6 @@
             "configurations": {}
           },
           "ci": {
-            "dependsOn": [
-              "^ci"
-            ],
-            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "ci"
@@ -125,9 +112,6 @@
             "configurations": {}
           },
           "lint": {
-            "dependsOn": [
-              "^lint"
-            ],
             "cache": true,
             "executor": "nx:run-script",
             "options": {
@@ -149,6 +133,7 @@
             "dependsOn": [
               "^start"
             ],
+            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "start"
@@ -156,9 +141,6 @@
             "configurations": {}
           },
           "test": {
-            "dependsOn": [
-              "^test"
-            ],
             "cache": true,
             "executor": "nx:run-script",
             "options": {
@@ -186,22 +168,7 @@
         "root": ".",
         "name": ".",
         "targets": {
-          "build": {
-            "dependsOn": [
-              "^build"
-            ],
-            "cache": true,
-            "executor": "nx:run-script",
-            "options": {
-              "script": "build"
-            },
-            "configurations": {}
-          },
           "ci": {
-            "dependsOn": [
-              "^ci"
-            ],
-            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "ci"
@@ -209,9 +176,6 @@
             "configurations": {}
           },
           "lint": {
-            "dependsOn": [
-              "^lint"
-            ],
             "cache": true,
             "executor": "nx:run-script",
             "options": {
@@ -233,6 +197,7 @@
             "dependsOn": [
               "^start"
             ],
+            "cache": true,
             "executor": "nx:run-script",
             "options": {
               "script": "start"
@@ -240,9 +205,6 @@
             "configurations": {}
           },
           "test": {
-            "dependsOn": [
-              "^test"
-            ],
             "cache": true,
             "executor": "nx:run-script",
             "options": {
@@ -276,6 +238,8 @@
             "configurations": {}
           }
         },
+        "sourceRoot": ".",
+        "projectType": "library",
         "implicitDependencies": [],
         "tags": []
       }

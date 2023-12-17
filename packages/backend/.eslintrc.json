@@ -15,8 +15,7 @@
       "modules": true
     }
   },
-  "plugins": ["prettier", "react", "unused-imports"],
-  "extends": ["prettier", "eslint:recommended", "plugin:react/recommended"],
+  "extends": ["../../.eslintrc.json"],
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "no-console": ["error", { "allow": ["warn", "error"] }],
@@ -31,10 +30,5 @@
         "argsIgnorePattern": "^_"
       }
     ]
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
   }
 }
