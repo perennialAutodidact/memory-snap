@@ -189,4 +189,4 @@ sketch
 # End of https://www.toptal.com/developers/gitignore/api/react,sass,node,visualstudiocode
 
 
-.nx/cache
+nx/cache

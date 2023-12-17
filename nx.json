@@ -4,7 +4,7 @@
       "runner": "nx/tasks-runners/default",
       "options": {
         "cachableOperations": ["build", "lint", "ci", "test"],
-        "cacheDirectory": "./nx/cache"
+        "cacheDirectory": "./.nx/cache"
       }
     }
   },

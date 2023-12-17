@@ -1,0 +1,35 @@
+[2K[1G[2m$ cross-env ci=true yarn test[22m
+[2K[1G[2m$ cross-env NODE_ENV=test yarn jest[22m
+[2K[1G[2m$ C:\Users\keego\Documents\repos\memory-snap\node_modules\.bin\jest[22m
+  [2m[33mconsole.warn[39m[22m
+[33m    SOCKET DISCONNECTED[39m
+[2m[22m
+[2m    [0m [90m 12 |[39m[0m[22m
+[2m    [0m [90m 13 |[39m [36mconst[39m handleDisconnect [33m=[39m () [33m=>[39m {[0m[22m
+[2m    [0m[31m[1m>[22m[2m[39m[90m 14 |[39m   console[33m.[39mwarn([32m'SOCKET DISCONNECTED'[39m)[33m;[39m[0m[22m
+[2m    [0m [90m    |[39m           [31m[1m^[22m[2m[39m[0m[22m
+[2m    [0m [90m 15 |[39m }[33m;[39m[0m[22m
+[2m    [0m [90m 16 |[39m[0m[22m
+[2m    [0m [90m 17 |[39m [36mconst[39m setupDefaultEvents [33m=[39m (socket) [33m=>[39m {[0m[22m
+[2m[22m
+[2m      [2mat warn ([22m[2mcontrollers/socketio/index.js[2m:14:11)[22m[2m[22m
+[2m      [2mat Socket.handleDisconnect ([22m[2mcontrollers/socketio/index.js[2m:19:33)[22m[2m[22m
+[2m      [2mat Socket.emitReserved ([22m[2m../../node_modules/socket.io/dist/typed-events.js[2m:56:22)[22m[2m[22m
+[2m      [2mat Socket._onclose ([22m[2m../../node_modules/socket.io/dist/socket.js[2m:561:14)[22m[2m[22m
+[2m      [2mat Socket.disconnect ([22m[2m../../node_modules/socket.io/dist/socket.js[2m:607:18)[22m[2m[22m
+[2m      [2mat Object.disconnect ([22m[2m[0m[36mcontrollers/socketio/index.test.js[39m[0m[2m:18:18)[22m[2m[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mcontrollers/socketio/[22m[1mindex.test.js[22m ([0m[1m[41m27.196 s[49m[22m[0m)
+  socket.io
+    [32m√[39m [2mresponds to ping (815 ms)[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2m./[22m[1mapp.test.js[22m ([0m[1m[41m30.865 s[49m[22m[0m)
+  app
+    [32m√[39m [2mreturns photos array (236 ms)[22m
+    [32m√[39m [2mreturns error on fail (22 ms)[22m
+
+[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 total
+[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        [1m[33m32.913 s[39m[22m
+[2mRan all test suites[22m[2m.[22m
