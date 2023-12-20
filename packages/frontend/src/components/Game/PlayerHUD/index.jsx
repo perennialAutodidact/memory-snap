@@ -32,12 +32,22 @@ const PlayerHUD = ({ player, isActive }) => {
         data-testid={`player-score-${player.number}`}
         className={classes.playerScore}
       >
+        {player.number === 1 ? (
+          <span className="visually-hidden" role="note">
+            current player: {player.name}
+          </span>
+        ) : null}
         {player.score}
       </div>
       <div
         data-testid={`player-name-${player.number}`}
         className={`${classes.playerName}`}
       >
+        {player.number === 2 ? (
+          <span className="visually-hidden" role="note">
+            current player: {player.name}
+          </span>
+        ) : null}
         {player.name}
       </div>
     </div>

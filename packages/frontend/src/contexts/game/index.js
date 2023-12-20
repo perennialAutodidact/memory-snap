@@ -15,7 +15,6 @@ export const initialGameState = {
       color: {
         className: 'primary',
       },
-      //make color an object with class name and hex
     },
     {
       name: 'Player 2',

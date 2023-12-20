@@ -24,6 +24,48 @@ describe('PlayerHUD component', () => {
     expect(playerScore).toHaveTextContent(props.player.score);
   });
 
+  it('renders a span with the text content Player 1 when player 1 is active', () => {
+    const props = {
+      player: {
+        name: 'Player 1',
+        number: 1,
+        score: 0,
+        color: {
+          className: 'primary',
+        },
+      },
+      isActive: true,
+    };
+    const {
+      screen: { getByRole },
+    } = setupTests(PlayerHUD, { props });
+
+    const currentPlayer = getByRole('note');
+
+    expect(currentPlayer).toHaveTextContent('Player 1');
+  });
+
+  it('renders a span with the text content Player 2 when player 2 is active', () => {
+    const props = {
+      player: {
+        name: 'Player 2',
+        number: 2,
+        score: 0,
+        color: {
+          className: 'secondary',
+        },
+      },
+      isActive: true,
+    };
+    const {
+      screen: { getByRole },
+    } = setupTests(PlayerHUD, { props });
+
+    const currentPlayer = getByRole('note');
+
+    expect(currentPlayer).toHaveTextContent('Player 2');
+  });
+
   describe('active state', () => {
     it('renders "active" class', () => {
       const props = { ...defaultProps, isActive: true };
