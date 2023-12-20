@@ -6,6 +6,9 @@ export const initialGameState = {
     name: 'Player 1',
     number: 1,
     score: 0,
+    color: {
+      className: 'primary',
+    },
   },
   players: [
     {
