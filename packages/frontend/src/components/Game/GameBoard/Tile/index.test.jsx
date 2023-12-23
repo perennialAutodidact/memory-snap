@@ -11,11 +11,7 @@ describe('Tile component', () => {
   it('renders', () => {
     const tile = createTilesFromPhotos(mockPhotos)[0];
 
-    const player = {
-      name: 'Player 1',
-      number: 1,
-      score: 0,
-    };
+    const player = baseState.game.players[0];
 
     const props = { tile, player };
 
@@ -26,11 +22,7 @@ describe('Tile component', () => {
   it('has alt text if faceUp is true', () => {
     const tile = createTilesFromPhotos(mockPhotos)[0];
 
-    const player = {
-      name: 'Player 1',
-      number: 1,
-      score: 0,
-    };
+    const player = baseState.game.players[0];
 
     const props = { tile: { ...tile, faceUp: true }, player };
 
@@ -42,11 +34,7 @@ describe('Tile component', () => {
   it('does not have alt text if faceUp is false', () => {
     const tile = createTilesFromPhotos(mockPhotos, { shuffle: true })[0];
 
-    const player = {
-      name: 'Player 1',
-      number: 1,
-      score: 0,
-    };
+    const player = baseState.game.players[0];
 
     const props = { tile: { ...tile, faceUp: false }, player };
 

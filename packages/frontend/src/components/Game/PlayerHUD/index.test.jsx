@@ -26,14 +26,7 @@ describe('PlayerHUD component', () => {
 
   it('renders a span with the text content Player 1 when player 1 is active', () => {
     const props = {
-      player: {
-        name: 'Player 1',
-        number: 1,
-        score: 0,
-        color: {
-          className: 'primary',
-        },
-      },
+      player: baseState.game.players[0],
       isActive: true,
     };
     const {
@@ -47,14 +40,7 @@ describe('PlayerHUD component', () => {
 
   it('renders a span with the text content Player 2 when player 2 is active', () => {
     const props = {
-      player: {
-        name: 'Player 2',
-        number: 2,
-        score: 0,
-        color: {
-          className: 'secondary',
-        },
-      },
+      player: baseState.game.players[1],
       isActive: true,
     };
     const {
