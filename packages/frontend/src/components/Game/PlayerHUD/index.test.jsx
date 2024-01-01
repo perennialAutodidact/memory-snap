@@ -1,6 +1,7 @@
 import { setupTests } from 'helpers/tests';
 import PlayerHUD from '.';
 import { baseState } from 'contexts';
+import { produce } from 'immer';
 
 const defaultProps = {
   player: baseState.game.currentPlayer,
@@ -33,9 +34,9 @@ describe('PlayerHUD component', () => {
       screen: { getByRole },
     } = setupTests(PlayerHUD, { props });
 
-    const currentPlayer = getByRole('note');
+    const playerNote = getByRole('note');
 
-    expect(currentPlayer).toHaveTextContent('Player 1');
+    expect(playerNote).toHaveTextContent('Player 1');
   });
 
   it('renders a span with the text content Player 2 when player 2 is active', () => {
@@ -43,13 +44,19 @@ describe('PlayerHUD component', () => {
       player: baseState.game.players[1],
       isActive: true,
     };
+
+    const currentPlayer2State = produce(baseState.game, (draft) => {
+      draft.currentPlayer = baseState.game.players[1];
+    });
+
+    const state = { ...baseState, game: currentPlayer2State };
+
     const {
       screen: { getByRole },
-    } = setupTests(PlayerHUD, { props });
+    } = setupTests(PlayerHUD, { props, state });
 
-    const currentPlayer = getByRole('note');
-
-    expect(currentPlayer).toHaveTextContent('Player 2');
+    const playerNote = getByRole('note');
+    expect(playerNote).toHaveTextContent('Player 2');
   });
 
   describe('active state', () => {
