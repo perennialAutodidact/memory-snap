@@ -5,7 +5,7 @@ import { createTilesFromPhotos } from 'helpers';
 import { baseState } from 'contexts';
 import userEvent from '@testing-library/user-event';
 
-const player = baseState.game.currentPlayer;
+const { currentPlayer: player } = baseState.game;
 
 describe('Tile component', () => {
   it('renders', () => {
