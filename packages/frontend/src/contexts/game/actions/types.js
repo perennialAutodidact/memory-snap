@@ -1,11 +1,11 @@
 const ADD_TILES = 'ADD_TILES';
 const FLIP_TILE = 'FLIP_TILE';
-const RESET_TILES = 'RESET_TILES';
-const HANDLE_MATCH = 'HANDLE_MATCH';
+const HANDLE_FLIPPED_PAIR = 'HANDLE_FLIPPED_PAIR';
 
-export default {
+const types = {
   ADD_TILES,
   FLIP_TILE,
-  RESET_TILES,
-  HANDLE_MATCH,
+  HANDLE_FLIPPED_PAIR,
 };
+
+export default types;
