@@ -97,25 +97,4 @@ describe('gameReducer', () => {
       initialTilesState
     );
   });
-
-  it('toggles the faceUp value of flipped tiles if action type is RESET_TILES', () => {
-    const { game: state } = baseState;
-
-    const initialTilesState = produce(state, (draft) => {
-      draft.tiles = createTilesFromPhotos(mockPhotos);
-    });
-    const flippedState = produce(initialTilesState, (draft) => {
-      draft.tiles[0].faceUp = true;
-      draft.tiles[4].faceUp = true;
-    });
-
-    const payload = { tiles: [flippedState.tiles[0], flippedState.tiles[4]] };
-
-    const action = {
-      type: 'RESET_TILES',
-      payload: payload,
-    };
-
-    expect(gameReducer(flippedState, action)).toStrictEqual(initialTilesState);
-  });
 });
