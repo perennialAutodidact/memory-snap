@@ -31,6 +31,7 @@ export const initialGameState = {
   tiles: [],
   flipped: [],
   turnCount: 1,
+  playerIndex: 0,
 };
 
 export const GameContext = createContext(initialGameState);
