@@ -53,10 +53,9 @@ export const gameReducer = (state, action) => {
         flipped: [],
         currentPlayer: state.players[state.turnCount % state.players.length],
         players: isMatchingPair(state.flipped)
-          ? awardPoint(state.players, state.playerIndex)
+          ? awardPoint(state.players, state.currentPlayer.number - 1)
           : state.players,
         turnCount: state.turnCount + 1,
-        playerIndex: state.turnCount % state.players.length,
       };
 
     default: {
