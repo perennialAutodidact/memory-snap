@@ -5,7 +5,7 @@ import { createTilesFromPhotos } from 'helpers/createTilesFromPhotos';
 import { baseState } from 'contexts';
 import { produce } from 'immer';
 import { act } from '@testing-library/react';
-import { byTestId, byAltText } from 'testing-library-selector';
+import { byTestId, byAltText, byRole } from 'testing-library-selector';
 
 beforeEach(() => {
   jest.useFakeTimers('legacy');
@@ -20,9 +20,11 @@ const ui = {
     container: (testId) => byTestId(testId),
     photo: (altText) => byAltText(altText),
   },
+
+  playerNote: byRole('note'),
 };
 
-const { tile } = ui;
+const { tile, playerNote } = ui;
 
 describe('GameBoard component', () => {
   it('flips the tile thats been clicked', async () => {
@@ -140,7 +142,6 @@ describe('GameBoard component', () => {
 
       const updatedScore = screen.getByTestId('player-score-1');
       expect(updatedScore).toHaveTextContent('0');
-      screen.debug(updatedScore);
     });
 
     it('changes the active player after each turn', async () => {
@@ -152,18 +153,17 @@ describe('GameBoard component', () => {
 
       const state = { ...baseState, game: initialGameState };
 
-      const { user, screen } = setupTests(GameBoard, { state });
+      const { user } = setupTests(GameBoard, { state });
 
-      const activePlayerNote = screen.getByRole('note');
-      expect(activePlayerNote).toHaveTextContent('Player 1');
+      expect(playerNote.get()).toHaveTextContent('name: Player 1');
 
       await user.click(tile.container('tile-5').get());
       await user.click(tile.container('tile-2').get());
       act(() => jest.advanceTimersByTime(3000));
 
-      const updatedPlayerNote = screen.getByRole('note');
-      expect(updatedPlayerNote).not.toHaveTextContent('Player 1');
-      expect(updatedPlayerNote).toHaveTextContent('Player 2');
+      expect(playerNote.get()).not.toHaveTextContent('name: Player 1');
+
+      expect(playerNote.get()).toHaveTextContent('name: Player 2');
     });
 
     it('removes tiles and awards a point after a match', async () => {
