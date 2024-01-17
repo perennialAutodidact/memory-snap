@@ -32,7 +32,11 @@ const PlayerHUD = ({ player, isActive }) => {
   return (
     <div data-testid={`PlayerHUD-${player.number}`} className={classes.HUD}>
       {player.number === state.currentPlayer.number ? (
-        <span className="visually-hidden" role="note">
+        <span
+          className="visually-hidden"
+          role="note"
+          aria-label={`turn-indicator-${state.currentPlayer.name}`}
+        >
           name: {player.name}
         </span>
       ) : null}

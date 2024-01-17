@@ -15,7 +15,7 @@ afterEach(() => {
   jest.useRealTimers();
 });
 
-const { tile, playerNote } = ui;
+const { tile, player } = ui;
 
 describe('GameBoard component', () => {
   it('flips the tile thats been clicked', async () => {
@@ -146,15 +146,15 @@ describe('GameBoard component', () => {
 
       const { user } = setupTests(GameBoard, { state });
 
-      expect(playerNote.get()).toHaveTextContent('name: Player 1');
+      expect(player.turnIndicator('Player 1').get()).toBeInTheDocument();
 
       await user.click(tile.container('tile-5').get());
       await user.click(tile.container('tile-2').get());
       act(() => jest.advanceTimersByTime(3000));
 
-      expect(playerNote.get()).not.toHaveTextContent('name: Player 1');
+      expect(player.turnIndicator('Player 1').query()).toBeNull();
 
-      expect(playerNote.get()).toHaveTextContent('name: Player 2');
+      expect(player.turnIndicator('Player 2').get()).toBeInTheDocument();
     });
 
     it('removes tiles and awards a point after a match', async () => {

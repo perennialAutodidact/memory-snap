@@ -6,7 +6,10 @@ const ui = {
     photo: (altText) => byAltText(altText),
   },
 
-  playerNote: byRole('note'),
+  player: {
+    turnIndicator: (playerName) =>
+      byRole('note', { name: `turn-indicator-${playerName}` }),
+  },
 };
 
 export { ui };
