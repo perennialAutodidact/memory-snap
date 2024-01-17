@@ -5,7 +5,7 @@ import { createTilesFromPhotos } from 'helpers/createTilesFromPhotos';
 import { baseState } from 'contexts';
 import { produce } from 'immer';
 import { act } from '@testing-library/react';
-import { byTestId, byAltText, byRole } from 'testing-library-selector';
+import { ui } from '__mocks__/api/ui';
 
 beforeEach(() => {
   jest.useFakeTimers('legacy');
@@ -14,15 +14,6 @@ beforeEach(() => {
 afterEach(() => {
   jest.useRealTimers();
 });
-
-const ui = {
-  tile: {
-    container: (testId) => byTestId(testId),
-    photo: (altText) => byAltText(altText),
-  },
-
-  playerNote: byRole('note'),
-};
 
 const { tile, playerNote } = ui;
 
