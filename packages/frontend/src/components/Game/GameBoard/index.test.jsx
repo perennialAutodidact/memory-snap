@@ -5,7 +5,7 @@ import { createTilesFromPhotos } from 'helpers/createTilesFromPhotos';
 import { baseState } from 'contexts';
 import { produce } from 'immer';
 import { act } from '@testing-library/react';
-import { byTestId, byAltText } from 'testing-library-selector';
+import { ui } from '__mocks__/api/ui';
 
 beforeEach(() => {
   jest.useFakeTimers('legacy');
@@ -15,14 +15,7 @@ afterEach(() => {
   jest.useRealTimers();
 });
 
-const ui = {
-  tile: {
-    container: (testId) => byTestId(testId),
-    photo: (altText) => byAltText(altText),
-  },
-};
-
-const { tile } = ui;
+const { tile, player } = ui;
 
 describe('GameBoard component', () => {
   it('flips the tile thats been clicked', async () => {
@@ -116,5 +109,80 @@ describe('GameBoard component', () => {
 
     await user.click(tile.container('tile-7').get());
     expect(tile.container('tile-7').get()).not.toHaveClass('faceUp');
+  });
+
+  describe('player turn', () => {
+    it('does not award a point for a non match', async () => {
+      const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
+
+      const initialGameState = produce(baseState.game, (draft) => {
+        draft.tiles = tiles;
+      });
+
+      const state = { ...baseState, game: initialGameState };
+
+      const { user, screen } = setupTests(GameBoard, { state });
+
+      const currentPlayerScore = screen.getByTestId('player-score-1');
+
+      expect(currentPlayerScore).toHaveTextContent('0');
+
+      await user.click(tile.container('tile-5').get());
+      await user.click(tile.container('tile-2').get());
+      act(() => jest.advanceTimersByTime(3000));
+
+      const updatedScore = screen.getByTestId('player-score-1');
+      expect(updatedScore).toHaveTextContent('0');
+    });
+
+    it('changes the active player after each turn', async () => {
+      const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
+
+      const initialGameState = produce(baseState.game, (draft) => {
+        draft.tiles = tiles;
+      });
+
+      const state = { ...baseState, game: initialGameState };
+
+      const { user } = setupTests(GameBoard, { state });
+
+      expect(player.turnIndicator('Player 1').get()).toBeInTheDocument();
+
+      await user.click(tile.container('tile-5').get());
+      await user.click(tile.container('tile-2').get());
+      act(() => jest.advanceTimersByTime(3000));
+
+      expect(player.turnIndicator('Player 1').query()).toBeNull();
+
+      expect(player.turnIndicator('Player 2').get()).toBeInTheDocument();
+    });
+
+    it('removes tiles and awards a point after a match', async () => {
+      const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
+
+      const initialGameState = produce(baseState.game, (draft) => {
+        draft.tiles = tiles;
+      });
+
+      const state = { ...baseState, game: initialGameState };
+
+      const { user, screen } = setupTests(GameBoard, { state });
+
+      const visibleTiles = screen.getAllByTestId(/tile/);
+      expect(visibleTiles.length).toBe(10);
+
+      const playerOneScore = screen.getByTestId('player-score-1');
+      expect(playerOneScore).toHaveTextContent('0');
+
+      await user.click(tile.container('tile-0').get());
+      await user.click(tile.container('tile-1').get());
+      act(() => jest.advanceTimersByTime(3000));
+
+      expect(tile.container('tile-0').get()).toHaveClass('matched');
+      expect(tile.container('tile-1').get()).toHaveClass('matched');
+
+      const updatedPlayerOneScore = screen.getByTestId('player-score-1');
+      expect(updatedPlayerOneScore).toHaveTextContent('1');
+    });
   });
 });

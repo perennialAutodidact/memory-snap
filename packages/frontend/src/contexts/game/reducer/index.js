@@ -1,8 +1,12 @@
-import { handleMatch } from 'helpers/handleMatch';
-import { resetTiles } from 'helpers/resetTiles';
 import { isMatchingPair } from 'helpers/isMatchingPair';
 import types from '../actions/types';
-import { createTilesFromPhotos, lockTiles } from 'helpers';
+import {
+  createTilesFromPhotos,
+  lockTiles,
+  handleMatch,
+  resetTiles,
+  awardPoint,
+} from 'helpers';
 
 export const gameReducer = (state, action) => {
   if (!state) {
@@ -48,6 +52,9 @@ export const gameReducer = (state, action) => {
           : resetTiles(state.tiles),
         flipped: [],
         currentPlayer: state.players[state.turnCount % state.players.length],
+        players: isMatchingPair(state.flipped)
+          ? awardPoint(state.players, state.currentPlayer.number - 1)
+          : state.players,
         turnCount: state.turnCount + 1,
       };
 
