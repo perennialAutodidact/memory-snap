@@ -58,6 +58,12 @@ export const gameReducer = (state, action) => {
         turnCount: state.turnCount + 1,
       };
 
+    case types.HANDLE_GAME_OVER:
+      return {
+        ...state,
+        stage: 'game over',
+      };
+
     default: {
       return state;
     }
