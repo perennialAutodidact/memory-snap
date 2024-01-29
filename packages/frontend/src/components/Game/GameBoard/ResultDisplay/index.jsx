@@ -10,10 +10,8 @@ const ResultDisplay = () => {
     player.score > highScore ? (highScore = player.score) : ''
   );
 
-  //use map for this instead
-  let highScoreArray = [];
-  state.players.forEach((player) =>
-    player.score === highScore ? highScoreArray.push(player) : ''
+  let highScoreArray = state.players.filter(
+    (player) => player.score === highScore
   );
 
   return (
