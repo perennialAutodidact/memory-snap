@@ -111,6 +111,22 @@ describe('GameBoard component', () => {
     expect(tile.container('tile-7').get()).not.toHaveClass('faceUp');
   });
 
+  it('renders the result display componet when the game is over', () => {
+    const gameOverState = produce(baseState.game, (draft) => {
+      draft.stage = 'game over';
+    });
+
+    const state = { ...baseState, game: gameOverState };
+
+    const { screen } = setupTests(GameBoard, { state });
+
+    const tileGrid = screen.queryByTestId('t-grid');
+    const resultDisplay = screen.getByTestId('result-display');
+
+    expect(tileGrid).toBe(null);
+    expect(resultDisplay).toBeInTheDocument();
+  });
+
   describe('player turn', () => {
     it('does not award a point for a non match', async () => {
       const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });

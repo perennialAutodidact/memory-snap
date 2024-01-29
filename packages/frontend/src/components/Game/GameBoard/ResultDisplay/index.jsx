@@ -17,7 +17,10 @@ const ResultDisplay = () => {
   );
 
   return (
-    <div className="container d-flex justify-content-center mt-5">
+    <div
+      data-testid="result-display"
+      className="container d-flex justify-content-center mt-5"
+    >
       <div className="d-flex-column text-center">
         <h1 className="mb-5">GAME OVER!</h1>
 
