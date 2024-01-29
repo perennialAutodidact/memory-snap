@@ -97,4 +97,16 @@ describe('gameReducer', () => {
       initialTilesState
     );
   });
+
+  it('changes the game state to game over if the action type is HANDLE_GAME_OVER', () => {
+    const { game: state } = baseState;
+
+    expect(state.stage).toBe('playing');
+
+    const action = {
+      type: 'HANDLE_GAME_OVER',
+    };
+
+    expect(gameReducer(state, action).stage).toBe('game over');
+  });
 });
