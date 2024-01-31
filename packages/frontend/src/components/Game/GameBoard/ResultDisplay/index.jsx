@@ -2,17 +2,9 @@ import React from 'react';
 import useGameContext from 'hooks/useGameContext';
 
 const ResultDisplay = () => {
-  const { state } = useGameContext();
-
-  let highScore = 0;
-
-  state.players.forEach((player) =>
-    player.score > highScore ? (highScore = player.score) : ''
-  );
-
-  let highScoreArray = state.players.filter(
-    (player) => player.score === highScore
-  );
+  const {
+    state: { winner },
+  } = useGameContext();
 
   return (
     <div
@@ -22,11 +14,11 @@ const ResultDisplay = () => {
       <div className="d-flex-column text-center">
         <h1 className="mb-5">GAME OVER!</h1>
 
-        {highScoreArray.length > 1 ? (
+        {winner.length > 1 ? (
           <h2 className="lh-lg">Its a tie!</h2>
         ) : (
-          <h2 className={`text-${highScoreArray[0].color.className}`}>
-            {`${highScoreArray[0].name} wins!`}
+          <h2 className={`text-${winner[0].color.className}`}>
+            {`${winner[0].name} wins!`}
           </h2>
         )}
       </div>

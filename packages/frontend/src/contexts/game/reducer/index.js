@@ -1,11 +1,13 @@
 import { isMatchingPair } from 'helpers/isMatchingPair';
 import types from '../actions/types';
+import { GAME_STAGES } from '../stages';
 import {
   createTilesFromPhotos,
   lockTiles,
   handleMatch,
   resetTiles,
   awardPoint,
+  getHighScore,
 } from 'helpers';
 
 export const gameReducer = (state, action) => {
@@ -61,7 +63,10 @@ export const gameReducer = (state, action) => {
     case types.HANDLE_GAME_OVER:
       return {
         ...state,
-        stage: 'game over',
+        stage: GAME_STAGES.GAME_OVER,
+        winner: state.players.filter(
+          (player) => player.score === getHighScore(state.players)
+        ),
       };
 
     default: {

@@ -4,7 +4,6 @@ import ScoreBoard from '../ScoreBoard';
 import TileGrid from './TileGrid';
 import { handleGameOver } from 'contexts/game/actions';
 import ResultDisplay from './ResultDisplay';
-
 const GameBoard = () => {
   const {
     state: { players, currentPlayer, tiles, stage },
@@ -21,7 +20,7 @@ const GameBoard = () => {
   return (
     <>
       <ScoreBoard players={players} currentPlayer={currentPlayer} />
-      {stage === 'playing' ? <TileGrid tiles={tiles} /> : <ResultDisplay />}
+      {stage === 'PLAYING' ? <TileGrid tiles={tiles} /> : <ResultDisplay />}
     </>
   );
 };
