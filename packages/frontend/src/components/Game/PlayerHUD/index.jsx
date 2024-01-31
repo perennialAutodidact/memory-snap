@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Player } from 'proptypes';
 import './style.scss';
+import useGameContext from 'hooks/useGameContext';
 
 const PlayerHUD = ({ player, isActive }) => {
+  const { state } = useGameContext();
+
   const bgClasses = {
     1: 'bg-primary',
     2: 'bg-secondary',
@@ -28,6 +31,15 @@ const PlayerHUD = ({ player, isActive }) => {
 
   return (
     <div data-testid={`PlayerHUD-${player.number}`} className={classes.HUD}>
+      {player.number === state.currentPlayer.number ? (
+        <span
+          className="visually-hidden"
+          role="note"
+          aria-label={`turn-indicator-${state.currentPlayer.name}`}
+        >
+          name: {player.name}
+        </span>
+      ) : null}
       <div
         data-testid={`player-score-${player.number}`}
         className={classes.playerScore}

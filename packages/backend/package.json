@@ -5,14 +5,6 @@
   "main": "app.js",
   "type": "module",
   "homepage": ".",
-  "scripts": {
-    "build": "echo 'backend build'",
-    "ci": "cross-env ci=true yarn test",
-    "lint": "npx eslint",
-    "serve": "node app.js",
-    "start": "cross-env NODE_ENV=development nodemon app.js",
-    "test": "cross-env NODE_ENV=test yarn jest"
-  },
   "author": "Keegan Good",
   "license": "MIT",
   "private": true,
@@ -24,6 +16,13 @@
     "pexels": "^1.4.0",
     "socket.io": "^4.7.2",
     "uuid": "^9.0.1"
+  },
+  "scripts": {
+    "ci": "cross-env ci=true yarn test",
+    "lint": "npx eslint",
+    "serve": "cross-env NODE_ENV=production node app.js",
+    "start": "cross-env NODE_ENV=development nodemon app.js",
+    "test": "cross-env NODE_ENV=test yarn jest"
   },
   "devDependencies": {
     "@babel/core": "^7.22.11",

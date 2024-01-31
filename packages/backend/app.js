@@ -12,7 +12,7 @@ import { getDirName } from './helpers.js';
 import { getPhotos } from './controllers/express/photosController.js';
 
 // config
-dotenv.config({ path: '.env.local' });
+dotenv.config({ path: './.env.local' });
 const __dirname = getDirName(import.meta.url);
 const port = process.env.PORT || 8080;
 

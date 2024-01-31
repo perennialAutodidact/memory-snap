@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Tile from '../Tile';
-import { flipTile, handleMatch, resetTiles } from 'contexts/game/actions';
+import { flipTile, handleFlippedPair } from 'contexts/game/actions';
 import useGameContext from 'hooks/useGameContext';
 
 const TileGrid = ({ tiles }) => {
@@ -13,19 +13,9 @@ const TileGrid = ({ tiles }) => {
 
   useEffect(() => {
     if (state.flipped.length > 1) {
-      const timeout = setTimeout(() => {
-        if (state.flipped[0].photo.id === state.flipped[1].photo.id) {
-          dispatch(handleMatch(state.flipped));
-        } else {
-          dispatch(resetTiles(state.flipped));
-        }
+      setTimeout(() => {
+        dispatch(handleFlippedPair(state.flipped));
       }, 2000);
-
-      return () => {
-        if (timeout) {
-          clearTimeout(timeout);
-        }
-      };
     }
   }, [state.flipped, dispatch]);
 
