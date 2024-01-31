@@ -33,7 +33,7 @@ export const initialGameState = {
   turnCount: 1,
   playerIndex: 0,
   highScore: 0,
-  winner: null,
+  winner: [],
 };
 
 export const GameContext = createContext(initialGameState);

@@ -8,6 +8,7 @@ describe('result display', () => {
     const tieGameState = produce(baseState.game, (draft) => {
       draft.players[0].score = 2;
       draft.players[1].score = 2;
+      draft.winner = [baseState.game.players[0], baseState.game.players[1]];
     });
 
     const state = { ...baseState, game: tieGameState };
@@ -20,18 +21,19 @@ describe('result display', () => {
   });
 
   it('displays the winner when its not a tie', () => {
-    const tieGameState = produce(baseState.game, (draft) => {
+    const winnerGameState = produce(baseState.game, (draft) => {
       draft.players[0].score = 1;
       draft.players[1].score = 3;
+      draft.winner = [baseState.game.players[1]];
     });
 
-    const state = { ...baseState, game: tieGameState };
+    const state = { ...baseState, game: winnerGameState };
 
     const { screen } = setupTests(ResultDisplay, { state });
 
     const display = screen.getByTestId('result-display');
 
-    expect(display).toHaveTextContent('Player 2 wins!');
-    expect(display).not.toHaveTextContent('Its a tie!');
+    expect(screen.getByText('Player 2 wins!')).toBeInTheDocument();
+    expect(screen.queryByText('Its a tie!')).toBe(null);
   });
 });
