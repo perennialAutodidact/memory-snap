@@ -1,4 +1,4 @@
-import { render, renderHook } from '@testing-library/react';
+import { renderHook } from '@testing-library/react';
 import usePhotosContext from '.';
 import PhotosProvider from 'components/providers/photos';
 

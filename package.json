@@ -8,22 +8,18 @@
   },
   "type": "module",
   "scripts": {
-    "build": "npx nx run-many --target=build --exclude='.'",
-    "ci": "npx nx run-many --target=ci --exclude='.'",
-    "lint": "npx nx run-many --target=lint --exclude='.'",
-    "serve": "GENERATE_SOURCEMAP=false npx nx run-many --target=serve --exclude='.'",
-    "start": "npx nx run-many --target=start --exclude='.'",
-    "test": "npx nx run-many --target=test --exclude='.'",
+    "build": "npx turbo build",
+    "ci": "npx turbo ci",
+    "lint": "npx turbo lint",
     "prepare": "husky install && chmod ug+x .husky/*"
   },
-  "nx": {},
   "dependencies": {},
   "devDependencies": {
     "husky": "^8.0.0",
     "lint-staged": "^15.0.2",
-    "nx": "15.3.0",
     "stylelint": "^15.11.0",
-    "stylelint-config-standard-scss": "^11.0.0"
+    "stylelint-config-standard-scss": "^11.0.0",
+    "turbo": "^1.11.2"
   },
   "version": "1.0.1",
   "description": "Memory Snap monorepo",

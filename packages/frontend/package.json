@@ -1,5 +1,5 @@
 {
-  "name": "memory-snap-frontend",
+  "name": "@memory-snap/frontend",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:8080",
@@ -24,7 +24,7 @@
     "ci": "cross-env CI=true yarn test",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "lint": "npx eslint",
+    "lint": "npx eslint .",
     "serve": "react-scripts build",
     "start": "cross-env NODE_ENV=development react-scripts start",
     "test": "cross-env NODE_ENV=test react-scripts test"

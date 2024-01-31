@@ -1,0 +1,37 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [
+    ".eslintrc.json",
+    ".eslintignore",
+    ".stylelintrc.json",
+    ".stylelintignore"
+  ],
+  "pipeline": {
+    "build": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "//$build": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "outputs": ["packages/frontend/build"]
+    },
+    "ci": {
+      "cache": true
+    },
+    "//$ci": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "persistent": true
+    },
+    "//$lint": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "persistent": true
+    }
+  }
+}
