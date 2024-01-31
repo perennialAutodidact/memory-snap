@@ -185,7 +185,8 @@ describe('GameBoard component', () => {
 
       const { user, screen } = setupTests(GameBoard, { state });
 
-      const visibleTiles = screen.getAllByTestId(/tile/);
+      const visibleTiles = screen.getAllByTestId(/tile-(?!grid\b)/);
+
       expect(visibleTiles.length).toBe(10);
 
       const playerOneScore = screen.getByTestId('player-score-1');

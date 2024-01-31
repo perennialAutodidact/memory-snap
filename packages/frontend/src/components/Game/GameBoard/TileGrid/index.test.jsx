@@ -9,7 +9,7 @@ describe('TileGrid component', () => {
 
     const { screen } = setupTests(TileGrid, { props: { tiles } });
 
-    const allTiles = screen.getAllByTestId(/tile/);
+    const allTiles = screen.getAllByTestId(/tile-(?!grid\b)/);
 
     expect(allTiles.length).toBe(10);
   });

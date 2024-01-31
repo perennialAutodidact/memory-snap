@@ -101,12 +101,12 @@ describe('gameReducer', () => {
   it('changes the game state to game over if the action type is HANDLE_GAME_OVER', () => {
     const { game: state } = baseState;
 
-    expect(state.stage).toBe('playing');
+    expect(state.stage).toBe('PLAYING');
 
     const action = {
       type: 'HANDLE_GAME_OVER',
     };
 
-    expect(gameReducer(state, action).stage).toBe('game over');
+    expect(gameReducer(state, action).stage).toBe('GAME_OVER');
   });
 });
