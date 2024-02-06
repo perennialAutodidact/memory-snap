@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './styles/App.scss';
-import { Routes, Route } from 'react-router-dom';
-import Layout from 'components/Layout';
-import Setup from 'components/Setup';
-import Game from 'components/Game';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+// import Layout from 'components/Layout';
+// import Setup from 'components/Setup';
+// import Game from 'components/Game';
+import { routes } from './routes';
+import useGameContext from 'hooks/useGameContext';
 
 const App = () => {
+  const navigate = useNavigate();
+  const {
+    state: { stage },
+  } = useGameContext();
+
+  useEffect(() => {
+    const { path } = routes[stage];
+    navigate(path);
+  }, [stage]);
+
   return (
     <div className="App bg-dark text-light vh-100 container-fluid p-0">
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Game />} />
-          <Route path="/setup" element={<Setup />} />
-        </Route>
+        {Object.keys(routes).map((key) => (
+          <Route
+            key={key}
+            path={routes[key].path}
+            element={routes[key].component}
+          />
+        ))}
       </Routes>
     </div>
   );

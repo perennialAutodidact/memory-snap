@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 export const initialGameState = {
-  stage: 'playing', // setup, playing, complete
+  stage: 'PLAYING', // setup, playing, complete
   currentPlayer: {
     name: 'Player 1',
     number: 1,
