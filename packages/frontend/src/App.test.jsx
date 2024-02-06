@@ -15,4 +15,10 @@ describe('App', () => {
       expect(screen.getByLabelText('memory snap game')).toBeInTheDocument();
     });
   });
+
+  it('lets me try stuff with how im gonna test this', () => {
+    setupTests(App, { route: '/setup' });
+
+    // const justReturnSetup =
+  });
 });
