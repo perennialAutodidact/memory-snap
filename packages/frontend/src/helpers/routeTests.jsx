@@ -1,7 +1,7 @@
 import { setupTests } from 'helpers/tests';
 
-const routeTests = () => {
-  return (component, obj) => setupTests();
+const createSetupTestsForRoute = (route) => {
+  return (component, options) => setupTests(component, { ...options, route });
 };
 
-export { routeTests };
+export { createSetupTestsForRoute };
