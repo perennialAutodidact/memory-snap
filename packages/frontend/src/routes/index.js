@@ -1,6 +1,7 @@
 import React from 'react';
 import Setup from 'components/Setup';
 import Game from 'components/Game';
+import GameOver from 'components/GameOver';
 
 const routes = {
   SETUP: {
@@ -11,10 +12,10 @@ const routes = {
     path: '/play',
     component: <Game />,
   },
-  //   GAME_OVER: {
-  //     path: '/game-over',
-  //     component: GameOver,
-  //   },
+  GAME_OVER: {
+    path: '/game-over',
+    component: <GameOver />,
+  },
 };
 
 export { routes };
