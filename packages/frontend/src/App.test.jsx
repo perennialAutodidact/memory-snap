@@ -1,4 +1,4 @@
-import { createSetupTestsForRoute } from 'helpers/routeTests';
+import { createSetupTestsForRoute } from 'helpers/tests';
 import App from 'App';
 import { baseState } from 'contexts';
 import { produce } from 'immer';
@@ -9,17 +9,17 @@ describe('App', () => {
 
     const { screen } = setupTests(App);
 
-    expect(screen.getByLabelText('memory snap game')).toBeInTheDocument();
+    expect(screen.getByTestId('game-component')).toBeInTheDocument();
   });
 
   it('it renders the setup component at /setup', () => {
     const setupTests = createSetupTestsForRoute('/setup');
 
-    const initialGameState = produce(baseState.game, (draft) => {
+    const setupGameState = produce(baseState.game, (draft) => {
       draft.stage = 'SETUP';
     });
 
-    const state = { ...baseState, game: initialGameState };
+    const state = { ...baseState, game: setupGameState };
 
     const { screen } = setupTests(App, { state });
 
@@ -31,11 +31,11 @@ describe('App', () => {
   it('it renders the game over component at /game-over', () => {
     const setupTests = createSetupTestsForRoute('/game-over');
 
-    const initialGameState = produce(baseState.game, (draft) => {
+    const gameOverState = produce(baseState.game, (draft) => {
       draft.stage = 'GAME_OVER';
     });
 
-    const state = { ...baseState, game: initialGameState };
+    const state = { ...baseState, game: gameOverState };
 
     const { screen } = setupTests(App, { state });
 

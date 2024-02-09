@@ -32,4 +32,8 @@ const setupTests = (
   return { screen, user };
 };
 
-export { setupTests };
+const createSetupTestsForRoute = (route) => {
+  return (component, options) => setupTests(component, { ...options, route });
+};
+
+export { setupTests, createSetupTestsForRoute };
