@@ -2,6 +2,7 @@ import { createSetupTestsForRoute } from 'helpers/tests';
 import App from 'App';
 import { baseState } from 'contexts';
 import { produce } from 'immer';
+import { GAME_STAGES } from 'routes/constants';
 
 describe('App', () => {
   it('it renders that game component at /play', () => {
@@ -16,7 +17,7 @@ describe('App', () => {
     const setupTests = createSetupTestsForRoute('/setup');
 
     const setupGameState = produce(baseState.game, (draft) => {
-      draft.stage = 'SETUP';
+      draft.stage = GAME_STAGES.SETUP;
     });
 
     const state = { ...baseState, game: setupGameState };
@@ -32,7 +33,7 @@ describe('App', () => {
     const setupTests = createSetupTestsForRoute('/game-over');
 
     const gameOverState = produce(baseState.game, (draft) => {
-      draft.stage = 'GAME_OVER';
+      draft.stage = GAME_STAGES.GAME_OVER;
     });
 
     const state = { ...baseState, game: gameOverState };
