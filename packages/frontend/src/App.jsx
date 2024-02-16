@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './styles/App.scss';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { routes } from './routes';
+import { routes } from './constants';
 import useGameContext from 'hooks/useGameContext';
 
 const App = () => {

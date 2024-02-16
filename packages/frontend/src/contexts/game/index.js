@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { GAME_STAGES } from 'routes/constants';
+import { GAME_STAGES } from 'constants/routes';
 
 export const initialGameState = {
   stage: GAME_STAGES.PLAYING, // SETUP, PLAYING, GAME_OVER
