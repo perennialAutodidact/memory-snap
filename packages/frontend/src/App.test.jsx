@@ -2,7 +2,7 @@ import { createSetupTestsForRoute } from 'helpers/tests';
 import App from 'App';
 import { baseState } from 'contexts';
 import { produce } from 'immer';
-import { GAME_STAGES } from 'contexts/constants/routes';
+import { GAME_STAGES } from 'utils/stages';
 
 describe('App', () => {
   it('it renders that game component at /play', () => {
