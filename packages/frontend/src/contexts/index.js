@@ -1,5 +1,5 @@
 import { initialFormState } from './form';
-import { initialGameState } from './game/index.js';
+import { initialGameState } from './game';
 import { initialPhotosState } from './photos';
 
 export const baseState = {
