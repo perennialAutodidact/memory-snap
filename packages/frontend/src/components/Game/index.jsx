@@ -13,7 +13,11 @@ const Game = () => {
   const isLoading = ['IDLE', 'PENDING'].includes(status);
 
   return (
-    <section className="d-flex flex-column" aria-label="memory snap game">
+    <section
+      data-testid="game-component"
+      className="d-flex flex-column"
+      aria-label="memory snap game"
+    >
       {isLoading ? (
         <div className="pt-5 d-flex justify-content-center">
           <Spinner />
