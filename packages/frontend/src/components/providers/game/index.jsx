@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { GameContext } from 'contexts/game';
+import { GameContext } from 'contexts/game/index.js';
 import { addTiles } from 'contexts/game/actions';
 import { baseState } from 'contexts';
 import { gameReducer } from 'contexts/game/reducer';
