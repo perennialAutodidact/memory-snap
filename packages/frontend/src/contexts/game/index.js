@@ -35,6 +35,7 @@ export const initialGameState = {
   playerIndex: 0,
   highScore: 0,
   winner: [],
+  matchedTiles: [],
 };
 
 export const GameContext = createContext(initialGameState);
