@@ -1,7 +1,7 @@
 import React from 'react';
 import Setup from 'components/Setup';
 import Game from 'components/Game';
-import GameOver from 'components/GameOver';
+import ResultDisplay from 'components/Game/GameBoard/ResultDisplay';
 
 const routes = {
   SETUP: {
@@ -14,7 +14,7 @@ const routes = {
   },
   GAME_OVER: {
     path: '/game-over',
-    component: <GameOver />,
+    component: <ResultDisplay />,
   },
 };
 
