@@ -45,7 +45,9 @@ export const gameReducer = (state, action) => {
 
       return tempState;
     }
-
+    //I think when its filtering matchedTiles, its not the updated version of state that happens
+    //after this action runs, it the state before where the tiles are still unmatched
+    //therefore the state that the GameBoard component has is always a step behind
     case types.HANDLE_FLIPPED_PAIR:
       return {
         ...state,
