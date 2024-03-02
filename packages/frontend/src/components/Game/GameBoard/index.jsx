@@ -11,9 +11,6 @@ const GameBoard = () => {
   } = useGameContext();
 
   useEffect(() => {
-    // const matchedTiles = tiles.filter((tile) => tile.isMatched === true);
-
-    //this version of matchedTiles is from state, and always one step behing game play
     if (tiles.length !== 0 && matchedTiles.length === tiles.length) {
       dispatch(handleGameOver());
     }

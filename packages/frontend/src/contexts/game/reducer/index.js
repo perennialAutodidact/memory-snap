@@ -45,24 +45,29 @@ export const gameReducer = (state, action) => {
 
       return tempState;
     }
-    //I think when its filtering matchedTiles, its not the updated version of state that happens
-    //after this action runs, it the state before where the tiles are still unmatched
-    //therefore the state that the GameBoard component has is always a step behind
-    case types.HANDLE_FLIPPED_PAIR:
+
+    case types.HANDLE_FLIPPED_PAIR: {
+      let tempState = {
+        ...state,
+        tiles: isMatchingPair(state.flipped)
+          ? handleMatch(state.tiles, action.payload.tiles)
+          : resetTiles(state.tiles),
+      };
+
       return {
         ...state,
         tiles: isMatchingPair(state.flipped)
           ? handleMatch(state.tiles, action.payload.tiles)
           : resetTiles(state.tiles),
         flipped: [],
-        matchedTiles: state.tiles.filter((tile) => tile.isMatched === true),
+        matchedTiles: tempState.tiles.filter((tile) => tile.isMatched === true),
         currentPlayer: state.players[state.turnCount % state.players.length],
         players: isMatchingPair(state.flipped)
           ? awardPoint(state.players, state.currentPlayer.number - 1)
           : state.players,
         turnCount: state.turnCount + 1,
       };
-
+    }
     case types.HANDLE_GAME_OVER:
       return {
         ...state,
