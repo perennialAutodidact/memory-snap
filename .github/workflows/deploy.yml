@@ -3,7 +3,6 @@ on:
     branches:
       - replace-nx-with-turborepo
 
-
 - name: 'Install Oracle CLI'
   run: |
     curl -L -O https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh
