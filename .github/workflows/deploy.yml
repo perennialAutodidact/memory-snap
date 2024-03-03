@@ -1,7 +1,8 @@
-'on':
+name: 'Deploy to Oracle'
+on:
   push:
     branches:
-      - replace-nx-with-turborepo
+      - 'replace-nx-with-turborepo'
 
 jobs:
   install_oracle_cli:
