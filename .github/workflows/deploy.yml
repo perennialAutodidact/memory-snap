@@ -5,6 +5,7 @@ on:
 
 jobs:
   install_oracle_cli:
+    runs-on: ubuntu-latest
     steps:
       name: 'Install Oracle CLI'
       run: |
