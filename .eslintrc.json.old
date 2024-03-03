@@ -1,5 +1,9 @@
 {
   "root": true,
+  "env": {
+    "es6": true,
+    "node": true
+  },
   "ignorePatterns": [".husky", ".nx", "design", "node_modules"],
   "plugins": ["prettier", "unused-imports"],
   "extends": ["prettier", "eslint:recommended"]

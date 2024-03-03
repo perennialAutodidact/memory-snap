@@ -1,9 +1,9 @@
 {
   "env": {
+    "browser": true,
     "es6": true,
     "jest": true,
-    "node": true,
-    "browser": true
+    "node": true
   },
   "parser": "@babel/eslint-parser",
   "parserOptions": {
@@ -13,18 +13,12 @@
     "ecmaFeatures": {
       "jsx": true,
       "modules": true
-    },
-    "babelOptions": {
-      "presets": ["@babel/preset-react"]
     }
   },
-  "plugins": ["prettier", "react", "unused-imports"],
-  "extends": ["../../.eslintrc.json", "react-app", "plugin:react/recommended"],
+  "extends": ["@memory-snap/eslint-config/frontend"],
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    "no-console": ["error", { "allow": ["warn"] }],
-    "react/jsx-uses-react": "warn",
-    "react/jsx-uses-vars": "warn",
+    "no-console": ["error", { "allow": ["warn", "error"] }],
     "no-unused-vars": "off",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
@@ -36,10 +30,5 @@
         "argsIgnorePattern": "^_"
       }
     ]
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
   }
 }

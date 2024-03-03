@@ -1,7 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": [
-    ".eslintrc.json",
     ".eslintignore",
     ".stylelintrc.json",
     ".stylelintignore"
@@ -15,7 +14,7 @@
     "//$build": {
       "cache": true,
       "dependsOn": ["^build"],
-      "outputs": ["packages/frontend/build"]
+      "outputs": ["apps/frontend/build"]
     },
     "ci": {
       "cache": true

@@ -1,8 +1,9 @@
 {
-  "name": "memory-snap-workspace",
+  "name": "memory-snap",
   "private": true,
   "workspaces": {
     "packages": [
+      "apps/**",
       "packages/**"
     ]
   },
