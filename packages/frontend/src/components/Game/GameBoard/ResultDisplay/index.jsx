@@ -14,7 +14,7 @@ const ResultDisplay = () => {
       <div className="d-flex-column text-center">
         <h1 className="mb-5">GAME OVER!</h1>
 
-        {winner && winner.length > 1 ? (
+        {winner === null ? (
           <h2 className="lh-lg">Its a tie!</h2>
         ) : (
           <h2 className={`text-${winner[0].color.className}`}>

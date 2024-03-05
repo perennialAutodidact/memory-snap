@@ -75,13 +75,16 @@ export const gameReducer = (state, action) => {
             : state.stage,
       };
     }
-    case types.HANDLE_GAME_OVER:
+    case types.HANDLE_GAME_OVER: {
+      let highScore = state.players.filter(
+        (player) => player.score === getHighScore(state.players)
+      );
+
       return {
         ...state,
-        winner: state.players.filter(
-          (player) => player.score === getHighScore(state.players)
-        ),
+        winner: highScore.length > 1 ? null : highScore,
       };
+    }
 
     default: {
       return state;
