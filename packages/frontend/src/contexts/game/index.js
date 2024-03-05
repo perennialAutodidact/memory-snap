@@ -34,7 +34,7 @@ export const initialGameState = {
   turnCount: 1,
   playerIndex: 0,
   highScore: 0,
-  winner: [],
+  winner: {},
   matchedTiles: [],
 };
 

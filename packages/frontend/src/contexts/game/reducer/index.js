@@ -82,7 +82,7 @@ export const gameReducer = (state, action) => {
 
       return {
         ...state,
-        winner: highScore.length > 1 ? null : highScore,
+        winner: highScore.length > 1 ? null : highScore[0],
       };
     }
 

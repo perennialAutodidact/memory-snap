@@ -17,8 +17,8 @@ const ResultDisplay = () => {
         {winner === null ? (
           <h2 className="lh-lg">Its a tie!</h2>
         ) : (
-          <h2 className={`text-${winner[0].color.className}`}>
-            {`${winner[0].name} wins!`}
+          <h2 className={`text-${winner.color.className}`}>
+            {`${winner.name} wins!`}
           </h2>
         )}
       </div>
