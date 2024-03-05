@@ -29,18 +29,19 @@ describe('App', () => {
     ).toBeInTheDocument();
   });
 
-  // it('it renders the game over component at /game-over', () => {
-  //   const setupTests = createSetupTestsForRoute('/game-over');
+  it('it renders the result display component at /game-over', () => {
+    const setupTests = createSetupTestsForRoute('/game-over');
 
-  //   const gameOverState = produce(baseState.game, (draft) => {
-  //     draft.stage = GAME_STAGES.GAME_OVER;
-  //   });
+    const gameOverState = produce(baseState.game, (draft) => {
+      draft.stage = GAME_STAGES.GAME_OVER;
+      draft.winner = baseState.game.players[0];
+    });
 
-  //   const state = { ...baseState, game: gameOverState };
+    const state = { ...baseState, game: gameOverState };
 
-  //   const { screen } = setupTests(App, { state });
+    const { screen } = setupTests(App, { state });
 
-  //   const element = screen.getByText('GAME OVER!');
-  //   expect(element).toBeInTheDocument();
-  // });
+    const element = screen.getByText('GAME OVER!');
+    expect(element).toBeInTheDocument();
+  });
 });
