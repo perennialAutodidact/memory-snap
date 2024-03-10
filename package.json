@@ -1,30 +1,31 @@
 {
-  "name": "memory-snap",
-  "private": true,
-  "workspaces": {
-    "packages": [
-      "apps/**",
-      "packages/**"
-    ]
-  },
-  "type": "module",
-  "scripts": {
-    "build": "npx turbo build",
-    "ci": "npx turbo ci",
-    "lint": "npx turbo lint",
-    "prepare": "husky install && chmod ug+x .husky/*"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "husky": "^8.0.0",
-    "lint-staged": "^15.0.2",
-    "stylelint": "^15.11.0",
-    "stylelint-config-standard-scss": "^11.0.0",
-    "turbo": "^1.11.2"
-  },
-  "version": "1.0.1",
-  "description": "Memory Snap monorepo",
-  "repository": "git@github.com:perennialAutodidact/memory-snap.git",
-  "author": "Keegan Good <perennialautodidact@gmail.com>",
-  "license": "MIT"
+    "name": "memory-snap",
+    "private": true,
+    "workspaces": {
+        "packages": [
+            "apps/**",
+            "packages/**"
+        ]
+    },
+    "type": "module",
+    "scripts": {
+        "build": "npx turbo build",
+        "ci": "npx turbo ci",
+        "lint": "npx turbo lint",
+        "start": "npx turbo run start",
+        "prepare": "husky install && chmod ug+x .husky/*"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "husky": "^8.0.0",
+        "lint-staged": "^15.0.2",
+        "stylelint": "^15.11.0",
+        "stylelint-config-standard-scss": "^11.0.0",
+        "turbo": "^1.11.2"
+    },
+    "version": "1.0.1",
+    "description": "Memory Snap monorepo",
+    "repository": "git@github.com:perennialAutodidact/memory-snap.git",
+    "author": "Keegan Good <perennialautodidact@gmail.com>",
+    "license": "MIT"
 }

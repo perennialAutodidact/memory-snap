@@ -1,36 +1,52 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": [
-    ".eslintignore",
-    ".stylelintrc.json",
-    ".stylelintignore"
-  ],
-  "pipeline": {
-    "build": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "outputs": []
-    },
-    "//$build": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "outputs": ["apps/frontend/build"]
-    },
-    "ci": {
-      "cache": true
-    },
-    "//$ci": {
-      "cache": true
-    },
-    "lint": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "persistent": true
-    },
-    "//$lint": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "persistent": true
+    "$schema": "https://turbo.build/schema.json",
+    "globalDependencies": [
+        ".eslintignore",
+        ".stylelintrc.json",
+        ".stylelintignore"
+    ],
+    "pipeline": {
+        "build": {
+            "cache": true,
+            "dependsOn": [
+                "^build"
+            ],
+            "outputs": []
+        },
+        "//$build": {
+            "cache": true,
+            "dependsOn": [
+                "^build"
+            ],
+            "outputs": [
+                "apps/frontend/build"
+            ]
+        },
+        "ci": {
+            "cache": true
+        },
+        "//$ci": {
+            "cache": true
+        },
+        "lint": {
+            "cache": true,
+            "dependsOn": [
+                "^build"
+            ],
+            "persistent": true
+        },
+        "//$lint": {
+            "cache": true,
+            "dependsOn": [
+                "^build"
+            ],
+            "persistent": true
+        },
+        "start": {
+            "cache": true
+        },
+        "//$start": {
+            "cache": true
+        }
     }
-  }
 }

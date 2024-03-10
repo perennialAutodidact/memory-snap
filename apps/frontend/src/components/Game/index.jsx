@@ -2,14 +2,12 @@ import React from 'react';
 import usePhotosContext from 'hooks/usePhotosContext';
 import Spinner from './Spinner';
 import GameBoard from './GameBoard';
-
 const Game = () => {
   const {
     // TODO: re-enable eslint when photos variable is used
     // eslint-disable-next-line
-    state: { error, status, photos },
+        state: { error, status, photos },
   } = usePhotosContext();
-
   const isLoading = ['IDLE', 'PENDING'].includes(status);
 
   return (
