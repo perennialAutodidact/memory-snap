@@ -8,27 +8,31 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: 'Build'
+        run: |
+          npm i -g yarn && yarn build \
+          ls .
+
       - name: 'Install Oracle CLI'
         run: |
           curl -L -O https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh
           chmod +x install.sh
           ./install.sh --accept-all-defaults
           exec -l $SHELL
-     
-      # - name: 'Check existing instance'
-        # run : |
-          # echo "oci compute instance list \
-          #   --lifecycle-state RUNNING \
-          #   --compartment-id ${{secrets.VM_COMPARTMENT_ID}} \
-          #   --display-name memory-snap \
-          #   --raw-output \
-          # "
 
       - name: 'Wait for SSH'
         run: |
           while ! nc -w5 -z ${{ secrets.OCI_INSTANCE_PUBLIC_IP }} 22; do
-                  sleep 5
-                  echo "SSH not available..."
+              sleep 5
+              echo`` "SSH not available..."
           done; echo "SSH ready!"
+      # 
+      # - name: 'Upload app files'
+      #   uses: applyboy/scp-action@master
+      #   with:
+      #     host: ${{secrets.OCI_INSTANCE_PUBLIC_IP}}
+      #     username: ocp
+      #     key: ${{secrets.OCI_SSH_PUB_KEY}}
+      #     source: 
   
 
