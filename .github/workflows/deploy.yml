@@ -3,14 +3,23 @@ on:
   push:
     branches:
       - 'replace-nx-with-turborepo'
+strategy:
+  matrix:
+    node-version: [18.x]
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: 'Use Node.js ${{matrix.node-version}}'
+        uses: actions/setup-node@v2
+
       - name: 'Build'
+        uses: actions/checkout@v2
         run: |
-          ls .
+          npm i -g yarn \
+          yarn build \
+
       - name: 'Install Oracle CLI'
         run: |
           curl -L -O https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh
