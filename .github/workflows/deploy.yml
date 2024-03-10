@@ -21,7 +21,6 @@ jobs:
             --lifecycle-state RUNNING \
             --compartment-id ${{secrets.VM_COMPARTMENT_ID}} \
             --display-name memory-snap \
-            --query `data [0].id` \
             --raw-output \
           "
   
