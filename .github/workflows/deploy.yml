@@ -5,7 +5,7 @@ on:
       - 'replace-nx-with-turborepo'
 
 jobs:
-  install_oracle_cli:
+  build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - name: 'Install Oracle CLI'
@@ -14,4 +14,16 @@ jobs:
           chmod +x install.sh
           ./install.sh --accept-all-defaults
           exec -l $SHELL
+     
+      - name: 'Check existing instance'
+        run : |
+          echo "::set-env name=INSTANCE_OCID::$(\
+            oci compute instance list \
+            --lifecycle-state RUNNING \
+            --compartment-id ${{secrets.VM_COMPARTMENT_ID}} \
+            --display-name memory-snap \
+            --query `data [0].id` \
+            --raw-output \
+          )"
+  
 
