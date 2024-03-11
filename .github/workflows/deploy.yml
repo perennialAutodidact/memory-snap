@@ -48,8 +48,8 @@ jobs:
           source: "apps/*"
           target: "app/"
 
-      - name: 'Start app'
-          run: |
-            ls .
+      # - name: 'Start app'
+          # run: |
+            # ls .
   
 
