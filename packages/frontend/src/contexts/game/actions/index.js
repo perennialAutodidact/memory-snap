@@ -14,3 +14,7 @@ export const handleFlippedPair = (tiles) => ({
   type: types.HANDLE_FLIPPED_PAIR,
   payload: { tiles },
 });
+
+export const handleGameOver = () => ({
+  type: types.HANDLE_GAME_OVER,
+});

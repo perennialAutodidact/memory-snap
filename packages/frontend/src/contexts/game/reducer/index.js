@@ -1,11 +1,13 @@
 import { isMatchingPair } from 'helpers/isMatchingPair';
 import types from '../actions/types';
+import { GAME_STAGES } from '../stages';
 import {
   createTilesFromPhotos,
   lockTiles,
   handleMatch,
   resetTiles,
   awardPoint,
+  getHighScore,
 } from 'helpers';
 
 export const gameReducer = (state, action) => {
@@ -44,19 +46,45 @@ export const gameReducer = (state, action) => {
       return tempState;
     }
 
-    case types.HANDLE_FLIPPED_PAIR:
-      return {
+    case types.HANDLE_FLIPPED_PAIR: {
+      let tempState = {
         ...state,
         tiles: isMatchingPair(state.flipped)
           ? handleMatch(state.tiles, action.payload.tiles)
           : resetTiles(state.tiles),
+      };
+
+      let tempMatchedTiles = tempState.tiles.filter(
+        (tile) => tile.isMatched === true
+      );
+
+      return {
+        ...state,
+        tiles: tempState.tiles,
         flipped: [],
+        matchedTiles: tempMatchedTiles,
         currentPlayer: state.players[state.turnCount % state.players.length],
         players: isMatchingPair(state.flipped)
           ? awardPoint(state.players, state.currentPlayer.number - 1)
           : state.players,
         turnCount: state.turnCount + 1,
+        stage:
+          state.tiles.length !== 0 &&
+          tempMatchedTiles.length === state.tiles.length
+            ? GAME_STAGES.GAME_OVER
+            : state.stage,
       };
+    }
+    case types.HANDLE_GAME_OVER: {
+      let highScore = state.players.filter(
+        (player) => player.score === getHighScore(state.players)
+      );
+
+      return {
+        ...state,
+        winner: highScore.length > 1 ? null : highScore[0],
+      };
+    }
 
     default: {
       return state;

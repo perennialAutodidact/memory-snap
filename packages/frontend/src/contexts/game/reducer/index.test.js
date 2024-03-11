@@ -97,4 +97,37 @@ describe('gameReducer', () => {
       initialTilesState
     );
   });
+
+  it('returns the proper winner object if the action type is HANDLE_GAME_OVER', () => {
+    const { game: state } = baseState;
+
+    const gameOverState = produce(state, (draft) => {
+      draft.players[0].score = 3;
+    });
+
+    expect(state.stage).toBe('PLAYING');
+
+    const action = {
+      type: 'HANDLE_GAME_OVER',
+    };
+
+    expect(gameReducer(gameOverState, action).winner.name).toBe('Player 1');
+  });
+
+  it('returns null for a tie if the action type is HANDLE_GAME_OVER', () => {
+    const { game: state } = baseState;
+
+    const gameOverState = produce(state, (draft) => {
+      draft.players[0].score = 2;
+      draft.players[1].score = 2;
+    });
+
+    expect(state.stage).toBe('PLAYING');
+
+    const action = {
+      type: 'HANDLE_GAME_OVER',
+    };
+
+    expect(gameReducer(gameOverState, action).winner).toBe(null);
+  });
 });
