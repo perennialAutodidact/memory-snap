@@ -39,15 +39,14 @@ jobs:
           && yarn install \
           && yarn build \
 
-      # 
       - name: 'Upload app files'
         uses: applyboy/scp-action@master
         with:
           host: ${{secrets.OCI_INSTANCE_PUBLIC_IP}}
-          username: ocp
+          username: "ocp"
           key: ${{secrets.OCI_SSH_PUB_KEY}}
-          source: apps/*
-          target: app/
+          source: "apps/*"
+          target: "app/"
 
       - name: 'Start app'
           run: |
