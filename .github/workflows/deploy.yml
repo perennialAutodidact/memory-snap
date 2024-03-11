@@ -39,17 +39,11 @@ jobs:
           && yarn install \
           && yarn build \
 
-      - name: 'Upload app files'
-        uses: appleboy/scp-action@master
+      - name: 'Upload files'
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{secrets.OCI_INSTANCE_PUBLIC_IP}}
-          username: "ocp"
+          username: ${{secrets.USERNAME}}
           key: ${{secrets.OCI_SSH_PRIVATE_KEY}}
-          source: "apps/*"
-          target: "app/"
-
-      # - name: 'Start app'
-          # run: |
-            # ls .
-  
-
+          source: package.json
+          target: /home/memory-snap/
