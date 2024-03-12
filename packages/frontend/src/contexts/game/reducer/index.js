@@ -63,7 +63,9 @@ export const gameReducer = (state, action) => {
         tiles: tempState.tiles,
         flipped: [],
         matchedTiles: tempMatchedTiles,
-        currentPlayer: state.players[state.turnCount % state.players.length],
+        currentPlayer: isMatchingPair(state.flipped)
+          ? state.currentPlayer
+          : state.players[state.turnCount % state.players.length],
         players: isMatchingPair(state.flipped)
           ? awardPoint(state.players, state.currentPlayer.number - 1)
           : state.players,

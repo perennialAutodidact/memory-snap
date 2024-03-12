@@ -130,4 +130,50 @@ describe('gameReducer', () => {
 
     expect(gameReducer(gameOverState, action).winner).toBe(null);
   });
+
+  it('does not change the current player when a match is made', () => {
+    const { game: state } = baseState;
+
+    const tiles = createTilesFromPhotos(mockPhotos, false).slice(0, 2);
+
+    const gameOverState = produce(state, (draft) => {
+      draft.flipped = tiles;
+    });
+
+    expect(state.currentPlayer.name).toBe('Player 1');
+
+    const payload = { tiles };
+
+    const action = {
+      type: 'HANDLE_FLIPPED_PAIR',
+      payload: payload,
+    };
+
+    expect(gameReducer(gameOverState, action).currentPlayer.name).toBe(
+      'Player 1'
+    );
+  });
+
+  it('changes the current player when no match is made', () => {
+    const { game: state } = baseState;
+
+    const tiles = createTilesFromPhotos(mockPhotos, false).slice(1, 3);
+
+    const gameOverState = produce(state, (draft) => {
+      draft.flipped = tiles;
+    });
+
+    expect(state.currentPlayer.name).toBe('Player 1');
+
+    const payload = { tiles };
+
+    const action = {
+      type: 'HANDLE_FLIPPED_PAIR',
+      payload: payload,
+    };
+
+    expect(gameReducer(gameOverState, action).currentPlayer.name).toBe(
+      'Player 2'
+    );
+  });
 });
