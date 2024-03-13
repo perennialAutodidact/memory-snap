@@ -45,5 +45,6 @@ jobs:
           host: ${{secrets.OCI_INSTANCE_PUBLIC_IP}}
           username: ${{secrets.USERNAME}}
           key: ${{secrets.OCI_SSH_PRIVATE_KEY}}
+          passphrase: ${{secrets.OCI_SSH_PRIVATE_KEY_PASSPHRASE}}
           source: package.json
           target: /home/memory-snap/
