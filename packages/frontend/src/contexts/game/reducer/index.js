@@ -69,7 +69,9 @@ export const gameReducer = (state, action) => {
         players: isMatchingPair(state.flipped)
           ? awardPoint(state.players, state.currentPlayer.number - 1)
           : state.players,
-        turnCount: state.turnCount + 1,
+        turnCount: isMatchingPair(state.flipped)
+          ? state.turnCount
+          : state.turnCount + 1,
         stage:
           state.tiles.length !== 0 &&
           tempMatchedTiles.length === state.tiles.length
