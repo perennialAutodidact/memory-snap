@@ -135,28 +135,6 @@ describe('GameBoard component', () => {
       expect(updatedScore).toHaveTextContent('0');
     });
 
-    it('changes the active player after each turn', async () => {
-      const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
-
-      const initialGameState = produce(baseState.game, (draft) => {
-        draft.tiles = tiles;
-      });
-
-      const state = { ...baseState, game: initialGameState };
-
-      const { user } = setupTests(GameBoard, { state });
-
-      expect(player.turnIndicator('Player 1').get()).toBeInTheDocument();
-
-      await user.click(tile.container('tile-5').get());
-      await user.click(tile.container('tile-2').get());
-      act(() => jest.advanceTimersByTime(3000));
-
-      expect(player.turnIndicator('Player 1').query()).toBeNull();
-
-      expect(player.turnIndicator('Player 2').get()).toBeInTheDocument();
-    });
-
     it('removes tiles and awards a point after a match', async () => {
       const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
 
@@ -184,6 +162,73 @@ describe('GameBoard component', () => {
 
       const updatedPlayerOneScore = screen.getByTestId('player-score-1');
       expect(updatedPlayerOneScore).toHaveTextContent('1');
+    });
+
+    it('will not flip a tile if two others are flipped', async () => {
+      const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
+
+      const initialGameState = produce(baseState.game, (draft) => {
+        draft.tiles = tiles;
+      });
+
+      const state = { ...baseState, game: initialGameState };
+
+      const { user } = setupTests(GameBoard, { state });
+
+      expect(tile.container('tile-0').get()).not.toHaveClass('faceUp');
+
+      await user.click(tile.container('tile-0').get());
+
+      expect(tile.container('tile-0').get()).toHaveClass('faceUp');
+
+      expect(tile.container('tile-5').get()).not.toHaveClass('faceUp');
+
+      await user.click(tile.container('tile-5').get());
+
+      expect(tile.container('tile-5').get()).toHaveClass('faceUp');
+
+      await user.click(tile.container('tile-7').get());
+      expect(tile.container('tile-7').get()).not.toHaveClass('faceUp');
+    });
+
+    it('does not change the current player if a match is made', async () => {
+      const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
+
+      const initialGameState = produce(baseState.game, (draft) => {
+        draft.tiles = tiles;
+      });
+
+      const state = { ...baseState, game: initialGameState };
+
+      const { user } = setupTests(GameBoard, { state });
+
+      expect(player.turnIndicator('Player 1').get()).toBeInTheDocument();
+
+      await user.click(tile.container('tile-0').get());
+      await user.click(tile.container('tile-1').get());
+
+      expect(player.turnIndicator('Player 1').get()).toBeInTheDocument();
+    });
+
+    it('changes the current player if a match is not made', async () => {
+      const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
+
+      const initialGameState = produce(baseState.game, (draft) => {
+        draft.tiles = tiles;
+      });
+
+      const state = { ...baseState, game: initialGameState };
+
+      const { user } = setupTests(GameBoard, { state });
+
+      expect(player.turnIndicator('Player 1').get()).toBeInTheDocument();
+
+      await user.click(tile.container('tile-0').get());
+      await user.click(tile.container('tile-3').get());
+
+      act(() => jest.advanceTimersByTime(3000));
+
+      expect(player.turnIndicator('Player 2').get()).toBeInTheDocument();
     });
   });
 });
