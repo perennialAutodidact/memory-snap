@@ -43,7 +43,7 @@ jobs:
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{secrets.OCI_INSTANCE_PUBLIC_IP}}
-          username: ${{secrets.USERNAME}}
+          username: ${{secrets.OCI_USERNAME}}
           key: ${{secrets.OCI_SSH_PRIVATE_KEY}}
           passphrase: ${{secrets.OCI_SSH_PRIVATE_KEY_PASSPHRASE}}
           source: package.json
