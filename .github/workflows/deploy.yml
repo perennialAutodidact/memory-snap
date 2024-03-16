@@ -26,13 +26,6 @@ jobs:
           ./install.sh --accept-all-defaults
           exec -l $SHELL
 
-      # - name: 'Wait for SSH'
-      #   run: |
-      #     while ! nc -w5 -z ${{ secrets.OCI_INSTANCE_PUBLIC_IP }} 22; do
-      #         sleep 5
-      #         echo "SSH not available..."
-      #     done; echo "SSH ready!"
-      #
       - name: 'Build'
         run: |
           npm i -g yarn \
