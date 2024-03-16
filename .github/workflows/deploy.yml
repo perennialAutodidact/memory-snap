@@ -26,13 +26,13 @@ jobs:
           ./install.sh --accept-all-defaults
           exec -l $SHELL
 
-      - name: 'Wait for SSH'
-        run: |
-          while ! nc -w5 -z ${{ secrets.OCI_INSTANCE_PUBLIC_IP }} 22; do
-              sleep 5
-              echo "SSH not available..."
-          done; echo "SSH ready!"
-
+      # - name: 'Wait for SSH'
+      #   run: |
+      #     while ! nc -w5 -z ${{ secrets.OCI_INSTANCE_PUBLIC_IP }} 22; do
+      #         sleep 5
+      #         echo "SSH not available..."
+      #     done; echo "SSH ready!"
+      #
       - name: 'Build'
         run: |
           npm i -g yarn \
@@ -40,11 +40,11 @@ jobs:
           && yarn build \
 
       - name: 'Upload files'
-        uses: appleboy/scp-action@v0.1.7
+        uses: wangyucode/sftp-upload-action@v2.0.0
         with:
           host: ${{secrets.OCI_INSTANCE_PUBLIC_IP}}
           username: ${{secrets.OCI_USERNAME}}
-          key: ${{secrets.OCI_SSH_PRIVATE_KEY}}
-          passphrase: ${{secrets.OCI_SSH_PRIVATE_KEY_PASSPHRASE}}
-          source: ./package.json
-          target: /home/memory-snap/
+          compress: true
+          source: ../../
+          remoteDir: /home/memory-snap/
+          exclude: '.git', '*.md', 'design', '.husky', '.github', '.*'
