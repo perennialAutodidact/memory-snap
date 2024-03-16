@@ -45,6 +45,6 @@ jobs:
           host: ${{secrets.OCI_INSTANCE_PUBLIC_IP}}
           username: ${{secrets.OCI_USERNAME}}
           compress: true
-          source: ../../
-          remoteDir: /home/memory-snap/
+          source: '../../'
+          remoteDir: '/home/memory-snap/'
           exclude: '.git', '*.md', 'design', '.husky', '.github', '.*'
