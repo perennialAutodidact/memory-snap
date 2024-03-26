@@ -1,4 +1,4 @@
 import { routes } from './routes';
-import { steps } from './steps';
+import { FORM_STEPS } from './steps';
 
-export { routes, steps };
+export { routes, FORM_STEPS };

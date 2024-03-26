@@ -1,6 +1,6 @@
 import { isMatchingPair } from 'helpers/isMatchingPair';
 import types from '../actions/types';
-import { GAME_STAGES } from '../stages';
+import { GAME_STAGES } from 'utils/stages';
 import {
   createTilesFromPhotos,
   lockTiles,

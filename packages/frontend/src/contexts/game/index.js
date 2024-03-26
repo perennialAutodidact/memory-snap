@@ -3,7 +3,7 @@ import { GAME_STAGES } from 'utils/stages';
 
 export const initialGameState = {
   stage: GAME_STAGES.SETUP, // SETUP, PLAYING, GAME_OVER
-  step: 'three',
+  step: 'TWO',
   currentPlayer: {
     name: 'Player 1',
     number: 1,

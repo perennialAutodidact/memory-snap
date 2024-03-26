@@ -1,22 +1,22 @@
 import React from 'react';
 
-const steps = {
-  one: {
+const FORM_STEPS = {
+  ONE: {
     path: 'step-1',
     component: <h1>STEP 1</h1>,
   },
-  two: {
+  TWO: {
     path: 'step-2',
     component: <h1>STEP 2</h1>,
   },
-  three: {
+  THREE: {
     path: 'step-3',
     component: <h1>STEP 3</h1>,
   },
-  four: {
+  FOUR: {
     path: 'step-4',
     component: <h1>STEP 4</h1>,
   },
 };
 
-export { steps };
+export { FORM_STEPS };
