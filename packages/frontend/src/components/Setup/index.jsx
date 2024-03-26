@@ -1,5 +1,6 @@
 import React from 'react';
 import SetupForm from './Form';
+import { Outlet } from 'react-router-dom';
 
 const Setup = () => {
   return (
@@ -9,6 +10,7 @@ const Setup = () => {
           <SetupForm />
         </div>
       </div>
+      <Outlet />
     </section>
   );
 };

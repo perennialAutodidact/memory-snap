@@ -1,3 +1,4 @@
 import { routes } from './routes';
+import { steps } from './steps';
 
-export { routes };
+export { routes, steps };
