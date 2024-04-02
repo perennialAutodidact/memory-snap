@@ -15,9 +15,7 @@
     "test": "npx nx run-many --target=test",
     "prepare": "husky install && chmod ug+x .husky/*"
   },
-  "dependencies": {
-    "react-hook-form": "^7.51.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "husky": "^8.0.0",
     "lint-staged": "^15.0.2",
