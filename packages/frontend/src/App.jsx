@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './styles/App.scss';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { routes, FORM_STEPS } from './utils';
+import { routesExp, routes, FORM_STEPS } from './utils';
 import useGameContext from 'hooks/useGameContext';
 import { GAME_STAGES } from 'utils/stages';
 
@@ -21,29 +21,29 @@ const App = () => {
   return (
     <div className="App bg-dark text-light vh-100 container-fluid p-0">
       <Routes>
-        <Route path={routes.SETUP.path} element={routes.SETUP.component}>
-          <Route
-            path={FORM_STEPS.ONE.path}
-            element={FORM_STEPS.ONE.component}
-          />
-          <Route
-            path={FORM_STEPS.TWO.path}
-            element={FORM_STEPS.TWO.component}
-          />
-          <Route
-            path={FORM_STEPS.THREE.path}
-            element={FORM_STEPS.THREE.component}
-          />
-          <Route
-            path={FORM_STEPS.FOUR.path}
-            element={FORM_STEPS.FOUR.component}
-          />
-        </Route>
-        <Route path={routes.PLAYING.path} element={routes.PLAYING.component} />
-        <Route
-          path={routes.GAME_OVER.path}
-          element={routes.GAME_OVER.component}
-        />
+        {routesExp.map((route) => {
+          if (route.children === null) {
+            return (
+              <Route
+                path={route.path}
+                element={route.element}
+                key={route.path}
+              />
+            );
+          } else {
+            return (
+              <Route path={route.path} element={route.element} key={route.path}>
+                {route.children.map((child) => (
+                  <Route
+                    path={child.path}
+                    element={child.element}
+                    key={route.path}
+                  />
+                ))}
+              </Route>
+            );
+          }
+        })}
       </Routes>
     </div>
   );
