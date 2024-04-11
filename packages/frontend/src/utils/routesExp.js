@@ -9,22 +9,22 @@ const routesExp = [
     element: <Setup />,
     children: [
       {
-        path: 'step1',
+        path: 'step-1',
         element: <h1>STEP 1</h1>,
         children: null,
       },
       {
-        path: 'step2',
+        path: 'step-2',
         element: <h1>STEP 2</h1>,
         children: null,
       },
       {
-        path: 'step3',
+        path: 'step-3',
         element: <h1>STEP 3</h1>,
         children: null,
       },
       {
-        path: 'step4',
+        path: 'step-4',
         element: <h1>STEP 4</h1>,
         children: null,
       },
