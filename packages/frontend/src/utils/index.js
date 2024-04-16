@@ -1,4 +1,4 @@
-import { routesExp } from './routesExp';
+import { routes } from './routes';
 import { GAME_STAGES } from './stages';
 
-export { routesExp, GAME_STAGES };
+export { routes, GAME_STAGES };

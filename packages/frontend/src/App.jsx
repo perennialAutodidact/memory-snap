@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './styles/App.scss';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { routesExp, GAME_STAGES } from './utils';
+import { routes, GAME_STAGES } from './utils';
 import useGameContext from 'hooks/useGameContext';
 import useFormContext from 'hooks/useFormContext';
 
@@ -16,10 +16,10 @@ const App = () => {
   } = useFormContext();
 
   useEffect(() => {
-    const { path } = routesExp[stage];
+    const { path } = routes[stage];
 
-    let pathStep = routesExp[stage].children
-      ? path.concat('/', routesExp[stage].children[currentStep - 1].path)
+    let pathStep = routes[stage].children
+      ? path.concat('/', routes[stage].children[currentStep - 1].path)
       : '';
 
     navigate(stage === GAME_STAGES.SETUP ? pathStep : path);
@@ -28,7 +28,7 @@ const App = () => {
   return (
     <div className="App bg-dark text-light vh-100 container-fluid p-0">
       <Routes>
-        {routesExp.map((route) => {
+        {routes.map((route) => {
           return (
             <Route path={route.path} element={route.element} key={route.path}>
               {route.children?.map((child) => (

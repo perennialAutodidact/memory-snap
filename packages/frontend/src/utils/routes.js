@@ -7,7 +7,7 @@ import FormStepFour from 'components/Setup/FormStep/FormStepFour';
 import Game from 'components/Game';
 import ResultDisplay from 'components/Game/GameBoard/ResultDisplay';
 
-const routesExp = [
+const routes = [
   {
     path: '/setup',
     element: <Setup />,
@@ -46,4 +46,4 @@ const routesExp = [
   },
 ];
 
-export { routesExp };
+export { routes };

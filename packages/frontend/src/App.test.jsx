@@ -5,7 +5,7 @@ import { produce } from 'immer';
 import { GAME_STAGES } from 'utils/stages';
 
 describe('App', () => {
-  it('it renders that game component at /play', () => {
+  it('it renders the game component at /play', () => {
     const setupTests = createSetupTestsForRoute('/play');
 
     const { screen } = setupTests(App);
