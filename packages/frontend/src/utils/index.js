@@ -1,5 +1,4 @@
-import { routes } from './routes';
-import { FORM_STEPS } from './steps';
 import { routesExp } from './routesExp';
+import { GAME_STAGES } from './stages';
 
-export { routes, FORM_STEPS, routesExp };
+export { routesExp, GAME_STAGES };

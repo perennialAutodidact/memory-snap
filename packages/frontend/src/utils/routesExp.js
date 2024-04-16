@@ -1,5 +1,9 @@
 import React from 'react';
 import Setup from 'components/Setup';
+import FormStepOne from 'components/Setup/FormStep/FormStepOne';
+import FormStepTwo from 'components/Setup/FormStep/FormStepTwo';
+import FormStepThree from 'components/Setup/FormStep/FormStepThree';
+import FormStepFour from 'components/Setup/FormStep/FormStepFour';
 import Game from 'components/Game';
 import ResultDisplay from 'components/Game/GameBoard/ResultDisplay';
 
@@ -10,28 +14,28 @@ const routesExp = [
     children: [
       {
         path: 'step-1',
-        element: <h1>STEP 1</h1>,
+        element: <FormStepOne />,
         children: null,
       },
       {
         path: 'step-2',
-        element: <h1>STEP 2</h1>,
+        element: <FormStepTwo />,
         children: null,
       },
       {
         path: 'step-3',
-        element: <h1>STEP 3</h1>,
+        element: <FormStepThree />,
         children: null,
       },
       {
         path: 'step-4',
-        element: <h1>STEP 4</h1>,
+        element: <FormStepFour />,
         children: null,
       },
     ],
   },
   {
-    path: '/playing',
+    path: '/play',
     element: <Game />,
     children: null,
   },
