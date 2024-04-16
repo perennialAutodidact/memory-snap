@@ -1,7 +1,6 @@
-import React from 'react';
+import FormStepOne from './FormStepOne';
+import FormStepTwo from './FormStepTwo';
+import FormStepThree from './FormStepThree';
+import FormStepFour from './FormStepFour';
 
-const FormStep = () => {
-  return <div>index</div>;
-};
-
-export default FormStep;
+export { FormStepOne, FormStepTwo, FormStepThree, FormStepFour };

@@ -1,9 +1,11 @@
 import React from 'react';
 import Setup from 'components/Setup';
-import FormStepOne from 'components/Setup/FormStep/FormStepOne';
-import FormStepTwo from 'components/Setup/FormStep/FormStepTwo';
-import FormStepThree from 'components/Setup/FormStep/FormStepThree';
-import FormStepFour from 'components/Setup/FormStep/FormStepFour';
+import {
+  FormStepOne,
+  FormStepTwo,
+  FormStepThree,
+  FormStepFour,
+} from 'components/Setup/FormStep';
 import Game from 'components/Game';
 import ResultDisplay from 'components/Game/GameBoard/ResultDisplay';
 
