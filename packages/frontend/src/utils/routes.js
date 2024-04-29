@@ -1,49 +1,46 @@
-import React from 'react';
 import Setup from 'components/Setup';
-import {
-  FormStepOne,
-  FormStepTwo,
-  FormStepThree,
-  FormStepFour,
-} from 'components/Setup/FormStep';
+import FormStep from 'components/Setup/FormStep';
 import Game from 'components/Game';
 import ResultDisplay from 'components/Game/GameBoard/ResultDisplay';
 
 const routes = [
   {
+    name: 'Setup',
     path: '/setup',
-    element: <Setup />,
+    Element: Setup,
     children: [
       {
-        path: 'step-1',
-        element: <FormStepOne />,
-        children: null,
+        name: 'Step 1',
+        path: '/step-1',
+        Element: FormStep,
       },
       {
-        path: 'step-2',
-        element: <FormStepTwo />,
-        children: null,
+        name: 'Step 2',
+        path: '/step-2',
+        Element: FormStep,
       },
       {
-        path: 'step-3',
-        element: <FormStepThree />,
-        children: null,
+        name: 'Step 3',
+        path: '/step-3',
+        Element: FormStep,
       },
       {
-        path: 'step-4',
-        element: <FormStepFour />,
-        children: null,
+        name: 'Step 4',
+        path: '/step-4',
+        Element: FormStep,
       },
     ],
   },
   {
+    name: 'Play',
     path: '/play',
-    element: <Game />,
+    Element: Game,
     children: null,
   },
   {
+    name: 'Game Over',
     path: '/game-over',
-    element: <ResultDisplay />,
+    Element: ResultDisplay,
     children: null,
   },
 ];

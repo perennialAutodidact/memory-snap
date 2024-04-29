@@ -19,7 +19,7 @@ const App = () => {
     const { path } = routes[stage];
 
     let pathStep = routes[stage].children
-      ? path.concat('/', routes[stage].children[currentStep - 1].path)
+      ? path.concat(routes[stage].children[currentStep - 1].path)
       : '';
 
     navigate(stage === GAME_STAGES.SETUP ? pathStep : path);
@@ -28,19 +28,13 @@ const App = () => {
   return (
     <div className="App bg-dark text-light vh-100 container-fluid p-0">
       <Routes>
-        {routes.map((route) => {
-          return (
-            <Route path={route.path} element={route.element} key={route.path}>
-              {route.children?.map((child) => (
-                <Route
-                  path={child.path}
-                  element={child.element}
-                  key={route.path}
-                />
-              ))}
-            </Route>
-          );
-        })}
+        {routes.map((route, index) => (
+          <Route
+            path={route.path}
+            element={<route.Element parent={route} index={index} key={index} />}
+            key={index}
+          />
+        ))}
       </Routes>
     </div>
   );
