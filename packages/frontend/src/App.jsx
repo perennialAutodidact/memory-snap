@@ -17,9 +17,10 @@ const App = () => {
 
   useEffect(() => {
     const { path } = routes[stage];
+    let pathEdit = path.slice(0, path.length - 2);
 
     let pathStep = routes[stage].children
-      ? path.concat(routes[stage].children[currentStep - 1].path)
+      ? pathEdit.concat(routes[stage].children[currentStep - 1].path)
       : '';
 
     navigate(stage === GAME_STAGES.SETUP ? pathStep : path);

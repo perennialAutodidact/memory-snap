@@ -6,7 +6,7 @@ import ResultDisplay from 'components/Game/GameBoard/ResultDisplay';
 const routes = [
   {
     name: 'Setup',
-    path: '/setup',
+    path: '/setup/*',
     Element: Setup,
     children: [
       {
