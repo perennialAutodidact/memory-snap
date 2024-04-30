@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 export const initialFormState = {
-  currentStep: 4,
+  currentStep: 2,
   totalSteps: 4,
   formValues: {
     playerNames: ['Player 1', 'Player 2'],

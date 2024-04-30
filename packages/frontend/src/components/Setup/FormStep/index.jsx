@@ -1,7 +1,7 @@
 import React from 'react';
-
-const FormStep = () => {
-  return <h1>Form Step</h1>;
+// eslint-disable-next-line
+const FormStep = ({ label }) => {
+  return <h3>{label}</h3>;
 };
 
 export default FormStep;
