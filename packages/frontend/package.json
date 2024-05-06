@@ -19,7 +19,8 @@
     "react-hook-form": "^7.51.1",
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
   },
   "scripts": {
     "ci": "cross-env CI=true yarn test",

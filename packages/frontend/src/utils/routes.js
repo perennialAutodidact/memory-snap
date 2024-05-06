@@ -1,5 +1,7 @@
 import Setup from 'components/Setup';
 import FormStep from 'components/Setup/FormStep';
+import Slider from 'components/Slider';
+import Input from 'components/Setup/FormStep/Input';
 import Game from 'components/Game';
 import ResultDisplay from 'components/Game/GameBoard/ResultDisplay';
 
@@ -14,10 +16,11 @@ const routes = [
         path: '/step-1',
         Element: FormStep,
         elementProps: {
-          formElement: '',
+          FormElement: Input,
+          id: 'player-1-name',
           label: "Enter the first player's name",
-          buttonText: '',
-          buttonColorClass: '',
+          buttonText: 'next',
+          buttonColorClass: 'warning',
         },
       },
       {
@@ -25,10 +28,11 @@ const routes = [
         path: '/step-2',
         Element: FormStep,
         elementProps: {
-          formElement: '',
+          FormElement: Input,
+          id: 'player-2-name',
           label: "Enter the second player's name",
-          buttonText: '',
-          buttonColorClass: '',
+          buttonText: 'next',
+          buttonColorClass: 'warning',
         },
       },
       {
@@ -36,10 +40,11 @@ const routes = [
         path: '/step-3',
         Element: FormStep,
         elementProps: {
-          formElement: '',
+          FormElement: Slider,
+          id: 'tiles-amount',
           label: 'How many tiles?',
-          buttonText: '',
-          buttonColorClass: '',
+          buttonText: 'next',
+          buttonColorClass: 'warning',
         },
       },
       {
@@ -47,10 +52,11 @@ const routes = [
         path: '/step-4',
         Element: FormStep,
         elementProps: {
-          formElement: '',
+          FormElement: Input,
+          id: 'image-type',
           label: 'What kind of photos on the tiles?',
-          buttonText: '',
-          buttonColorClass: '',
+          buttonText: 'play',
+          buttonColorClass: 'success',
         },
       },
     ],

@@ -1,10 +1,13 @@
 import React from 'react';
 import Header from '../Header';
 import { Outlet, Routes, Route } from 'react-router-dom';
+
 // eslint-disable-next-line
 const SetupForm = ({ parent }) => {
+  // eslint-disable-next-line
+
   return (
-    <form className="container p-0 bg-light rounded text-dark">
+    <div className="container p-0 bg-light rounded text-dark">
       <Header headerText={'Game setup'} />
       <Routes>
         {/* eslint-disable-next-line */}
@@ -13,13 +16,21 @@ const SetupForm = ({ parent }) => {
             path={child.path}
             key={index}
             element={
-              <child.Element label={child.elementProps.label} {...child} />
+              <child.Element
+                label={child.elementProps.label}
+                btnText={child.elementProps.buttonText}
+                btnColor={child.elementProps.buttonColorClass}
+                FormElement={child.elementProps.FormElement}
+                id={child.elementProps.id}
+                name={child.name}
+                {...child}
+              />
             }
           />
         ))}
       </Routes>
       <Outlet />
-    </form>
+    </div>
   );
 };
 

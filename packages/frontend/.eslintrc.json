@@ -26,6 +26,7 @@
     "plugin:react/recommended"
   ],
   "rules": {
+    "react/prop-types": "off",
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "no-console": ["error", { "allow": ["warn"] }],
     "react/jsx-uses-react": "warn",
