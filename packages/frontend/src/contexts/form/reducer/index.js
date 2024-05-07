@@ -17,6 +17,21 @@ export const formReducer = (state, action) => {
       };
       return {
         ...state,
+        currentStep: state.currentStep + 1,
+        formValues: tempFormValues,
+      };
+    }
+    case types.ENTER_P2_NAME: {
+      const tempPlayerNames = state.formValues.playerNames;
+      tempPlayerNames[1] = action.payload.name;
+      const tempFormValues = {
+        ...state.formValues,
+        playerNames: tempPlayerNames,
+      };
+      return {
+        ...state,
+        currentStep: state.currentStep + 1,
+        formValues: tempFormValues,
       };
     }
     default: {
