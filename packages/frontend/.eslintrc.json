@@ -26,15 +26,15 @@
     "plugin:react/recommended"
   ],
   "rules": {
-    "react/prop-types": "off",
-    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "react/prop-types": "error",
+    "prettier/prettier": ["error", { "endOfLine": "auto", "arrowParens": "avoid" }],
     "no-console": ["error", { "allow": ["warn"] }],
-    "react/jsx-uses-react": "warn",
-    "react/jsx-uses-vars": "warn",
-    "no-unused-vars": "off",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "no-unused-vars": "error",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
-      "warn",
+      "error",
       {
         "vars": "all",
         "varsIgnorePattern": "^_",
