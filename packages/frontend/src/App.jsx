@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import './styles/App.scss';
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import { routes, GAME_STAGES } from './utils';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { routes } from './utils';
 import useGameContext from 'hooks/useGameContext';
 import useFormContext from 'hooks/useFormContext';
 
 const App = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const location = useLocation();
+
   const {
     state: { stage },
   } = useGameContext();
@@ -17,13 +19,12 @@ const App = () => {
 
   useEffect(() => {
     const { path } = routes[stage];
-    let pathEdit = path.slice(0, path.length - 2);
+    let pathEdit = path.slice(0, path.length - 1);
+    // let pathStep = routes[stage].children
+    //   ? pathEdit.concat(routes[stage].children[currentStep - 1].path)
+    //   : '';
 
-    let pathStep = routes[stage].children
-      ? pathEdit.concat(routes[stage].children[currentStep - 1].path)
-      : '';
-
-    navigate(stage === GAME_STAGES.SETUP ? pathStep : path);
+    // navigate(path);
   }, [stage]);
 
   return (

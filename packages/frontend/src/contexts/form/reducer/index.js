@@ -8,32 +8,37 @@ export const formReducer = (state, action) => {
   }
 
   switch (action.type) {
-    case types.ENTER_P1_NAME: {
+    case types.UPDATE_FORM: {
+      //if its step one or two
       const tempPlayerNames = state.formValues.playerNames;
-      tempPlayerNames[0] = action.payload.name;
-      const tempFormValues = {
-        ...state.formValues,
-        playerNames: tempPlayerNames,
-      };
-      return {
-        ...state,
-        currentStep: state.currentStep + 1,
-        formValues: tempFormValues,
-      };
+      if (state.currentStep === 1) {
+        tempPlayerNames[0] = action.payload.value;
+        const tempFormValues = {
+          ...state.formValues,
+          playerNames: tempPlayerNames,
+        };
+        return {
+          ...state,
+          currentStep: state.currentStep + 1,
+          formValues: tempFormValues,
+        };
+      } else if (state.currentStep === 2) {
+        tempPlayerNames[1] = action.payload.value;
+        const tempFormValues = {
+          ...state.formValues,
+          playerNames: tempPlayerNames,
+        };
+        return {
+          ...state,
+          currentStep: state.currentStep + 1,
+          formValues: tempFormValues,
+        };
+      }
+      break;
     }
-    case types.ENTER_P2_NAME: {
-      const tempPlayerNames = state.formValues.playerNames;
-      tempPlayerNames[1] = action.payload.name;
-      const tempFormValues = {
-        ...state.formValues,
-        playerNames: tempPlayerNames,
-      };
-      return {
-        ...state,
-        currentStep: state.currentStep + 1,
-        formValues: tempFormValues,
-      };
-    }
+
+    //* eslint-disable-next-line */
+
     default: {
       return state;
     }

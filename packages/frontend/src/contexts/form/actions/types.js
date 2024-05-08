@@ -1,9 +1,7 @@
-const ENTER_P1_NAME = 'ENTER_P1_NAME';
-const ENTER_P2_NAME = 'ENTER_P2_NAME';
+const UPDATE_FORM = 'UPDATE_FORM';
 
 const types = {
-  ENTER_P1_NAME,
-  ENTER_P2_NAME,
+  UPDATE_FORM,
 };
 
 export default types;

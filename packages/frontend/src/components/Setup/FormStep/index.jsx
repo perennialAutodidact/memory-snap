@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'components/Button';
 import { useForm } from 'react-hook-form';
 import useFormContext from 'hooks/useFormContext';
-import { enterP1Name, enterP2Name } from 'contexts/form/actions';
+import { updateForm } from 'contexts/form/actions';
 import { useNavigate } from 'react-router-dom';
 
 // eslint-disable-next-line
@@ -20,15 +20,9 @@ const FormStep = ({ label, btnText, FormElement, btnColor, name }) => {
   } = useForm({});
 
   const onSubmit = (data) => {
-    // use a switch here?
-    if (currentStep === 1) {
-      dispatch(enterP1Name(data[name]));
-    }
-    if (currentStep === 2) {
-      dispatch(enterP2Name(data[name]));
-    }
+    dispatch(updateForm(data[name]));
+
     navigate(`/setup/step-${currentStep + 1}`);
-    //advance step
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

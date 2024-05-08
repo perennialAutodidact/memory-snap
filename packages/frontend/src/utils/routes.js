@@ -4,6 +4,7 @@ import Slider from 'components/Slider';
 import Input from 'components/Setup/FormStep/Input';
 import Game from 'components/Game';
 import ResultDisplay from 'components/Game/GameBoard/ResultDisplay';
+import TempElement from 'components/Setup/FormStep/TempElement';
 
 const routes = [
   {
@@ -14,6 +15,7 @@ const routes = [
       {
         name: 'Step 1',
         path: '/step-1',
+        index: false,
         Element: FormStep,
         elementProps: {
           FormElement: Input,
@@ -26,6 +28,7 @@ const routes = [
       {
         name: 'Step 2',
         path: '/step-2',
+        index: false,
         Element: FormStep,
         elementProps: {
           FormElement: Input,
@@ -38,6 +41,7 @@ const routes = [
       {
         name: 'Step 3',
         path: '/step-3',
+        index: false,
         Element: FormStep,
         elementProps: {
           FormElement: Slider,
@@ -50,6 +54,7 @@ const routes = [
       {
         name: 'Step 4',
         path: '/step-4',
+        index: false,
         Element: FormStep,
         elementProps: {
           FormElement: Input,
@@ -57,6 +62,19 @@ const routes = [
           label: 'What kind of photos on the tiles?',
           buttonText: 'play',
           buttonColorClass: 'success',
+        },
+      },
+      {
+        name: 'Index',
+        path: '*',
+        index: true,
+        Element: TempElement,
+        elementProps: {
+          FormElement: '',
+          id: 'index',
+          label: '',
+          buttonText: '',
+          buttonColorClass: '',
         },
       },
     ],
