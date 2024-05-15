@@ -33,6 +33,25 @@ export const formReducer = (state, action) => {
           currentStep: state.currentStep + 1,
           formValues: tempFormValues,
         };
+      } else if (state.currentStep === 3) {
+        const tempFormValues = {
+          ...state.formValues,
+          numberOfTiles: action.payload.value,
+        };
+        return {
+          ...state,
+          currentStep: state.currentStep + 1,
+          formValues: tempFormValues,
+        };
+      } else if (state.currentStep === 4) {
+        const tempFormValues = {
+          ...state.formValues,
+          photoQuery: action.payload.value,
+        };
+        return {
+          ...state,
+          formValues: tempFormValues,
+        };
       }
       break;
     }

@@ -1,30 +1,21 @@
 import React, { useEffect } from 'react';
 import './styles/App.scss';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { routes } from './utils';
 import useGameContext from 'hooks/useGameContext';
-import useFormContext from 'hooks/useFormContext';
 
 const App = () => {
-  // const navigate = useNavigate();
-  const location = useLocation();
+  const navigate = useNavigate();
 
   const {
     state: { stage },
   } = useGameContext();
 
-  const {
-    state: { currentStep, formValues },
-  } = useFormContext();
-
   useEffect(() => {
     const { path } = routes[stage];
-    let pathEdit = path.slice(0, path.length - 1);
-    // let pathStep = routes[stage].children
-    //   ? pathEdit.concat(routes[stage].children[currentStep - 1].path)
-    //   : '';
 
-    // navigate(path);
+    navigate(path);
+    //eslint-disable-next-line
   }, [stage]);
 
   return (

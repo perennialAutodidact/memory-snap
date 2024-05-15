@@ -1,14 +1,21 @@
 import * as yup from 'yup';
 
-const schema = yup.object().shape({
-  playerNames: yup
-    .array()
-    .of(yup.string().required().min(1).max(30))
-    .required()
-    .min(2)
-    .max(2),
-  numberOfTiles: yup.number().required().min(2).max(16),
-  photoQuery: yup.string().required().min(2).max(30),
+export const StepOne = yup.object().shape({
+  Step_1: yup.string().required("Please enter first player's name"),
 });
 
-export default schema;
+export const StepTwo = yup.object().shape({
+  Step_2: yup.string().required("Please enter second player's name"),
+});
+
+export const StepThree = yup.object().shape({
+  Step_3: yup.string().required(''),
+});
+
+export const StepFour = yup.object().shape({
+  Step_4: yup
+    .string()
+    .min(3)
+    .max(30)
+    .required("please enter a word that's at least 3 letters"),
+});

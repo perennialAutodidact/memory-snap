@@ -5,6 +5,10 @@ import Input from 'components/Setup/FormStep/Input';
 import Game from 'components/Game';
 import ResultDisplay from 'components/Game/GameBoard/ResultDisplay';
 import TempElement from 'components/Setup/FormStep/TempElement';
+import { StepOne } from '../utils/validationSchema';
+import { StepTwo } from '../utils/validationSchema';
+import { StepThree } from '../utils/validationSchema';
+import { StepFour } from '../utils/validationSchema';
 
 const routes = [
   {
@@ -13,10 +17,11 @@ const routes = [
     Element: Setup,
     children: [
       {
-        name: 'Step 1',
+        name: 'Step_1',
         path: '/step-1',
         index: false,
         Element: FormStep,
+        schema: StepOne,
         elementProps: {
           FormElement: Input,
           id: 'player-1-name',
@@ -26,10 +31,11 @@ const routes = [
         },
       },
       {
-        name: 'Step 2',
+        name: 'Step_2',
         path: '/step-2',
         index: false,
         Element: FormStep,
+        schema: StepTwo,
         elementProps: {
           FormElement: Input,
           id: 'player-2-name',
@@ -39,10 +45,11 @@ const routes = [
         },
       },
       {
-        name: 'Step 3',
+        name: 'Step_3',
         path: '/step-3',
         index: false,
         Element: FormStep,
+        schema: StepThree,
         elementProps: {
           FormElement: Slider,
           id: 'tiles-amount',
@@ -52,10 +59,11 @@ const routes = [
         },
       },
       {
-        name: 'Step 4',
+        name: 'Step_4',
         path: '/step-4',
         index: false,
         Element: FormStep,
+        schema: StepFour,
         elementProps: {
           FormElement: Input,
           id: 'image-type',
