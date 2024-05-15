@@ -1,5 +1,6 @@
 import React from 'react';
-// eslint-disable-next-line
+import PropTypes from 'prop-types';
+
 const Slider = ({ id, register, name }) => {
   return (
     <input
@@ -12,6 +13,12 @@ const Slider = ({ id, register, name }) => {
       {...register(name)}
     ></input>
   );
+};
+
+Slider.propTypes = {
+  id: PropTypes.string,
+  register: PropTypes.func,
+  name: PropTypes.string,
 };
 
 export default Slider;
