@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useFormContext from 'hooks/useFormContext';
-//form index
+
 const TempElement = () => {
   const navigate = useNavigate();
 

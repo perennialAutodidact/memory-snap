@@ -9,7 +9,6 @@ export const formReducer = (state, action) => {
 
   switch (action.type) {
     case types.UPDATE_FORM: {
-      //if its step one or two
       const tempPlayerNames = state.formValues.playerNames;
       if (state.currentStep === 1) {
         tempPlayerNames[0] = action.payload.value;
@@ -55,8 +54,6 @@ export const formReducer = (state, action) => {
       }
       break;
     }
-
-    //* eslint-disable-next-line */
 
     default: {
       return state;

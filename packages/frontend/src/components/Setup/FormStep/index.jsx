@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from 'components/Button';
 import { useForm } from 'react-hook-form';
 import useFormContext from 'hooks/useFormContext';
+import useGameContext from 'hooks/useGameContext';
 import { updateForm } from 'contexts/form/actions';
+import { startGame } from 'contexts/game/actions';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 // eslint-disable-next-line
@@ -11,7 +14,11 @@ const FormStep = ({ label, btnText, FormElement, btnColor, name, schema }) => {
     dispatch,
     state: { currentStep },
   } = useFormContext();
+
+  const gameValues = useGameContext();
+
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -22,8 +29,11 @@ const FormStep = ({ label, btnText, FormElement, btnColor, name, schema }) => {
   const onSubmit = data => {
     dispatch(updateForm(data[name]));
     reset();
-
-    navigate(`/setup/step-${currentStep + 1}`);
+    if (currentStep === 4) {
+      gameValues.dispatch(startGame());
+    } else {
+      navigate(`/setup/step-${currentStep + 1}`);
+    }
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -36,6 +46,13 @@ const FormStep = ({ label, btnText, FormElement, btnColor, name, schema }) => {
       <Button type="submit" text={btnText} color={btnColor} />
     </form>
   );
+};
+
+FormStep.propTypes = {
+  label: PropTypes.string,
+  btnText: PropTypes.string,
+  FormElement: PropTypes.func,
+  btnColor: PropTypes.string,
 };
 
 export default FormStep;

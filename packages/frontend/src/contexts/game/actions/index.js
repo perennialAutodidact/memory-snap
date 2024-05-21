@@ -1,16 +1,20 @@
 import types from './types';
 
-export const addTiles = (photos) => ({
+export const startGame = () => ({
+  type: types.START_GAME,
+});
+
+export const addTiles = photos => ({
   type: types.ADD_TILES,
   payload: { photos },
 });
 
-export const flipTile = (tile) => ({
+export const flipTile = tile => ({
   type: types.FLIP_TILE,
   payload: { tile },
 });
 
-export const handleFlippedPair = (tiles) => ({
+export const handleFlippedPair = tiles => ({
   type: types.HANDLE_FLIPPED_PAIR,
   payload: { tiles },
 });

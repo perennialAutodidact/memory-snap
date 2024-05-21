@@ -18,6 +18,12 @@ export const gameReducer = (state, action) => {
   }
 
   switch (action.type) {
+    case types.START_GAME: {
+      return {
+        ...state,
+        stage: GAME_STAGES.PLAYING,
+      };
+    }
     case types.ADD_TILES:
       return {
         ...state,
@@ -31,7 +37,7 @@ export const gameReducer = (state, action) => {
 
       let tempState = {
         ...state,
-        tiles: state.tiles.map((tile) =>
+        tiles: state.tiles.map(tile =>
           action.payload.tile.id === tile.id
             ? { ...tile, faceUp: true, isFlippable: false }
             : tile
@@ -55,7 +61,7 @@ export const gameReducer = (state, action) => {
       };
 
       let tempMatchedTiles = tempState.tiles.filter(
-        (tile) => tile.isMatched === true
+        tile => tile.isMatched === true
       );
 
       return {
@@ -81,7 +87,7 @@ export const gameReducer = (state, action) => {
     }
     case types.HANDLE_GAME_OVER: {
       let highScore = state.players.filter(
-        (player) => player.score === getHighScore(state.players)
+        player => player.score === getHighScore(state.players)
       );
 
       return {

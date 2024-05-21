@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react';
+import useFormContext from 'hooks/useFormContext';
+
 const useFetchedPhotos = ({ query = 'nature', perPage }) => {
   const [photos, setPhotos] = useState(null);
   const [photosError, setPhotosError] = useState(null);
   const [status, setStatus] = useState('IDLE');
 
+  const formData = useFormContext();
+
+  const enteredQuery = formData.state.formValues.photoQuery;
+
   useEffect(() => {
-    if (!photos && !photosError) {
+    if (!photos && !photosError && enteredQuery !== null) {
       (async () => {
         try {
           setStatus('PENDING');
@@ -36,7 +42,7 @@ const useFetchedPhotos = ({ query = 'nature', perPage }) => {
         }
       })();
     }
-  }, [photos, photosError, status]);
+  }, [photosError, status, enteredQuery, perPage, photos, query]);
 
   return { photos, error: photosError, status };
 };

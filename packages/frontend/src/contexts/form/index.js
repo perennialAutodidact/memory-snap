@@ -6,7 +6,7 @@ export const initialFormState = {
   formValues: {
     playerNames: ['Player 1', 'Player 2'],
     numberOfTiles: 16,
-    photoQuery: 'Cat',
+    photoQuery: null,
   },
 };
 
