@@ -7,15 +7,10 @@
   ],
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": []
+      "outputs": ["build/**"]
     },
-    "ci": {
-      "dependsOn": ["^ci"]
-    },
-    "lint": {
-      "dependsOn": ["^build"]
-    },
+    "ci": {},
+    "lint": {},
     "start": {}
   }
 }
