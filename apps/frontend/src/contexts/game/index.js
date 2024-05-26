@@ -1,7 +1,8 @@
 import { createContext } from 'react';
+import { GAME_STAGES } from 'utils/stages';
 
 export const initialGameState = {
-  stage: 'playing', // setup, playing, complete
+  stage: GAME_STAGES.PLAYING, // SETUP, PLAYING, GAME_OVER
   currentPlayer: {
     name: 'Player 1',
     number: 1,
@@ -32,6 +33,9 @@ export const initialGameState = {
   flipped: [],
   turnCount: 1,
   playerIndex: 0,
+  highScore: 0,
+  winner: {},
+  matchedTiles: [],
 };
 
 export const GameContext = createContext(initialGameState);

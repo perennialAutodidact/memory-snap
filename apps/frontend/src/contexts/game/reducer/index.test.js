@@ -97,4 +97,83 @@ describe('gameReducer', () => {
       initialTilesState
     );
   });
+
+  it('returns the proper winner object if the action type is HANDLE_GAME_OVER', () => {
+    const { game: state } = baseState;
+
+    const gameOverState = produce(state, (draft) => {
+      draft.players[0].score = 3;
+    });
+
+    expect(state.stage).toBe('PLAYING');
+
+    const action = {
+      type: 'HANDLE_GAME_OVER',
+    };
+
+    expect(gameReducer(gameOverState, action).winner.name).toBe('Player 1');
+  });
+
+  it('returns null for a tie if the action type is HANDLE_GAME_OVER', () => {
+    const { game: state } = baseState;
+
+    const gameOverState = produce(state, (draft) => {
+      draft.players[0].score = 2;
+      draft.players[1].score = 2;
+    });
+
+    expect(state.stage).toBe('PLAYING');
+
+    const action = {
+      type: 'HANDLE_GAME_OVER',
+    };
+
+    expect(gameReducer(gameOverState, action).winner).toBe(null);
+  });
+
+  it('does not change the current player when a match is made', () => {
+    const { game: state } = baseState;
+
+    const tiles = createTilesFromPhotos(mockPhotos, false).slice(0, 2);
+
+    const gameOverState = produce(state, (draft) => {
+      draft.flipped = tiles;
+    });
+
+    expect(state.currentPlayer.name).toBe('Player 1');
+
+    const payload = { tiles };
+
+    const action = {
+      type: 'HANDLE_FLIPPED_PAIR',
+      payload: payload,
+    };
+
+    expect(gameReducer(gameOverState, action).currentPlayer.name).toBe(
+      'Player 1'
+    );
+  });
+
+  it('changes the current player when no match is made', () => {
+    const { game: state } = baseState;
+
+    const tiles = createTilesFromPhotos(mockPhotos, false).slice(1, 3);
+
+    const gameOverState = produce(state, (draft) => {
+      draft.flipped = tiles;
+    });
+
+    expect(state.currentPlayer.name).toBe('Player 1');
+
+    const payload = { tiles };
+
+    const action = {
+      type: 'HANDLE_FLIPPED_PAIR',
+      payload: payload,
+    };
+
+    expect(gameReducer(gameOverState, action).currentPlayer.name).toBe(
+      'Player 2'
+    );
+  });
 });
