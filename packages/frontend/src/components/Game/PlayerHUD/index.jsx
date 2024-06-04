@@ -4,7 +4,7 @@ import { Player } from 'proptypes';
 import './style.scss';
 import useGameContext from 'hooks/useGameContext';
 
-const PlayerHUD = ({ player, isActive }) => {
+const PlayerHUD = ({ player, isActive, name }) => {
   const { state } = useGameContext();
 
   const bgClasses = {
@@ -37,7 +37,7 @@ const PlayerHUD = ({ player, isActive }) => {
           role="note"
           aria-label={`turn-indicator-${state.currentPlayer.name}`}
         >
-          name: {player.name}
+          name: {name}
         </span>
       ) : null}
       <div
@@ -50,7 +50,7 @@ const PlayerHUD = ({ player, isActive }) => {
         data-testid={`player-name-${player.number}`}
         className={`${classes.playerName}`}
       >
-        {player.name}
+        {name}
       </div>
     </div>
   );
@@ -59,6 +59,7 @@ const PlayerHUD = ({ player, isActive }) => {
 PlayerHUD.propTypes = {
   player: Player,
   isActive: PropTypes.bool,
+  name: PropTypes.string,
 };
 
 export default PlayerHUD;

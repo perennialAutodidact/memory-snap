@@ -6,15 +6,20 @@ import TileGrid from './TileGrid';
 
 const GameBoard = () => {
   const {
-    state: { currentPlayer, tiles },
+    state: { players, currentPlayer, tiles },
   } = useGameContext();
 
-  const formData = useFormContext();
+  const {
+    state: {
+      formValues: { playerNames },
+    },
+  } = useFormContext();
 
   return (
     <>
       <ScoreBoard
-        players={formData.state.formValues.playerNames}
+        players={players}
+        names={playerNames}
         currentPlayer={currentPlayer}
       />
       <TileGrid tiles={tiles} />
