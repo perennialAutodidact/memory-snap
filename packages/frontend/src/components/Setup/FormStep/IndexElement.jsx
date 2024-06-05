@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useFormContext from 'hooks/useFormContext';
 
-const TempElement = () => {
+const IndexElement = () => {
   const navigate = useNavigate();
 
   const {
@@ -11,8 +11,7 @@ const TempElement = () => {
 
   useEffect(() => {
     navigate(`/setup/step-${currentStep}`);
-    //eslint-disable-next-line
-  }, [currentStep]);
+  }, [currentStep, navigate]);
 };
 
-export default TempElement;
+export default IndexElement;

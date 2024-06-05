@@ -4,7 +4,7 @@ import Slider from 'components/Slider';
 import Input from 'components/Setup/FormStep/Input';
 import Game from 'components/Game';
 import ResultDisplay from 'components/Game/GameBoard/ResultDisplay';
-import TempElement from 'components/Setup/FormStep/TempElement';
+import IndexElement from 'components/Setup/FormStep/IndexElement';
 import {
   player1Name,
   player2Name,
@@ -78,7 +78,7 @@ const routes = [
         name: 'Index',
         path: '*',
         index: true,
-        Element: TempElement,
+        Element: IndexElement,
         elementProps: {
           FormElement: '',
           id: 'index',
