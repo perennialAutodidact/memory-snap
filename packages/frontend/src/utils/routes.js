@@ -5,10 +5,12 @@ import Input from 'components/Setup/FormStep/Input';
 import Game from 'components/Game';
 import ResultDisplay from 'components/Game/GameBoard/ResultDisplay';
 import TempElement from 'components/Setup/FormStep/TempElement';
-import { StepOne } from '../utils/validationSchema';
-import { StepTwo } from '../utils/validationSchema';
-import { StepThree } from '../utils/validationSchema';
-import { StepFour } from '../utils/validationSchema';
+import {
+  player1Name,
+  player2Name,
+  tileNumber,
+  imageSearchTerm,
+} from '../utils/validationSchema';
 
 const routes = [
   {
@@ -17,11 +19,11 @@ const routes = [
     Element: Setup,
     children: [
       {
-        name: 'Step_1',
+        name: 'player1Name',
         path: '/step-1',
         index: false,
         Element: FormStep,
-        schema: StepOne,
+        schema: player1Name,
         elementProps: {
           FormElement: Input,
           id: 'player-1-name',
@@ -31,11 +33,11 @@ const routes = [
         },
       },
       {
-        name: 'Step_2',
+        name: 'player2Name',
         path: '/step-2',
         index: false,
         Element: FormStep,
-        schema: StepTwo,
+        schema: player2Name,
         elementProps: {
           FormElement: Input,
           id: 'player-2-name',
@@ -45,11 +47,11 @@ const routes = [
         },
       },
       {
-        name: 'Step_3',
+        name: 'tileNumber',
         path: '/step-3',
         index: false,
         Element: FormStep,
-        schema: StepThree,
+        schema: tileNumber,
         elementProps: {
           FormElement: Slider,
           id: 'tiles-amount',
@@ -59,11 +61,11 @@ const routes = [
         },
       },
       {
-        name: 'Step_4',
+        name: 'imageSearchTerm',
         path: '/step-4',
         index: false,
         Element: FormStep,
-        schema: StepFour,
+        schema: imageSearchTerm,
         elementProps: {
           FormElement: Input,
           id: 'image-type',

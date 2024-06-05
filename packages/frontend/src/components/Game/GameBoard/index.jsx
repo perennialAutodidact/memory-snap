@@ -10,16 +10,14 @@ const GameBoard = () => {
   } = useGameContext();
 
   const {
-    state: {
-      formValues: { playerNames },
-    },
+    state: { formValues },
   } = useFormContext();
 
   return (
     <>
       <ScoreBoard
         players={players}
-        names={playerNames}
+        names={formValues}
         currentPlayer={currentPlayer}
       />
       <TileGrid tiles={tiles} />

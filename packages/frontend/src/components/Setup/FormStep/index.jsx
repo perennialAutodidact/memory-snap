@@ -8,7 +8,7 @@ import { updateForm } from 'contexts/form/actions';
 import { startGame } from 'contexts/game/actions';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-// eslint-disable-next-line
+
 const FormStep = ({ label, btnText, FormElement, btnColor, name, schema }) => {
   const {
     dispatch,
@@ -53,6 +53,8 @@ FormStep.propTypes = {
   btnText: PropTypes.string,
   FormElement: PropTypes.func,
   btnColor: PropTypes.string,
+  schema: PropTypes.object,
+  name: PropTypes.string,
 };
 
 export default FormStep;

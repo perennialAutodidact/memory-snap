@@ -1,4 +1,5 @@
 import types from 'contexts/form/actions/types';
+import { advanceStep } from 'helpers/advanceStage';
 
 export const formReducer = (state, action) => {
   if (!state) {
@@ -9,50 +10,13 @@ export const formReducer = (state, action) => {
 
   switch (action.type) {
     case types.UPDATE_FORM: {
-      const tempPlayerNames = state.formValues.playerNames;
-      if (state.currentStep === 1) {
-        tempPlayerNames[0] = action.payload.value;
-        const tempFormValues = {
-          ...state.formValues,
-          playerNames: tempPlayerNames,
-        };
-        return {
-          ...state,
-          currentStep: state.currentStep + 1,
-          formValues: tempFormValues,
-        };
-      } else if (state.currentStep === 2) {
-        tempPlayerNames[1] = action.payload.value;
-        const tempFormValues = {
-          ...state.formValues,
-          playerNames: tempPlayerNames,
-        };
-        return {
-          ...state,
-          currentStep: state.currentStep + 1,
-          formValues: tempFormValues,
-        };
-      } else if (state.currentStep === 3) {
-        const tempFormValues = {
-          ...state.formValues,
-          numberOfTiles: action.payload.value,
-        };
-        return {
-          ...state,
-          currentStep: state.currentStep + 1,
-          formValues: tempFormValues,
-        };
-      } else if (state.currentStep === 4) {
-        const tempFormValues = {
-          ...state.formValues,
-          photoQuery: action.payload.value,
-        };
-        return {
-          ...state,
-          formValues: tempFormValues,
-        };
-      }
-      break;
+      const tempFormValues = state.formValues;
+      tempFormValues[state.currentStep - 1] = action.payload;
+      return {
+        ...state,
+        currentStep: advanceStep(state.currentStep),
+        formValues: tempFormValues,
+      };
     }
 
     default: {
