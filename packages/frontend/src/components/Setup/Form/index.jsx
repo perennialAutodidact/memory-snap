@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from '../Header';
 import { Outlet, Routes, Route } from 'react-router-dom';
-// eslint-disable-next-line
+import PropTypes from 'prop-types';
+
 const SetupForm = ({ parent }) => {
   return (
     <div className="container p-0 bg-light rounded text-dark">
       <Header headerText={'Game setup'} />
       <Routes>
-        {/* eslint-disable-next-line */}
         {parent.children.map((child, index) => (
           <Route
             path={child.path}
@@ -31,6 +31,10 @@ const SetupForm = ({ parent }) => {
       <Outlet />
     </div>
   );
+};
+
+SetupForm.propTypes = {
+  parent: PropTypes.object,
 };
 
 export default SetupForm;

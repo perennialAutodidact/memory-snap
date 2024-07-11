@@ -11,12 +11,14 @@ const PhotosProvider = ({ children, providedState = null } = {}) => {
   const initialState = providedState || baseState.photos;
   const [state, dispatch] = useReducer(photosReducer, initialState);
 
-  const formData = useFormContext();
+  const {
+    state: { formValues },
+  } = useFormContext();
 
   // TODO: add 'loading' value to indicate if the photos have loaded from the api
   const { error, photos, status } = useFetchedPhotos({
-    query: formData.state.formValues[3],
-    perPage: formData.state.formValues[2],
+    query: formValues[3],
+    perPage: formValues[2],
   });
 
   useEffect(() => {

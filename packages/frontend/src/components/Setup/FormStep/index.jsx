@@ -5,9 +5,10 @@ import { useForm } from 'react-hook-form';
 import useFormContext from 'hooks/useFormContext';
 import useGameContext from 'hooks/useGameContext';
 import { updateForm } from 'contexts/form/actions';
-import { startGame } from 'contexts/game/actions';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { GAME_STAGES } from 'utils';
+import { updateStage } from 'contexts/game/actions';
 
 const FormStep = ({ label, btnText, FormElement, btnColor, name, schema }) => {
   const {
@@ -30,7 +31,7 @@ const FormStep = ({ label, btnText, FormElement, btnColor, name, schema }) => {
     dispatch(updateForm(data[name]));
     reset();
     if (currentStep === 4) {
-      gameValues.dispatch(startGame());
+      gameValues.dispatch(updateStage(GAME_STAGES.PLAYING));
     } else {
       navigate(`/setup/step-${currentStep + 1}`);
     }

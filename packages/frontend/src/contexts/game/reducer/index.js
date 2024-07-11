@@ -18,10 +18,10 @@ export const gameReducer = (state, action) => {
   }
 
   switch (action.type) {
-    case types.START_GAME: {
+    case types.UPDATE_STAGE: {
       return {
         ...state,
-        stage: GAME_STAGES.PLAYING,
+        stage: action.payload,
       };
     }
     case types.ADD_TILES:

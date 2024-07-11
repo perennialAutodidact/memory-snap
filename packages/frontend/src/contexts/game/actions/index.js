@@ -1,7 +1,8 @@
 import types from './types';
 
-export const startGame = () => ({
-  type: types.START_GAME,
+export const updateStage = stage => ({
+  type: types.UPDATE_STAGE,
+  payload: stage,
 });
 
 export const addTiles = photos => ({
