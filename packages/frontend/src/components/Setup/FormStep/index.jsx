@@ -39,11 +39,11 @@ const FormStep = ({ label, btnText, FormElement, btnColor, name, schema }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h3>{label}</h3>
-      <FormElement register={register} name={name} ref={null} />,
-      <p>{errors.Step_1?.message}</p>
-      <p>{errors.Step_2?.message}</p>
-      <p>{errors.Step_3?.message}</p>
-      <p>{errors.Step_4?.message}</p>
+      <FormElement register={register} name={name} ref={null} />
+      <p>{errors.player1Name?.message}</p>
+      <p>{errors.player2Name?.message}</p>
+      <p>{errors.tileNumber?.message}</p>
+      <p>{errors.searchTerm?.message}</p>
       <Button type="submit" text={btnText} color={btnColor} />
     </form>
   );

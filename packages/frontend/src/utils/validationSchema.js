@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 export const player1Name = yup.object().shape({
-  player1Name: yup.string().required("Please enter first player's name"),
+  player1Name: yup.string().min(3).required("Please enter first player's name"),
 });
 
 export const player2Name = yup.object().shape({
