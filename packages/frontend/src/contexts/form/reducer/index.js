@@ -1,5 +1,4 @@
 import types from 'contexts/form/actions/types';
-import { advanceStep } from 'helpers/advanceStage';
 
 export const formReducer = (state, action) => {
   if (!state) {
@@ -10,12 +9,13 @@ export const formReducer = (state, action) => {
 
   switch (action.type) {
     case types.UPDATE_FORM: {
-      const tempFormValues = state.formValues;
-      tempFormValues[state.currentStep - 1] = action.payload;
       return {
         ...state,
-        currentStep: advanceStep(state.currentStep),
-        formValues: tempFormValues,
+        currentStep: state.currentStep++,
+        formValues: {
+          ...state.formValues,
+          ...action.payload,
+        },
       };
     }
 

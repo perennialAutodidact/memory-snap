@@ -28,7 +28,7 @@ const FormStep = ({ label, btnText, FormElement, btnColor, name, schema }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = data => {
-    dispatch(updateForm(data[name]));
+    dispatch(updateForm(data));
     reset();
     if (currentStep === 4) {
       gameValues.dispatch(updateStage(GAME_STAGES.PLAYING));
