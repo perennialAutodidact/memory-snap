@@ -17,8 +17,8 @@ const PhotosProvider = ({ children, providedState = null } = {}) => {
 
   // TODO: add 'loading' value to indicate if the photos have loaded from the api
   const { error, photos, status } = useFetchedPhotos({
-    query: formValues[3],
-    perPage: formValues[2],
+    query: formValues.imageSearchTerm,
+    perPage: formValues.tileNumber / 2,
   });
 
   useEffect(() => {
