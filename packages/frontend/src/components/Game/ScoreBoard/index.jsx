@@ -22,7 +22,7 @@ const ScoreBoard = ({ players, currentPlayer, names }) => {
 ScoreBoard.propTypes = {
   players: PropTypes.arrayOf(Player),
   currentPlayer: Player,
-  names: PropTypes.arrayOf(PropTypes.string),
+  names: PropTypes.object,
 };
 
 export default ScoreBoard;
