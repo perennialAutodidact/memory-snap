@@ -1,3 +1,5 @@
+import types from 'contexts/form/actions/types';
+
 export const formReducer = (state, action) => {
   if (!state) {
     throw new Error('please include a state object');
@@ -6,6 +8,17 @@ export const formReducer = (state, action) => {
   }
 
   switch (action.type) {
+    case types.UPDATE_FORM: {
+      return {
+        ...state,
+        currentStep: state.currentStep++,
+        formValues: {
+          ...state.formValues,
+          ...action.payload,
+        },
+      };
+    }
+
     default: {
       return state;
     }

@@ -1,7 +1,7 @@
 const GAME_STAGES = Object.freeze({
-  SETUP: 'SETUP',
-  PLAYING: 'PLAYING',
-  GAME_OVER: 'GAME_OVER',
+  SETUP: 0,
+  PLAYING: 1,
+  GAME_OVER: 2,
 });
 
 export { GAME_STAGES };

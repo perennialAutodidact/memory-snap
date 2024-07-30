@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-const useFetchedPhotos = ({ query = 'nature', perPage }) => {
+
+const useFetchedPhotos = ({ query = null, perPage }) => {
   const [photos, setPhotos] = useState(null);
   const [photosError, setPhotosError] = useState(null);
   const [status, setStatus] = useState('IDLE');
 
   useEffect(() => {
-    if (!photos && !photosError) {
+    if (!photos && !photosError && query !== null) {
       (async () => {
         try {
           setStatus('PENDING');
@@ -36,7 +37,7 @@ const useFetchedPhotos = ({ query = 'nature', perPage }) => {
         }
       })();
     }
-  }, [photos, photosError, status]);
+  }, [photosError, status, perPage, photos, query]);
 
   return { photos, error: photosError, status };
 };
