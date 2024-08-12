@@ -23,3 +23,7 @@ export const handleFlippedPair = tiles => ({
 export const handleGameOver = () => ({
   type: types.HANDLE_GAME_OVER,
 });
+
+export const resetGame = () => ({
+  type: types.RESET_GAME,
+});

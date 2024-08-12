@@ -9,6 +9,7 @@ import {
   awardPoint,
   getHighScore,
 } from 'helpers';
+import { initialGameState } from '../../../contexts/game';
 
 export const gameReducer = (state, action) => {
   if (!state) {
@@ -93,6 +94,12 @@ export const gameReducer = (state, action) => {
       return {
         ...state,
         winner: highScore.length > 1 ? null : highScore[0],
+      };
+    }
+
+    case types.RESET_GAME: {
+      return {
+        ...initialGameState,
       };
     }
 

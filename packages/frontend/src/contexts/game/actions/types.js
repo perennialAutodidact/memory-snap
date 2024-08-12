@@ -3,6 +3,7 @@ const ADD_TILES = 'ADD_TILES';
 const FLIP_TILE = 'FLIP_TILE';
 const HANDLE_FLIPPED_PAIR = 'HANDLE_FLIPPED_PAIR';
 const HANDLE_GAME_OVER = 'HANDLE_GAME_OVER';
+const RESET_GAME = 'RESET_GAME';
 
 const types = {
   UPDATE_STAGE,
@@ -10,6 +11,7 @@ const types = {
   FLIP_TILE,
   HANDLE_FLIPPED_PAIR,
   HANDLE_GAME_OVER,
+  RESET_GAME,
 };
 
 export default types;
