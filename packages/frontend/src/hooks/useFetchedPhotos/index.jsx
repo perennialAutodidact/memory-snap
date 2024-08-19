@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
 
-const useFetchedPhotos = ({ query = null, perPage }) => {
+const useFetchedPhotos = ({ query = null, perPage, storedPhotos }) => {
   const [photos, setPhotos] = useState(null);
   const [photosError, setPhotosError] = useState(null);
   const [status, setStatus] = useState('IDLE');
+
+  useEffect(() => {
+    if (storedPhotos === null) {
+      setPhotos(null);
+    }
+  }, [storedPhotos]);
 
   useEffect(() => {
     if (!photos && !photosError && query !== null) {
@@ -38,7 +44,6 @@ const useFetchedPhotos = ({ query = null, perPage }) => {
       })();
     }
   }, [photosError, status, perPage, photos, query]);
-
   return { photos, error: photosError, status };
 };
 

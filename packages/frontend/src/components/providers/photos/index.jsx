@@ -19,6 +19,7 @@ const PhotosProvider = ({ children, providedState = null } = {}) => {
   const { error, photos, status } = useFetchedPhotos({
     query: formValues.imageSearchTerm,
     perPage: formValues.tileNumber / 2,
+    storedPhotos: state.photos,
   });
 
   useEffect(() => {

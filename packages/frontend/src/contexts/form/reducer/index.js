@@ -24,6 +24,7 @@ export const formReducer = (state, action) => {
       return {
         ...initialFormState,
         currentStep: 1,
+        formValues: { imageSearchTerm: null },
       };
     }
 

@@ -1,9 +1,11 @@
 import React from 'react';
 import useGameContext from 'hooks/useGameContext';
 import useFormContext from 'hooks/useFormContext';
+import usePhotosContext from 'hooks/usePhotosContext';
 import Button from 'components/Button';
-import { resetGame } from '../../../../contexts/game/actions/';
+import { resetGame, updateStage } from '../../../../contexts/game/actions/';
 import { resetForm } from 'contexts/form/actions';
+import { resetPhotos } from 'contexts/photos/actions';
 
 const ResultDisplay = () => {
   const {
@@ -12,10 +14,17 @@ const ResultDisplay = () => {
   } = useGameContext();
 
   const formValues = useFormContext();
+  const photoValues = usePhotosContext();
 
   const handleReset = () => {
+    photoValues.dispatch(resetPhotos());
     dispatch(resetGame());
     formValues.dispatch(resetForm());
+  };
+
+  const handlePlayAgain = () => {
+    dispatch(resetGame());
+    dispatch(updateStage(1));
   };
 
   return (
@@ -34,7 +43,16 @@ const ResultDisplay = () => {
               {`${winner.name} wins!`}
             </h2>
           )}
-          <Button onClick={handleReset} text={'reset game'} color={'primary'} />
+          <Button
+            onClick={handlePlayAgain}
+            text={'play again'}
+            color={'primary'}
+          />
+          <Button
+            onClick={handleReset}
+            text={'reset game'}
+            color={'secondary'}
+          />
         </div>
       </div>
     )
