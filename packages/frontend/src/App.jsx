@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+// import { BreakpointContext } from 'contexts/breakpoint';
 import { useLocation } from 'react-router-dom';
 import './styles/App.scss';
 import { Routes, Route, useNavigate } from 'react-router-dom';
@@ -8,7 +9,9 @@ import useGameContext from 'hooks/useGameContext';
 const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
+  // const { height, width, isPortrait, isLandscape } =
+  //   useContext(BreakpointContext);
+  // console.log(height, width, isPortrait, isLandscape);
   const {
     state: { stage },
   } = useGameContext();
