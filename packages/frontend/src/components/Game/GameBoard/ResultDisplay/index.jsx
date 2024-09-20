@@ -10,21 +10,21 @@ import { resetPhotos } from 'contexts/photos/actions';
 const ResultDisplay = () => {
   const {
     state: { winner, stage },
-    dispatch,
+    dispatch: gameDispatch,
   } = useGameContext();
 
-  const formValues = useFormContext();
-  const photoValues = usePhotosContext();
+  const { dispatch: formDispatch } = useFormContext();
+  const { dispatch: photoDispatch } = usePhotosContext();
 
   const handleReset = () => {
-    photoValues.dispatch(resetPhotos());
-    dispatch(resetGame());
-    formValues.dispatch(resetForm());
+    photoDispatch(resetPhotos());
+    gameDispatch(resetGame());
+    formDispatch(resetForm());
   };
 
   const handlePlayAgain = () => {
-    dispatch(resetGame());
-    dispatch(updateStage(1));
+    gameDispatch(resetGame());
+    gameDispatch(updateStage(1));
   };
 
   return (
