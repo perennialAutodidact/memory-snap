@@ -43,16 +43,20 @@ const ResultDisplay = () => {
               {`${winner.name} wins!`}
             </h2>
           )}
-          <Button
-            onClick={handlePlayAgain}
-            text={'play again'}
-            color={'primary'}
-          />
-          <Button
-            onClick={handleReset}
-            text={'reset game'}
-            color={'secondary'}
-          />
+          <div className="container d-flex flex-column pt-3">
+            <Button
+              onClick={handlePlayAgain}
+              text={'play again'}
+              color={'primary-dark'}
+              textColor={'primary'}
+            />
+            <Button
+              onClick={handleReset}
+              text={'reset game'}
+              color={'primary-dark'}
+              textColor={'secondary'}
+            />
+          </div>
         </div>
       </div>
     )
