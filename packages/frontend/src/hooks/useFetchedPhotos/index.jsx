@@ -1,6 +1,6 @@
 import { useEffect, useState, useReducer } from 'react';
 import { baseState } from 'contexts';
-import { setPhotos } from 'contexts/photos/actions';
+import { setPhotos, resetPhotos } from 'contexts/photos/actions';
 import { photosReducer } from 'contexts/photos/reducer';
 
 const useFetchedPhotos = ({ query = null, perPage }) => {
@@ -10,6 +10,12 @@ const useFetchedPhotos = ({ query = null, perPage }) => {
   const [state, dispatch] = useReducer(photosReducer, initialState);
 
   const photos = state.photos;
+
+  useEffect(() => {
+    if (query === null) {
+      dispatch(resetPhotos());
+    }
+  }, [photos, query]);
 
   useEffect(() => {
     if (!photos && !photosError && query !== null) {
@@ -43,7 +49,7 @@ const useFetchedPhotos = ({ query = null, perPage }) => {
         }
       })();
     }
-  }, [photosError, photos, perPage, status, query]);
+  }, [photosError, photos, perPage, status, query, state]);
   return { photos, error: photosError, status };
 };
 
