@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const Slider = ({ id, register, name }) => {
+  const [sliderValue, setSliderValue] = useState('10');
+
+  const handleChange = e => {
+    setSliderValue(e.target.value);
+  };
+
   return (
-    <input
-      type="range"
-      min="0"
-      max="16"
-      className="form-range"
-      id={id}
-      step="2"
-      {...register(name)}
-    ></input>
+    <>
+      <div className={'container d-flex justify-content-center'}>
+        <label>{sliderValue}</label>
+      </div>
+      <input
+        type="range"
+        min="4"
+        max="16"
+        value={sliderValue}
+        className="form-range"
+        id={id}
+        step="2"
+        {...register(name)}
+        onChange={handleChange}
+      ></input>
+    </>
   );
 };
 

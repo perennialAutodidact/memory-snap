@@ -1,11 +1,17 @@
 import * as yup from 'yup';
 
 export const player1Name = yup.object().shape({
-  player1Name: yup.string().min(3).required("Please enter first player's name"),
+  player1Name: yup
+    .string()
+    .min(3, 'Please enter at least three characters')
+    .required(),
 });
 
 export const player2Name = yup.object().shape({
-  player2Name: yup.string().required("Please enter second player's name"),
+  player2Name: yup
+    .string()
+    .min(3, 'Please enter at least three characters')
+    .required(),
 });
 
 export const tileNumber = yup.object().shape({
@@ -15,7 +21,7 @@ export const tileNumber = yup.object().shape({
 export const imageSearchTerm = yup.object().shape({
   imageSearchTerm: yup
     .string()
-    .min(3)
-    .max(30)
+    .min(3, "please enter a word that's at least 3 letters")
+    .max(30, "please enter a word that's less than 30 letters")
     .required("please enter a word that's at least 3 letters"),
 });
