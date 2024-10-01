@@ -1,4 +1,5 @@
 import types from 'contexts/form/actions/types';
+import { initialFormState } from '../';
 
 export const formReducer = (state, action) => {
   if (!state) {
@@ -16,6 +17,14 @@ export const formReducer = (state, action) => {
           ...state.formValues,
           ...action.payload,
         },
+      };
+    }
+
+    case types.RESET_FORM: {
+      return {
+        ...initialFormState,
+        currentStep: 1,
+        formValues: { imageSearchTerm: null },
       };
     }
 
