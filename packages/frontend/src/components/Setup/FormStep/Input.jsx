@@ -6,18 +6,14 @@ const Input = ({ register, name, errors }) => {
     <>
       <input
         type="name"
-        className={`form-control ${
-          errors.player1Name || errors.player2Name || errors.imageSearchTerm
-            ? 'is-invalid'
-            : ''
-        }`}
+        className={`form-control ${errors[name] ? 'is-invalid' : ''}`}
         placeholder="Enter name"
         {...register(name)}
       ></input>
       <p className="align-self-start mt-3">
-        {errors.player1Name?.message ||
-          errors.player2Name?.message ||
-          errors.imageSearchTerm?.message}
+        {errors[name]?.message ||
+          errors[name]?.message ||
+          errors[name]?.message}
       </p>
     </>
   );
