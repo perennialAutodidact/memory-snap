@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import FormProvider from 'components/providers/form';
 import GameProvider from 'components/providers/game';
 import PhotosProvider from 'components/providers/photos';
+import BreakpointProvider from 'components/providers/breakpoint';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,7 +17,9 @@ root.render(
       <FormProvider>
         <PhotosProvider>
           <GameProvider>
-            <App />
+            <BreakpointProvider>
+              <App />
+            </BreakpointProvider>
           </GameProvider>
         </PhotosProvider>
       </FormProvider>
