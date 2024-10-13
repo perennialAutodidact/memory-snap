@@ -5,7 +5,7 @@ import { baseState } from 'contexts';
 
 describe('result display', () => {
   it('displays tie message when its a tie', () => {
-    const tieGameState = produce(baseState.game, (draft) => {
+    const tieGameState = produce(baseState.game, draft => {
       draft.players[0].score = 2;
       draft.players[1].score = 2;
       draft.winner = null;
@@ -21,7 +21,7 @@ describe('result display', () => {
   });
 
   it('displays the winner when its not a tie', () => {
-    const winnerGameState = produce(baseState.game, (draft) => {
+    const winnerGameState = produce(baseState.game, draft => {
       draft.players[0].score = 1;
       draft.players[1].score = 3;
       draft.winner = baseState.game.players[1];

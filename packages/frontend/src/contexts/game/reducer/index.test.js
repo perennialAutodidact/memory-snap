@@ -58,7 +58,7 @@ describe('gameReducer', () => {
   it('toggles the faceUp value of target tile if action type is FLIP_TILE', () => {
     const { game: state } = baseState;
 
-    const initialTilesState = produce(state, (draft) => {
+    const initialTilesState = produce(state, draft => {
       draft.tiles = createTilesFromPhotos(mockPhotos);
     });
 
@@ -69,7 +69,7 @@ describe('gameReducer', () => {
       payload: payload,
     };
 
-    const expected = produce(initialTilesState, (draft) => {
+    const expected = produce(initialTilesState, draft => {
       draft.tiles[4].faceUp = true;
       draft.tiles[4].isFlippable = false;
       draft.flipped = [payload.tile];
@@ -81,7 +81,7 @@ describe('gameReducer', () => {
   it('returns state unchanged if target tile is unflippable and action type is FLIP_TILE', () => {
     const { game: state } = baseState;
 
-    const initialTilesState = produce(state, (draft) => {
+    const initialTilesState = produce(state, draft => {
       draft.tiles = createTilesFromPhotos(mockPhotos);
       draft.tiles[6].isFlippable = false;
     });
@@ -101,7 +101,7 @@ describe('gameReducer', () => {
   it('returns the proper winner object if the action type is HANDLE_GAME_OVER', () => {
     const { game: state } = baseState;
 
-    const gameOverState = produce(state, (draft) => {
+    const gameOverState = produce(state, draft => {
       draft.players[0].score = 3;
     });
 
@@ -117,7 +117,7 @@ describe('gameReducer', () => {
   it('returns null for a tie if the action type is HANDLE_GAME_OVER', () => {
     const { game: state } = baseState;
 
-    const gameOverState = produce(state, (draft) => {
+    const gameOverState = produce(state, draft => {
       draft.players[0].score = 2;
       draft.players[1].score = 2;
     });
@@ -136,7 +136,7 @@ describe('gameReducer', () => {
 
     const tiles = createTilesFromPhotos(mockPhotos, false).slice(0, 2);
 
-    const gameOverState = produce(state, (draft) => {
+    const gameOverState = produce(state, draft => {
       draft.flipped = tiles;
     });
 
@@ -159,7 +159,7 @@ describe('gameReducer', () => {
 
     const tiles = createTilesFromPhotos(mockPhotos, false).slice(1, 3);
 
-    const gameOverState = produce(state, (draft) => {
+    const gameOverState = produce(state, draft => {
       draft.flipped = tiles;
     });
 
