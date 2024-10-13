@@ -19,7 +19,7 @@ $font-family-base: $text-font;
 $headings-font-family: $headings-font;
 
 // remove progress bar border radius
-$progress-border-radius: 0px;
+$progress-border-radius: 0;
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import '../../node_modules/bootstrap/scss/variables';
@@ -27,7 +27,7 @@ $progress-border-radius: 0px;
 @import '../../node_modules/bootstrap/scss/mixins';
 
 // add in custom colors from memory-snap-variables.scss
-$theme-colors: map-merge($theme-colors, $custom-colors);
+$theme-colors: map.merge($theme-colors, $custom-colors);
 $theme-colors-rgb: map-loop($theme-colors, to-rgb, '$value');
 
 // 4. Include any optional Bootstrap components as you like
@@ -43,7 +43,7 @@ $theme-colors-rgb: map-loop($theme-colors, to-rgb, '$value');
 
 // 5. Add additional custom code here
 
-$utilities: map-merge(
+$utilities: map.merge(
   $utilities,
   (
     'viewport-width': (

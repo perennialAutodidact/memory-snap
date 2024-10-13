@@ -13,7 +13,6 @@
     "property-no-unknown": true,
     "unit-no-unknown": true,
     "block-no-empty": true,
-    "declaration-block-no-duplicate-properties": true,
-    "number-leading-zero": "always"
+    "declaration-block-no-duplicate-properties": true
   }
 }
