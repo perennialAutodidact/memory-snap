@@ -1,15 +1,11 @@
 @font-face {
   font-family: 'CherryBomb';
-  src:
-    local('CherryBomb'),
-    url(../fonts/CherryBomb.ttf) format('truetype');
+  src: local('CherryBomb'), url(../fonts/CherryBomb.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'Nunito';
-  src:
-    local('Nunito'),
-    url(../fonts/Nunito.ttf) format('truetype');
+  src: local('Nunito'), url(../fonts/Nunito.ttf) format('truetype');
 }
 
 $headings-font: 'CherryBomb';
@@ -30,4 +26,3 @@ $custom-colors: (
   'success': $custom-success,
   'danger': $custom-danger,
 );
-

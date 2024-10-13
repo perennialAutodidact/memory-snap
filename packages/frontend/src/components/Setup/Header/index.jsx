@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ProgressBar from 'components/Setup/ProgressBar';
 import useFormContext from 'hooks/useFormContext';
 
-const Header = (props) => {
+const Header = props => {
   const { headerText } = props;
   const {
     state: { currentStep, totalSteps },
