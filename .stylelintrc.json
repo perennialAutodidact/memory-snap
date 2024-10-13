@@ -1,5 +1,6 @@
 {
   "extends": "stylelint-config-standard-scss",
+  "plugins": ["stylelint-scss"],
   "rules": {
     "declaration-block-no-redundant-longhand-properties": true,
     "shorthand-property-no-redundant-values": true,
@@ -14,6 +15,7 @@
     "unit-no-unknown": true,
     "block-no-empty": true,
     "declaration-block-no-duplicate-properties": true,
-    "number-leading-zero": "always"
+    "number-leading-zero": "always",
+    "no-global-function-names": "never"
   }
 }

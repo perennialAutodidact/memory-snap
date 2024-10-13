@@ -8,8 +8,7 @@ import { BreakpointContext } from 'contexts/breakpoint';
 const TileGrid = ({ tiles }) => {
   const { state, dispatch } = useGameContext();
 
-  const { isPortrait } = useContext(BreakpointContext);
-
+  const { breakpoint } = useContext(BreakpointContext);
   const onFlipTile = tile => {
     dispatch(flipTile(tile));
   };
@@ -25,7 +24,9 @@ const TileGrid = ({ tiles }) => {
   return (
     <div
       data-testid="tile-grid"
-      className={`container${isPortrait ? '-fluid' : ''} bg-dark mt-5`}
+      className={`container${
+        breakpoint === 'xxl' ? '-md' : '-fluid'
+      } bg-dark mt-5 pb-5`}
     >
       <div className="row">
         <div className="col-12 col-lg-10 col-md-12 offset-md-0 offset-lg-1">
