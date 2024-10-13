@@ -1,5 +1,6 @@
 {
   "extends": "stylelint-config-standard-scss",
+  "customSyntax": "postcss-html",
   "rules": {
     "declaration-block-no-redundant-longhand-properties": true,
     "shorthand-property-no-redundant-values": true,

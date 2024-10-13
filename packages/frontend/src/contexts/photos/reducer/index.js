@@ -22,6 +22,13 @@ export const photosReducer = (state, action) => {
       };
     }
 
+    case types.RESET_PHOTOS: {
+      return {
+        ...state,
+        photos: null,
+      };
+    }
+
     case types.SET_STATUS: {
       return {
         ...state,
