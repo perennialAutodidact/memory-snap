@@ -21,7 +21,7 @@ export const tileNumber = yup.object().shape({
 export const imageSearchTerm = yup.object().shape({
   imageSearchTerm: yup
     .string()
-    .min(3, "please enter a word that's at least 3 letters")
-    .max(30, "please enter a word that's less than 30 letters")
-    .required("please enter a word that's at least 3 letters"),
+    .min(3, "Please enter a word that's at least 3 letters")
+    .max(30, "Please enter a word that's less than 30 letters")
+    .required("Please enter a word that's at least 3 letters"),
 });

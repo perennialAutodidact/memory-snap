@@ -11,14 +11,14 @@ const Slider = ({ id, register, name }) => {
   return (
     <>
       <div className={'container d-flex justify-content-center'}>
-        <label>{sliderValue}</label>
+        <h3>{sliderValue}</h3>
       </div>
       <input
         type="range"
         min="4"
         max="16"
         value={sliderValue}
-        className="form-range"
+        className="form-range mb-4"
         id={id}
         step="2"
         {...register(name)}
