@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 @import './memory-snap-variables';
 
 // 1. Include Bootstrap functions first (so you can manipulate colors, SVGs, calc, etc)
@@ -14,8 +15,17 @@
 // $light: $custom-light;
 // $dark: $custom-dark;
 
-$form-range-track-bg: #5a5a5a;
-$form-range-thumb-bg: #ed6b86;
+
+$form-range-track-bg: color.adjust($custom-dark, $lightness: 15%);
+$form-range-track-height: 1rem;
+
+$form-range-thumb-bg: $custom-info;
+$form-range-thumb-active-bg: color.adjust($custom-info, $lightness: 15%);
+$form-range-thumb-focus-box-shadow:
+  0 0 0 1px $custom-dark,
+  0 0 0.1rem 0.15rem color.adjust($custom-info, $lightness: 15%);
+$form-range-thumb-border: 2px solid color.adjust($custom-info, $lightness: -15%);
+$form-range-thumb-width: 2rem;
 
 // override default fonts
 $font-family-base: $text-font;
