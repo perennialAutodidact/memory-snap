@@ -1,18 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import useFormContext from 'hooks/useFormContext';
 
 const Input = ({ register, name, errors }) => {
+  const {
+    state: { currentStep },
+  } = useFormContext();
   return (
     <>
       <input
         type="name"
-        className="form-control"
-        placeholder="enter name"
+        className={`form-control ${errors[name] ? 'is-invalid' : ''}`}
+        placeholder={currentStep === 4 ? 'e.g. cats' : 'Enter name'}
         {...register(name)}
       ></input>
-      <p>{errors.player1Name?.message}</p>
-      <p>{errors.player2Name?.message}</p>
-      <p>{errors.searchTerm?.message}</p>
+      <p className="align-self-start mt-3">
+        {errors[name]?.message ||
+          errors[name]?.message ||
+          errors[name]?.message}
+      </p>
     </>
   );
 };

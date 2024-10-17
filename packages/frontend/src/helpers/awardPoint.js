@@ -7,7 +7,7 @@ import { produce } from 'immer';
  */
 const awardPoint = (players, playerIndex) => {
   const player = players[playerIndex];
-  return produce(players, (draft) => {
+  return produce(players, draft => {
     draft[playerIndex].score = player.score + 1;
   });
 };

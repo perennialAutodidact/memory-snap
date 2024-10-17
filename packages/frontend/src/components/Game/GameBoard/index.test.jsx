@@ -21,7 +21,7 @@ describe('GameBoard component', () => {
   it('flips the tile thats been clicked', async () => {
     const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
 
-    const initialGameState = produce(baseState.game, (draft) => {
+    const initialGameState = produce(baseState.game, draft => {
       draft.tiles = tiles;
     });
     const state = { ...baseState, game: initialGameState };
@@ -38,7 +38,7 @@ describe('GameBoard component', () => {
   it('unmatched tiles are flipped back after two seconds', async () => {
     const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
 
-    const initialGameState = produce(baseState.game, (draft) => {
+    const initialGameState = produce(baseState.game, draft => {
       draft.tiles = tiles;
     });
     const state = { ...baseState, game: initialGameState };
@@ -65,7 +65,7 @@ describe('GameBoard component', () => {
   it('will not flip a tile to face down with second click', async () => {
     const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
 
-    const tilesState = produce(baseState.game, (draft) => {
+    const tilesState = produce(baseState.game, draft => {
       draft.tiles = tiles;
     });
 
@@ -87,7 +87,7 @@ describe('GameBoard component', () => {
   it('will not flip a tile if two others are flipped', async () => {
     const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
 
-    const initialGameState = produce(baseState.game, (draft) => {
+    const initialGameState = produce(baseState.game, draft => {
       draft.tiles = tiles;
     });
 
@@ -115,7 +115,7 @@ describe('GameBoard component', () => {
     it('does not award a point for a non match', async () => {
       const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
 
-      const initialGameState = produce(baseState.game, (draft) => {
+      const initialGameState = produce(baseState.game, draft => {
         draft.tiles = tiles;
       });
 
@@ -138,7 +138,7 @@ describe('GameBoard component', () => {
     it('removes tiles and awards a point after a match', async () => {
       const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
 
-      const initialGameState = produce(baseState.game, (draft) => {
+      const initialGameState = produce(baseState.game, draft => {
         draft.tiles = tiles;
       });
 
@@ -167,7 +167,7 @@ describe('GameBoard component', () => {
     it('will not flip a tile if two others are flipped', async () => {
       const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
 
-      const initialGameState = produce(baseState.game, (draft) => {
+      const initialGameState = produce(baseState.game, draft => {
         draft.tiles = tiles;
       });
 
@@ -194,7 +194,7 @@ describe('GameBoard component', () => {
     it('does not change the current player if a match is made', async () => {
       const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
 
-      const initialGameState = produce(baseState.game, (draft) => {
+      const initialGameState = produce(baseState.game, draft => {
         draft.tiles = tiles;
       });
 
@@ -213,7 +213,7 @@ describe('GameBoard component', () => {
     it('changes the current player if a match is not made', async () => {
       const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });
 
-      const initialGameState = produce(baseState.game, (draft) => {
+      const initialGameState = produce(baseState.game, draft => {
         draft.tiles = tiles;
       });
 

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import './styles/App.scss';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { routes } from './utils';
 import useGameContext from 'hooks/useGameContext';

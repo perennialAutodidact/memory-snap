@@ -15,14 +15,14 @@ describe('lockTiles', () => {
     const tiles = createTilesFromPhotos(mockPhotos);
 
     const allTilesAreFlippable = !tiles.some(
-      (tile) => tile.isFlippable === false
+      tile => tile.isFlippable === false
     );
     expect(allTilesAreFlippable).toBe(true);
 
     const lockedTiles = lockTiles(tiles);
 
     const aTileIsFlippable = lockedTiles.some(
-      (tile) => tile.isFlippable === true
+      tile => tile.isFlippable === true
     );
 
     expect(aTileIsFlippable).toBe(false);
@@ -43,16 +43,14 @@ describe('unlockTiles', () => {
 
     const lockedTiles = lockTiles(tiles);
 
-    const aTileIsUnlocked = lockedTiles.some(
-      (tile) => tile.isFlippable === true
-    );
+    const aTileIsUnlocked = lockedTiles.some(tile => tile.isFlippable === true);
 
     expect(aTileIsUnlocked).toBe(false);
 
     const unlockedTiles = unlockTiles(lockedTiles);
 
     const allTilesAreFlippable = !unlockedTiles.some(
-      (tile) => tile.isFlippable === false
+      tile => tile.isFlippable === false
     );
 
     expect(allTilesAreFlippable).toBe(true);

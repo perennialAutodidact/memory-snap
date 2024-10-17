@@ -6,7 +6,7 @@
  * @param {Array} flipped an array of two tile objects
  */
 const handleMatch = (tiles, flipped) => {
-  return tiles.map((tile) =>
+  return tiles.map(tile =>
     flipped[0].id === tile.id || flipped[1].id === tile.id
       ? { ...tile, isMatched: true }
       : { ...tile, isFlippable: true }

@@ -8,7 +8,7 @@ describe('createTilesFromPhotos', () => {
     const shuffledTiles = createTilesFromPhotos(photos, { shuffle: true });
     const unshuffledTiles = createTilesFromPhotos(photos, { shuffle: false });
 
-    const tilePhotos = shuffledTiles.map((tile) => {
+    const tilePhotos = shuffledTiles.map(tile => {
       return tile.photo;
     });
 

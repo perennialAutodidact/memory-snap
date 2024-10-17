@@ -45,7 +45,7 @@ describe('PlayerHUD component', () => {
       isActive: true,
     };
 
-    const currentPlayer2State = produce(baseState.game, (draft) => {
+    const currentPlayer2State = produce(baseState.game, draft => {
       draft.currentPlayer = baseState.game.players[1];
     });
 

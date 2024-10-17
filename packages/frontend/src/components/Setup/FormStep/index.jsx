@@ -37,11 +37,16 @@ const FormStep = ({ label, btnText, FormElement, btnColor, name, schema }) => {
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h3>{label}</h3>
-      <FormElement register={register} name={name} ref={null} errors={errors} />
-      <Button type="submit" text={btnText} color={btnColor} />
-    </form>
+    <div>
+      <form
+        className="container d-flex flex-column align-items-center p-3"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <h3>{label}</h3>
+        <FormElement register={register} name={name} errors={errors} />
+        <Button type="submit" text={btnText} color={btnColor} />
+      </form>
+    </div>
   );
 };
 

@@ -32,7 +32,7 @@ const setupTests = (
   return { screen, user };
 };
 
-const createSetupTestsForRoute = (route) => {
+const createSetupTestsForRoute = route => {
   return (component, options) => setupTests(component, { ...options, route });
 };
 

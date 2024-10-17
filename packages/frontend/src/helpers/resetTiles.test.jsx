@@ -15,20 +15,20 @@ describe('resetTiles', () => {
   it('changes the is flippable value for each tile to true', () => {
     const tiles = createTilesFromPhotos(mockPhotos);
 
-    const twoUnflippableTiles = produce(tiles, (draft) => {
+    const twoUnflippableTiles = produce(tiles, draft => {
       draft[3].isFlippable = false;
       draft[6].isFlippable = false;
     });
 
     const someTilesAreUnflippable = twoUnflippableTiles.some(
-      (tile) => tile.isFlippable === true
+      tile => tile.isFlippable === true
     );
     expect(someTilesAreUnflippable).toBe(true);
 
     const allFlippableTiles = resetTiles(twoUnflippableTiles);
 
     const allTilesAreFlippable = !allFlippableTiles.some(
-      (tile) => tile.isFlippable === false
+      tile => tile.isFlippable === false
     );
 
     expect(allTilesAreFlippable).toBe(true);
@@ -37,20 +37,18 @@ describe('resetTiles', () => {
   it('changes the face up value for each tile to false', () => {
     const tiles = createTilesFromPhotos(mockPhotos);
 
-    const flippedTiles = produce(tiles, (draft) => {
+    const flippedTiles = produce(tiles, draft => {
       draft[3].faceUp = true;
       draft[6].faceUp = true;
     });
 
-    const someTilesAreFaceUp = flippedTiles.some(
-      (tile) => tile.faceUp === true
-    );
+    const someTilesAreFaceUp = flippedTiles.some(tile => tile.faceUp === true);
 
     expect(someTilesAreFaceUp).toBe(true);
     const faceDownTiles = resetTiles(flippedTiles);
 
     const allTilesAreFaceDown = !faceDownTiles.some(
-      (tile) => tile.faceUp === true
+      tile => tile.faceUp === true
     );
 
     expect(allTilesAreFaceDown).toBe(true);

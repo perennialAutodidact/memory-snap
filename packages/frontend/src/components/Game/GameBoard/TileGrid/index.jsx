@@ -7,7 +7,7 @@ import useGameContext from 'hooks/useGameContext';
 const TileGrid = ({ tiles }) => {
   const { state, dispatch } = useGameContext();
 
-  const onFlipTile = (tile) => {
+  const onFlipTile = tile => {
     dispatch(flipTile(tile));
   };
 
