@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useFormContext from 'hooks/useFormContext';
 
-const Input = ({ register, name, errors }) => {
+const Input = ({ register, name, errors, placeholder }) => {
   const {
     state: { currentStep },
   } = useFormContext();
@@ -11,7 +11,7 @@ const Input = ({ register, name, errors }) => {
       <input
         type="name"
         className={`form-control ${errors[name] ? 'is-invalid' : ''}`}
-        placeholder={currentStep === 4 ? 'e.g. cats' : 'Enter name'}
+        placeholder={placeholder}
         {...register(name)}
       ></input>
       <p className="align-self-start mt-3">

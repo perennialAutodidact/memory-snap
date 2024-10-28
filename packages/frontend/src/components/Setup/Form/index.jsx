@@ -22,6 +22,7 @@ const SetupForm = ({ parent }) => {
                 id={child.elementProps.id}
                 name={child.name}
                 schema={child.schema}
+                placeholder={child.elementProps.placeholder}
                 {...child}
               />
             }

@@ -10,12 +10,19 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { GAME_STAGES } from 'utils';
 import { updateStage } from 'contexts/game/actions';
 
-const FormStep = ({ label, btnText, FormElement, btnColor, name, schema }) => {
+const FormStep = ({
+  label,
+  btnText,
+  FormElement,
+  btnColor,
+  name,
+  schema,
+  placeholder,
+}) => {
   const {
     dispatch,
     state: { currentStep },
   } = useFormContext();
-
   const gameValues = useGameContext();
 
   const navigate = useNavigate();
@@ -43,7 +50,12 @@ const FormStep = ({ label, btnText, FormElement, btnColor, name, schema }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <h3>{label}</h3>
-        <FormElement register={register} name={name} errors={errors} />
+        <FormElement
+          register={register}
+          name={name}
+          errors={errors}
+          placeholder={placeholder}
+        />
         <Button type="submit" text={btnText} color={btnColor} />
       </form>
     </div>
