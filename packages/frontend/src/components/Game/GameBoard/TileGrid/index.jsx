@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Tile from '../Tile';
 import { flipTile, handleFlippedPair } from 'contexts/game/actions';
 import useGameContext from 'hooks/useGameContext';
+import { BreakpointContext } from 'contexts/breakpoint';
 
 const TileGrid = ({ tiles }) => {
   const { state, dispatch } = useGameContext();
 
-  const onFlipTile = (tile) => {
+  const { breakpoint } = useContext(BreakpointContext);
+  const onFlipTile = tile => {
     dispatch(flipTile(tile));
   };
 
@@ -20,9 +22,14 @@ const TileGrid = ({ tiles }) => {
   }, [state.flipped, dispatch]);
 
   return (
-    <div data-testid="tile-grid" className="container mt-5">
+    <div
+      data-testid="tile-grid"
+      className={`container${
+        breakpoint === 'xxl' ? '' : '-fluid'
+      } bg-dark mt-5 pb-5`}
+    >
       <div className="row">
-        <div className="col-12 col-lg-10 col-md-12 offset-md-0 offset-lg-1">
+        <div className="col-12">
           <div className="d-flex justify-content-center flex-wrap gap-3">
             {!tiles
               ? null
