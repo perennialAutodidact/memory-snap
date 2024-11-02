@@ -25,11 +25,11 @@ const TileGrid = ({ tiles }) => {
     <div
       data-testid="tile-grid"
       className={`container${
-        breakpoint === 'xxl' ? '-md' : '-fluid'
+        breakpoint === 'xxl' ? '' : '-fluid'
       } bg-dark mt-5 pb-5`}
     >
       <div className="row">
-        <div className="col-12 col-lg-10 col-md-12 offset-md-0 offset-lg-1">
+        <div className="col-12 ">
           <div className="d-flex justify-content-center flex-wrap gap-3">
             {!tiles
               ? null
