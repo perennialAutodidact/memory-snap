@@ -29,7 +29,7 @@ const TileGrid = ({ tiles }) => {
       } bg-dark mt-5 pb-5`}
     >
       <div className="row">
-        <div className="col-12 ">
+        <div className="col-12">
           <div className="d-flex justify-content-center flex-wrap gap-3">
             {!tiles
               ? null
