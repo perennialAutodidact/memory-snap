@@ -5,7 +5,7 @@ import { produce } from 'immer';
 import { GAME_STAGES } from 'utils/stages';
 
 describe('App', () => {
-  it('it renders that game component at /play', () => {
+  it('it renders the game component at /play', () => {
     const setupTests = createSetupTestsForRoute('/play');
 
     const { screen } = setupTests(App);
@@ -16,7 +16,7 @@ describe('App', () => {
   it('it renders the setup component at /setup', () => {
     const setupTests = createSetupTestsForRoute('/setup');
 
-    const setupGameState = produce(baseState.game, (draft) => {
+    const setupGameState = produce(baseState.game, draft => {
       draft.stage = GAME_STAGES.SETUP;
     });
 
@@ -32,7 +32,7 @@ describe('App', () => {
   it('it renders the result display component at /game-over', () => {
     const setupTests = createSetupTestsForRoute('/game-over');
 
-    const gameOverState = produce(baseState.game, (draft) => {
+    const gameOverState = produce(baseState.game, draft => {
       draft.stage = GAME_STAGES.GAME_OVER;
       draft.winner = baseState.game.players[0];
     });

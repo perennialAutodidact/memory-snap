@@ -1,11 +1,24 @@
-import { useEffect, useState } from 'react';
-const useFetchedPhotos = ({ query = 'nature', perPage }) => {
-  const [photos, setPhotos] = useState(null);
+import { useEffect, useState, useReducer } from 'react';
+import { baseState } from 'contexts';
+import { setPhotos, resetPhotos } from 'contexts/photos/actions';
+import { photosReducer } from 'contexts/photos/reducer';
+
+const useFetchedPhotos = ({ query = null, perPage }) => {
   const [photosError, setPhotosError] = useState(null);
   const [status, setStatus] = useState('IDLE');
+  const initialState = baseState.photos;
+  const [state, dispatch] = useReducer(photosReducer, initialState);
+
+  const photos = state.photos;
 
   useEffect(() => {
-    if (!photos && !photosError) {
+    if (query === null) {
+      dispatch(resetPhotos());
+    }
+  }, [photos, query]);
+
+  useEffect(() => {
+    if (!photos && !photosError && query !== null) {
       (async () => {
         try {
           setStatus('PENDING');
@@ -20,7 +33,7 @@ const useFetchedPhotos = ({ query = 'nature', perPage }) => {
           if (!data.error) {
             if (!photos) {
               setStatus('SUCCESS');
-              setPhotos(data.photos);
+              dispatch(setPhotos(data.photos));
             }
           } else {
             if (!photosError) {
@@ -36,8 +49,7 @@ const useFetchedPhotos = ({ query = 'nature', perPage }) => {
         }
       })();
     }
-  }, [photos, photosError, status]);
-
+  }, [photosError, photos, perPage, status, query, state]);
   return { photos, error: photosError, status };
 };
 

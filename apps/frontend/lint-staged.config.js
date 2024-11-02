@@ -1,5 +1,5 @@
 const lintStagedConfig = {
-  '*.{js,jsx}': 'yarn lint',
+  '*.{js,jsx}': 'yarn lint --max-warnings=0',
   '*.scss': 'npx stylelint',
 };
 

@@ -17,12 +17,15 @@
   },
   "extends": ["@memory-snap/eslint-config/frontend"],
   "rules": {
-    "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    "no-console": ["error", { "allow": ["warn", "error"] }],
-    "no-unused-vars": "off",
+    "react/prop-types": "error",
+    "prettier/prettier": ["error", { "endOfLine": "auto", "arrowParens": "avoid" }],
+    "no-console": ["error", { "allow": ["warn"] }],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "no-unused-vars": "error",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
-      "warn",
+      "error",
       {
         "vars": "all",
         "varsIgnorePattern": "^_",
