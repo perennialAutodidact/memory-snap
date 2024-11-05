@@ -56,7 +56,13 @@ const FormStep = ({
           errors={errors}
           placeholder={placeholder}
         />
-        <Button type="submit" text={btnText} color={btnColor} />
+        <div className='container d-flex justify-content-end p-0'>
+          <Button
+            type="submit"
+            text={btnText}
+            color={btnColor}
+          />
+        </div>
       </form>
     </div>
   );

@@ -12,11 +12,7 @@ const ResultDisplay = () => {
     state: { winner, stage },
     dispatch: gameDispatch,
   } = useGameContext();
-  console.log(winner.name);
-  const {
-    state: { formValues },
-    dispatch: formDispatch,
-  } = useFormContext();
+  const { dispatch: formDispatch } = useFormContext();
   const { dispatch: photoDispatch } = usePhotosContext();
   const handleReset = () => {
     photoDispatch(resetPhotos());
@@ -42,9 +38,7 @@ const ResultDisplay = () => {
             <h2 className="lh-lg">Its a tie!</h2>
           ) : (
             <h2 className={`text-${winner.color.className}`}>
-              {winner.name === 'Player 1'
-                ? `${formValues.player1Name}`
-                : `${formValues.player2Name}`}{' '}
+              {winner.name}
               wins!
             </h2>
           )}
@@ -59,7 +53,7 @@ const ResultDisplay = () => {
             <Button
               onClick={handleReset}
               text={'Reset game'}
-              color={'rimary-dark'}
+              color={'primary-dark'}
               textColor={'secondary'}
             />
           </div>
