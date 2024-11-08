@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import useFormContext from 'hooks/useFormContext';
 import useGameContext from 'hooks/useGameContext';
 import { updateForm } from 'contexts/form/actions';
+import { updateNames } from 'contexts/game/actions';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { GAME_STAGES } from 'utils';
@@ -20,11 +21,11 @@ const FormStep = ({
   placeholder,
 }) => {
   const {
-    dispatch,
-    state: { currentStep },
+    state: { currentStep, formValues },
+    dispatch: formDispatch,
   } = useFormContext();
-  const gameValues = useGameContext();
 
+  const { dispatch: gameDispatch, gameValues } = useGameContext();
   const navigate = useNavigate();
 
   const {
@@ -35,10 +36,11 @@ const FormStep = ({
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = data => {
-    dispatch(updateForm(data));
+    formDispatch(updateForm(data));
     reset();
     if (currentStep === 4) {
-      gameValues.dispatch(updateStage(GAME_STAGES.PLAYING));
+      gameDispatch(updateNames(formValues));
+      gameDispatch(updateStage(GAME_STAGES.PLAYING));
     } else {
       navigate(`/setup/step-${currentStep + 1}`);
     }
@@ -56,12 +58,8 @@ const FormStep = ({
           errors={errors}
           placeholder={placeholder}
         />
-        <div className='container d-flex justify-content-end p-0'>
-          <Button
-            type="submit"
-            text={btnText}
-            color={btnColor}
-          />
+        <div className="container d-flex justify-content-end p-0">
+          <Button type="submit" text={btnText} color={btnColor} />
         </div>
       </form>
     </div>

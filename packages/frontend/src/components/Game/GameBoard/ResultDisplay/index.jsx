@@ -38,8 +38,8 @@ const ResultDisplay = () => {
             <h2 className="lh-lg">Its a tie!</h2>
           ) : (
             <h2 className={`text-${winner.color.className}`}>
-              {winner.name}
-              wins!
+              {winner.name }
+               wins!
             </h2>
           )}
           <div className="container d-flex flex-column pt-5">

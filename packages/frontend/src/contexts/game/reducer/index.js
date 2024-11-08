@@ -19,6 +19,25 @@ export const gameReducer = (state, action) => {
   }
 
   switch (action.type) {
+    case types.UPDATE_NAMES: {
+      return {
+        ...state,
+        players: [
+          {
+            name: action.payload.player1Name,
+            number: state.players[0].number,
+            score: state.players[0].score,
+            color: state.players[0].color,
+          },
+          {
+            name: action.payload.player2Name,
+            number: state.players[1].number,
+            score: state.players[1].score,
+            color: state.players[1].color,
+          },
+        ],
+      };
+    }
     case types.UPDATE_STAGE: {
       return {
         ...state,
