@@ -5,9 +5,9 @@ import './styles/index.scss';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import FormProvider from 'components/providers/form';
-import GameProvider from 'components/providers/game';
-import PhotosProvider from 'components/providers/photos';
+import FormProvider from 'components/Providers/FormProvider';
+import GameProvider from 'components/Providers/GameProvider';
+import PhotosProvider from 'components/Providers/PhotosProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -2,10 +2,10 @@ import { createClient } from 'pexels';
 
 const getPhotos = async (req, res) => {
   try {
-    const { query, perPage: per_page } = req.query;
+    const { imageSearchQuery, perPage: per_page } = req.query;
     const pexelsClient = createClient(process.env.PEXELS_API_KEY);
     const response = await pexelsClient.photos.search({
-      query,
+      query: imageSearchQuery,
       per_page,
       orientation: 'square',
     });

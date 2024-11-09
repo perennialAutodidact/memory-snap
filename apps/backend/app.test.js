@@ -41,7 +41,7 @@ describe('app', () => {
       .then((response) => {
         expect(response.body).toEqual({ photos: mockPhotos });
       })
-      .catch((error) => console.log({ error }));
+      .catch((error) => console.error({ error }));
   });
 
   it('returns error on fail', async () => {

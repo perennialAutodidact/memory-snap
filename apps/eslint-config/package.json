@@ -1,0 +1,19 @@
+{
+  "name": "@memory-snap/eslint-config",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "files": [
+    "backend.js",
+    "frontend.js"
+  ],
+  "devDependencies": {
+    "eslint-config-react": "1.1.7",
+    "eslint-config-turbo": "1.12.2",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "@babel/eslint-parser": "^7.22.11",
+    "@babel/preset-react": "^7.22.15"
+  }
+}

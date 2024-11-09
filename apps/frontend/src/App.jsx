@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import './styles/App.scss';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Routes, Route } from 'react-router-dom';
 import { routes } from './utils';
-import useGameContext from 'hooks/useGameContext';
+import { useGameContext } from 'hooks/useGameContext';
+import './styles/App.scss';
 
 const App = () => {
   const navigate = useNavigate();
@@ -26,7 +25,7 @@ const App = () => {
         {routes.map((route, index) => (
           <Route
             path={route.path}
-            element={<route.Element parent={route} index={index} key={index} />}
+            element={<route.Element route={route} index={index} key={index} />}
             key={index}
           />
         ))}

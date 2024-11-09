@@ -1,6 +1,6 @@
-import { initialFormState } from './form';
-import { initialGameState } from './game';
-import { initialPhotosState } from './photos';
+import { initialFormState } from './FormContext';
+import { initialGameState } from './GameContext';
+import { initialPhotosState } from './PhotosContext';
 
 export const baseState = {
   form: initialFormState,

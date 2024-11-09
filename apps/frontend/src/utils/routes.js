@@ -1,29 +1,24 @@
-import Setup from 'components/Setup';
-import FormStep from 'components/Setup/FormStep';
+import SetupPage from 'components/Setup/SetupPage';
+import FormStep from 'components/Setup/FormStep/FormStep';
 import Slider from 'components/Slider';
 import Input from 'components/Setup/FormStep/Input';
 import Game from 'components/Game';
-import ResultDisplay from 'components/Game/GameBoard/ResultDisplay';
+import ResultDisplay from 'components/Game/GameBoard/ResultDisplay/ResultDisplay';
 import IndexElement from 'components/Setup/FormStep/IndexElement';
-import {
-  player1Name,
-  player2Name,
-  tileNumber,
-  imageSearchTerm,
-} from '../utils/validationSchema';
+import { validationSchema } from '../utils/validationSchema';
 
-const routes = [
+export const routes = [
   {
     name: 'Setup',
     path: '/setup/*',
-    Element: Setup,
+    Element: SetupPage,
     children: [
       {
         name: 'player1Name',
         path: '/step-1',
         index: false,
         Element: FormStep,
-        schema: player1Name,
+        schema: validationSchema.player1Name,
         elementProps: {
           FormElement: Input,
           id: 'player-1-name',
@@ -37,7 +32,7 @@ const routes = [
         path: '/step-2',
         index: false,
         Element: FormStep,
-        schema: player2Name,
+        schema: validationSchema.player2Name,
         elementProps: {
           FormElement: Input,
           id: 'player-2-name',
@@ -51,7 +46,7 @@ const routes = [
         path: '/step-3',
         index: false,
         Element: FormStep,
-        schema: tileNumber,
+        schema: validationSchema.tileNumber,
         elementProps: {
           FormElement: Slider,
           id: 'tiles-amount',
@@ -61,11 +56,11 @@ const routes = [
         },
       },
       {
-        name: 'imageSearchTerm',
+        name: 'imageSearchQuery',
         path: '/step-4',
         index: false,
         Element: FormStep,
-        schema: imageSearchTerm,
+        schema: validationSchema.imageSearchQuery,
         elementProps: {
           FormElement: Input,
           id: 'image-type',
@@ -102,5 +97,3 @@ const routes = [
     children: null,
   },
 ];
-
-export { routes };

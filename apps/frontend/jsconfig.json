@@ -5,6 +5,11 @@
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "config",
+    "babel.config.js",
+    "jest.config.js",
+    "setup.jest.js"
+  ]
 }
-

@@ -1,4 +1,4 @@
-const config = async () => ({
+module.exports = {
   setupFilesAfterEnv: ['<rootDir>/__test__/jest.setup.js'],
   transformIgnorePatterns: ['/node_modules/', '/node_modules/(?!pexels)'],
   verbose: true,
@@ -6,6 +6,4 @@ const config = async () => ({
   transform: {
     '\\.jsx?$': 'babel-jest',
   },
-});
-
-export default config;
+};

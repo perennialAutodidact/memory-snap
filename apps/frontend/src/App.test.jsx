@@ -1,4 +1,4 @@
-import { createSetupTestsForRoute } from 'helpers/tests';
+import { createSetupTestsForRoute, ui } from 'utils/tests';
 import App from 'App';
 import { baseState } from 'contexts';
 import { produce } from 'immer';
@@ -6,42 +6,41 @@ import { GAME_STAGES } from 'utils/stages';
 
 describe('App', () => {
   it('it renders the game component at /play', () => {
+    const { game } = ui;
     const setupTests = createSetupTestsForRoute('/play');
 
-    const { screen } = setupTests(App);
+    const state = produce(baseState, draft => {
+      draft.game.stage = GAME_STAGES.PLAYING;
+    });
+    setupTests(App, { state });
 
-    expect(screen.getByTestId('game-component')).toBeInTheDocument();
+    expect(game.container.get()).toBeInTheDocument();
   });
 
   it('it renders the setup component at /setup', () => {
+    const { setupForm } = ui;
     const setupTests = createSetupTestsForRoute('/setup');
 
-    const setupGameState = produce(baseState.game, draft => {
-      draft.stage = GAME_STAGES.SETUP;
+    const state = produce(baseState, draft => {
+      draft.game.stage = GAME_STAGES.SETUP;
     });
 
-    const state = { ...baseState, game: setupGameState };
+    setupTests(App, { state });
 
-    const { screen } = setupTests(App, { state });
-
-    expect(
-      screen.getByRole('banner', { name: /game setup/i })
-    ).toBeInTheDocument();
+    expect(setupForm.header.get()).toBeInTheDocument();
   });
 
   it('it renders the result display component at /game-over', () => {
+    const { gameOver } = ui;
     const setupTests = createSetupTestsForRoute('/game-over');
 
-    const gameOverState = produce(baseState.game, draft => {
-      draft.stage = GAME_STAGES.GAME_OVER;
-      draft.winner = baseState.game.players[0];
+    const state = produce(baseState, draft => {
+      draft.game.stage = GAME_STAGES.GAME_OVER;
+      draft.game.winner = baseState.game.players[0];
     });
 
-    const state = { ...baseState, game: gameOverState };
+    setupTests(App, { state });
 
-    const { screen } = setupTests(App, { state });
-
-    const element = screen.getByText('GAME OVER!');
-    expect(element).toBeInTheDocument();
+    expect(gameOver.container.get()).toBeInTheDocument();
   });
 });

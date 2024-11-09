@@ -3,9 +3,9 @@
     "module": "ESNext",
     "target": "es6",
     "baseUrl": "./",
-    // "types": ["node"]
+    "types": ["node"],
     "paths": {
-      "controllers": ["./controllers"],
+      "controllers": ["./controllers"]
     }
   },
   "exclude": ["node_modules"]

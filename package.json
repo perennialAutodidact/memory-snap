@@ -13,12 +13,14 @@
     "ci": "npx turbo ci",
     "lint": "npx turbo lint",
     "start": "npx turbo run start",
+    "test": "npx turbo test",
     "prepare": "husky install && chmod ug+x .husky/*"
   },
   "dependencies": {},
   "devDependencies": {
     "husky": "^8.0.0",
     "lint-staged": "^15.0.2",
+    "msw": "^2.6.2",
     "stylelint": "^15.11.0",
     "stylelint-config-standard-scss": "^11.0.0",
     "turbo": "^1.11.2"
