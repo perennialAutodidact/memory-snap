@@ -2,7 +2,7 @@
 Flip tiles to find matching images. The player who finds the most pairs wins!
 
 ## Project Setup
-This project uses Nx to manage a monorepo containing a backend server created with Express and a frontend application created with `create-react-app` (CRA).
+This project uses Turborepo to manage a monorepo containing a backend server created with Express and a frontend application created with `create-react-app` (CRA).
 
 - Install and/or switch to Node 18.17.1. 
 - Run `git clone https://github.com/perennialAutodidact/memory-snap.git`
@@ -21,6 +21,12 @@ This project uses Nx to manage a monorepo containing a backend server created wi
   ```
 
 - Run `yarn start` to start the local dev server
+
+## Installing Dependencies
+According to the [Turborepo docs](https://turbo.build/repo/docs/crafting-your-repository/managing-dependencies#install-dependencies-where-theyre-used), dependencies should be installed in the workspace in which they're used and *not* in the root directory whenever possible.
+
+To install a dependency in the `apps/frontend` app use:
+> `yarn workspace frontend add my-dependency --dev`
 
 ## Styling
 Styles are written in SCSS and are located in the `src/styles` directory.
