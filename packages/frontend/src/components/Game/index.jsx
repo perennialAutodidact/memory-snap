@@ -26,7 +26,7 @@ const Game = () => {
     if (stage === GAME_STAGES.GAME_OVER) {
       dispatch(handleGameOver());
     }
-  }, [stage]);
+  }, [stage, dispatch]);
 
   return (
     <section
