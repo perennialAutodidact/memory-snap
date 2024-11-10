@@ -25,7 +25,7 @@ const FormStep = ({
     dispatch: formDispatch,
   } = useFormContext();
 
-  const { dispatch: gameDispatch, gameValues } = useGameContext();
+  const { dispatch: gameDispatch } = useGameContext();
   const navigate = useNavigate();
 
   const {
@@ -73,6 +73,7 @@ FormStep.propTypes = {
   btnColor: PropTypes.string,
   schema: PropTypes.object,
   name: PropTypes.string,
+  placeholder: PropTypes.string,
 };
 
 export default FormStep;

@@ -6,6 +6,7 @@ import Button from 'components/Button';
 import { resetGame, updateStage } from '../../../../contexts/game/actions/';
 import { resetForm } from 'contexts/form/actions';
 import { resetPhotos } from 'contexts/photos/actions';
+import { GAME_STAGES } from 'utils';
 
 const ResultDisplay = () => {
   const {
@@ -26,7 +27,7 @@ const ResultDisplay = () => {
   };
 
   return (
-    stage === 2 && (
+    stage === GAME_STAGES.GAME_OVER && (
       <div
         data-testid="result-display"
         className="container d-flex justify-content-center pt-5"
@@ -39,7 +40,7 @@ const ResultDisplay = () => {
           ) : (
             <h2 className={`text-${winner.color.className}`}>
               {winner.name + ' '}
-               wins!
+              wins!
             </h2>
           )}
           <div className="container d-flex flex-column pt-5">
