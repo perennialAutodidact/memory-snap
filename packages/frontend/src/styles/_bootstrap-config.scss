@@ -27,6 +27,8 @@ $form-range-thumb-focus-box-shadow:
 $form-range-thumb-border: 2px solid color.adjust($custom-info, $lightness: -15%);
 $form-range-thumb-width: 2rem;
 
+$focus-ring-color: $custom-primary;
+
 // override default fonts
 $font-family-base: $text-font;
 $headings-font-family: $headings-font;
