@@ -10,6 +10,8 @@ import {
   getHighScore,
 } from 'helpers';
 import { initialGameState } from '../../../contexts/game';
+import { baseState } from 'contexts';
+import { produce } from 'immer';
 
 export const gameReducer = (state, action) => {
   if (!state) {
@@ -20,22 +22,12 @@ export const gameReducer = (state, action) => {
 
   switch (action.type) {
     case types.UPDATE_NAMES: {
+      const namesGameState = produce(baseState.game, draft => {
+        draft.players[0].name = action.payload.player1Name;
+        draft.players[1].name = action.payload.player2Name;
+      });
       return {
-        ...state,
-        players: [
-          {
-            name: action.payload.player1Name,
-            number: state.players[0].number,
-            score: state.players[0].score,
-            color: state.players[0].color,
-          },
-          {
-            name: action.payload.player2Name,
-            number: state.players[1].number,
-            score: state.players[1].score,
-            color: state.players[1].color,
-          },
-        ],
+        ...namesGameState,
       };
     }
     case types.UPDATE_STAGE: {
