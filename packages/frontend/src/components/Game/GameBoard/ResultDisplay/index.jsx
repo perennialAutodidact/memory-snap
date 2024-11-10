@@ -38,7 +38,7 @@ const ResultDisplay = () => {
             <h2 className="lh-lg">Its a tie!</h2>
           ) : (
             <h2 className={`text-${winner.color.className}`}>
-              {winner.name }
+              {winner.name + ' '}
                wins!
             </h2>
           )}
