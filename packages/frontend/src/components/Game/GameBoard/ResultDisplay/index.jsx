@@ -35,7 +35,7 @@ const ResultDisplay = () => {
           <h1 className="mb-5">GAME OVER!</h1>
 
           {winner === null ? (
-            <h2 className="lh-lg">Its a tie!</h2>
+            <h2>Its a tie!</h2>
           ) : (
             <h2 className={`text-${winner.color.className}`}>
               {winner.name + ' '}
