@@ -22,9 +22,15 @@ describe('result display', () => {
 
   it('displays the winner when its not a tie', () => {
     const winnerGameState = produce(baseState.game, draft => {
-      draft.players[0].score = 1;
-      draft.players[1].score = 3;
-      draft.winner = baseState.game.players[1];
+      draft.players[0].score = 3;
+      draft.players[1].score = 1;
+      draft.stage = 2;
+      draft.winner = {
+        color: { className: 'primary' },
+        name: 'Mario',
+        number: 1,
+        score: 4,
+      };
     });
 
     const state = { ...baseState, game: winnerGameState };
@@ -33,7 +39,7 @@ describe('result display', () => {
 
     const display = screen.getByTestId('result-display');
 
-    expect(screen.getByText('Player 2 wins!')).toBeInTheDocument();
+    expect(screen.getByText('Mario wins!')).toBeInTheDocument();
     expect(screen.queryByText('Its a tie!')).toBe(null);
   });
 });
