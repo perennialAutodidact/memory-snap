@@ -1,11 +1,15 @@
 @font-face {
   font-family: 'CherryBomb';
-  src: local('CherryBomb'), url(../fonts/CherryBomb.ttf) format('truetype');
+  src:
+    local('CherryBomb'),
+    url(../fonts/CherryBomb.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'Nunito';
-  src: local('Nunito'), url(../fonts/Nunito.ttf) format('truetype');
+  src:
+    local('Nunito'),
+    url(../fonts/Nunito.ttf) format('truetype');
 }
 
 $headings-font: 'CherryBomb';
@@ -13,7 +17,7 @@ $text-font: 'Nunito';
 $custom-primary: #3a96cf;
 $custom-secondary: #ed6b86;
 $custom-dark: #23262f;
-$custom-light: #f1f1f1;
+$custom-light: #f9fbff;
 $custom-warning: #f79824;
 $custom-success: #25a03c;
 $custom-danger: #a30000;

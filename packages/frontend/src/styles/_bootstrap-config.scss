@@ -15,19 +15,20 @@
 // $light: $custom-light;
 // $dark: $custom-dark;
 
-
-$form-range-track-bg: color.adjust($custom-dark, $lightness: 15%);
+$form-range-track-bg: color.adjust($custom-dark, $lightness: 50%);
 $form-range-track-height: 1rem;
 
-$form-range-thumb-bg: $custom-info;
-$form-range-thumb-active-bg: color.adjust($custom-info, $lightness: 15%);
+$form-range-thumb-bg: color.adjust($custom-primary, $lightness: 10%);
+$form-range-thumb-active-bg: color.adjust($custom-primary, $lightness: 15%);
 $form-range-thumb-focus-box-shadow:
-  0 0 0 1px $custom-dark,
-  0 0 0.1rem 0.15rem color.adjust($custom-info, $lightness: 15%);
-$form-range-thumb-border: 2px solid color.adjust($custom-info, $lightness: -15%);
+  0 0 0 1px $custom-primary,
+  0 0 0.1rem 0.15rem color.adjust($custom-primary, $lightness: 15%);
+$form-range-thumb-border: 2px solid
+  color.adjust($custom-primary, $lightness: -15%);
 $form-range-thumb-width: 2rem;
 
-$focus-ring-color: $custom-primary;
+$focus-ring-color: color.adjust($custom-primary, $lightness: 10%);
+$focus-ring-border-color: $custom-primary;
 
 // override default fonts
 $font-family-base: $text-font;
