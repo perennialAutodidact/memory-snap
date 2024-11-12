@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const SetupForm = ({ parent }) => {
   return (
-    <div className="container p-0 bg-light rounded text-dark">
+    <div className="container p-0 mx-2 bg-light rounded text-dark">
       <Header headerText={'Game setup'} />
       <Routes>
         {parent.children.map((child, index) => (
