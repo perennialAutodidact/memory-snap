@@ -1,8 +1,11 @@
 {
   "name": "memory-snap",
   "private": true,
-  "workspaces": ["apps/*", "packages/*"],
-  "packageManager": "yarn@1.22.19",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "packageManager": "yarn@1.22.21",
   "type": "module",
   "scripts": {
     "build": "npx turbo build",
@@ -12,7 +15,6 @@
     "test": "npx turbo test",
     "prepare": "husky install && chmod ug+x .husky/*"
   },
-  "dependencies": {},
   "devDependencies": {
     "husky": "^8.0.0",
     "lint-staged": "^15.0.2",
