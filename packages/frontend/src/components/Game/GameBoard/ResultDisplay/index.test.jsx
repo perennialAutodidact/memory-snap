@@ -8,6 +8,7 @@ describe('result display', () => {
     const tieGameState = produce(baseState.game, draft => {
       draft.players[0].score = 2;
       draft.players[1].score = 2;
+      draft.stage = 2;
       draft.winner = null;
     });
 
