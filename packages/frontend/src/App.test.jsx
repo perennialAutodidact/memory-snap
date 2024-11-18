@@ -5,10 +5,16 @@ import { produce } from 'immer';
 import { GAME_STAGES } from 'utils/stages';
 
 describe('App', () => {
-  it('it renders the game component at /play', () => {
+  it('renders the game component at /play', () => {
     const setupTests = createSetupTestsForRoute('/play');
 
-    const { screen } = setupTests(App);
+    const playingGameState = produce(baseState.game, draft => {
+      draft.stage = GAME_STAGES.PLAYING;
+    });
+
+    const state = { ...baseState, game: playingGameState };
+
+    const { screen } = setupTests(App, { state });
 
     expect(screen.getByTestId('game-component')).toBeInTheDocument();
   });

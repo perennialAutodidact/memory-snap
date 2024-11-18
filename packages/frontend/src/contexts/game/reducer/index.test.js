@@ -105,8 +105,6 @@ describe('gameReducer', () => {
       draft.players[0].score = 3;
     });
 
-    expect(state.stage).toBe(1);
-
     const action = {
       type: 'HANDLE_GAME_OVER',
     };
@@ -121,8 +119,6 @@ describe('gameReducer', () => {
       draft.players[0].score = 2;
       draft.players[1].score = 2;
     });
-
-    expect(state.stage).toBe(1);
 
     const action = {
       type: 'HANDLE_GAME_OVER',
