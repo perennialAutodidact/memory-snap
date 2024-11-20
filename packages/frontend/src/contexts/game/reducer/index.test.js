@@ -41,6 +41,20 @@ describe('gameReducer', () => {
     });
   });
 
+  it('updates the value for player names if the action type is UPDATE_NAMES', () => {
+    const { game: state } = baseState;
+
+    const action = {
+      type: 'UPDATE_NAMES',
+      payload: { player1Name: 'Mario', player2Name: 'Luigi' },
+    };
+
+    const result = gameReducer(state, action);
+
+    expect(result.players[0].name).toBe('Mario');
+    expect(result.players[1].name).toBe('Luigi');
+  });
+
   it('creates a tiles array in game context if action type is ADD_TILES', () => {
     const { game: state } = baseState;
     const photos = mockPhotos;
