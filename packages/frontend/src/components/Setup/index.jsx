@@ -1,6 +1,7 @@
 import React from 'react';
 import SetupForm from './Form';
-// eslint-disable-next-line
+import PropTypes from 'prop-types';
+
 const Setup = ({ parent }) => {
   return (
     <section className="py-5">
@@ -11,6 +12,10 @@ const Setup = ({ parent }) => {
       </div>
     </section>
   );
+};
+
+Setup.propTypes = {
+  parent: PropTypes.object,
 };
 
 export default Setup;
