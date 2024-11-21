@@ -22,13 +22,10 @@ export const gameReducer = (state, action) => {
 
   switch (action.type) {
     case types.UPDATE_NAMES: {
-      const namesGameState = produce(baseState.game, draft => {
+      return produce(baseState.game, draft => {
         draft.players[0].name = action.payload.player1Name;
         draft.players[1].name = action.payload.player2Name;
       });
-      return {
-        ...namesGameState,
-      };
     }
     case types.UPDATE_STAGE: {
       return {
