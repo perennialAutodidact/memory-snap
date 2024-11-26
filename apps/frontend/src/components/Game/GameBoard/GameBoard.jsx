@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useGameContext } from 'hooks/useGameContext';
-import ScoreBoard from 'components/Game/ScoreBoard';
+import ScoreBoard from '@components/Game/ScoreBoard';
 import TileGrid from './TileGrid/TileGrid';
 
 const GameBoard = () => {

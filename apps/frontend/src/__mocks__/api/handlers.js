@@ -1,8 +1,5 @@
 import { mockPhotos } from '__mocks__/api/mockPhotos';
 import { http, HttpResponse } from 'msw';
-import dotenv from 'dotenv';
-
-dotenv.config({ path: '.env.local' });
 
 export const fetchPhotos_success = http.get(
   `${process.env.REACT_APP_API_URL}/photos`,

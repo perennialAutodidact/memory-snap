@@ -1,4 +1,4 @@
-import { setupTests } from 'utils/tests';
+import { setupTests } from 'utils';
 import Tile from './Tile';
 import { mockPhotos } from '__mocks__/api/mockPhotos';
 import { createTilesFromPhotos } from 'contexts/GameContext/utils';
@@ -40,9 +40,9 @@ describe('Tile component', () => {
 
     const { screen } = setupTests(Tile, { props });
 
-    const element = screen.queryByAltText(tile.photo.alt);
+    const element = screen.findByRole('image', {});
 
-    expect(element).not.toBeInTheDocument();
+    expect(element).not.toBeVisible();
   });
 
   it('calls onFlip when clicked', async () => {

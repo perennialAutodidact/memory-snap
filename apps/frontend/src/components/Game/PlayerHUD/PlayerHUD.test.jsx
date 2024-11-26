@@ -1,4 +1,4 @@
-import { setupTests, ui } from 'utils/tests';
+import { setupTests, ui } from 'utils';
 import PlayerHUD from './PlayerHUD';
 import { baseState } from 'contexts';
 import { produce } from 'immer';

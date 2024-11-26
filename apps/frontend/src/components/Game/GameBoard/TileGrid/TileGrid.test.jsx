@@ -1,4 +1,4 @@
-import { setupTests } from 'utils/tests';
+import { setupTests } from 'utils';
 import { createTilesFromPhotos } from 'contexts/GameContext/utils';
 import TileGrid from './TileGrid';
 import { mockPhotos } from '__mocks__/api/mockPhotos';

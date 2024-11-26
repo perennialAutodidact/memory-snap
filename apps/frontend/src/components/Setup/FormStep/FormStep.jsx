@@ -3,7 +3,7 @@ import Proptypes from 'Proptypes';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import Button from 'components/Button';
+import Button from '@components/Button';
 import { useFormContext } from 'hooks/useFormContext';
 import { useGameContext } from 'hooks/useGameContext';
 import { updateForm } from 'contexts/FormContext/actions';

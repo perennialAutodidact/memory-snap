@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderHook } from '@testing-library/react';
 import usePhotosContext from './usePhotosContext';
-import { FormProvider, PhotosProvider } from 'components/Providers';
+import { FormProvider, PhotosProvider } from '@components/Providers';
 import { baseState } from 'contexts';
 import { mockPhotos } from '__mocks__/api/mockPhotos';
 

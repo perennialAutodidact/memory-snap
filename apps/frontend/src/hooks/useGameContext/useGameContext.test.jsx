@@ -5,7 +5,7 @@ import {
   FormProvider,
   GameProvider,
   PhotosProvider,
-} from 'components/Providers';
+} from '@components/Providers';
 
 describe('useGameContext hook', () => {
   /* eslint-disable no-console */

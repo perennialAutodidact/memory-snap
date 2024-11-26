@@ -1,11 +1,11 @@
 import { act } from 'react';
-import { setupTests } from 'utils/tests';
+import { setupTests } from 'utils';
 import GameBoard from './GameBoard';
 import { mockPhotos } from '__mocks__/api/mockPhotos';
 import { createTilesFromPhotos } from 'contexts/GameContext/utils/createTilesFromPhotos';
 import { baseState } from 'contexts';
 import { produce } from 'immer';
-import { ui } from 'utils/ui';
+import { ui } from 'utils';
 
 const { tile, player } = ui;
 const tiles = createTilesFromPhotos(mockPhotos, { shuffle: false });

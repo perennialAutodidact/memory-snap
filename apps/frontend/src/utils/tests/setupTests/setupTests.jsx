@@ -7,10 +7,10 @@ import {
   FormProvider,
   GameProvider,
   PhotosProvider,
-} from 'components/Providers';
+} from '@components/Providers';
 import { baseState } from 'contexts';
 
-const setupTests = (
+const setupTests = async (
   Component,
   { props, state = baseState, route = '/' } = {}
 ) => {

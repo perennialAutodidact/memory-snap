@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { isMatchingPair } from 'contexts/GameContext/utils/isMatchingPair';
 import types from '../actions/types';
-import { GAME_STAGES } from 'utils/stages';
+import { GAME_STAGES } from 'utils';
 import {
   createTilesFromPhotos,
   lockTiles,

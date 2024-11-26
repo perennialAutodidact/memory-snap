@@ -1,5 +1,5 @@
 import React from 'react';
-import ProgressBar from 'components/Setup/ProgressBar';
+import ProgressBar from '@components/Setup/ProgressBar';
 import { useFormContext } from 'hooks/useFormContext';
 import Proptypes from 'Proptypes';
 

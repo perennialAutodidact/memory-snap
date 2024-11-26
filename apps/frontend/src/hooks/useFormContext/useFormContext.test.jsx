@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import useFormContext from './useFormContext';
-import { FormProvider } from 'components/Providers';
+import { FormProvider } from '@components/Providers';
 
 describe('useFormContext hook', () => {
   let consoleError;

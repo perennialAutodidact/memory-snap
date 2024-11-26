@@ -1,4 +1,4 @@
-import { setupTests } from 'utils/tests';
+import { setupTests } from 'utils';
 import Header from './FormHeader';
 import { baseState } from 'contexts';
 

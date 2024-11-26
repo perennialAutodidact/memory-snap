@@ -1,6 +1,6 @@
 import React from 'react';
 import { produce } from 'immer';
-import { setupTests, createSetupTestsForRoute, ui } from 'utils/tests';
+import { setupTests, createSetupTestsForRoute, ui } from 'utils';
 import { LOADING_STATUSES } from 'utils/loadingStatuses';
 import { useGameContext } from 'hooks/useGameContext';
 import { useFormContext } from 'hooks/useFormContext';

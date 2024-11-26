@@ -1,4 +1,4 @@
-import { createSetupTestsForRoute } from 'utils/tests';
+import { createSetupTestsForRoute } from 'utils';
 import SetupForm from './Form';
 import { routes } from 'utils';
 

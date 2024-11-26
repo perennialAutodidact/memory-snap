@@ -1,4 +1,4 @@
-import { setupTests } from 'utils/tests';
+import { setupTests } from 'utils';
 import Layout from './Layout';
 
 describe('Layout component', () => {

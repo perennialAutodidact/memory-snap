@@ -1,8 +1,7 @@
-import { createSetupTestsForRoute, ui } from 'utils/tests';
+import { createSetupTestsForRoute, GAME_STAGES, ui } from 'utils';
 import App from 'App';
 import { baseState } from 'contexts';
 import { produce } from 'immer';
-import { GAME_STAGES } from 'utils/stages';
 
 describe('App', () => {
   it('it renders the game component at /play', () => {

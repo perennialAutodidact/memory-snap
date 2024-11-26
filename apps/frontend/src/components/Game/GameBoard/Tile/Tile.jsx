@@ -22,6 +22,7 @@ const Tile = ({ tile, onFlip }) => {
       className={tileClasses}
       onClick={onClickTile}
       data-testid={`tile-${tile.id}`}
+      aria-hidden={!tile.faceUp}
     >
       <img
         className={imageClasses}

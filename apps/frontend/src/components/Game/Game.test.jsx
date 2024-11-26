@@ -1,9 +1,7 @@
-import { createSetupTestsForRoute } from 'utils/tests';
+import { createSetupTestsForRoute, GAME_STAGES, LOADING_STATUSES } from 'utils';
 import Game from './Game';
 import { produce } from 'immer';
 import { baseState } from 'contexts';
-import { GAME_STAGES } from 'utils';
-import { LOADING_STATUSES } from 'utils/loadingStatuses';
 import { mswServer } from '__mocks__/api';
 import { fetchPhotos_success } from '__mocks__/api/handlers';
 import { mockPhotos } from '__mocks__/api/mockPhotos';

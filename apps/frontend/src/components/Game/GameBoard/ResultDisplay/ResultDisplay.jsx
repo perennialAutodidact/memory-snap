@@ -2,7 +2,7 @@ import React from 'react';
 import { useGameContext } from 'hooks/useGameContext';
 import { useFormContext } from 'hooks/useFormContext';
 import { usePhotosContext } from 'hooks/usePhotosContext';
-import Button from 'components/Button';
+import Button from '@components/Button';
 import { resetGame, updateStage } from 'contexts/GameContext/actions';
 import { resetForm } from 'contexts/FormContext/actions';
 import { resetPhotos } from 'contexts/PhotosContext/actions';

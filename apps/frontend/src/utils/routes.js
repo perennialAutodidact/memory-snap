@@ -1,10 +1,10 @@
-import SetupPage from 'components/Setup/SetupPage';
-import FormStep from 'components/Setup/FormStep/FormStep';
-import Slider from 'components/Slider';
-import Input from 'components/Setup/FormStep/Input';
-import Game from 'components/Game';
-import ResultDisplay from 'components/Game/GameBoard/ResultDisplay/ResultDisplay';
-import IndexElement from 'components/Setup/FormStep/IndexElement';
+import SetupPage from '@components/Setup/SetupPage';
+import FormStep from '@components/Setup/FormStep/FormStep';
+import Slider from '@components/Slider';
+import Input from '@components/Setup/FormStep/Input';
+import Game from '@components/Game';
+import ResultDisplay from '@components/Game/GameBoard/ResultDisplay/ResultDisplay';
+import IndexElement from '@components/Setup/FormStep/IndexElement';
 import { validationSchema } from '../utils/validationSchema';
 
 export const routes = [

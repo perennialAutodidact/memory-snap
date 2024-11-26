@@ -4,7 +4,7 @@ import Spinner from './Spinner/Spinner';
 import GameBoard from './GameBoard';
 import { useGameContext } from 'hooks/useGameContext';
 import { handleGameOver } from 'contexts/GameContext/actions';
-import { GAME_STAGES } from 'utils/stages';
+import { GAME_STAGES } from 'utils';
 
 const Game = () => {
   const {

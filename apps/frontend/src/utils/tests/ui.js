@@ -1,6 +1,6 @@
 import { byAltText, byRole, byTestId, byText } from 'testing-library-selector';
 
-const ui = {
+export const ui = {
   game: {
     container: byTestId('game-container'),
     gameBoard: {
@@ -29,5 +29,3 @@ const ui = {
     component: byTestId('testComponent'),
   },
 };
-
-export { ui };

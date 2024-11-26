@@ -1,5 +1,5 @@
 import { produce } from 'immer';
-import { setupTests } from 'utils/tests';
+import { setupTests } from 'utils';
 import ScoreBoard from './ScoreBoard';
 import { baseState } from 'contexts';
 import { GAME_STAGES } from 'utils';

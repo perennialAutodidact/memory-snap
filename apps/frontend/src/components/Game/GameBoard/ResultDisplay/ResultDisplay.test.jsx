@@ -1,4 +1,4 @@
-import { setupTests } from 'utils/tests';
+import { setupTests } from 'utils';
 import ResultDisplay from './ResultDisplay';
 import { produce } from 'immer';
 import { baseState } from 'contexts';
