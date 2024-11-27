@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
@@ -36,4 +37,18 @@ const createSetupTestsForRoute = route => {
   return (component, options) => setupTests(component, { ...options, route });
 };
 
-export { setupTests, createSetupTestsForRoute };
+const Providers = ({ children }) => (
+  <BrowserRouter>
+    <FormProvider>
+      <PhotosProvider>
+        <GameProvider>{children} </GameProvider>
+      </PhotosProvider>
+    </FormProvider>
+  </BrowserRouter>
+);
+
+Providers.propTypes = {
+  children: PropTypes.object,
+};
+
+export { setupTests, createSetupTestsForRoute, Providers };

@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import useGameContext from '.';
-import { Providers } from 'setupTests';
+import { Providers } from 'helpers/tests';
 
 describe('useGameContext hook', () => {
   /* eslint-disable no-console */
