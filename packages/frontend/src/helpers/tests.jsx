@@ -10,6 +10,23 @@ import {
 } from 'components/providers';
 import { baseState } from 'contexts';
 
+const Providers = ({ children, state = baseState }) => (
+  <BrowserRouter>
+    <FormProvider providedState={{ ...state.form }}>
+      <PhotosProvider providedState={{ ...state.photos }}>
+        <GameProvider providedState={{ ...state.game }}>
+          {children}
+        </GameProvider>
+      </PhotosProvider>
+    </FormProvider>
+  </BrowserRouter>
+);
+
+Providers.propTypes = PropTypes.shape({
+  children: PropTypes.node,
+  state: PropTypes.object,
+})
+
 const setupTests = (
   Component,
   { props, state = baseState, route = '/' } = {}
@@ -19,15 +36,9 @@ const setupTests = (
 
   const user = userEvent.setup({ delay: null });
   render(
-    <BrowserRouter>
-      <FormProvider providedState={{ ...state.form }}>
-        <PhotosProvider providedState={{ ...state.photos }}>
-          <GameProvider providedState={{ ...state.game }}>
-            <Component {...props} />
-          </GameProvider>
-        </PhotosProvider>
-      </FormProvider>
-    </BrowserRouter>
+    <Providers state={state}>
+       <Component {...props}/>
+    </Providers>
   );
 
   return { screen, user };
@@ -35,20 +46,6 @@ const setupTests = (
 
 const createSetupTestsForRoute = route => {
   return (component, options) => setupTests(component, { ...options, route });
-};
-
-const Providers = ({ children }) => (
-  <BrowserRouter>
-    <FormProvider>
-      <PhotosProvider>
-        <GameProvider>{children} </GameProvider>
-      </PhotosProvider>
-    </FormProvider>
-  </BrowserRouter>
-);
-
-Providers.propTypes = {
-  children: PropTypes.object,
 };
 
 export { setupTests, createSetupTestsForRoute, Providers };
