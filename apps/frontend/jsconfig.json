@@ -1,15 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": "src"
+    "baseUrl": ".",
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "paths": {
+      "@utils/*": ["./src/utils"],
+      "@components": ["./src/components"]
+    }
   },
-  "parserOptions": {
-    "ecmaVersion": "latest"
-  },
-  "include": [
-    "src",
-    "config",
-    "babel.config.cjs",
-    "jest.config.js",
-    "setup.jest.js"
-  ]
+  "include": ["src"]
 }

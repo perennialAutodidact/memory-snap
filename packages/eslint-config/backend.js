@@ -7,7 +7,7 @@ module.exports = {
   ignorePatterns: ["node_modules/**", ".turbo/**"],
   parser: "@babel/eslint-parser",
   parserOptions: {
-    ecmaVersion: 8,
+    ecmaVersion: 9,
     sourceType: "module",
     requireConfigFile: false,
     ecmaFeatures: {

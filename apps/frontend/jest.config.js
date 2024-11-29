@@ -1,31 +1,26 @@
-import { defaults } from 'jest-config'
-import path from 'path';
-
 export default {
-  ...defaults,
-  rootDir: '.',
-  testEnvironment: 'node',
-  setupFiles: ['<rootDir>/src/setupTests.js'],
-  // setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
-  verbose: true,
-  transform: {
-    '^.+\\.js(x)?$': 'babel-jest',
-    // '^.+\\.scss$': path.resolve(path.dirname('.'), '../../node_modules/jest-scss-transform'),
-  },
+  rootDir: 'src',
+  moduleFileExtensions: ['js', 'jsx'],
   moduleDirectories: [
-    '<rootDir>/node_modules',
-    '<rootDir>/src',
-    '<rootDir>../../node_modules',
+    '<rootDir>/../../../node_modules',
+    '<rootDir>/../node_modules',
+    '<rootDir>',
   ],
+  setupFilesAfterEnv: ['<rootDir>/setupTests.js'],
+  testEnvironment: 'jsdom',
   moduleNameMapper: {
-    '^.+\\.(css|scss)$': 'identity-obj-proxy',
-    '^components/(.*)$': '<rootDir>/src/components/$1',
-    '^contexts/(.*)$': '<rootDir>/src/contexts/$1',
-    '^contexts$': '<rootDir>/src/contexts',
-    '^Proptypes$': '<rootDir>/src/Proptypes',
-    '^hooks/(.*)$': '<rootDir>/src/hooks/$1',
-    '^utils$': '<rootDir>/src/utils',
-    '^utils/(.*)$': '<rootDir>/src/utils/$1'
+    '*': '<rootDir>/*',
+    '^utils/(.*)$': '<rootDir>/utils/$1',
+    '^utils$': '<rootDir>/utils',
+    '^components/(.*)$': '<rootDir>/components/$1',
+    '^Proptypes$': '<rootDir>/Proptypes',
+    '^hooks/(.*)$': '<rootDir>/hooks/$1',
+    '^contexts/(.*)$': '<rootDir>/contexts/$1',
+    '^contexts$': '<rootDir>/contexts',
+    '/.*.scss$': 'identity-obj-proxy',
   },
-  moduleFileExtensions: ['js', 'jsx', 'scss'],
+  transform: {
+    '^.+\\.jsx?$': 'babel-jest',
+  },
+  testMatch: ['**/?(*.)+(test).[jt]s?(x)'],
 };

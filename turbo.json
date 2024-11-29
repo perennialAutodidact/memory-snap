@@ -5,13 +5,21 @@
     ".stylelintrc.json",
     ".stylelintignore"
   ],
-  "pipeline": {
+  "tasks": {
     "build": {
-      "outputs": ["build/**"]
+      "outputs": ["build/**"],
+      "dependsOn": ["^build"]
     },
     "ci": {},
     "lint": {},
     "start": {},
-    "test": {}
+    "test": {
+      "cache": true,
+      "persistent": false
+    },
+    "test:watch": {
+      "cache": true,
+      "persistent": false
+    }
   }
 }

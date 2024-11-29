@@ -1,0 +1,19 @@
+@use "../../../../styles/memory-snap-mixins" as *;
+
+.tile {
+  height: 100px;
+  width: 100px;
+
+  @include breakpoint(md) {
+    height: 200px;
+    width: 200px;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.matched {
+  display: none;
+}

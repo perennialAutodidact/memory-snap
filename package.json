@@ -1,12 +1,8 @@
 {
-  "name": "memory-snap",
+  "name": "@memory-snap/root",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "packageManager": "yarn@1.22.21",
   "type": "module",
+  "packageManager": "pnpm@9.14.2",
   "scripts": {
     "build": "npx turbo build",
     "ci": "npx turbo ci",
@@ -16,11 +12,18 @@
     "prepare": "husky install && chmod ug+x .husky/*"
   },
   "devDependencies": {
+    "eslint": "^9.15.0",
     "husky": "^8.0.0",
+    "jest": "^29.7.0",
     "lint-staged": "^15.0.2",
-    "stylelint": "^15.11.0",
-    "stylelint-config-standard-scss": "^11.0.0",
-    "turbo": "^1.11.2"
+    "turbo": "^2.0.5"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "eslint": "8"
+      }
+    }
   },
   "version": "1.0.1",
   "description": "Memory Snap monorepo",

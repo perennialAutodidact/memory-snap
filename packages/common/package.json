@@ -1,7 +1,7 @@
 {
   "name": "@memory-snap/common",
   "version": "1.0.0",
-  "description": "Shared dependencies for other workspaces",
+  "description": "Shared resources for multiple workspaces",
   "main": "index.js",
   "author": "Keegan Good",
   "license": "MIT",
