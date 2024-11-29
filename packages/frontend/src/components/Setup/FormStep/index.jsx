@@ -5,19 +5,27 @@ import { useForm } from 'react-hook-form';
 import useFormContext from 'hooks/useFormContext';
 import useGameContext from 'hooks/useGameContext';
 import { updateForm } from 'contexts/form/actions';
+import { updateNames } from 'contexts/game/actions';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { GAME_STAGES } from 'utils';
 import { updateStage } from 'contexts/game/actions';
 
-const FormStep = ({ label, btnText, FormElement, btnColor, name, schema }) => {
+const FormStep = ({
+  label,
+  btnText,
+  FormElement,
+  btnColor,
+  name,
+  schema,
+  placeholder,
+}) => {
   const {
-    dispatch,
-    state: { currentStep },
+    state: { currentStep, formValues },
+    dispatch: formDispatch,
   } = useFormContext();
 
-  const gameValues = useGameContext();
-
+  const { dispatch: gameDispatch } = useGameContext();
   const navigate = useNavigate();
 
   const {
@@ -28,20 +36,33 @@ const FormStep = ({ label, btnText, FormElement, btnColor, name, schema }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = data => {
-    dispatch(updateForm(data));
+    formDispatch(updateForm(data));
     reset();
     if (currentStep === 4) {
-      gameValues.dispatch(updateStage(GAME_STAGES.PLAYING));
+      gameDispatch(updateNames(formValues));
+      gameDispatch(updateStage(GAME_STAGES.PLAYING));
     } else {
       navigate(`/setup/step-${currentStep + 1}`);
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h3>{label}</h3>
-      <FormElement register={register} name={name} ref={null} errors={errors} />
-      <Button type="submit" text={btnText} color={btnColor} />
-    </form>
+    <div>
+      <form
+        className="container d-flex flex-column align-items-center p-3"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <h3>{label}</h3>
+        <FormElement
+          register={register}
+          name={name}
+          errors={errors}
+          placeholder={placeholder}
+        />
+        <div className="container d-flex justify-content-center justify-content-md-end p-0">
+          <Button type="submit" text={btnText} color={btnColor} />
+        </div>
+      </form>
+    </div>
   );
 };
 
@@ -52,6 +73,7 @@ FormStep.propTypes = {
   btnColor: PropTypes.string,
   schema: PropTypes.object,
   name: PropTypes.string,
+  placeholder: PropTypes.string,
 };
 
 export default FormStep;

@@ -5,9 +5,10 @@ import { routes } from 'utils';
 
 describe('SetupForm component', () => {
   it('renders form header component', () => {
+    const parent = routes[0]
     const {
       screen: { getByTestId },
-    } = setupTests(SetupForm);
+    } = setupTests(SetupForm, { props: { parent } });
     expect(getByTestId('setupFormHeader')).toBeInTheDocument();
   });
 

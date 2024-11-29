@@ -1,6 +1,6 @@
-import { render, renderHook } from '@testing-library/react';
+import { renderHook } from '@testing-library/react';
 import usePhotosContext from '.';
-import PhotosProvider from 'components/providers/photos';
+import { Providers } from 'helpers/tests';
 
 describe('usePhotosContext hook', () => {
   let errorObject;
@@ -20,7 +20,7 @@ describe('usePhotosContext hook', () => {
 
   it('renders component wrapped in PhotosProvider without error', () => {
     expect(() =>
-      renderHook(usePhotosContext, { wrapper: PhotosProvider })
+      renderHook(usePhotosContext, { wrapper: Providers })
     ).not.toThrow();
   });
 });

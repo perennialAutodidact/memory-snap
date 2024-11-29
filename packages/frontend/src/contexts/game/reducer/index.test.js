@@ -41,6 +41,20 @@ describe('gameReducer', () => {
     });
   });
 
+  it('updates the value for player names if the action type is UPDATE_NAMES', () => {
+    const { game: state } = baseState;
+
+    const action = {
+      type: 'UPDATE_NAMES',
+      payload: { player1Name: 'Mario', player2Name: 'Luigi' },
+    };
+
+    const result = gameReducer(state, action);
+
+    expect(result.players[0].name).toBe('Mario');
+    expect(result.players[1].name).toBe('Luigi');
+  });
+
   it('creates a tiles array in game context if action type is ADD_TILES', () => {
     const { game: state } = baseState;
     const photos = mockPhotos;
@@ -58,7 +72,7 @@ describe('gameReducer', () => {
   it('toggles the faceUp value of target tile if action type is FLIP_TILE', () => {
     const { game: state } = baseState;
 
-    const initialTilesState = produce(state, (draft) => {
+    const initialTilesState = produce(state, draft => {
       draft.tiles = createTilesFromPhotos(mockPhotos);
     });
 
@@ -69,7 +83,7 @@ describe('gameReducer', () => {
       payload: payload,
     };
 
-    const expected = produce(initialTilesState, (draft) => {
+    const expected = produce(initialTilesState, draft => {
       draft.tiles[4].faceUp = true;
       draft.tiles[4].isFlippable = false;
       draft.flipped = [payload.tile];
@@ -81,7 +95,7 @@ describe('gameReducer', () => {
   it('returns state unchanged if target tile is unflippable and action type is FLIP_TILE', () => {
     const { game: state } = baseState;
 
-    const initialTilesState = produce(state, (draft) => {
+    const initialTilesState = produce(state, draft => {
       draft.tiles = createTilesFromPhotos(mockPhotos);
       draft.tiles[6].isFlippable = false;
     });
@@ -101,11 +115,9 @@ describe('gameReducer', () => {
   it('returns the proper winner object if the action type is HANDLE_GAME_OVER', () => {
     const { game: state } = baseState;
 
-    const gameOverState = produce(state, (draft) => {
+    const gameOverState = produce(state, draft => {
       draft.players[0].score = 3;
     });
-
-    expect(state.stage).toBe(1);
 
     const action = {
       type: 'HANDLE_GAME_OVER',
@@ -117,12 +129,10 @@ describe('gameReducer', () => {
   it('returns null for a tie if the action type is HANDLE_GAME_OVER', () => {
     const { game: state } = baseState;
 
-    const gameOverState = produce(state, (draft) => {
+    const gameOverState = produce(state, draft => {
       draft.players[0].score = 2;
       draft.players[1].score = 2;
     });
-
-    expect(state.stage).toBe(1);
 
     const action = {
       type: 'HANDLE_GAME_OVER',
@@ -136,7 +146,7 @@ describe('gameReducer', () => {
 
     const tiles = createTilesFromPhotos(mockPhotos, false).slice(0, 2);
 
-    const gameOverState = produce(state, (draft) => {
+    const gameOverState = produce(state, draft => {
       draft.flipped = tiles;
     });
 
@@ -159,7 +169,7 @@ describe('gameReducer', () => {
 
     const tiles = createTilesFromPhotos(mockPhotos, false).slice(1, 3);
 
-    const gameOverState = produce(state, (draft) => {
+    const gameOverState = produce(state, draft => {
       draft.flipped = tiles;
     });
 

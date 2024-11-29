@@ -1,5 +1,10 @@
 import types from './types';
 
+export const updateNames = formValues => ({
+  type: types.UPDATE_NAMES,
+  payload: formValues,
+});
+
 export const updateStage = stage => ({
   type: types.UPDATE_STAGE,
   payload: stage,

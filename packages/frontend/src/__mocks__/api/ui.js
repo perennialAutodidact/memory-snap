@@ -2,12 +2,12 @@ import { byTestId, byAltText, byRole } from 'testing-library-selector';
 
 const ui = {
   tile: {
-    container: (testId) => byTestId(testId),
-    photo: (altText) => byAltText(altText),
+    container: testId => byTestId(testId),
+    photo: altText => byAltText(altText),
   },
 
   player: {
-    turnIndicator: (playerName) =>
+    turnIndicator: playerName =>
       byRole('note', { name: `turn-indicator-${playerName}` }),
   },
 };

@@ -2,12 +2,14 @@ import { setupTests } from 'helpers/tests';
 import ResultDisplay from '.';
 import { produce } from 'immer';
 import { baseState } from 'contexts';
+import { GAME_STAGES } from 'utils';
 
 describe('result display', () => {
   it('displays tie message when its a tie', () => {
-    const tieGameState = produce(baseState.game, (draft) => {
+    const tieGameState = produce(baseState.game, draft => {
       draft.players[0].score = 2;
       draft.players[1].score = 2;
+      draft.stage = GAME_STAGES.GAME_OVER;
       draft.winner = null;
     });
 
@@ -21,10 +23,16 @@ describe('result display', () => {
   });
 
   it('displays the winner when its not a tie', () => {
-    const winnerGameState = produce(baseState.game, (draft) => {
-      draft.players[0].score = 1;
-      draft.players[1].score = 3;
-      draft.winner = baseState.game.players[1];
+    const winnerGameState = produce(baseState.game, draft => {
+      draft.players[0].score = 3;
+      draft.players[1].score = 1;
+      draft.stage = GAME_STAGES.GAME_OVER;
+      draft.winner = {
+        color: { className: 'primary' },
+        name: 'Mario',
+        number: 1,
+        score: 4,
+      };
     });
 
     const state = { ...baseState, game: winnerGameState };
@@ -33,7 +41,7 @@ describe('result display', () => {
 
     const display = screen.getByTestId('result-display');
 
-    expect(screen.getByText('Player 2 wins!')).toBeInTheDocument();
+    expect(screen.getByText('Mario wins!')).toBeInTheDocument();
     expect(screen.queryByText('Its a tie!')).toBe(null);
   });
 });

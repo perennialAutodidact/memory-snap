@@ -6,16 +6,15 @@ import Button from 'components/Button';
 import { resetGame, updateStage } from '../../../../contexts/game/actions/';
 import { resetForm } from 'contexts/form/actions';
 import { resetPhotos } from 'contexts/photos/actions';
+import { GAME_STAGES } from 'utils';
 
 const ResultDisplay = () => {
   const {
     state: { winner, stage },
     dispatch: gameDispatch,
   } = useGameContext();
-
   const { dispatch: formDispatch } = useFormContext();
   const { dispatch: photoDispatch } = usePhotosContext();
-
   const handleReset = () => {
     photoDispatch(resetPhotos());
     gameDispatch(resetGame());
@@ -28,7 +27,7 @@ const ResultDisplay = () => {
   };
 
   return (
-    stage === 2 && (
+    stage === GAME_STAGES.GAME_OVER && (
       <div
         data-testid="result-display"
         className="container d-flex justify-content-center pt-5"
@@ -37,22 +36,24 @@ const ResultDisplay = () => {
           <h1 className="mb-5">GAME OVER!</h1>
 
           {winner === null ? (
-            <h2 className="lh-lg">Its a tie!</h2>
+            <h2>Its a tie!</h2>
           ) : (
             <h2 className={`text-${winner.color.className}`}>
-              {`${winner.name} wins!`}
+              {winner.name + ' '}
+              wins!
             </h2>
           )}
-          <div className="container d-flex flex-column pt-3">
+          <div className="container d-flex flex-column pt-5">
             <Button
               onClick={handlePlayAgain}
-              text={'play again'}
-              color={'primary-dark'}
-              textColor={'primary'}
+              text={'Play again'}
+              color={'primary'}
+              textColor={'primary-dark'}
             />
+            <div className="pt-3"></div>
             <Button
               onClick={handleReset}
-              text={'reset game'}
+              text={'Reset game'}
               color={'primary-dark'}
               textColor={'secondary'}
             />

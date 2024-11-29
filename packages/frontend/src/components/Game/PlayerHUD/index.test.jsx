@@ -10,7 +10,11 @@ const defaultProps = {
 
 describe('PlayerHUD component', () => {
   it('renders player name and score from props', () => {
-    const props = { ...defaultProps };
+    const props = {
+      player: baseState.game.players[0],
+      isActive: true,
+      name: 'Mario'
+    };
     const {
       screen: { getByTestId },
     } = setupTests(PlayerHUD, { props });
@@ -19,7 +23,7 @@ describe('PlayerHUD component', () => {
     const playerScore = getByTestId(`player-score-${props.player.number}`);
 
     expect(playerName).toBeInTheDocument();
-    expect(playerName).toHaveTextContent(props.player.name);
+    expect(playerName).toHaveTextContent(props.name);
 
     expect(playerScore).toBeInTheDocument();
     expect(playerScore).toHaveTextContent(props.player.score);
@@ -29,6 +33,7 @@ describe('PlayerHUD component', () => {
     const props = {
       player: baseState.game.players[0],
       isActive: true,
+      name: 'Mario'
     };
     const {
       screen: { getByRole },
@@ -36,16 +41,17 @@ describe('PlayerHUD component', () => {
 
     const playerNote = getByRole('note');
 
-    expect(playerNote).toHaveTextContent('Player 1');
+    expect(playerNote).toHaveTextContent('Mario');
   });
 
   it('renders a span with the text content Player 2 when player 2 is active', () => {
     const props = {
       player: baseState.game.players[1],
       isActive: true,
+      name: 'Luigi',
     };
 
-    const currentPlayer2State = produce(baseState.game, (draft) => {
+    const currentPlayer2State = produce(baseState.game, draft => {
       draft.currentPlayer = baseState.game.players[1];
     });
 
@@ -56,7 +62,7 @@ describe('PlayerHUD component', () => {
     } = setupTests(PlayerHUD, { props, state });
 
     const playerNote = getByRole('note');
-    expect(playerNote).toHaveTextContent('Player 2');
+    expect(playerNote).toHaveTextContent('Luigi');
   });
 
   describe('active state', () => {

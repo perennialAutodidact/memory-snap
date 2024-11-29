@@ -1,11 +1,18 @@
 import { setupTests } from 'helpers/tests';
 import ScoreBoard from '.';
 import { baseState } from 'contexts';
+import { produce } from 'immer';
 
 describe('ScoreBoard component', () => {
   it('renders a PlayerHUD component for each player', () => {
     const { currentPlayer, players } = baseState.game;
-    const props = { currentPlayer, players };
+    const names = produce(baseState.form, draft => {
+      draft.formValues = {
+        player1Name: 'Mario',
+        player2Name: 'Luigi',
+      }
+    });
+    const props = { currentPlayer, players, names };
     const {
       screen: { getAllByTestId },
     } = setupTests(ScoreBoard, { props });
@@ -15,7 +22,13 @@ describe('ScoreBoard component', () => {
 
   it('renders active player', () => {
     const { currentPlayer, players } = baseState.game;
-    const props = { currentPlayer, players };
+    const names = produce(baseState.form, draft => {
+      draft.formValues = {
+        player1Name: 'Mario',
+        player2Name: 'Luigi',
+      }
+    });
+    const props = { currentPlayer, players, names };
     const {
       screen: { getByTestId },
     } = setupTests(ScoreBoard, { props });

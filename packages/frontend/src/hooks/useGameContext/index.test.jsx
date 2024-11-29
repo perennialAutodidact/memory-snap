@@ -1,8 +1,6 @@
-import React from 'react';
 import { renderHook } from '@testing-library/react';
 import useGameContext from '.';
-import GameProvider from 'components/providers/game';
-import { PhotosProvider } from 'components/providers';
+import { Providers } from 'helpers/tests';
 
 describe('useGameContext hook', () => {
   /* eslint-disable no-console */
@@ -24,12 +22,6 @@ describe('useGameContext hook', () => {
   });
 
   it('renders component when wrapped in necessary providers', () => {
-    // eslint-disable-next-line react/prop-types
-    const Providers = ({ children }) => (
-      <PhotosProvider>
-        <GameProvider>{children}</GameProvider>
-      </PhotosProvider>
-    );
     expect(() =>
       renderHook(useGameContext, { wrapper: Providers })
     ).not.toThrow();
