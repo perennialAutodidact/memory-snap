@@ -5,7 +5,7 @@ import { baseState } from 'contexts';
 import { produce } from 'immer';
 
 describe('FormStep component', () => {
-  it('displays the correct label', () => {
+  it('renders the correct label and form element at step one', () => {
     const { label, placeholder, buttonText, buttonColorClass, FormElement } =
       routes[0].children[0].elementProps;
     const { name, schema } = routes[0].children[0];
@@ -28,8 +28,11 @@ describe('FormStep component', () => {
     expect(stepOneComponent).toBeInTheDocument();
 
     expect(screen.queryByText("Enter the second player's name")).toBeNull();
+
+    const input = document.querySelector('input[type="name"]');
+    expect(input).toBeInTheDocument();
   }),
-    it('renders the correct form element', () => {
+    it('renders the correct label and form element at step three', () => {
       const { label, placeholder, buttonText, buttonColorClass, FormElement } =
         routes[0].children[2].elementProps;
       const { name, schema } = routes[0].children[2];
@@ -51,11 +54,11 @@ describe('FormStep component', () => {
 
       const { screen } = setupTests(FormStep, { props, state });
 
-      //   const stepOneComponent = screen.getByText(
-      //     "Enter the first player's name"
-      //   );
+        const stepThreeComponent = screen.getByText(
+          "How many tiles?"
+        );
 
-      //   expect(stepOneComponent).toBeInTheDocument();
+        expect(stepThreeComponent).toBeInTheDocument();
 
       const slider = document.querySelector('input[type="range"]');
       expect(slider).toBeInTheDocument();
