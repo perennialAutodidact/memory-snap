@@ -22,10 +22,10 @@ const Providers = ({ children, state = baseState }) => (
   </BrowserRouter>
 );
 
-Providers.propTypes = PropTypes.shape({
-  children: PropTypes.node,
+Providers.propTypes = {
+  children: PropTypes.node, // this might need to change for rendering a hook?
   state: PropTypes.object,
-})
+}
 
 const setupTests = (
   Component,
