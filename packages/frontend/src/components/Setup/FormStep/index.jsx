@@ -50,6 +50,7 @@ const FormStep = ({
       <form
         className="container d-flex flex-column align-items-center p-3"
         onSubmit={handleSubmit(onSubmit)}
+        data-testid="form-step"
       >
         <h3>{label}</h3>
         <FormElement

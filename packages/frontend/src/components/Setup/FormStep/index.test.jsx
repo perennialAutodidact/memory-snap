@@ -1,54 +1,50 @@
 import { setupTests } from 'helpers/tests';
 import FormStep from '.';
 import { routes } from '../../../utils';
-import { baseState } from 'contexts';
-import { produce } from 'immer';
 import { getFormStepPropsFromRouteChild } from 'helpers/getFormStepPropsFromRouteChild';
 
 describe('FormStep component', () => {
-  it('renders the correct label and form element at step one', () => {
+  it('renders the correct label text at step one', () => {
     const setupStepChild1 = routes[0].children[0];
 
     const props = getFormStepPropsFromRouteChild(setupStepChild1);
-    console.log(props, 'propsssss');
     const { screen } = setupTests(FormStep, { props });
 
-    const stepOneComponent = screen.getByText("Enter the first player's name");
+    const form = screen.getByTestId('form-step')
 
-    // expect(stepOneComponent).toBeInTheDocument();
-
-    // expect(screen.queryByText("Enter the second player's name")).toBeNull();
-
-    // const input = document.querySelector('input[type="name"]');
-    // expect(input).toBeInTheDocument();
+    expect(form).toHaveTextContent("Enter the first player's name");
   }),
-    it('renders the correct label and form element at step three', () => {
-      const { label, placeholder, buttonText, buttonColorClass, FormElement } =
-        routes[0].children[2].elementProps;
-      const { name, schema } = routes[0].children[2];
 
-      const props = {
-        label,
-        placeholder,
-        buttonText,
-        buttonColorClass,
-        name,
-        schema,
-        FormElement,
-      };
-      const setupState = produce(baseState.form, draft => {
-        draft.currentStep = 1;
-      });
+  it('renders the correct label text at step two', () => {
+    const setupStepChild2 = routes[0].children[1];
 
-      const state = { ...baseState, form: setupState };
+    const props = getFormStepPropsFromRouteChild(setupStepChild2);
+    const { screen } = setupTests(FormStep, { props });
 
-      const { screen } = setupTests(FormStep, { props, state });
+    const form = screen.getByTestId('form-step')
 
-      const stepThreeComponent = screen.getByText('How many tiles?');
+    expect(form).toHaveTextContent("Enter the second player's name");
+  }),
 
-      expect(stepThreeComponent).toBeInTheDocument();
+  it('renders the correct label text at step three', () => {
+    const setupStepChild3 = routes[0].children[2];
 
-      const slider = document.querySelector('input[type="range"]');
-      expect(slider).toBeInTheDocument();
-    });
+    const props = getFormStepPropsFromRouteChild(setupStepChild3);
+    const { screen } = setupTests(FormStep, { props });
+
+    const form = screen.getByTestId('form-step')
+
+    expect(form).toHaveTextContent("How many tiles?");
+  }),
+
+  it('renders the correct label text at step four', () => {
+    const setupStepChild4 = routes[0].children[3];
+
+    const props = getFormStepPropsFromRouteChild(setupStepChild4);
+    const { screen } = setupTests(FormStep, { props });
+
+    const form = screen.getByTestId('form-step')
+
+    expect(form).toHaveTextContent("What kind of photos on the tiles?");
+  })
 });
