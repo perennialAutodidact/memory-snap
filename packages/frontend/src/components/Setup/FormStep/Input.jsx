@@ -8,6 +8,7 @@ const Input = ({ register, name, errors, placeholder }) => {
         type="name"
         className={`form-control ${errors[name] ? 'is-invalid' : ''}`}
         placeholder={placeholder}
+        autoFocus
         {...register(name)}
       ></input>
       <p className="align-self-start mt-3">{errors[name]?.message}</p>

@@ -21,6 +21,7 @@ const Slider = ({ id, register, name }) => {
         className="form-range mb-4"
         id={id}
         step="2"
+        autoFocus
         {...register(name)}
         onChange={handleChange}
       ></input>
