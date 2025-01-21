@@ -1,6 +1,6 @@
 import { lockTiles, unlockTiles } from './lockTiles';
 import { createTilesFromPhotos } from './createTilesFromPhotos';
-import { mockPhotos } from '__mocks__/api/mockPhotos';
+import { mockPhotos } from '@memory-snap/common/__mocks__';
 
 describe('lockTiles', () => {
   it('returns an array the length of the array it is given', () => {
@@ -15,14 +15,14 @@ describe('lockTiles', () => {
     const tiles = createTilesFromPhotos(mockPhotos);
 
     const allTilesAreFlippable = !tiles.some(
-      (tile) => tile.isFlippable === false
+      (tile) => tile.isFlippable === false,
     );
     expect(allTilesAreFlippable).toBe(true);
 
     const lockedTiles = lockTiles(tiles);
 
     const aTileIsFlippable = lockedTiles.some(
-      (tile) => tile.isFlippable === true
+      (tile) => tile.isFlippable === true,
     );
 
     expect(aTileIsFlippable).toBe(false);
@@ -44,7 +44,7 @@ describe('unlockTiles', () => {
     const lockedTiles = lockTiles(tiles);
 
     const aTileIsUnlocked = lockedTiles.some(
-      (tile) => tile.isFlippable === true
+      (tile) => tile.isFlippable === true,
     );
 
     expect(aTileIsUnlocked).toBe(false);
@@ -52,7 +52,7 @@ describe('unlockTiles', () => {
     const unlockedTiles = unlockTiles(lockedTiles);
 
     const allTilesAreFlippable = !unlockedTiles.some(
-      (tile) => tile.isFlippable === false
+      (tile) => tile.isFlippable === false,
     );
 
     expect(allTilesAreFlippable).toBe(true);

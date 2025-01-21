@@ -7,15 +7,26 @@ import _ from 'lodash';
  * @returns an array of tile objects
  */
 const createTilesFromPhotos = (photos, options = { shuffle: true }) => {
-  const tilePhotos = photos.flatMap(photo => [photo, photo]);
+  // create two of each photo
+  const tilePhotos = photos.flatMap((photo) => [photo, photo]);
 
-  const tiles = tilePhotos.map((photo, index) => ({
-    id: index,
-    isMatched: false,
-    faceUp: false,
-    isFlippable: true,
-    photo: photo,
-  }));
+  let matchId = 0;
+  const tiles = tilePhotos.map((photo, index) => {
+    if (index % 2 === 0 && index > 0) matchId++;
+
+    return {
+      index,
+      id: index,
+      matchId,
+      isMatched: false,
+      faceUp: false,
+      isFlippable: true,
+      photo: {
+        ...photo,
+        altText: `tile-${index}: ${photo.alt}`,
+      },
+    };
+  });
 
   return options.shuffle ? _.shuffle(tiles) : tiles;
 };

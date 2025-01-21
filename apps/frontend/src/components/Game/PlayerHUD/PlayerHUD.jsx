@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'Proptypes';
+import proptypes from '@/proptypes';
 import './style.scss';
 
 const PlayerHUD = ({ player, isActive }) => {
@@ -52,6 +52,6 @@ const PlayerHUD = ({ player, isActive }) => {
   );
 };
 
-PlayerHUD.propTypes = Proptypes.Game.PlayerHUD;
+PlayerHUD.propTypes = proptypes.Game.PlayerHUD;
 
 export default PlayerHUD;

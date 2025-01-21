@@ -1,16 +1,21 @@
 import _ from 'lodash';
-import { isMatchingPair } from 'contexts/GameContext/utils/isMatchingPair';
+import { produce } from 'immer';
+import { isMatchingPair } from '@/contexts/GameContext/utils/isMatchingPair';
 import types from '../actions/types';
-import { GAME_STAGES } from 'utils';
+import { GAME_STAGES } from '@/utils/stages';
 import {
   createTilesFromPhotos,
   lockTiles,
   handleMatch,
   flipTile,
   resetTiles,
-  updatePlayerScore,
 } from '../utils';
-import { initialGameState } from 'contexts/GameContext';
+import { initialGameState } from '@/contexts/GameContext';
+import { mockPhotos } from '@memory-snap/common/__mocks__';
+import { shouldUseTestData } from '@/utils/tests/shouldUseTestData/shouldUseTestData';
+
+const { GAME_OVER } = GAME_STAGES;
+const useTestData = shouldUseTestData(import.meta.env);
 
 export const gameReducer = (state, action) => {
   if (!state) {
@@ -21,90 +26,83 @@ export const gameReducer = (state, action) => {
 
   switch (action.type) {
     case types.UPDATE_STAGE: {
-      return {
-        ...state,
-        stage: action.payload,
-      };
-    }
-    case types.ADD_TILES: {
-      const tiles = createTilesFromPhotos(action.payload.photos, {
-        shuffle: true,
+      return produce(state, (updatedState) => {
+        updatedState.currentStage = action.payload;
       });
-      return {
-        ...state,
-        tiles,
-      };
+    }
+
+    case types.ADD_TILES: {
+      return produce(state, (updatedState) => {
+        updatedState.tiles.all = useTestData
+          ? createTilesFromPhotos(mockPhotos, { shuffle: false })
+          : createTilesFromPhotos(action.payload.photos);
+      });
     }
 
     case types.FLIP_TILE: {
-      if (!action.payload.tile.isFlippable) {
+      const { tile: tileToFlip } = action.payload;
+      if (!tileToFlip.isFlippable) {
         return state;
       }
 
-      let tempState = {
-        ...state,
-        tiles: flipTile(state, action),
-      };
-      tempState.flipped = tempState.tiles.filter(tile => tile.faceUp);
+      return produce(state, (updatedState) => {
+        updatedState.tiles = flipTile(state, tileToFlip);
 
-      if (tempState.flipped.length === 2) {
-        tempState = { ...tempState, tiles: lockTiles(tempState.tiles) };
-      }
+        const twoTilesAreFlipped = updatedState.tiles.flipped.length === 2;
+        if (twoTilesAreFlipped) {
+          updatedState.tiles.all = lockTiles(updatedState.tiles.all);
+        }
 
-      return tempState;
+        return updatedState;
+      });
     }
 
     case types.HANDLE_FLIPPED_PAIR: {
-      let tempState = {
-        ...state,
-        tiles: isMatchingPair(state.flipped)
-          ? handleMatch(state.tiles, action.payload.tiles)
-          : resetTiles(state.tiles),
-      };
+      return produce(state, (updatedState) => {
+        const { tiles: flippedTiles } = action.payload;
+        const { currentPlayer, players } = state;
 
-      const { tiles } = tempState;
+        if (isMatchingPair(flippedTiles)) {
+          updatedState.tiles.all = handleMatch(state.tiles.all, flippedTiles);
+          updatedState.tiles.matched = state.tiles.matched.concat(flippedTiles);
 
-      return {
-        ...state,
-        tiles: tempState.tiles,
-        flipped: [],
-        matchedTiles: tiles.filter(tile => tile.isMatched),
-        currentPlayer: isMatchingPair(state.flipped)
-          ? state.currentPlayer
-          : state.players[state.turnCount % state.players.length],
-        players: isMatchingPair(state.flipped)
-          ? updatePlayerScore(state.currentPlayer, state.players)
-          : state.players,
-        turnCount: isMatchingPair(state.flipped)
-          ? state.turnCount
-          : state.turnCount + 1,
-        stage:
-          tempState.tiles.length === 0 ? GAME_STAGES.GAME_OVER : state.stage,
-      };
+          // increment current player's score
+          updatedState.players[currentPlayer.index].score += 1;
+
+          const allTilesMatched =
+            updatedState.tiles.matched.length === updatedState.tiles.all.length;
+          if (allTilesMatched) {
+            updatedState.currentStage = GAME_OVER;
+          }
+        } else {
+          const nextPlayerIndex = updatedState.turnCount % players.length;
+          const nextPlayer = players[nextPlayerIndex];
+          updatedState.currentPlayer = nextPlayer;
+          updatedState.turnCount += 1;
+        }
+
+        updatedState.tiles.all = resetTiles(updatedState.tiles.all);
+        updatedState.tiles.flipped = [];
+      });
     }
     case types.HANDLE_GAME_OVER: {
       const playersSortedByScoreDesc = _.sortBy(
         state.players,
-        'score'
+        'score',
       ).reverse();
-      const playerScores = playersSortedByScoreDesc.map(p => p.score);
+      const playerScores = playersSortedByScoreDesc.map((p) => p.score);
       const allPlayersTied = _.uniq(playerScores).length === 1;
       const winner = allPlayersTied ? null : playersSortedByScoreDesc[0];
 
-      return {
-        ...state,
-        winner,
-      };
+      return produce(state, (updatedState) => {
+        updatedState.winner = winner;
+      });
     }
 
-    case types.RESET_GAME: {
-      return {
-        ...initialGameState,
-      };
-    }
+    case types.RESET_GAME:
+      return initialGameState;
 
-    default: {
+    default:
       return state;
-    }
   }
 };

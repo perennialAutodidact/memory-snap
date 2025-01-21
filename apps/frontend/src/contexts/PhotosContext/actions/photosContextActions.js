@@ -1,16 +1,17 @@
 import types from './types';
+import { LOADING_STATUSES } from '@/utils';
 
-export const setError = error => {
+export const setPhotosError = (error) => {
   const message = 'An error message is required.';
   if (!error) throw new Error(message);
 
   return {
-    type: types.SET_ERROR,
+    type: types.SET_FAIL,
     payload: { error },
   };
 };
 
-export const setPhotos = photos => {
+export const setPhotos = (photos) => {
   if (!Array.isArray(photos)) throw new TypeError('photos must be an array');
 
   return {
@@ -19,14 +20,8 @@ export const setPhotos = photos => {
   };
 };
 
-export const resetPhotos = () => {
-  return {
-    type: types.RESET_PHOTOS,
-  };
-};
-
-export const setStatus = status => {
-  const allowedStatuses = ['ERROR', 'IDLE', 'PENDING', 'SUCCESS'];
+export const setPhotosStatus = (status) => {
+  const allowedStatuses = Object.keys(LOADING_STATUSES);
 
   if (!allowedStatuses.includes(status)) {
     const message = [
@@ -43,3 +38,5 @@ export const setStatus = status => {
     payload: { status },
   };
 };
+
+export const photosActions = { setPhotos, setPhotosError, setPhotosStatus };

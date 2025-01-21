@@ -18,15 +18,16 @@
     "uuid": "^9.0.1"
   },
   "scripts": {
-    "ci": "cross-env ci=true yarn test",
+    "ci": "npx jest --watchAll=false",
     "lint": "npx eslint . --fix",
-    "serve": "cross-env NODE_ENV=production node app.js",
-    "start": "cross-env NODE_ENV=development nodemon app.js",
-    "test": "cross-env NODE_ENV=test yarn jest"
+    "serve": "node app.js",
+    "start": "nodemon app.js",
+    "test": "npx jest"
   },
   "devDependencies": {
     "@babel/core": "^7.22.11",
     "@babel/preset-env": "^7.22.14",
+    "@eslint/compat": "^1.2.4",
     "@eslint/js": "^9.15.0",
     "@memory-snap/eslint-config": "workspace:*",
     "babel-jest": "^29.6.4",

@@ -1,4 +1,4 @@
-@import '~styles/memory-snap-variables';
+@use "@/styles/memory-snap-variables" as *;
 
 .player-hud {
   &:nth-of-type(2) {

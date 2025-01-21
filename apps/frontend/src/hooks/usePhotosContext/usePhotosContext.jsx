@@ -1,16 +1,16 @@
-import { PhotosContext } from 'contexts/PhotosContext';
+import { PhotosContext } from '@/contexts';
 import { useContext } from 'react';
 
 const usePhotosContext = () => {
-  const context = useContext(PhotosContext);
+  const photosContext = useContext(PhotosContext);
 
-  if (context.state === undefined && context.dispatch === undefined) {
+  if (!photosContext.photosState || !photosContext.photosDispatch) {
     throw new Error(
-      'Component must be rendered as a child of the PhotosProvider component'
+      'Component must be rendered as a child of the PhotosProvider component',
     );
   }
 
-  return context;
+  return photosContext;
 };
 
 export default usePhotosContext;

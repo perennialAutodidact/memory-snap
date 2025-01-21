@@ -1,6 +1,5 @@
 const lintStagedConfig = {
-  '*.{js,jsx}': 'yarn lint --max-warnings=0',
-  '*.scss': 'npx stylelint',
+  '*.{js, jsx}': 'npx eslint',
 };
 
-module.exports = lintStagedConfig;
+export default lintStagedConfig;

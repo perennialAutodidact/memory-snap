@@ -1,14 +1,30 @@
 import { createContext } from 'react';
+import { testDataForSetupForm } from '@/__mocks__/data/setupForm';
+import { formReducer } from './reducer';
+import { formActions } from './actions';
+import { shouldUseTestData } from '@/utils/tests/shouldUseTestData';
 
-export const initialFormState = {
-  currentStep: 1,
-  totalSteps: 4,
-  formValues: {
-    player1Name: 'abc',
-    player2Name: 'abc',
-    tileNumber: 10,
-    imageSearchQuery: 'cat',
+const useTestData = shouldUseTestData(import.meta.env);
+
+const values = useTestData
+  ? testDataForSetupForm
+  : {
+      player1Name: 'abc',
+      player2Name: 'abc',
+      tileQuantity: '10',
+      imageSearchQuery: '',
+    };
+
+let initialFormState = {
+  step: {
+    current: 1,
+    total: 4,
   },
+  values,
 };
 
-export const FormContext = createContext(initialFormState);
+const FormContext = createContext(initialFormState);
+FormContext.formActions = formActions;
+FormContext.reducer = formReducer;
+
+export { initialFormState, FormContext };

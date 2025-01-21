@@ -8,8 +8,8 @@ const player2Name = yup.object().shape({
   player2Name: yup.string().required("Please enter second player's name"),
 });
 
-const tileNumber = yup.object().shape({
-  tileNumber: yup.string().required(''),
+const tileQuantity = yup.object().shape({
+  tileQuantity: yup.string().required(''),
 });
 
 const imageSearchQuery = yup.object().shape({
@@ -23,6 +23,6 @@ const imageSearchQuery = yup.object().shape({
 export const validationSchema = {
   player1Name,
   player2Name,
-  tileNumber,
+  tileQuantity,
   imageSearchQuery,
 };

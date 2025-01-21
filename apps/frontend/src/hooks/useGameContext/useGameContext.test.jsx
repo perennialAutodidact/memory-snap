@@ -5,21 +5,19 @@ import {
   FormProvider,
   GameProvider,
   PhotosProvider,
-} from '@components/Providers';
+} from '@/components/Providers';
 
 describe('useGameContext hook', () => {
-  /* eslint-disable no-console */
   let errorObject;
   beforeEach(() => {
     // prevent error from useGameContext from printing in the test console
     errorObject = console.error;
-    console.error = jest.fn();
+    console.error = vi.fn();
   });
 
   afterEach(() => {
     console.error = errorObject;
   });
-  /* eslint-enable no-console */
 
   it('throws an error if not wrapped in necessary context providers', () => {
     expect(() => renderHook(useGameContext)).toThrow();
@@ -35,7 +33,7 @@ describe('useGameContext hook', () => {
       </FormProvider>
     );
     expect(() =>
-      renderHook(useGameContext, { wrapper: Providers })
+      renderHook(useGameContext, { wrapper: Providers }),
     ).not.toThrow();
   });
 });

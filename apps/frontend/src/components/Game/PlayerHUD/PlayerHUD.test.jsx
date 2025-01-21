@@ -1,7 +1,6 @@
-import { setupTests, ui } from 'utils';
+import { setupTests, ui } from '@/utils';
 import PlayerHUD from './PlayerHUD';
-import { baseState } from 'contexts';
-import { produce } from 'immer';
+import { baseState } from '@/contexts';
 
 const defaultProps = {
   player: baseState.game.currentPlayer,
@@ -9,13 +8,15 @@ const defaultProps = {
 };
 
 const {
-  game: {
-    scoreBoard: { player },
+  pages: {
+    game: {
+      scoreBoard: { player },
+    },
   },
 } = ui;
 
 describe('PlayerHUD component', () => {
-  it('renders player name and score from props', () => {
+  it('renders player name and score from props', async () => {
     const props = { ...defaultProps };
     setupTests(PlayerHUD, { props });
 
@@ -29,7 +30,7 @@ describe('PlayerHUD component', () => {
     expect(playerScore).toHaveTextContent(props.player.score);
   });
 
-  it('indicates the active player', () => {
+  it('indicates the active player', async () => {
     const props = {
       player: baseState.game.players[0],
       isActive: true,

@@ -1,2 +1,2 @@
 import SetupForm from './Form';
-export { SetupForm };
+export default SetupForm;

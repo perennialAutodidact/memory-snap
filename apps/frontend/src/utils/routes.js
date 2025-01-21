@@ -1,11 +1,19 @@
-import SetupPage from '@components/Setup/SetupPage';
-import FormStep from '@components/Setup/FormStep/FormStep';
-import Slider from '@components/Slider';
-import Input from '@components/Setup/FormStep/Input';
-import Game from '@components/Game';
-import ResultDisplay from '@components/Game/GameBoard/ResultDisplay/ResultDisplay';
-import IndexElement from '@components/Setup/FormStep/IndexElement';
-import { validationSchema } from '../utils/validationSchema';
+import SetupPage from '@/components/Setup/SetupPage';
+import FormStep from '@/components/Setup/FormStep/FormStep';
+import Slider from '@/components/Slider';
+import Input from '@/components/Setup/FormStep/Input';
+import Game from '@/components/Game';
+import ResultDisplay from '@/components/Game/GameBoard/ResultDisplay/ResultDisplay';
+import IndexElement from '@/components/Setup/FormStep/IndexElement';
+import { validationSchema } from './validationSchema';
+
+/**
+ * @param {Route[]} routes array of route objects to be used with React Router
+ * @param {string} routeName the name of the desired route
+ * @returns {Route} the route matching the routeName
+ */
+export const getRouteByName = (routes, routeName) =>
+  routes.find((route) => route.name.toLowerCase() === routeName.toLowerCase());
 
 export const routes = [
   {
@@ -21,9 +29,9 @@ export const routes = [
         schema: validationSchema.player1Name,
         elementProps: {
           FormElement: Input,
-          id: 'player-1-name',
+          id: 'player1Name',
           label: "Enter the first player's name",
-          buttonText: 'next',
+          buttonText: 'Next',
           buttonColorClass: 'warning',
         },
       },
@@ -35,23 +43,23 @@ export const routes = [
         schema: validationSchema.player2Name,
         elementProps: {
           FormElement: Input,
-          id: 'player-2-name',
+          id: 'player2Name',
           label: "Enter the second player's name",
-          buttonText: 'next',
+          buttonText: 'Next',
           buttonColorClass: 'warning',
         },
       },
       {
-        name: 'tileNumber',
+        name: 'tileQuantity',
         path: '/step-3',
         index: false,
         Element: FormStep,
-        schema: validationSchema.tileNumber,
+        schema: validationSchema.tileQuantity,
         elementProps: {
           FormElement: Slider,
-          id: 'tiles-amount',
+          id: 'tileQuantity',
           label: 'How many tiles?',
-          buttonText: 'next',
+          buttonText: 'Next',
           buttonColorClass: 'warning',
         },
       },
@@ -63,9 +71,9 @@ export const routes = [
         schema: validationSchema.imageSearchQuery,
         elementProps: {
           FormElement: Input,
-          id: 'image-type',
-          label: 'What kind of photos on the tiles?',
-          buttonText: 'play',
+          id: 'imageSearchQuery',
+          label: 'What do you want to see on your tiles?',
+          buttonText: 'Play',
           buttonColorClass: 'success',
         },
       },

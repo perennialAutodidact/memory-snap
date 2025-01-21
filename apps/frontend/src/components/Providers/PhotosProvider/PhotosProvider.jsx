@@ -1,39 +1,49 @@
 import React, { useEffect, useReducer } from 'react';
-import { PhotosContext } from 'contexts/PhotosContext';
-import { baseState } from 'contexts';
-import { photosReducer } from 'contexts/PhotosContext/reducer';
-import useFetchedPhotos from 'hooks/useFetchedPhotos/useFetchedPhotos';
-import { useFormContext } from 'hooks/useFormContext';
-import { setError, setPhotos, setStatus } from 'contexts/PhotosContext/actions';
-import Proptypes from 'Proptypes';
+import { PhotosContext } from '@/contexts/PhotosContext';
+import { baseState } from '@/contexts';
+import useFetchedPhotos from '@/hooks/useFetchedPhotos/useFetchedPhotos';
+import { useFormContext } from '@/hooks/useFormContext';
+import proptypes from '@/proptypes';
 
 const PhotosProvider = ({ children, providedState = null } = {}) => {
   const initialState = providedState || baseState.photos;
-  const [state, dispatch] = useReducer(photosReducer, initialState);
+  const [photosState, photosDispatch] = useReducer(
+    PhotosContext.reducer,
+    initialState,
+  );
+  const { photosActions } = PhotosContext;
 
   const {
-    state: { formValues },
+    formState: {
+      values: { imageSearchQuery, tileQuantity },
+    },
   } = useFormContext();
 
-  const { error, photos, status } = useFetchedPhotos({
-    imageSearchQuery: formValues.imageSearchQuery,
-    perPage: formValues.tileNumber / 2,
-    photos: state.photos,
-  });
+  const { fetchedPhotosError, fetchedPhotos, fetchedPhotosStatus } =
+    useFetchedPhotos({
+      imageSearchQuery: imageSearchQuery,
+      perPage: tileQuantity / 2,
+    });
 
   useEffect(() => {
-    dispatch(setStatus(status));
-    if (photos) dispatch(setPhotos(photos));
-    if (error) dispatch(setError(error));
-  }, [error, photos, status]);
+    photosDispatch(photosActions.setPhotosStatus(fetchedPhotosStatus));
+    if (fetchedPhotos) {
+      photosDispatch(photosActions.setPhotos(fetchedPhotos));
+    }
+    if (fetchedPhotosError) {
+      photosDispatch(photosActions.setPhotosError(fetchedPhotosError));
+    }
+  }, [fetchedPhotosError, fetchedPhotos, fetchedPhotosStatus]);
 
   return (
-    <PhotosContext.Provider value={{ state, dispatch }}>
+    <PhotosContext.Provider
+      value={{ photosActions, photosState, photosDispatch }}
+    >
       {children}
     </PhotosContext.Provider>
   );
 };
 
-PhotosProvider.propTypes = Proptypes.App.Providers.PhotosProvider;
+PhotosProvider.propTypes = proptypes.App.Providers.PhotosProvider;
 
 export default PhotosProvider;

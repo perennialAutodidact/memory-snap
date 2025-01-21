@@ -1,16 +1,16 @@
-import { FormContext } from 'contexts/FormContext';
 import { useContext } from 'react';
+import { FormContext } from '@/contexts/FormContext';
 
 const useFormContext = () => {
-  const context = useContext(FormContext);
+  const formContext = useContext(FormContext);
 
-  if (context.state === undefined && context.dispatch === undefined) {
+  if (!formContext.formState || !formContext.formDispatch) {
     throw new Error(
-      'Component must be rendered as a child of the FormProvider component'
+      'Component must be rendered as a child of the FormProvider component',
     );
   }
 
-  return context;
+  return formContext;
 };
 
 export default useFormContext;

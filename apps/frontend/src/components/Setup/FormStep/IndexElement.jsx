@@ -1,17 +1,13 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useFormContext } from 'hooks/useFormContext';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useFormContext } from '@/hooks/useFormContext';
 
 const IndexElement = () => {
   const navigate = useNavigate();
+  const params = useParams();
 
   const {
-    state: { currentStep },
+    formState: { step },
   } = useFormContext();
-
-  useEffect(() => {
-    navigate(`/setup/step-${currentStep}`);
-  }, [currentStep, navigate]);
 };
 
 export default IndexElement;

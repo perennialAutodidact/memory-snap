@@ -1,30 +1,14 @@
-import React, { useEffect } from 'react';
-import { usePhotosContext } from 'hooks/usePhotosContext';
-import Spinner from './Spinner/Spinner';
+import { usePhotosContext } from '@/hooks/usePhotosContext';
+import { LOADING_STATUSES } from '@/utils/loadingStatuses';
+import Spinner from './Spinner';
 import GameBoard from './GameBoard';
-import { useGameContext } from 'hooks/useGameContext';
-import { handleGameOver } from 'contexts/GameContext/actions';
-import { GAME_STAGES } from 'utils';
+
+const { IDLE, PENDING } = LOADING_STATUSES;
 
 const Game = () => {
-  const {
-    state: { status },
-  } = usePhotosContext();
+  const { status } = usePhotosContext();
 
-  const {
-    state: { stage },
-    dispatch,
-  } = useGameContext();
-
-  const isLoading = ['IDLE', 'PENDING'].includes(status);
-
-  // effect to handle the all the game stages with a switch case
-  // can change this to a switch
-  useEffect(() => {
-    if (stage === GAME_STAGES.GAME_OVER) {
-      dispatch(handleGameOver());
-    }
-  }, [stage]);
+  const isLoading = [IDLE, PENDING].includes(status);
 
   return (
     <section

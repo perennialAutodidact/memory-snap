@@ -1,44 +1,82 @@
-import { createSetupTestsForRoute } from 'utils';
+import { getRouteByName, routes, ui } from '@/utils';
 import SetupForm from './Form';
-import { routes } from 'utils';
+import { setupTests } from '@/utils';
+import { produce } from 'immer';
+import { baseState } from '@/contexts';
+
+const {
+  pages: {
+    setup: { formStep },
+  },
+} = ui;
+const { children: formStepRoutes } = getRouteByName(routes, 'setup');
+
+const getFormStepByPath = (path) =>
+  formStepRoutes.find((route) => route.path === path);
 
 describe('SetupForm component', () => {
-  it('renders form header component', () => {
-    const setupTests = createSetupTestsForRoute('/setup/step-1');
-    const [parentRoute] = routes;
-    // const {
-    // screen: { getByTestId },
-    // } = setupTests(SetupForm, { props: { parent } });
-    // expect(getByTestId('setupFormHeader')).toBeInTheDocument();
+  beforeEach(() => {
+    vi.useFakeTimers();
   });
-  // it('renders the correct form component at /setup/step-1', () => {
-  //   const setupTests = createSetupTestsForRoute('/step-1');
-  //   const parent = routes[0];
-  //   const { screen } = setupTests(SetupForm, { props: { parent } });
-  //   const stepOneComponent = screen.getByText("Enter the first player's name");
-  //   expect(stepOneComponent).toBeInTheDocument();
-  // });
-  // it('it renders the correct form component at /setup/step-2', () => {
-  //   const setupTests = createSetupTestsForRoute('/step-2');
-  //   const parent = routes[0];
-  //   const { screen } = setupTests(SetupForm, { props: { parent } });
-  //   const stepTwoComponent = screen.getByText("Enter the second player's name");
-  //   expect(stepTwoComponent).toBeInTheDocument();
-  // });
-  // it('it renders the correct form component at /setup/step-3', () => {
-  //   const setupTests = createSetupTestsForRoute('/step-3');
-  //   const parent = routes[0];
-  //   const { screen } = setupTests(SetupForm, { props: { parent } });
-  //   const stepThreeComponent = screen.getByText('How many tiles?');
-  //   expect(stepThreeComponent).toBeInTheDocument();
-  // });
-  // it('it renders the correct form component at /setup/step-4', () => {
-  //   const setupTests = createSetupTestsForRoute('/step-4');
-  //   const parent = routes[0];
-  //   const { screen } = setupTests(SetupForm, { props: { parent } });
-  //   const stepFourComponent = screen.getByText(
-  //     'What kind of photos on the tiles?'
-  //   );
-  //   expect(stepFourComponent).toBeInTheDocument();
-  // });
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+  describe('renders correct component for each form step', () => {
+    const defaultState = produce(baseState, (draft) => {
+      draft.form.values = {
+        player1Name: 'player 1',
+        player2Name: 'player 2',
+        tileQuantity: 10,
+        imageSearchQuery: 'cat',
+      };
+    });
+    it('renders step 1 at /step-1', () => {
+      const state = produce(defaultState, (draft) => {
+        draft.form.step.current = 1;
+      });
+      const formStepRoute = getFormStepByPath('/step-1');
+      setupTests(SetupForm, { state, route: formStepRoute.path });
+
+      const formElementLabel = formStepRoute.elementProps.label;
+      const formElement = formStep.formElement(formElementLabel);
+
+      expect(formElement.get()).toBeInTheDocument();
+    });
+    it('renders step 2 at /step-2', () => {
+      const state = produce(defaultState, (draft) => {
+        draft.form.step.current = 2;
+      });
+      const formStepRoute = getFormStepByPath('/step-2');
+      setupTests(SetupForm, { state, route: formStepRoute.path });
+
+      const formElementLabel = formStepRoute.elementProps.label;
+      const formElement = formStep.formElement(formElementLabel);
+
+      expect(formElement.get()).toBeInTheDocument();
+    });
+    it('renders step 3 at /step-3', () => {
+      const state = produce(defaultState, (draft) => {
+        draft.form.step.current = 3;
+      });
+      const formStepRoute = getFormStepByPath('/step-3');
+      setupTests(SetupForm, { state, route: formStepRoute.path });
+
+      const formElementLabel = formStepRoute.elementProps.label;
+      const formElement = formStep.formElement(formElementLabel);
+
+      expect(formElement.get()).toBeInTheDocument();
+    });
+    it('renders step 4 at /step-4', () => {
+      const state = produce(defaultState, (draft) => {
+        draft.form.step.current = 4;
+      });
+      const formStepRoute = getFormStepByPath('/step-4');
+      setupTests(SetupForm, { state, route: formStepRoute.path });
+
+      const formElementLabel = formStepRoute.elementProps.label;
+      const formElement = formStep.formElement(formElementLabel);
+
+      expect(formElement.get()).toBeInTheDocument();
+    });
+  });
 });

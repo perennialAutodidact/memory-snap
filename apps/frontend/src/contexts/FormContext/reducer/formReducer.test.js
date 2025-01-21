@@ -1,5 +1,5 @@
 import { formReducer } from './formReducer';
-import { baseState } from 'contexts';
+import { baseState } from '@/contexts';
 
 describe('formReducer', () => {
   it('returns the default state if action type is unknown', () => {

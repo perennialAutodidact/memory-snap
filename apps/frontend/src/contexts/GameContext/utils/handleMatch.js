@@ -3,16 +3,16 @@
  * an array with the flipped tiles isMatched value set to true and
  * the remaining tiles isFlippable value set to true
  * @param {Array} tiles an array of tile objects
- * @param {Array} flipped an array of two tile objects
+ * @param {Array} flipped an array of tile objects with the flipped tiles marked as either matched or flippable
+ * @returns array of tiles with the two flipped tiles indicating that they are matched
  */
 const handleMatch = (tiles, flipped) => {
-  return tiles
-    .map(tile =>
-      flipped[0].id === tile.id || flipped[1].id === tile.id
-        ? { ...tile, isMatched: true }
-        : { ...tile, isFlippable: true }
-    )
-    .filter(tile => flipped.includes(tile));
+  const flippedTileIndices = flipped.map(({ index }) => index);
+  return tiles.map((tile) =>
+    flippedTileIndices.includes(tile.index)
+      ? { ...tile, isMatched: true }
+      : tile,
+  );
 };
 
 export { handleMatch };

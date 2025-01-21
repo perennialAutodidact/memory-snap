@@ -1,11 +1,11 @@
 import { produce } from 'immer';
-import { setupTests } from 'utils';
+import { setupTests } from '@/utils';
 import ScoreBoard from './ScoreBoard';
-import { baseState } from 'contexts';
-import { GAME_STAGES } from 'utils';
+import { baseState } from '@/contexts';
+import { GAME_STAGES } from '@/utils';
 
 describe('ScoreBoard component', () => {
-  it('renders a PlayerHUD component for each player', () => {
+  it('renders a PlayerHUD component for each player', async () => {
     const { currentPlayer, players } = baseState.game;
     const props = { currentPlayer, players };
     const {
@@ -15,11 +15,11 @@ describe('ScoreBoard component', () => {
     expect(getAllByTestId(/PlayerHUD/)).toHaveLength(players.length);
   });
 
-  it('renders active player', () => {
+  it('renders active player', async () => {
     const { currentPlayer, players } = baseState.game;
     const props = { currentPlayer, players };
-    const state = produce(baseState, draft => {
-      draft.game.stage = GAME_STAGES.PLAYING;
+    const state = produce(baseState, (draft) => {
+      draft.currentStage = GAME_STAGES.PLAYING;
     });
     const {
       screen: { getByTestId },

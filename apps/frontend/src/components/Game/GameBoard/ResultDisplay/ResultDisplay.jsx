@@ -1,41 +1,39 @@
-import React from 'react';
-import { useGameContext } from 'hooks/useGameContext';
-import { useFormContext } from 'hooks/useFormContext';
-import { usePhotosContext } from 'hooks/usePhotosContext';
-import Button from '@components/Button';
-import { resetGame, updateStage } from 'contexts/GameContext/actions';
-import { resetForm } from 'contexts/FormContext/actions';
-import { resetPhotos } from 'contexts/PhotosContext/actions';
+import { useGameContext } from '@/hooks/useGameContext';
+import { useFormContext } from '@/hooks/useFormContext';
+import { usePhotosContext } from '@/hooks/usePhotosContext';
+import Button from '@/components/Button';
+import { GAME_STAGES } from '@/utils/stages';
+
+const { GAME_OVER } = GAME_STAGES;
 
 const ResultDisplay = () => {
   const {
-    state: { winner, stage },
-    dispatch: gameDispatch,
+    gameActions,
+    gameState: { winner, currentStage },
+    gameDispatch,
   } = useGameContext();
 
-  const { dispatch: formDispatch } = useFormContext();
-  const { dispatch: photoDispatch } = usePhotosContext();
+  const { formActions, formDispatch } = useFormContext();
+  const { photosActions, photosDispatch } = usePhotosContext();
 
   const handleReset = () => {
-    photoDispatch(resetPhotos());
-    gameDispatch(resetGame());
-    formDispatch(resetForm());
+    photosDispatch(photosActions.setPhotos([]));
+    gameDispatch(gameActions.resetGame());
+    formDispatch(formActions.resetForm());
   };
 
   const handlePlayAgain = () => {
-    gameDispatch(resetGame());
-    gameDispatch(updateStage(1));
+    gameDispatch(gameActions.resetGame());
   };
 
   return (
-    stage === 2 && (
+    currentStage === GAME_OVER && (
       <div
         data-testid="result-display"
         className="container d-flex justify-content-center pt-5"
       >
         <div className="d-flex-column text-center">
           <h1 className="mb-5">GAME OVER!</h1>
-
           {winner === null ? (
             <h2 className="lh-lg">Its a tie!</h2>
           ) : (
@@ -45,15 +43,15 @@ const ResultDisplay = () => {
           )}
           <div className="container d-flex flex-column pt-3">
             <Button
-              onClick={handlePlayAgain}
-              text={'play again'}
-              color={'primary-dark'}
+              handleClick={handlePlayAgain}
+              buttonText={'play again'}
+              bgColor={'primary-dark'}
               textColor={'primary'}
             />
             <Button
-              onClick={handleReset}
-              text={'reset game'}
-              color={'primary-dark'}
+              handleClick={handleReset}
+              buttonText={'reset game'}
+              bgColor={'primary-dark'}
               textColor={'secondary'}
             />
           </div>

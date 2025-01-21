@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import { createTilesFromPhotos } from 'contexts/GameContext/utils';
-import { mockPhotos } from '__mocks__/api/mockPhotos';
+import { createTilesFromPhotos } from '@/contexts/GameContext/utils';
+import { mockPhotos } from '@memory-snap/common/__mocks__';
 
 describe('createTilesFromPhotos', () => {
   it('returns an array double the length of the array its given', () => {
@@ -9,7 +9,7 @@ describe('createTilesFromPhotos', () => {
     const shuffledTiles = createTilesFromPhotos(photos, { shuffle: true });
     const unshuffledTiles = createTilesFromPhotos(photos, { shuffle: false });
 
-    const tilePhotos = shuffledTiles.map(tile => {
+    const tilePhotos = shuffledTiles.map((tile) => {
       return tile.photo;
     });
 
@@ -21,7 +21,7 @@ describe('createTilesFromPhotos', () => {
   });
 
   it('returns an array of unshuffled tiles if shuffle is false', () => {
-    const photos = mockPhotos.flatMap(photo => [photo, photo]);
+    const photos = mockPhotos.flatMap((photo) => [photo, photo]);
 
     const unshuffledTiles = createTilesFromPhotos(mockPhotos, {
       shuffle: false,
@@ -31,7 +31,7 @@ describe('createTilesFromPhotos', () => {
       tile.photo.id === photos[index].id;
 
     expect(unshuffledTiles.every(tilePhotoHasSamePositionAsOriginalPhoto)).toBe(
-      true
+      true,
     );
   });
 
@@ -41,7 +41,7 @@ describe('createTilesFromPhotos', () => {
     const shuffledTiles = createTilesFromPhotos(photos);
     const unshuffledTiles = createTilesFromPhotos(photos, { shuffle: false });
 
-    const tilePositionMatchesUnshuffled = tile =>
+    const tilePositionMatchesUnshuffled = (tile) =>
       tile === unshuffledTiles[tile.index];
 
     expect(shuffledTiles.every(tilePositionMatchesUnshuffled)).toBe(false);

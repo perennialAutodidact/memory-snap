@@ -1,19 +1,21 @@
-import React from 'react';
-import { useGameContext } from 'hooks/useGameContext';
+import { useGameContext } from '@/hooks/useGameContext';
 import './style.scss';
-import Proptypes from 'Proptypes';
+import proptypes from '@/proptypes';
 
 const Tile = ({ tile, onFlip }) => {
-  const { state } = useGameContext();
+  const {
+    gameState: { currentPlayer },
+  } = useGameContext();
 
   const onClickTile = () => {
     onFlip(tile);
   };
 
   const tileClasses = [
-    tile.faceUp ? 'faceUp' : 'faceDown tile border',
-    `border-${state.currentPlayer.color.className}`,
-    tile.isMatched ? 'matched' : null,
+    'tile',
+    tile.faceUp ? 'faceUp' : 'faceDown',
+    tile.isMatched ? 'matched' : 'border',
+    `border-${!tile.isMatched ? currentPlayer.color.className : '0'}`,
   ].join(' ');
 
   const imageClasses = `${tile.faceUp ? '' : 'visually-hidden'}`;
@@ -22,17 +24,18 @@ const Tile = ({ tile, onFlip }) => {
       className={tileClasses}
       onClick={onClickTile}
       data-testid={`tile-${tile.id}`}
-      aria-hidden={!tile.faceUp}
     >
       <img
         className={imageClasses}
         src={tile.photo.src.small}
-        alt={tile.photo.alt}
+        alt={tile.photo.altText}
+        aria-hidden={!tile.faceUp}
+        hidden={!tile.faceUp}
       />
     </div>
   );
 };
 
-Tile.propTypes = Proptypes.Game.Tile;
+Tile.propTypes = proptypes.Game.Tile;
 
 export default Tile;

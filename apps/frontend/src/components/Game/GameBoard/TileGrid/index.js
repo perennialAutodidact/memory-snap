@@ -1,2 +1,2 @@
 import TileGrid from './TileGrid';
-export { TileGrid };
+export default TileGrid;

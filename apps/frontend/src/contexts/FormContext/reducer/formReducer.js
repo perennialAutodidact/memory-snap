@@ -1,5 +1,6 @@
-import types from 'contexts/FormContext/actions/types';
+import types from '@/contexts/FormContext/actions/types';
 import { initialFormState } from '../FormContext';
+import { produce } from 'immer';
 
 export const formReducer = (state, action) => {
   if (!state) {
@@ -10,22 +11,17 @@ export const formReducer = (state, action) => {
 
   switch (action.type) {
     case types.UPDATE_FORM: {
-      return {
-        ...state,
-        currentStep: state.currentStep++,
-        formValues: {
-          ...state.formValues,
-          ...action.payload,
-        },
-      };
+      return produce(state, (draft) => {
+        draft.step.current += 1;
+        draft.values = { ...state.values, ...action.payload };
+      });
     }
 
     case types.RESET_FORM: {
-      return {
-        ...initialFormState,
-        currentStep: 1,
-        formValues: { imageSearchQuery: null },
-      };
+      return produce(state, (draft) => {
+        draft.step.current = 1;
+        draft.values = initialFormState.values;
+      });
     }
 
     default: {

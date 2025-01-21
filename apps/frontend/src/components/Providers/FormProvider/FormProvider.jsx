@@ -1,20 +1,24 @@
 import React, { useReducer } from 'react';
-import { FormContext } from 'contexts/FormContext';
-import { baseState } from 'contexts';
-import { formReducer } from 'contexts/FormContext/reducer';
-import Proptypes from 'Proptypes';
+import { FormContext } from '@/contexts/FormContext/FormContext';
+import { baseState } from '@/contexts';
+import proptypes from '@/proptypes';
 
 const FormProvider = ({ children, providedState = null } = {}) => {
   const initialState = providedState || baseState.form;
-  const [state, dispatch] = useReducer(formReducer, initialState);
+  const [formState, formDispatch] = useReducer(
+    FormContext.reducer,
+    initialState,
+  );
 
   return (
-    <FormContext.Provider value={{ state, dispatch }}>
+    <FormContext.Provider
+      value={{ formState, formDispatch, formActions: FormContext.formActions }}
+    >
       {children}
     </FormContext.Provider>
   );
 };
 
-FormProvider.propTypes = Proptypes.App.Providers.FormProvider;
+FormProvider.propTypes = proptypes.App.Providers.FormProvider;
 
 export default FormProvider;

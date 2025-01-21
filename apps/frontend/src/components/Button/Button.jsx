@@ -1,19 +1,24 @@
 import React from 'react';
-import Proptypes from 'Proptypes';
+import proptypes from '@/proptypes';
 
 const Button = ({
-  bgColorClass,
-  text,
+  bgColor,
+  buttonText,
   textColor = 'dark',
+  handleClick,
   type = 'submit',
 }) => {
   return (
-    <button type={type} className={`btn text-${textColor} btn-${bgColorClass}`}>
-      {text}
+    <button
+      type={type}
+      className={`btn text-${textColor} btn-${bgColor}`}
+      onClick={handleClick}
+    >
+      {buttonText}
     </button>
   );
 };
 
-Button.propTypes = Proptypes.App.Button;
+Button.propTypes = proptypes.App.Button;
 
 export default Button;

@@ -6,9 +6,11 @@
   "scripts": {
     "build": "npx turbo build",
     "ci": "npx turbo ci",
+    "ci:frontend": "npx turbo ci --filter=@memory-snap/frontend --log-prefix=none",
     "lint": "npx turbo lint",
     "start": "npx turbo run start",
     "test": "npx turbo test",
+    "test:frontend": "npx turbo test --filter=@memory-snap/frontend --log-prefix=none",
     "prepare": "husky install && chmod ug+x .husky/*"
   },
   "devDependencies": {

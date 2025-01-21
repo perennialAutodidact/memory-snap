@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'Proptypes';
+import proptypes from '@/proptypes';
 
 const ProgressBar = ({ currentStep, totalSteps }) => {
   const valueNow = Math.floor((currentStep / totalSteps) * 100);
@@ -17,6 +17,6 @@ const ProgressBar = ({ currentStep, totalSteps }) => {
   );
 };
 
-ProgressBar.propTypes = Proptypes.Form.ProgressBar;
+ProgressBar.propTypes = proptypes.Form.ProgressBar;
 
 export default ProgressBar;

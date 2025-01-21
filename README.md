@@ -2,31 +2,34 @@
 Flip tiles to find matching images. The player who finds the most pairs wins!
 
 ## Project Setup
-This project uses Turborepo to manage a monorepo containing a backend server created with Express and a frontend application created with `create-react-app` (CRA).
+This project uses Turborepo to manage a monorepo containing a backend server created with Express and a frontend application created with `vite`.
 
 - Install and/or switch to Node 18.17.1. 
 - Run `git clone https://github.com/perennialAutodidact/memory-snap.git`
 - Run `cd memory-snap`
-- Run `yarn install` in the root directory, TurboRepo will take care of installing dependencies for each package in the `apps` directory. If Yarn is not installed globally for Node 18.17.1, then install it using `npm install -g yarn`.
+- Run `pnpm install` in the root directory, TurboRepo will take care of installing dependencies for each package in the `apps` and `packages` directories. If `pnpm` is not installed globally for Node 18.17.1, [https://pnpm.io/installation](install it).
 - Create a [Pexels](https://pexels.com) account and find the API key for the account
 - Create the file `apps/backend/.env.local` and add to it:
 
   ```
-  PEXELS_API_KEY=<API_KEY> # <API_KEY>` is the Pexel's API key string
+  PEXELS_API_KEY=<API_KEY> # <API_KEY> is the Pexel's API key string
   PORT = 8080
   ```
 - Create the file `apps/frontend/.env.local` and add:
   ```
-  REACT_APP_API_URL=http://localhost:8080
+  VITE_APP_API_URL=http://localhost:8080
+  
+  # when true, the app will use unshuffled, mock photos instead of fetching them from the sever
+  VITE_USE_TEST_DATA=false 
   ```
 
-- Run `yarn start` to start the local dev server
+- Run `pnpm start` to start the local dev server
 
 ## Installing Dependencies
 According to the [Turborepo docs](https://turbo.build/repo/docs/crafting-your-repository/managing-dependencies#install-dependencies-where-theyre-used), dependencies should be installed in the workspace in which they're used and *not* in the root directory whenever possible.
 
 To install a dependency in the `apps/frontend` app use:
-> `yarn workspace frontend add my-dependency --dev`
+> `pnpm add --save-dev <PACKAGE_NAME>`
 
 ## Styling
 Styles are written in SCSS and are located in the `src/styles` directory.
@@ -37,14 +40,16 @@ be loaded **before** Bootstrap is imported into the project in
 `src/styles/index.scss`.
 
 ## Testing
-Tests are written in Jest with React Testing Library. 
+Tests are written in Vitest with React Testing Library. 
 
 ### Commands
-`yarn test` - Start the test suite in watch mode 
+`pnpm run test` - Start the test suite in watch mode 
 
-`yarn ci` - Run the test suite once. 
+`pnpm run ci` - Run the test suite once.
 
-### Testing helpers
+When running tests from the root directory, prefer the `ci` command, as `test` runs in watch mode and therefore won't work properly when running with Turbo. 
+
+### Test helpers
 There is a helper function named `setupTests` in `src/utils/tests` which will
 render components wrapped in the necessary context providers. This function
 should be used instead of React Test Library's `render` function for rendering
@@ -72,12 +77,14 @@ possible to maximize test confidence.
 
 ### Linting
 #### Command
-`yarn lint` - Run linting and style linting 
+`pnpm run lint` - Run linting and style linting 
 
 The custom dependency `apps/eslint-config` manages the ESLint configs for both
 `apps/frontend` and `apps/backend`.
 
 ## ImmerJS
+<details>
+<summary>Click to expand</summary>
 
 Since React utilizes top-down, immutable state, it's best practice to always
 return a new state object from the reducer to avoid stale state within the app
@@ -143,55 +150,7 @@ value is required from the `produce` function*.
 See the [ImmerJs Docs](https://immerjs.github.io/immer/produce/) for more
 information about the `produce` function.
 </details>
-## Recurring development errors and their solutions
-
-### Error
-`Please include a state object` while running tests on a component. 
-
-<details>
-  <summary>Example</summary>
-
-```sh
-  ● ScoreBoard component › renders active player
-
-    please include a state object
-
-      3 | export const photosReducer = (state, action) => {
-      4 |   if (!state) {
-    > 5 |     throw new Error('please include a state object');
-        |           ^
-      6 |   } else if (!action || (action && !action.type)) {
-      7 |     throw new Error('please include an action object with "type" property');
-      8 |   }
-
-      at photosReducer (src/contexts/PhotosContext/reducer/photosReducer.js:5:11)
-      at updateReducer (../../node_modules/react-dom/cjs/react-dom.development.js:15845:22)
-      at Object.useReducer (../../node_modules/react-dom/cjs/react-dom.development.js:17079:16)
-      at useReducer (../../node_modules/react/cjs/react.development.js:1626:21)
-      at useFetchedPhotos (src/hooks/useFetchedPhotos/useFetchedPhotos.jsx:8:39)
-      at PhotosProvider (src/components/Providers/PhotosProvider/PhotosProvider.jsx:18:53)
-      at renderWithHooks (../../node_modules/react-dom/cjs/react-dom.development.js:15486:18)
-      at updateFunctionComponent (../../node_modules/react-dom/cjs/react-dom.development.js:19617:20)
-      at beginWork (../../node_modules/react-dom/cjs/react-dom.development.js:21640:16)
-      at beginWork$1 (../../node_modules/react-dom/cjs/react-dom.development.js:27465:14)
-      at performUnitOfWork (../../node_modules/react-dom/cjs/react-dom.development.js:26599:12)
-      at workLoopSync (../../node_modules/react-dom/cjs/react-dom.development.js:26505:5)
-      at renderRootSync (../../node_modules/react-dom/cjs/react-dom.development.js:26473:7)
-      at recoverFromConcurrentError (../../node_modules/react-dom/cjs/react-dom.development.js:25889:20)
-      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25789:22)
-      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
-      at act (../../node_modules/react/cjs/react.development.js:2582:11)
-      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
-      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
-      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
-      at setupTests (src/utils/tests.jsx:22:9)
-      at Object.<anonymous> (src/components/Game/ScoreBoard/ScoreBoard.test.jsx:21:19)
-```
 </details>
-
-### Solution
-Include 
-
 
 ## Contributing
 All incoming feature branches will be merged into the `dev` branch to be tested

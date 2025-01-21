@@ -1,8 +1,10 @@
 import { createContext } from 'react';
-import { GAME_STAGES } from 'utils/stages';
+import { GAME_STAGES } from '@/utils/stages';
+import * as gameActions from './actions';
+import { gameReducer } from './reducer';
 
-export const initialGameState = {
-  stage: GAME_STAGES.PLAYING, // SETUP, PLAYING, GAME_OVER
+const initialGameState = {
+  currentStage: GAME_STAGES.SETUP,
   currentPlayer: {
     name: 'Player 1',
     index: 0,
@@ -29,13 +31,19 @@ export const initialGameState = {
       },
     },
   ],
-  tiles: [],
-  flipped: [],
+  tiles: {
+    all: [],
+    flipped: [],
+    matched: [],
+  },
   turnCount: 1,
   playerIndex: 0,
   highScore: 0,
   winner: {},
-  matchedTiles: [],
 };
 
-export const GameContext = createContext(initialGameState);
+const GameContext = createContext(initialGameState);
+GameContext.reducer = gameReducer;
+GameContext.gameActions = gameActions;
+
+export { initialGameState, GameContext };

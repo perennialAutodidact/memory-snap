@@ -10,16 +10,25 @@
       "outputs": ["build/**"],
       "dependsOn": ["^build"]
     },
-    "ci": {},
-    "lint": {},
-    "start": {},
+    "ci": {
+      "cache": true,
+      "persistent": false
+    },
+    "lint": {
+      "cache": true,
+      "persistent": false
+    },
+    "start": {
+      "cache": false,
+      "persistent": true
+    },
     "test": {
       "cache": true,
       "persistent": false
     },
     "test:watch": {
-      "cache": true,
-      "persistent": false
+      "cache": false,
+      "persistent": true
     }
   }
 }

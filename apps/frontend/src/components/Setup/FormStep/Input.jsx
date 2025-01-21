@@ -1,27 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import proptypes from '@/proptypes';
 
-const Input = ({ register, name, errors, value }) => {
+const Input = ({ register, name, errors, value, label, id }) => {
   return (
-    <>
+    <label htmlFor={name}>
+      <h3>{label}</h3>
       <input
         type="name"
         className="form-control"
         placeholder="enter name"
         defaultValue={value}
+        id={id}
         {...register(name)}
-      ></input>
-      <p>{errors.player1Name?.message}</p>
-      <p>{errors.player2Name?.message}</p>
-      <p>{errors.searchTerm?.message}</p>
-    </>
+      />
+      <p>{errors[name]?.message}</p>
+    </label>
   );
 };
-Input.propTypes = {
-  register: PropTypes.func,
-  name: PropTypes.string,
-  errors: PropTypes.object,
-  value: PropTypes.string,
-};
+Input.propTypes = proptypes.Form.Input;
 
 export default Input;

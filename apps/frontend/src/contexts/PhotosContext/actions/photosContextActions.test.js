@@ -1,20 +1,24 @@
-import { mockPhotos } from '__mocks__/api/mockPhotos';
-import { setError, setPhotos, setStatus } from './photosContextActions';
+import { mockPhotos } from '@memory-snap/common/__mocks__';
+import {
+  setPhotosError,
+  setPhotos,
+  setPhotosStatus,
+} from './photosContextActions';
 import types from './types';
 
 describe('PhotosContext actions', () => {
-  describe('setError', () => {
-    it(`returns an action object with type ${types.SET_ERROR} and an error message`, () => {
+  describe('setPhotosError', () => {
+    it(`returns an action object with type ${types.SET_FAIL} and an error message`, () => {
       const error = 'test error mesage';
-      expect(setError(error)).toStrictEqual({
-        type: types.SET_ERROR,
+      expect(setPhotosError(error)).toStrictEqual({
+        type: types.SET_FAIL,
         payload: { error },
       });
     });
 
     it('throws an error if no message is provided', () => {
       const error = null;
-      expect(() => setError(error)).toThrow();
+      expect(() => setPhotosError(error)).toThrow();
     });
   });
 
@@ -32,10 +36,10 @@ describe('PhotosContext actions', () => {
     });
   });
 
-  describe('setStatus', () => {
+  describe('setPhotosStatus', () => {
     it(`returns an action object with type ${types.SET_STATUS} and a payload containing a status string`, () => {
       const status = 'PENDING';
-      expect(setStatus(status)).toStrictEqual({
+      expect(setPhotosStatus(status)).toStrictEqual({
         type: types.SET_STATUS,
         payload: { status },
       });
@@ -43,7 +47,7 @@ describe('PhotosContext actions', () => {
 
     it('raises an error if the status is not one of the allowed statuses', () => {
       const status = 'INVALID';
-      expect(() => setStatus(status)).toThrow();
+      expect(() => setPhotosStatus(status)).toThrow();
     });
   });
 });

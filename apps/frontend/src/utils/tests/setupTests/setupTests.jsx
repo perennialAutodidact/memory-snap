@@ -1,39 +1,31 @@
-import React from 'react';
-import { screen } from '@testing-library/dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
-import {
-  FormProvider,
-  GameProvider,
-  PhotosProvider,
-} from '@components/Providers';
-import { baseState } from 'contexts';
+import { baseState } from '@/contexts';
+import ProvidersWrapper from '@/utils/tests/ProvidersWrapper';
 
-const setupTests = async (
+/**
+ * creates an extended version of React Testing Library's render function
+ * @param {React.ReactNode} Component the React component to be used within a test
+ * @param { props: React.ComponentProps, state: Partial<TAppState>, route:string } options options for rendering the component
+ * @returns an object containing an instance of React Testing Library's screen object
+ * and an instance of React Testing Library's userEvent
+ */
+const setupTests = (
   Component,
-  { props, state = baseState, route = '/' } = {}
+  { props, state = baseState, route = '/' } = {},
 ) => {
-  const user = userEvent.setup({ delay: null });
+  const user = userEvent.setup({
+    //
+    advanceTimers: vi.advanceTimersByTime.bind(vi),
+  });
 
   render(
-    <MemoryRouter initialEntries={[route]}>
-      <FormProvider providedState={{ ...state.form }}>
-        <PhotosProvider providedState={{ ...state.photos }}>
-          <GameProvider providedState={{ ...state.game }}>
-            <Component {...props} />
-          </GameProvider>
-        </PhotosProvider>
-      </FormProvider>
-    </MemoryRouter>
+    <ProvidersWrapper state={state} route={route}>
+      <Component {...props} />
+    </ProvidersWrapper>,
   );
 
   return { screen, user };
 };
 
-const createSetupTestsForRoute = route => {
-  return (component, options = {}) =>
-    setupTests(component, { ...options, route });
-};
-
-export { setupTests, createSetupTestsForRoute };
+export { setupTests };

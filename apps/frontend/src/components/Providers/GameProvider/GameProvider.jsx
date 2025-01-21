@@ -1,36 +1,36 @@
 import React, { useReducer, useEffect, useRef } from 'react';
-import { GameContext } from 'contexts/GameContext';
-import { baseState } from 'contexts';
-import { addTiles } from 'contexts/GameContext/actions';
-import { gameReducer } from 'contexts/GameContext/reducer';
-import { usePhotosContext } from 'hooks/usePhotosContext';
-import Proptypes from 'Proptypes';
+import { GameContext } from '@/contexts/GameContext';
+import { baseState } from '@/contexts';
+import { usePhotosContext } from '@/hooks/usePhotosContext';
+import proptypes from '@/proptypes';
 
 const GameProvider = ({ children, providedState = null } = {}) => {
   const initialState = providedState || baseState.game;
-  const [state, dispatch] = useReducer(gameReducer, initialState);
+  const [gameState, gameDispatch] = useReducer(
+    GameContext.reducer,
+    initialState,
+  );
+  const { gameActions } = GameContext;
 
   const {
-    state: { photos },
+    photosState: { currentPhotos },
   } = usePhotosContext();
-
-  const { tiles } = state;
 
   const tilesCreated = useRef(false);
   useEffect(() => {
-    if (photos && !tilesCreated.current) {
-      dispatch(addTiles(photos));
+    if (currentPhotos && !tilesCreated.current) {
+      gameDispatch(gameActions.addTiles(currentPhotos));
       tilesCreated.current = true;
     }
-  }, [photos, tiles]);
+  }, [currentPhotos]);
 
   return (
-    <GameContext.Provider value={{ state, dispatch }}>
+    <GameContext.Provider value={{ gameState, gameDispatch, gameActions }}>
       {children}
     </GameContext.Provider>
   );
 };
 
-GameProvider.propTypes = Proptypes.App.Providers.GameProvider;
+GameProvider.propTypes = proptypes.App.Providers.GameProvider;
 
 export default GameProvider;

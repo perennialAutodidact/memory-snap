@@ -1,16 +1,16 @@
-import { GameContext } from 'contexts/GameContext';
+import { GameContext } from '@/contexts/GameContext';
 import { useContext } from 'react';
 
 const useGameContext = () => {
-  const context = useContext(GameContext);
+  const gameContext = useContext(GameContext);
 
-  if (context.state === undefined && context.dispatch === undefined) {
+  if (!gameContext.gameState || !gameContext.gameDispatch) {
     throw new Error(
-      'Component must be rendered as a child of the GameProvider component'
+      'Component must be rendered as a child of the GameProvider component',
     );
   }
 
-  return context;
+  return gameContext;
 };
 
 export default useGameContext;

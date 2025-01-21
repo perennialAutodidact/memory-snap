@@ -8,7 +8,7 @@ export const photosReducer = (state, action) => {
   }
 
   switch (action.type) {
-    case types.SET_ERROR: {
+    case types.SET_FAIL: {
       return {
         ...state,
         error: action.payload.error,
@@ -18,14 +18,7 @@ export const photosReducer = (state, action) => {
     case types.SET_PHOTOS: {
       return {
         ...state,
-        photos: action.payload.photos,
-      };
-    }
-
-    case types.RESET_PHOTOS: {
-      return {
-        ...state,
-        photos: null,
+        currentPhotos: action.payload.photos,
       };
     }
 

@@ -1,21 +1,26 @@
 import React from 'react';
-import Proptypes from 'Proptypes';
+import proptypes from '@/proptypes';
 
-const Slider = ({ id, register, name, value }) => {
+const Slider = ({ register, name, value, label }) => {
   return (
-    <input
-      type="range"
-      min="0"
-      max="16"
-      className="form-range"
-      id={id}
-      step="2"
-      defaultValue={value}
-      {...register(name)}
-    ></input>
+    <>
+      <label htmlFor={name}>
+        <h3>{label}</h3>
+        <input
+          type="range"
+          min="0"
+          max="16"
+          className="form-range"
+          id={name}
+          step="2"
+          defaultValue={value}
+          {...register(name)}
+        />
+      </label>
+    </>
   );
 };
 
-Slider.propTypes = Proptypes.Form.Slider;
+Slider.propTypes = proptypes.Form.Slider;
 
 export default Slider;

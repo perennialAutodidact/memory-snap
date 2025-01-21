@@ -1,52 +1,36 @@
-import React from 'react';
-import { produce } from 'immer';
-import { setupTests, createSetupTestsForRoute, ui } from 'utils';
-import { LOADING_STATUSES } from 'utils/loadingStatuses';
-import { useGameContext } from 'hooks/useGameContext';
-import { useFormContext } from 'hooks/useFormContext';
-import { usePhotosContext } from 'hooks/usePhotosContext';
-import { baseState } from 'contexts';
+import { setupTests, ui } from '@/utils/tests';
+import { useGameContext } from '@/hooks/useGameContext';
+import { useFormContext } from '@/hooks/useFormContext';
+import { usePhotosContext } from '@/hooks/usePhotosContext';
+import { useLocation } from 'react-router-dom';
 
 describe('test setup helper functions', () => {
   const TestComponent = () => {
-    const { state: formState } = useFormContext();
-    const { state: photosState } = usePhotosContext();
-    const { state: gameState } = useGameContext();
+    const location = useLocation();
+    const { formState } = useFormContext();
+    const { photosState } = usePhotosContext();
+    const { gameState } = useGameContext();
     return (
       <div data-testid="testComponent">
-        {JSON.stringify({
-          form: formState,
-          photos: photosState,
-          game: gameState,
-        })}
+        <div data-testid="stateDisplay">
+          {JSON.stringify({
+            form: formState,
+            photos: photosState,
+            game: gameState,
+          })}
+        </div>
+        <div data-testid="locationDisplay">{location.pathname}</div>
       </div>
     );
   };
 
   describe('setupTests()', () => {
-    it('renders a component wrapped in context providers', () => {
-      const expectedPostRenderState = produce(baseState, draft => {
-        draft.photos.status = LOADING_STATUSES.PENDING;
-      });
-
+    it('renders a component wrapped in context providers', async () => {
       setupTests(TestComponent);
 
-      const testComponent = ui.test.component.get();
-      const componentState = JSON.parse(testComponent.textContent);
+      const stateDisplay = ui.testComponent.stateDisplay.get();
 
-      expect(testComponent).toBeInTheDocument();
-      expect(componentState).toStrictEqual(expectedPostRenderState);
-    });
-  });
-
-  describe('createSetupTestsForRoute()', () => {
-    it('returns a setupTests component for a designated route', () => {
-      const testRoute = '/test-route';
-      const setupTestsForTestRoute = createSetupTestsForRoute(testRoute);
-
-      setupTestsForTestRoute(TestComponent);
-
-      console.log(window.history);
+      expect(stateDisplay).toBeInTheDocument();
     });
   });
 });

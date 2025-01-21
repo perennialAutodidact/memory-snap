@@ -1,11 +1,10 @@
-import React, { useEffect, useRef } from 'react';
-import { useGameContext } from 'hooks/useGameContext';
-import ScoreBoard from '@components/Game/ScoreBoard';
-import TileGrid from './TileGrid/TileGrid';
+import { useGameContext } from '@/hooks/useGameContext';
+import ScoreBoard from '@/components/Game/ScoreBoard';
+import TileGrid from './TileGrid';
 
 const GameBoard = () => {
   const {
-    state: { players, currentPlayer, tiles },
+    gameState: { players, currentPlayer, tiles },
   } = useGameContext();
 
   return (

@@ -1,21 +1,21 @@
 import types from '../actions/types';
 import { photosReducer } from './photosReducer';
-import { baseState } from 'contexts';
-import { mockPhotos } from '__mocks__/api/mockPhotos';
+import { baseState } from '@/contexts';
+import { mockPhotos } from '@memory-snap/common/__mocks__';
 
 describe('photosReducer', () => {
-  describe(`when called with the ${types.SET_ERROR} type`, () => {
+  describe(`when called with the ${types.SET_FAIL} type`, () => {
     it('returns state object with updated error message', () => {
       const error = 'test error message';
       const payload = { error };
       const action = {
-        type: types.SET_ERROR,
+        type: types.SET_FAIL,
         payload,
       };
 
       const state = baseState.photos;
       expect(photosReducer(state, action)).toStrictEqual({
-        ...baseState.photos,
+        ...state,
         error,
       });
     });
@@ -32,8 +32,8 @@ describe('photosReducer', () => {
 
       const state = baseState.photos;
       expect(photosReducer(state, action)).toStrictEqual({
-        ...baseState.photos,
-        photos,
+        ...state,
+        currentPhotos: photos,
       });
     });
   });

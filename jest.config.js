@@ -1,8 +1,7 @@
 export default {
   projects: [
-    "<rootDir>/apps/backend",
-    "<rootDir>/apps/frontendapp",
-    "<rootDir>/packages/eslint-config",
-    "<rootDir>/packages/common"
+    '<rootDir>/apps/backend',
+    '<rootDir>/packages/eslint-config',
+    '<rootDir>/packages/common',
   ],
 };

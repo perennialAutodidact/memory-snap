@@ -1,4 +1,4 @@
-@import '@styles/memory-snap-mixins';
+@use '@/styles/memory-snap-mixins' as *;
 
 .tile {
   height: 100px;
@@ -12,8 +12,4 @@
   img {
     width: 100%;
   }
-}
-
-.matched {
-  display: none;
 }

@@ -1,12 +1,12 @@
 import React from 'react';
-import Proptypes from 'Proptypes';
+import proptypes from '@/proptypes';
 import PlayerHUD from '../PlayerHUD/PlayerHUD';
 
 const ScoreBoard = ({ players, currentPlayer }) => {
   if (!players) return null;
   return (
     <div className="d-flex">
-      {players.map(player => (
+      {players.map((player) => (
         <PlayerHUD
           key={player.index}
           player={player}
@@ -18,6 +18,6 @@ const ScoreBoard = ({ players, currentPlayer }) => {
   );
 };
 
-ScoreBoard.propTypes = Proptypes.Game.ScoreBoard;
+ScoreBoard.propTypes = proptypes.Game.ScoreBoard;
 
 export default ScoreBoard;
