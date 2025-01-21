@@ -1,6 +1,8 @@
 @use 'sass:map';
 @use './memory-snap-variables' as *;
 @import 'bootstrap/scss/functions';
+@use 'sass:color';
+@import './memory-snap-variables';
 
 // 1. Include Bootstrap functions first (so you can manipulate colors, SVGs, calc, etc)
 
@@ -14,12 +16,27 @@
 // $light: $custom-light;
 // $dark: $custom-dark;
 
+$form-range-track-bg: color.adjust($custom-dark, $lightness: 50%);
+$form-range-track-height: 1rem;
+
+$form-range-thumb-bg: color.adjust($custom-primary, $lightness: 10%);
+$form-range-thumb-active-bg: color.adjust($custom-primary, $lightness: 15%);
+$form-range-thumb-focus-box-shadow:
+  0 0 0 1px $custom-primary,
+  0 0 0.1rem 0.15rem color.adjust($custom-primary, $lightness: 15%);
+$form-range-thumb-border: 2px solid
+  color.adjust($custom-primary, $lightness: -15%);
+$form-range-thumb-width: 2rem;
+
+$focus-ring-color: color.adjust($custom-primary, $lightness: 10%);
+$focus-ring-border-color: $custom-primary;
+
 // override default fonts
 $font-family-base: $text-font;
 $headings-font-family: $headings-font;
 
-// progress bar
-$progress-border-radius: 0px;
+// remove progress bar border radius
+$progress-border-radius: 0;
 
 // loading spinner
 $spinner-width: 2rem;
@@ -34,7 +51,7 @@ $spinner-width: 2rem;
 @import 'bootstrap/scss/mixins';
 
 // add in custom colors from memory-snap-variables.scss
-$theme-colors: map-merge($theme-colors, $custom-colors);
+$theme-colors: map.merge($theme-colors, $custom-colors);
 $theme-colors-rgb: map-loop($theme-colors, to-rgb, '$value');
 
 // 4. Include any optional Bootstrap components as you like
@@ -50,7 +67,7 @@ $theme-colors-rgb: map-loop($theme-colors, to-rgb, '$value');
 
 // 5. Add additional custom code here
 
-$utilities: map-merge(
+$utilities: map.merge(
   $utilities,
   (
     'viewport-width': (

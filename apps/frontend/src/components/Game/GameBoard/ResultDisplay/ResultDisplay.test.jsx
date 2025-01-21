@@ -10,6 +10,7 @@ describe('result display', () => {
       draft.currentStage = GAME_STAGES.GAME_OVER;
       draft.players[0].score = 2;
       draft.players[1].score = 2;
+      draft.stage = GAME_STAGES.GAME_OVER;
       draft.winner = null;
     });
 
