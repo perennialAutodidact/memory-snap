@@ -1,0 +1,86 @@
+@use 'sass:map';
+@use 'sass:color';
+@import './memory-snap-variables';
+@import 'bootstrap/scss/functions';
+@import './memory-snap-variables';
+
+// 1. Include Bootstrap functions first (so you can manipulate colors, SVGs, calc, etc)
+
+// 2. Include any default variable overrides here
+// $primary: $custom-primary;
+// $secondary: $custom-secondary;
+// $info: $custom-info;
+// $warning: $custom-warning;
+// $danger: $custom-danger;
+// $success: $custom-success;
+// $light: $custom-light;
+// $dark: $custom-dark;
+
+$form-range-track-bg: color.adjust($custom-dark, $lightness: 50%);
+$form-range-track-height: 1rem;
+
+$form-range-thumb-bg: color.adjust($custom-primary, $lightness: 10%);
+$form-range-thumb-active-bg: color.adjust($custom-primary, $lightness: 15%);
+$form-range-thumb-focus-box-shadow:
+  0 0 0 1px $custom-primary,
+  0 0 0.1rem 0.15rem color.adjust($custom-primary, $lightness: 15%);
+$form-range-thumb-border: 2px solid
+  color.adjust($custom-primary, $lightness: -15%);
+$form-range-thumb-width: 2rem;
+
+$focus-ring-color: color.adjust($custom-primary, $lightness: 10%);
+$focus-ring-border-color: $custom-primary;
+
+// override default fonts
+$font-family-base: $text-font;
+$headings-font-family: $headings-font;
+
+// remove progress bar border radius
+$progress-border-radius: 0;
+
+// loading spinner
+$spinner-width: 2rem;
+
+.spinner-border {
+  animation-duration: 2s;
+}
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/variables-dark';
+@import 'bootstrap/scss/mixins';
+
+// add in custom colors from memory-snap-variables.scss
+$theme-colors: map.merge($theme-colors, $custom-colors);
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, '$value');
+
+// 4. Include any optional Bootstrap components as you like
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/grid';
+@import 'bootstrap/scss/root';
+@import 'bootstrap/scss/reboot';
+@import 'bootstrap/scss/type';
+@import 'bootstrap/scss/images';
+@import 'bootstrap/scss/containers';
+@import 'bootstrap/scss/forms';
+@import 'bootstrap/scss/utilities';
+
+// 5. Add additional custom code here
+
+$utilities: map.merge(
+  $utilities,
+  (
+    'viewport-width': (
+      property: width,
+      class: vw,
+      values: (
+        100: 100vw,
+        75: 75vw,
+        50: 50vw,
+        33: 33vw,
+        25: 25vw,
+      ),
+      responsive: true,
+    ),
+  )
+);

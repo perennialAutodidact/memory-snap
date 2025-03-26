@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "sourceMap": true
+  },
+  "references": [
+    { "@memory-snap/backend": "./apps/backend" },
+    { "@memory-snap/frontendapp": "./apps/frontendapp" },
+    { "@memory-snap/common": "./packages/common" }
+  ]
+}

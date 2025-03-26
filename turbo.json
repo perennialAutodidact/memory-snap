@@ -1,0 +1,39 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [
+    ".eslintignore",
+    ".stylelintrc.json",
+    ".stylelintignore",
+    ".prettierignore",
+    ".prettierrc.json",
+    ".stylelintignor",
+    ".stylelintrc.json"
+  ],
+  "tasks": {
+    "build": {
+      "outputs": ["build/**"],
+      "dependsOn": ["^build"]
+    },
+    "ci": {
+      "cache": true,
+      "persistent": false
+    },
+    "lint": {
+      "cache": true,
+      "persistent": false
+    },
+    "start": {
+      "cache": false,
+      "persistent": true
+    },
+    "test": {
+      "cache": true,
+      "outputs": [],
+      "persistent": false
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

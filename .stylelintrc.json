@@ -1,0 +1,19 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "customSyntax": "postcss-html",
+  "rules": {
+    "declaration-block-no-redundant-longhand-properties": true,
+    "shorthand-property-no-redundant-values": true,
+    "comment-whitespace-inside": "always",
+    "selector-attribute-quotes": "never",
+    "function-url-quotes": "never",
+    "font-family-name-quotes": "always-unless-keyword",
+    "declaration-no-important": true,
+    "length-zero-no-unit": true,
+    "color-named": "never",
+    "property-no-unknown": true,
+    "unit-no-unknown": true,
+    "block-no-empty": true,
+    "declaration-block-no-duplicate-properties": true
+  }
+}

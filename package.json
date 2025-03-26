@@ -1,24 +1,35 @@
 {
-  "name": "memory-snap-workspace",
+  "name": "@memory-snap/root",
+  "version": "1.1.0",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/**"
-    ]
-  },
+  "type": "module",
+  "packageManager": "pnpm@9.14.2",
   "scripts": {
-    "ci": "npx nx run-many --target=ci",
-    "serve": "GENERATE_SOURCEMAP=false npx nx run-many --target=serve",
-    "start": "npx nx run-many --target=start",
-    "test": "npx nx run-many --target=test"
+    "build": "npx turbo build",
+    "ci": "npx turbo ci",
+    "ci:frontend": "npx turbo ci --filter=@memory-snap/frontend --log-prefix=none",
+    "lint": "npx turbo lint",
+    "start": "npx turbo run start",
+    "test": "npx turbo test",
+    "test:frontend": "npx turbo test --filter=@memory-snap/frontend --log-prefix=none",
+    "prepare": "husky install && chmod ug+x .husky/*"
   },
-  "dependencies": {},
   "devDependencies": {
-    "nx": "15.3.0"
+    "eslint": "^9.15.0",
+    "husky": "^8.0.0",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.0.2",
+    "turbo": "^2.0.5"
   },
-  "version": "1.0.1",
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "eslint": "8"
+      }
+    }
+  },
   "description": "Memory Snap monorepo",
   "repository": "git@github.com:perennialAutodidact/memory-snap.git",
-  "author": "Keegan Good <perennialautodidact@gmail.com>",
+  "author": "Keegan Good perennialautodidact@gmail.com",
   "license": "MIT"
 }
