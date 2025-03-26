@@ -1,5 +1,6 @@
 {
   "name": "@memory-snap/root",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@9.14.2",
@@ -27,7 +28,6 @@
       }
     }
   },
-  "version": "1.0.1",
   "description": "Memory Snap monorepo",
   "repository": "git@github.com:perennialAutodidact/memory-snap.git",
   "author": "Keegan Good perennialautodidact@gmail.com",
