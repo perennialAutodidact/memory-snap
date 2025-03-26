@@ -1,4 +1,3 @@
-import React from 'react';
 import proptypes from '@/proptypes';
 
 const Button = ({
@@ -11,7 +10,7 @@ const Button = ({
   return (
     <button
       type={type}
-      className={`btn text-${textColor} btn-${bgColor}`}
+      className={`btn text-${textColor} btn-${bgColor} shadow`}
       onClick={handleClick}
     >
       {buttonText}

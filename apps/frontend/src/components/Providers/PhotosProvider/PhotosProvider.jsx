@@ -25,6 +25,8 @@ const PhotosProvider = ({ children, providedState = null } = {}) => {
       perPage: tileQuantity / 2,
     });
 
+  console.log({ fetchedPhotosStatus });
+
   useEffect(() => {
     photosDispatch(photosActions.setPhotosStatus(fetchedPhotosStatus));
     if (fetchedPhotos) {

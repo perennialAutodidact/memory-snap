@@ -3,7 +3,11 @@
   "globalDependencies": [
     ".eslintignore",
     ".stylelintrc.json",
-    ".stylelintignore"
+    ".stylelintignore",
+    ".prettierignore",
+    ".prettierrc.json",
+    ".stylelintignor",
+    ".stylelintrc.json"
   ],
   "tasks": {
     "build": {
@@ -24,6 +28,7 @@
     },
     "test": {
       "cache": true,
+      "outputs": [],
       "persistent": false
     },
     "test:watch": {

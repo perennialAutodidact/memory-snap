@@ -33,6 +33,7 @@ const Input = {
   errors: PropTypes.object,
   value: PropTypes.string,
   label: PropTypes.string,
+  placeholder: PropTypes.string,
 };
 
 const Slider = {

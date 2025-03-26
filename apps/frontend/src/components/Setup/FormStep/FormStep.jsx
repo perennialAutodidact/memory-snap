@@ -1,6 +1,6 @@
 import proptypes from '@/proptypes';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import Button from '@/components/Button';
 import { useFormContext } from '@/hooks/useFormContext';
 
@@ -12,42 +12,62 @@ const FormStep = ({
   name,
   schema,
   id,
+  placeholder,
 }) => {
-  const {
-    formState: { values },
-    formDispatch,
-    formActions,
-  } = useFormContext();
+  const { formState, formDispatch, formActions } = useFormContext();
 
   const {
     register,
     handleSubmit,
-    reset,
+    control,
+    setValue,
+    getValues,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({
+    resolver: yupResolver(schema),
+    values: formState.values,
+  });
 
   const onSubmit = (data) => {
     formDispatch(formActions.updateForm(data));
-    reset();
   };
+
+  console.log(getValues(name));
+
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)} aria-labelledby="form-header">
-        <FormElement
-          value={values[name]}
-          register={register}
-          id={id}
+    <div className="p-4">
+      <form
+        className="d-flex flex-column align-items-center"
+        onSubmit={handleSubmit(onSubmit)}
+        aria-labelledby="form-header"
+      >
+        <Controller
           name={name}
-          errors={errors}
-          label={label}
-        />
-        <Button
-          type="submit"
-          buttonText={buttonText}
-          bgColor={buttonColorClass}
+          control={control}
+          render={({ field }) => (
+            <>
+              <FormElement
+                register={register}
+                value={getValues(name)}
+                id={id}
+                name={field.name}
+                errors={errors}
+                label={label}
+                placeholder={placeholder}
+                onChange={({ value }) => setValue(name, value)}
+              />
+              <div className="mt-3 align-self-end">
+                <Button
+                  type="submit"
+                  buttonText={buttonText}
+                  bgColor={buttonColorClass}
+                />
+              </div>
+            </>
+          )}
         />
       </form>
-    </>
+    </div>
   );
 };
 

@@ -1,7 +1,7 @@
 @use 'sass:map';
-@use './memory-snap-variables' as *;
-@import 'bootstrap/scss/functions';
 @use 'sass:color';
+@import './memory-snap-variables';
+@import 'bootstrap/scss/functions';
 @import './memory-snap-variables';
 
 // 1. Include Bootstrap functions first (so you can manipulate colors, SVGs, calc, etc)

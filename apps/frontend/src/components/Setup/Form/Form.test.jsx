@@ -18,9 +18,7 @@ describe('SetupForm component', () => {
   beforeEach(() => {
     vi.useFakeTimers();
   });
-  afterEach(() => {
-    vi.useRealTimers();
-  });
+
   describe('renders correct component for each form step', () => {
     const defaultState = produce(baseState, (draft) => {
       draft.form.values = {

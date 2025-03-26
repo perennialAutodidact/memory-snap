@@ -17,6 +17,9 @@ export default defineConfig({
     },
     extensions: ['.js', '.jsx', '.scss'],
   },
+  build: {
+    sourcemap: true,
+  },
   test: {
     globals: true,
     environment: 'jsdom',
@@ -24,7 +27,7 @@ export default defineConfig({
     reporters: ['verbose'],
     coverage: {
       reporter: ['text', 'json', 'html'],
-      include: ['/src/**/*'],
+      include: ['/src/**/**/*'],
       exclude: [],
     },
   },

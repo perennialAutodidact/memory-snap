@@ -6,9 +6,10 @@ import GameBoard from './GameBoard';
 const { IDLE, PENDING } = LOADING_STATUSES;
 
 const Game = () => {
-  const { status } = usePhotosContext();
+  const { fetchedPhotosStatus: status } = usePhotosContext();
 
   const isLoading = [IDLE, PENDING].includes(status);
+  // console.log({status, isLoading})
 
   return (
     <section

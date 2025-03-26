@@ -13,6 +13,7 @@ export const formReducer = (state, action) => {
     case types.UPDATE_FORM: {
       return produce(state, (draft) => {
         draft.step.current += 1;
+        console.log({ state, payload: action.payload });
         draft.values = { ...state.values, ...action.payload };
       });
     }

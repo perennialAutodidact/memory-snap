@@ -28,6 +28,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
     "ci": "vitest run --silent"
   },
   "browserslist": {

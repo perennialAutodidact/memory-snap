@@ -58,15 +58,16 @@ describe('App', () => {
     });
 
     it('resets game and renders the setup form when the reset game button is clicked', async () => {
-      const { pages, common } = ui;
+      const { pages } = ui;
       const { gameOver } = pages;
       const { user, screen } = setupWithGameOver();
       expect(gameOver.container.get()).toBeInTheDocument();
 
-      const resetGameButton = common.button('reset game').get();
-      await act(async () => await user.click(resetGameButton));
-      screen.debug();
+      const resetGameButton = screen.getByRole('link', { name: /reset game/i });
 
+      await act(async () => {
+        await user.click(resetGameButton);
+      });
       expect(await pages.setup.form('game setup').find()).toBeInTheDocument();
     });
   });

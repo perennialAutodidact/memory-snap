@@ -9,11 +9,6 @@ import { cleanup } from '@testing-library/react';
 
 beforeAll(() => {
   mswServer.listen({ onUnhandledRequest: 'error' });
-});
-
-beforeEach(() => {
-  vi.useFakeTimers();
-
   // prevent the msw server from timing out in Vitest
   // https://github.com/testing-library/user-event/issues/1115#issuecomment-2495876991
   vi.stubGlobal('jest', {
@@ -21,7 +16,12 @@ beforeEach(() => {
   });
 });
 
+beforeEach(() => {
+  vi.useFakeTimers({});
+});
+
 afterEach(() => {
+  vi.runOnlyPendingTimers();
   vi.useRealTimers();
   mswServer.resetHandlers();
   cleanup();

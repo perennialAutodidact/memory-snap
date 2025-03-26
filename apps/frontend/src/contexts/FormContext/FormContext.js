@@ -2,16 +2,16 @@ import { createContext } from 'react';
 import { testDataForSetupForm } from '@/__mocks__/data/setupForm';
 import { formReducer } from './reducer';
 import { formActions } from './actions';
-import { shouldUseTestData } from '@/utils/tests/shouldUseTestData';
+import { isDevEnv } from '@/utils/tests/isDevEnv';
 
-const useTestData = shouldUseTestData(import.meta.env);
+const useTestData = isDevEnv(import.meta.env);
 
 const values = useTestData
   ? testDataForSetupForm
   : {
-      player1Name: 'abc',
-      player2Name: 'abc',
-      tileQuantity: '10',
+      player1Name: '',
+      player2Name: '',
+      tileQuantity: '20',
       imageSearchQuery: '',
     };
 

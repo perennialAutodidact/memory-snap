@@ -1,4 +1,5 @@
 import { act } from 'react';
+import { waitFor } from '@testing-library/react';
 import { produce } from 'immer';
 import { setupTests, ui } from '@/utils';
 import GameBoard from './GameBoard';
@@ -20,6 +21,9 @@ const state = produce(baseState, (draft) => {
 const [player1, player2] = state.game.players;
 
 describe('GameBoard component', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
   it('flips the tile thats been clicked', async () => {
     const { user } = setupTests(GameBoard, { state });
     const tile1 = gameBoard.tile.container('tile-1');
@@ -135,23 +139,21 @@ describe('GameBoard component', () => {
 
       const tile0 = gameBoard.tile.container('tile-0');
       const tile1 = gameBoard.tile.container('tile-1');
+      const tilePhoto0 = gameBoard.tile.photo('tile-0');
+      const tilePhoto1 = gameBoard.tile.photo('tile-1');
 
-      await user.click(tile0.get());
-      await user.click(tile1.get());
+      await act(async () => {
+        await user.click(tile0.get());
+        await user.click(tile1.get());
+      });
 
-      await act(() => vi.advanceTimersByTime(3000));
-      screen.debug(tile0.get());
-      screen.debug(tile1.get());
-      // await act(async () => {
-      //   await user.click(tile0.get());
-      //   await user.click(tile1.get());
-      // });
-
-      // expect(tile0.get()).toHaveClass('matched');
-      // expect(tile1.get()).toHaveClass('matched');
-
-      // const updatedPlayerOneScore = screen.getByTestId('player-score-1');
-      // expect(updatedPlayerOneScore).toHaveTextContent('1');
+      act(() => vi.advanceTimersByTime(4000));
+      await waitFor(() => {
+        expect(tilePhoto0.query()).not.toBeInTheDocument();
+        expect(tilePhoto1.query()).not.toBeInTheDocument();
+        const updatedPlayerOneScore = screen.getByTestId('player-score-0');
+        expect(updatedPlayerOneScore).toHaveTextContent('1');
+      });
     });
 
     it('will not flip a tile if two others are flipped', async () => {

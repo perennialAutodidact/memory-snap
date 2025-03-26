@@ -29,8 +29,8 @@ const Tile = ({ tile, onFlip }) => {
         className={imageClasses}
         src={tile.photo.src.small}
         alt={tile.photo.altText}
-        aria-hidden={!tile.faceUp}
-        hidden={!tile.faceUp}
+        aria-hidden={tile.isMatched || !tile.faceup}
+        hidden={tile.isMatched || !tile.faceUp}
       />
     </div>
   );

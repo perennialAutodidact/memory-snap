@@ -5,10 +5,10 @@ const ProgressBar = ({ currentStep, totalSteps }) => {
   const valueNow = Math.floor((currentStep / totalSteps) * 100);
 
   return (
-    <div className="progress bg-primary">
+    <div className="progress bg-secondary">
       <div
         role="progressbar"
-        className="progress-bar progress-bar-animated bg-secondary"
+        className="progress-bar progress-bar-animated bg-primary"
         aria-valuenow={valueNow}
         aria-valuemax={100}
         style={{ width: `${valueNow}%` }}

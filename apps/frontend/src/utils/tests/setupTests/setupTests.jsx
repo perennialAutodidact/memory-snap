@@ -15,7 +15,6 @@ const setupTests = (
   { props, state = baseState, route = '/' } = {},
 ) => {
   const user = userEvent.setup({
-    //
     advanceTimers: vi.advanceTimersByTime.bind(vi),
   });
 

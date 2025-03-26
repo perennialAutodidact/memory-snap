@@ -73,8 +73,8 @@ export const routes = [
         schema: validationSchema.imageSearchQuery,
         elementProps: {
           FormElement: Input,
-          id: 'image-type',
-          label: 'What kind of photos on the tiles?',
+          id: 'imageSearchQuery',
+          label: 'What would you to see on the tiles?',
           placeholder: 'e.g. cats',
           buttonText: 'Play',
           buttonColorClass: 'success',

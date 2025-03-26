@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { LOADING_STATUSES } from '@/utils/loadingStatuses';
+import { isDevEnv } from '@/utils/tests';
+import { mockPhotos } from '@memory-snap/common/__mocks__';
 
 const { IDLE, PENDING, SUCCESS, FAIL } = LOADING_STATUSES;
 
@@ -7,9 +9,20 @@ const useFetchedPhotos = ({ imageSearchQuery, perPage }) => {
   const [photos, setPhotos] = useState(null);
   const [photosError, setPhotosError] = useState(null);
   const [status, setPhotosStatus] = useState(IDLE);
+  const useTestData = isDevEnv(import.meta.env);
 
   useEffect(() => {
-    if (imageSearchQuery && !photos && !photosError && status === IDLE) {
+    if (!photos && useTestData) {
+      const tileQuantity = Number(import.meta.env.VITE_TILE_QUANTITY);
+      let initialPhotos = null;
+      initialPhotos = [];
+      let i = 0;
+      while (i < tileQuantity / 2) {
+        initialPhotos.push(mockPhotos[i % mockPhotos.length]);
+        i++;
+      }
+      setPhotos(initialPhotos);
+    } else if (imageSearchQuery && !photos && !photosError && status === IDLE) {
       (async () => {
         if (status === FAIL) throw new Error(photosError);
         try {

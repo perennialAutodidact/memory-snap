@@ -11,11 +11,10 @@ import {
   resetTiles,
 } from '../utils';
 import { initialGameState } from '@/contexts/GameContext';
-import { mockPhotos } from '@memory-snap/common/__mocks__';
-import { shouldUseTestData } from '@/utils/tests/shouldUseTestData/shouldUseTestData';
+import { isDevEnv } from '@/utils/tests/isDevEnv';
 
 const { GAME_OVER } = GAME_STAGES;
-const useTestData = shouldUseTestData(import.meta.env);
+const useTestData = isDevEnv(import.meta.env);
 
 export const gameReducer = (state, action) => {
   if (!state) {
@@ -33,9 +32,9 @@ export const gameReducer = (state, action) => {
 
     case types.ADD_TILES: {
       return produce(state, (updatedState) => {
-        updatedState.tiles.all = useTestData
-          ? createTilesFromPhotos(mockPhotos, { shuffle: false })
-          : createTilesFromPhotos(action.payload.photos);
+        updatedState.tiles.all = createTilesFromPhotos(action.payload.photos, {
+          shuffle: !useTestData,
+        });
       });
     }
 

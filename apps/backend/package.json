@@ -19,7 +19,8 @@
   },
   "scripts": {
     "ci": "npx jest --watchAll=false",
-    "lint": "npx eslint . --fix",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
     "serve": "node app.js",
     "start": "nodemon app.js",
     "test": "npx jest"

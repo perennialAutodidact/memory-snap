@@ -21,6 +21,7 @@ This project uses Turborepo to manage a monorepo containing a backend server cre
   
   # when true, the app will use unshuffled, mock photos instead of fetching them from the sever
   VITE_USE_TEST_DATA=false 
+  VITE_TILE_QUANTITY=20
   ```
 
 - Run `pnpm start` to start the local dev server

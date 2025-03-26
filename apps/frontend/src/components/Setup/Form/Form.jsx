@@ -10,6 +10,7 @@ import {
 import proptypes from '@/proptypes';
 import { GAME_STAGES } from '@/utils/stages';
 import { getRouteByName, routes } from '@/utils';
+import { FormHeader } from '../Header';
 
 const { PLAYING } = GAME_STAGES;
 
@@ -35,7 +36,8 @@ const SetupForm = () => {
   }, [formState.step]);
 
   return (
-    <div className="container p-0 bg-light rounded text-dark">
+    <div className="container-fluid p-0 mx-2 bg-light rounded text-dark">
+      <FormHeader text={'Game setup'} id={'form-header'} />
       <Routes>
         {setupFormRoute.children.map((child, index) => (
           <Route
@@ -51,6 +53,7 @@ const SetupForm = () => {
                 id={child.elementProps.id}
                 name={child.name}
                 schema={child.schema}
+                placeholder={child.elementProps.placeholder}
                 {...child}
               />
             }

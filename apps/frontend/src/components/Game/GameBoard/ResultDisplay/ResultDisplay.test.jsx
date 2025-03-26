@@ -18,9 +18,7 @@ describe('result display', () => {
 
     const { screen } = setupTests(ResultDisplay, { state });
 
-    const display = screen.getByTestId('result-display');
-
-    expect(display).toHaveTextContent('Its a tie!');
+    expect(screen.getByText("It's a tie!")).toBeInTheDocument();
   });
 
   it('displays the winner when its not a tie', async () => {
