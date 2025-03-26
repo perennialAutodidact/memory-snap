@@ -1,0 +1,39 @@
+name: 'Deploy to Oracle'
+on:
+  push:
+    branches:
+      - 'replace-nx-with-turborepo'
+
+jobs:
+
+  build_and_deploy:
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: 'Use Node.js ${{matrix.node-version}}'
+        uses: actions/setup-node@v2
+
+      - name: 'Install Oracle CLI'
+        run: |
+          curl -L -O https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh
+          chmod +x install.sh
+          ./install.sh --accept-all-defaults
+          exec -l $SHELL
+
+      - name: 'Build'
+        run: |
+          npm i -g yarn \
+          && yarn install \
+          && yarn build \
+
+      - name: 'Upload files'
+        uses: appleboy/scp-action@master
+          with:
+            host: ${{secrets.OCI_INSTANCE_PUBLIC_IP}}
+            

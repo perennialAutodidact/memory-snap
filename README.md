@@ -2,17 +2,35 @@
 Flip tiles to find matching images. The player who finds the most pairs wins!
 
 ## Project Setup
-This project uses Nx to manage a monorepo containing a backend server created with Express and a frontend application created with `create-react-app` (CRA).
+This project uses Turborepo to manage a monorepo containing a backend server created with Express and a frontend application created with `vite`.
 
 - Install and/or switch to Node 18.17.1. 
 - Run `git clone https://github.com/perennialAutodidact/memory-snap.git`
 - Run `cd memory-snap`
-- Run `yarn install` in the root directory, Nx will take care of installing dependencies for each package in the `packages` directory. If Yarn is not installed globally for Node 18.17.1, then install it using `npm install -g yarn`.
+- Run `pnpm install` in the root directory, TurboRepo will take care of installing dependencies for each package in the `apps` and `packages` directories. If `pnpm` is not installed globally for Node 18.17.1, [https://pnpm.io/installation](install it).
 - Create a [Pexels](https://pexels.com) account and find the API key for the account
-- Create the file `packages/backend/.env.local` and add the Pexel's API key to it: `PEXELS_API_KEY=<API_KEY>` where `<API_KEY>` is the API key string
-- Create the file `packages/frontend/.env.local` and add: `REACT_APP_API_URL=http://localhost:8080`
-- Create the file `.env.local` in the root directory and add: `API_PORT=http://localhost:8080` and `CLIENT_PORT=http://localhost:3000`
-- Run `yarn start` to start the local dev server
+- Create the file `apps/backend/.env.local` and add to it:
+
+  ```
+  PEXELS_API_KEY=<API_KEY> # <API_KEY> is the Pexel's API key string
+  PORT = 8080
+  ```
+- Create the file `apps/frontend/.env.local` and add:
+  ```
+  VITE_APP_API_URL=http://localhost:8080
+  
+  # when true, the app will use unshuffled, mock photos instead of fetching them from the sever
+  VITE_USE_TEST_DATA=false 
+  VITE_TILE_QUANTITY=20
+  ```
+
+- Run `pnpm start` to start the local dev server
+
+## Installing Dependencies
+According to the [Turborepo docs](https://turbo.build/repo/docs/crafting-your-repository/managing-dependencies#install-dependencies-where-theyre-used), dependencies should be installed in the workspace in which they're used and *not* in the root directory whenever possible.
+
+To install a dependency in the `apps/frontend` app use:
+> `pnpm add --save-dev <PACKAGE_NAME>`
 
 ## Styling
 Styles are written in SCSS and are located in the `src/styles` directory.
@@ -23,33 +41,56 @@ be loaded **before** Bootstrap is imported into the project in
 `src/styles/index.scss`.
 
 ## Testing
-Tests are written in Jest with React Testing Library. There is a helper
-function named `setupTests` in `src/helpers/tests` which will render
- components
-wrapped in the necessary context providers. This function should be
- used
-instead of React Test Library's `render` function for rendering  components
-within tests.
+Tests are written in Vitest with React Testing Library. 
+
+### Commands
+`pnpm run test` - Start the test suite in watch mode 
+
+`pnpm run ci` - Run the test suite once.
+
+When running tests from the root directory, prefer the `ci` command, as `test` runs in watch mode and therefore won't work properly when running with Turbo. 
+
+### Test helpers
+There is a helper function named `setupTests` in `src/utils/tests` which will
+render components wrapped in the necessary context providers. This function
+should be used instead of React Test Library's `render` function for rendering
+components within tests.
 
 The `setupTests` function accepts the following arguments:
+<details>
+<summary>
+Expand arguments
+</summary>
+
 `Component`: **React.ReactNode** - The component to be rendered in the test
 `options`: **object** - values used to render the Component in a particular state
-    - `props`: **object** - props for the Component
-    - `state`: **object** - the current state of the application (currently this is the value that will be provided to `GameContext`)
-    - `route`: **string** - url of route to be rendered (e.g. "/users/10")
+  - `props`: **object** - props for the Component
+    
+  - `state`: **object** - the current state of the application (currently this is the value that will be provided to `GameContext`)
+
+  - `route`: **string** - url of route to be rendered (e.g. "/users/10")
 
 Ideally, tests should be written for every single component and every single
 user action **before** writing the code to fix the test. Mock as little as
 possible to maximize test confidence. 
+</details>
 
-Run `yarn test` to start the test suite in watch mode.
+
+### Linting
+#### Command
+`pnpm run lint` - Run linting and style linting 
+
+The custom dependency `apps/eslint-config` manages the ESLint configs for both
+`apps/frontend` and `apps/backend`.
 
 ## ImmerJS
+<details>
+<summary>Click to expand</summary>
 
-Since React utilizes top-down, immutable state, it's best practice
-to always return a new state object from the reducer to avoid stale state
-within the app and to ensure that components update when state values change.
-Using traditional spread operator syntax is effective, but gets very messy when
+Since React utilizes top-down, immutable state, it's best practice to always
+return a new state object from the reducer to avoid stale state within the app
+and to ensure that components update when state values change.  Using
+traditional spread operator syntax is effective, but gets very messy when
 updating deeply nested state values, because each layer of the state object
 needs to be duplicated as the deeply nested value is accessed.
 
@@ -58,7 +99,9 @@ to allow immutable state updates to be written in a mutable syntax. The
 `produce` function from Immer creates a `draft` of a given object, applies
 mutable change to it and then returns a new object with the desired changes.
 
-For example:
+<details>
+<summary>Example</summary>
+
 ```javascript
 // traditional reducer syntax, using spread syntax
 const reducer = (state, action) => {
@@ -107,7 +150,8 @@ value is required from the `produce` function*.
 
 See the [ImmerJs Docs](https://immerjs.github.io/immer/produce/) for more
 information about the `produce` function.
-
+</details>
+</details>
 
 ## Contributing
 All incoming feature branches will be merged into the `dev` branch to be tested
@@ -120,6 +164,8 @@ branches that will be linked to the issue for which they're created. Branches
 created in this way will follow the aforementioned branch name formatting. See
 the images below.
 
+<details>
+<summary>Expand</summary>
 ![image](design/readmeImages/contributing_create_branch.png)
 ![image](design/readmeImages/contributing_create_branch_2.png)
 
@@ -128,3 +174,4 @@ All new branches should be created using the `dev` branch as a base. Click
 
 ![image](design/readmeImages/contributing_create_branch_3.png)
 ![image](design/readmeImages/contributing_create_branch_4.png)
+</details>
